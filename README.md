@@ -1,5 +1,5 @@
 # Master Project
-Project work carried out at the Institute of Automation Technology, Technical University of Kaiserslautern.
+Project work carried out at the [Institute of Automation Technology, Technical University of Kaiserslautern](https://www.eit.uni-kl.de/atplus/home/).
 
 The purpose of this repo is to document my learnings and keep track of my progress.
 
