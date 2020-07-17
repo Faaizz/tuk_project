@@ -5,7 +5,7 @@ The purpose of this repo is to document my learnings and keep track of my progre
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 ## Project description:
-The goal of the project is the design of a factory simulation in [Factory I/O](https://factoryio.com/). 
+The goal of the project is the design, implementation, and control of a factory simulation in [Factory I/O](https://factoryio.com/). 
 The simulation should be capable of being used for teaching and research. 
 Based on the factory simulation, different algorithms such as fault-tolerant control, 
 reconfiguration and cyber-security approaches can be tested. 
