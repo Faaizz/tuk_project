@@ -5,7 +5,7 @@ The purpose of this repo is to document my learnings and keep track of my progre
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 ## Project description:
-The goal of the project is the design, implementation, and control of a virtual factory which should be capable of being used for teaching and research. 
+The goal of the project is the design, implementation, and control of a virtual factory capable of being used for teaching and research. 
 Based on the factory simulation, different algorithms such as fault-tolerant control, 
 reconfiguration and cyber-security approaches can be tested. 
 To allow a wide range of applications, different communication frameworks are to be implemented 
