@@ -41,6 +41,8 @@ Markdown Tips:
 ### Goals
 - Explore Facotry I/O and build a demo plant to get a hang of the software environment
 ### Deliverables
+- Simple virtual factory with basic controls implemented
+### Results
 - 
 
 -------------------------------------------------------------------------------------------------------------------------------------------
