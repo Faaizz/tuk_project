@@ -43,7 +43,10 @@ Markdown Tips:
 ### Deliverables
 - Simple virtual factory with basic controls implemented
 ### Results
-- 
+- /src/virtual_factories/demo-factory
+- /src/control_systems/modelling/demo_factory.pdf
+- /src/control_systems/implementation/demo_factory.st
+- /src/control_systems/validation/demo_factory.smv
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
