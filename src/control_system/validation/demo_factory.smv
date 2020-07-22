@@ -1,0 +1,485 @@
+MODULE main
+
+-- ====================================================================
+-- VARIABLES
+-- ====================================================================
+VAR
+
+--------------------------------------------------------------------
+-- INPUTS
+--------------------------------------------------------------------
+SB_P: boolean;
+SL_P: boolean;
+SB_M: boolean;
+SL_M: boolean;
+S_L: boolean;
+ST_D: boolean;
+ST_X: boolean;
+ST_Z: boolean;
+SBC: boolean;
+SLC: boolean;
+-- TIMERS
+-- 1 SECOND
+TM_1: boolean;
+-- 2 SECONDS
+TM_2: boolean;
+
+
+--------------------------------------------------------------------
+-- PLACES
+--------------------------------------------------------------------
+-- LINE A
+PA1: boolean;
+PA2: boolean;
+PA3: boolean;
+PA4: boolean;
+-- LINE B
+PB1: boolean;
+PB2: boolean;
+PB3: boolean;
+PB4: boolean;
+-- LINE C
+PC1: boolean;
+PC2: boolean;
+PC3: boolean;
+PC4: boolean;
+PC5: boolean;
+PC6: boolean;
+PC7: boolean;
+PC8: boolean;
+-- LINE D
+PD1: boolean;
+PD2: boolean;
+PD3: boolean;
+-- LINE E
+PE1: boolean;
+PE2: boolean;
+PE3: boolean;
+PE4: boolean;
+PE5: boolean;
+PE6: boolean;
+PE7: boolean;
+-- LINE F
+PF1: boolean;
+PF2: boolean;
+PF3: boolean;
+PF4: boolean;
+PF5: boolean;
+
+
+-- ====================================================================
+-- DEFINITIONS
+-- ====================================================================
+DEFINE
+
+--------------------------------------------------------------------
+-- TRANSITIONS
+--------------------------------------------------------------------
+-- LINE A
+ta1:= PA1 & !PA2 & TM_1;
+ta2:= PA2 & !PA3 & SL_P;
+ta3:= PA3 & ! PA4 & TM_2;
+stab_a:= !(ta1 | ta2 | ta3);
+-- LINE B
+tb1:= PB1 & ! PB2 & TM_1;
+tb2:= PB2 & !PB3 & SB_P;
+tb3:= PB3 & !PB4 & TM_2;
+stab_b:= !(tb1 | tb2 | tb3);
+-- LINE C
+tc1:= PC1 & !PC2 & ST_Z;
+tc2:= PC2 & !PC3 & !ST_Z & ST_D;
+tc3:= PC3 & !PC4 & TM_1;
+tc4:= PC4 & !PC5 & !SL_M;
+tc5:= PC5 & !PC6 & ST_Z;
+tc6:= PC6 & !PC7 & !ST_Z;
+tc7:= PC7 & !PC8 & ST_X;
+stab_c:= !(tc1 | tc2 | tc3 | tc4 | tc5 | tc6 | tc7);
+-- LINE D
+td1:= PD1 & !PD2 & ST_Z;
+td2:= PD2 & !PD3 & !ST_Z;
+stab_d:= !(td1 | td2);
+-- LINE E
+te1:= PE1 & !PE2 & !SB_M;
+te2:= PE2 & !PE3 & !SBC;
+te3:= PE3 & !PE4 & SBC;
+te4:= PE4 & !PE5 & S_L;
+te5:= PE5 & !PE6 & !S_L;
+te6:= PE6 & !PE7 & !SBC;
+stab_e:= !(te1 | te2 | te3 | te4 | te5 |te6);
+-- LINE F
+tf1:= PF1 & !PF2 & ST_Z;
+tf2:= PF2 & !PF3 & !ST_Z & !ST_D;
+tf3:= PF3 & !PF4 & ST_Z;
+tf4:= PF4 & !PF5 & !ST_X;
+stab_f:= !(tf1 | tf2 | tf3 | tf4);
+-- ACROSS LINES
+taf:= PA4 & PF5 & !PC1 & SL_M;
+tbc:= PB4 & PC8 & !PD1 & !ST_X & SB_M;
+td3:= PD3 & !PF1 & !PE1 & TM_1;
+te7:= PE7 & !PA1 & !PB1 & SBC;
+stab_mix:= !(taf | tbc | td3 | te7);
+
+
+--------------------------------------------------------------------
+-- STABLE FIRING
+--------------------------------------------------------------------
+stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_mix;
+
+--------------------------------------------------------------------
+-- OUTPUTS
+--------------------------------------------------------------------
+set_AL_E:= PA1;
+reset_AL_E:= PA2 | !PA1 ;
+AL_E:= set_AL_E & !reset_AL_E;
+
+set_AL_C:= PA2 | PA3;
+reset_AL_C:= PA4 | !(PA2 | PA3);
+AL_C:= set_AL_C & !reset_AL_C;
+
+set_AL_M:= PA4;
+reset_AL_M:= PC4 | !PA4;
+AL_M:= set_AL_M & !reset_AL_M;
+
+set_AB_E:= PB1;
+reset_AB_E:= PB2 | !PB1;
+AB_E:= set_AB_E & !reset_AB_E;
+
+set_AB_C:= PB2 | PB3 | PE4;
+reset_AB_C:= PB4 | !(PB2 | PB3 | PE4);
+AB_C:= set_AB_C & !reset_AB_C;
+
+set_AB_M:= PB4;
+reset_AB_M:= PE1 | !PB4;
+AB_M:= set_AB_M & !reset_AB_M;
+
+set_AT_Z:= PC1 | PC2 | PD1 | PD2;
+reset_AT_Z:= (PC5 | PC6 | PF1 | PF2) | !(PC1 | PC2 | PD1 | PD2);
+AT_Z:= set_AT_Z & !reset_AT_Z;
+
+set_AT_X:= PC7 | PC8 | PF3 | PF4;
+reset_AT_X:= PF5 | !(PC7 | PC8 | PF3 | PF4);
+AT_X:= set_AT_X & !reset_AT_X;
+
+set_AT_G:= PC3;
+reset_AT_G:= PD3 | !PC3;
+AT_G:= set_AT_G & !reset_AT_G;
+
+set_RB_M:= PE2 | PE3 | PE5;
+reset_RB_M:= (PE6 | PE7) | !(PE2 | PE3 | PE5);
+RB_M:= set_RB_M & !reset_RB_M;
+
+-- ====================================================================
+-- ASSIGNMENTS
+-- ====================================================================
+ASSIGN
+
+--------------------------------------------------------------------
+-- INPUTS
+--------------------------------------------------------------------
+init(SB_P):= FALSE;
+next(SB_P):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB_P;
+            esac;
+
+init(SL_P):= FALSE;
+next(SL_P):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SL_P;
+            esac;
+
+init(SB_M):= FALSE;
+next(SB_M):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB_M;
+            esac;
+
+init(SL_M):= FALSE;
+next(SL_M):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SL_M;
+            esac;
+
+init(S_L):= FALSE;
+next(S_L):=  case
+                stab: {TRUE, FALSE};
+                TRUE: S_L;
+            esac;
+
+init(ST_D):= FALSE;
+next(ST_D):=  case
+                stab: {TRUE, FALSE};
+                TRUE: ST_D;
+            esac;
+
+init(ST_X):= FALSE;
+next(ST_X):=  case
+                stab: {TRUE, FALSE};
+                TRUE: ST_X;
+            esac;
+
+init(ST_Z):= FALSE;
+next(ST_Z):=  case
+                stab: {TRUE, FALSE};
+                TRUE: ST_Z;
+            esac;
+
+init(SBC):= FALSE;
+next(SBC):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SBC;
+            esac;
+
+init(SLC):= FALSE;
+next(SLC):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SLC;
+            esac;
+
+init(TM_1):= FALSE;
+next(TM_1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: TM_1;
+            esac;
+
+init(TM_2):= FALSE;
+next(TM_2):=  case
+                stab: {TRUE, FALSE};
+                TRUE: TM_2;
+            esac;
+
+
+--------------------------------------------------------------------
+-- STATES
+--------------------------------------------------------------------
+
+-- LINE A
+init(PA1):= TRUE;
+next(PA1):=  case
+                ta1: FALSE;
+                te7: TRUE;
+                TRUE: PA1;
+            esac;
+init(PA2):= FALSE;
+next(PA2):=  case
+                ta2: FALSE;
+                ta1: TRUE;
+                TRUE: PA2;
+            esac;
+init(PA3):= FALSE;
+next(PA3):=  case
+                ta3: FALSE;
+                ta2: TRUE;
+                TRUE: PA3;
+            esac;
+init(PA4):= FALSE;
+next(PA4):=  case
+                taf: FALSE;
+                ta3: TRUE;
+                TRUE: PA4;
+            esac;
+
+-- LINE B
+init(PB1):= TRUE;
+next(PB1):=  case
+                tb1: FALSE;
+                te7: TRUE;
+                TRUE: PB1;
+            esac;
+init(PB2):= FALSE;
+next(PB2):=  case
+                tb2: FALSE;
+                tb1: TRUE;
+                TRUE: PB2;
+            esac;
+init(PB3):= FALSE;
+next(PB3):=  case
+                tb3: FALSE;
+                tb2: TRUE;
+                TRUE: PB3;
+            esac;
+init(PB4):= FALSE;
+next(PB4):=  case
+                tbc: FALSE;
+                tb3: TRUE;
+                TRUE: PB4;
+            esac;    
+
+-- LINE C
+init(PC1):= FALSE;
+next(PC1):=  case
+                tc1: FALSE;
+                taf: TRUE;
+                TRUE: PC1;
+            esac;  
+init(PC2):= FALSE;
+next(PC2):=  case
+                tc2: FALSE;
+                tc1: TRUE;
+                TRUE: PC2;
+            esac;                                
+init(PC3):= FALSE;
+next(PC3):=  case
+                tc3: FALSE;
+                tc2: TRUE;
+                TRUE: PC3;
+            esac;
+init(PC4):= FALSE;
+next(PC4):=  case
+                tc4: FALSE;
+                tc3: TRUE;
+                TRUE: PC4;
+            esac;     
+init(PC5):= FALSE;            
+next(PC5):=  case
+                tc5: FALSE;
+                tc4: TRUE;
+                TRUE: PC5;
+            esac;    
+init(PC6):= FALSE;            
+next(PC6):=  case
+                tc6: FALSE;
+                tc5: TRUE;
+                TRUE: PC6;
+            esac;  
+init(PC7):= FALSE;            
+next(PC7):=  case
+                tc7: FALSE;
+                tc6: TRUE;
+                TRUE: PC7;
+            esac;  
+init(PC8):= FALSE;            
+next(PC8):=  case
+                tbc: FALSE;
+                tc7: TRUE;
+                TRUE: PC8;
+            esac;  
+
+-- LINE D
+init(PD1):= FALSE;            
+next(PD1):=  case
+                td1: FALSE;
+                tbc: TRUE;
+                TRUE: PD1;
+            esac; 
+init(PD2):= FALSE;            
+next(PD2):=  case
+                td2: FALSE;
+                td1: TRUE;
+                TRUE: PD2;
+            esac;
+init(PD3):= FALSE;            
+next(PD3):=  case
+                td3: FALSE;
+                td2: TRUE;
+                TRUE: PD3;
+            esac;  
+
+-- LINE E
+init(PE1):= FALSE;            
+next(PE1):=  case
+                te1: FALSE;
+                td3: TRUE;
+                TRUE: PE1;
+            esac;      
+init(PE2):= FALSE;            
+next(PE2):=  case
+                te2: FALSE;
+                te1: TRUE;
+                TRUE: PE2;
+            esac;   
+init(PE3):= FALSE;            
+next(PE3):=  case
+                te3: FALSE;
+                te2: TRUE;
+                TRUE: PE3;
+            esac;  
+init(PE4):= FALSE;            
+next(PE4):=  case
+                te4: FALSE;
+                te3: TRUE;
+                TRUE: PE4;
+            esac;   
+init(PE5):= FALSE;            
+next(PE5):=  case
+                te5: FALSE;
+                te4: TRUE;
+                TRUE: PE5;
+            esac;   
+init(PE6):= FALSE;            
+next(PE6):=  case
+                te6: FALSE;
+                te5: TRUE;
+                TRUE: PE6;
+            esac;   
+init(PE7):= FALSE;            
+next(PE7):=  case
+                te7: FALSE;
+                te6: TRUE;
+                TRUE: PE7;
+            esac;                                                                                                                                           
+
+-- LINE F
+init(PF1):= FALSE;            
+next(PF1):=  case
+                tf1: FALSE;
+                td3: TRUE;
+                TRUE: PF1;
+            esac; 
+init(PF2):= FALSE;            
+next(PF2):=  case
+                tf2: FALSE;
+                tf1: TRUE;
+                TRUE: PF2;
+            esac;    
+init(PF3):= FALSE;            
+next(PF3):=  case
+                tf3: FALSE;
+                tf2: TRUE;
+                TRUE: PF3;
+            esac; 
+init(PF4):= FALSE;            
+next(PF4):=  case
+                tf4: FALSE;
+                tf3: TRUE;
+                TRUE: PF4;
+            esac;   
+init(PF5):= TRUE;            
+next(PF5):=  case
+                taf: FALSE;
+                tf4: TRUE;
+                TRUE: PF5;
+            esac;                                 
+
+
+-- ====================================================================
+-- SPECIFICATIONS
+-- ====================================================================
+
+-- No unstable cycles
+SPEC
+AG( EF(!stab) );
+
+-- Formally Correctness
+SPEC
+AG( (stab) -> !( (set_AL_E & reset_AL_E) | (!set_AL_E & !reset_AL_E) ) );
+SPEC
+AG( (stab) -> !( (set_AL_C & reset_AL_C) | (!set_AL_C & !reset_AL_C) ) );
+SPEC
+AG( (stab) -> !( (set_AL_C & reset_AL_C) | (!set_AL_C & !reset_AL_C) ) );
+SPEC
+AG( (stab) -> !( (set_AL_M & reset_AL_M) | (!set_AL_M & !reset_AL_M) ) );
+SPEC
+AG( (stab) -> !( (set_AB_E & reset_AB_E) | (!set_AB_E & !reset_AB_E) ) );
+SPEC
+AG( (stab) -> !( (set_AB_C & reset_AB_C) | (!set_AB_C & !reset_AB_C) ) );
+SPEC
+AG( (stab) -> !( (set_AB_M & reset_AB_M) | (!set_AB_M & !reset_AB_M) ) );
+SPEC
+AG( (stab) -> !( (set_AT_Z & reset_AT_Z) | (!set_AT_Z & !reset_AT_Z) ) );
+SPEC
+AG( (stab) -> !( (set_AT_X & reset_AT_X) | (!set_AT_X & !reset_AT_X) ) );
+SPEC
+AG( (stab) -> !( (set_AT_G & reset_AT_G) | (!set_AT_G & !reset_AT_G) ) );
+SPEC
+AG( (stab) -> !( (set_RB_M & reset_RB_M) | (!set_RB_M & !reset_RB_M) ) );

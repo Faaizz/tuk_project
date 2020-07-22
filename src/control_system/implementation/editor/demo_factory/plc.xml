@@ -1,0 +1,904 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <fileHeader companyName="Unknown" productName="Unnamed" productVersion="1" creationDateTime="2020-04-18T01:23:02"/>
+  <contentHeader name="Unnamed" modificationDateTime="2020-07-19T18:50:19">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="10" y="10"/>
+      </fbd>
+      <ld>
+        <scaling x="10" y="10"/>
+      </ld>
+      <sfc>
+        <scaling x="10" y="10"/>
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes/>
+    <pous>
+      <pou name="demo_factory" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="ST_X" address="%IX100.0">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Tool moving X]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="ST_Z" address="%IX100.1">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Tool moving Z]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="S_L" address="%IX100.2">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Tool detects item]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="SL_P" address="%IX100.3">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Lid in place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="SL_M" address="%IX100.4">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Lid clamped]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="SBC" address="%IX100.5">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Lid clamp at Z-axis limit]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="SB_P" address="%IX100.6">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Base in place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="SB_M" address="%IX100.7">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Base clamped]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="RESET" address="%IX101.0">
+              <type>
+                <BOOL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Rest Controller]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AT_X" address="%QX100.0">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Tool move X]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AT_Z" address="%QX100.1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Tool move Z]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AT_G" address="%QX100.2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Tool grab]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AL_C" address="%QX100.3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Roll lids conveyor]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AL_M" address="%QX100.4">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Clamp lid]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="RB_M" address="%QX100.5">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Raise lids clamp]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AB_C" address="%QX100.6">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Roll bases conveyor]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="AB_M" address="%QX100.7">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Clamp base]]></xhtml:p>
+              </documentation>
+            </variable>
+          </localVars>
+          <localVars>
+            <variable name="TM_1_ta1">
+              <type>
+                <derived name="TON"/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[1 second timer]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="TM_1_tc3">
+              <type>
+                <derived name="TON"/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[1 second timer]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="TM_1_tb1">
+              <type>
+                <derived name="TON"/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[1 second timer]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="TM_1_td3">
+              <type>
+                <derived name="TON"/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[1 second timer]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="TM_2_ta3">
+              <type>
+                <derived name="TON"/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[2 seconds timer]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="TM_2_tb3">
+              <type>
+                <derived name="TON"/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[2 seconds timer]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="stable">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="1"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Variable to check iterative firing]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PA1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="1"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PA2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PA3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PA4">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PB1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="1"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PB2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PB3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PB4">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC4">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC5">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC6">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC7">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PC8">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PD1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PD2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PD3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE4">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE5">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE6">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PE7">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PF1">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PF2">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PF3">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PF4">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="PF5">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="1"/>
+              </initialValue>
+              <documentation>
+                <xhtml:p><![CDATA[Place]]></xhtml:p>
+              </documentation>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[(*============================================================*)
+(* RESET *)
+(*============================================================*)
+IF NOT RESET THEN
+    PA1:= 1;
+    PA2:= 0;
+    PA3:= 0;
+    PA4:= 0;
+    PB1:= 1;
+    PB2:= 0;
+    PB3:= 0;
+    PB4:= 0;
+    PC1:= 0;
+    PC2:= 0;
+    PC3:= 0;
+    PC4:= 0;
+    PC5:= 0;
+    PC6:= 0;
+    PC7:= 0;
+    PC8:= 0;
+    PD1:= 0;
+    PD2:= 0;
+    PD3:= 0;
+    PE1:= 0;
+    PE2:= 0;
+    PE3:= 0;
+    PE4:= 0;
+    PE5:= 0;
+    PE6:= 0;
+    PE7:= 0;
+    PF1:= 0;
+    PF2:= 0;
+    PF3:= 0;
+    PF4:= 0;
+    PF5:= 1;
+END_IF;
+
+(*============================================================*)
+(* TIMERS *)
+(*============================================================*)
+TM_1_ta1(IN:= PA1, PT:= T#1000ms);
+TM_1_tc3(IN:= PC3, PT:= T#1000ms);
+TM_1_tb1(IN:= PB1, PT:= T#1000ms);
+TM_1_td3(IN:= PD3, PT:= T#1000ms);
+TM_2_ta3(IN:= PA3, PT:= T#2000ms);
+TM_2_tb3(IN:= PB3, PT:= T#2000ms);
+
+
+  stable:= 1;
+  (*============================================================*)
+  (* TRANSITIONS *)
+  (*============================================================*)
+  (* Line A *)
+  IF PA1 AND NOT PA2 AND TM_1_ta1.Q THEN
+    PA1:= 0;
+    PA2:= 1;
+    stable:= 0;
+  END_IF;
+  IF PA2 AND NOT PA3 AND SL_P THEN
+    PA2:= 0;
+    PA3:= 1;
+    stable:= 0;
+  END_IF;
+  IF PA3 AND NOT PA4 AND TM_2_ta3.Q THEN
+    PA3:= 0;
+    PA4:= 1;
+    stable:= 0;
+  END_IF;
+
+  (* Line B*)
+  IF PB1 AND NOT PB2 AND TM_1_tb1.Q THEN
+    PB1:= 0;
+    PB2:= 1;
+    stable:= 0;
+  END_IF;
+  IF PB2 AND NOT PB3 AND SB_P THEN
+    PB2:= 0;
+    PB3:= 1;
+    stable:= 0;
+  END_IF;
+  IF PB3 AND NOT PB4 AND TM_2_tb3.Q THEN
+    PB3:= 0;
+    PB4:= 1;
+    stable:= 0;
+  END_IF;
+  (* Line C *)
+  IF PC1 AND NOT PC2 AND ST_Z THEN
+    PC1:= 0;
+    PC2:= 1;
+    stable:= 0;
+  END_IF;
+  IF PC2 AND NOT PC3 AND NOT ST_Z THEN
+    PC2:= 0;
+    PC3:= 1;
+    stable:= 0;
+  END_IF;
+  IF PC3 AND NOT PC4 AND TM_1_tc3.Q THEN
+    PC3:= 0;
+    PC4:= 1;
+    stable:= 0;
+  END_IF;
+  IF PC4 AND NOT PC5 AND NOT SL_M THEN
+    PC4:= 0;
+    PC5:= 1;
+    stable:= 0;
+  END_IF;
+  IF PC5 AND NOT PC6 AND ST_Z THEN
+    PC5:= 0;
+    PC6:= 1;
+    stable:= 0;
+  END_IF;
+  IF PC6 AND NOT PC7 AND NOT ST_Z THEN
+    PC6:= 0;
+    PC7:= 1;
+    stable:= 0;
+  END_IF;
+  IF PC7 AND NOT PC8 AND ST_X THEN
+    PC7:= 0;
+    PC8:= 1;
+    stable:= 0;
+  END_IF;
+
+  (* Line D *)
+  IF PD1 AND NOT PD2 AND ST_Z THEN
+    PD1:= 0;
+    PD2:= 1;
+    stable:= 0;
+  END_IF;
+  IF PD2 AND NOT PD3 AND NOT ST_Z THEN
+    PD2:= 0;
+    PD3:= 1;
+    stable:= 0;
+  END_IF;
+
+  (* Line E *)
+  IF PE1 AND NOT PE2 AND NOT SB_M THEN
+    PE1:= 0;
+    PE2:= 1;
+    stable:= 0;
+  END_IF;
+  IF PE2 AND NOT PE3 AND NOT SBC THEN
+    PE2:= 0;
+    PE3:= 1;
+    stable:= 0;
+  END_IF;
+  IF PE3 AND NOT PE4 AND SBC THEN
+    PE3:= 0;
+    PE4:= 1;
+    stable:= 0;
+  END_IF;
+  IF PE4 AND NOT PE5 AND S_L THEN
+    PE4:= 0;
+    PE5:= 1;
+    stable:= 0;
+  END_IF;
+  IF PE5 AND NOT PE6 AND NOT S_L THEN
+    PE5:= 0;
+    PE6:= 1;
+    stable:= 0;
+  END_IF;
+  IF PE6 AND NOT PE7 AND NOT SBC THEN
+    PE6:= 0;
+    PE7:= 1;
+    stable:= 0;
+  END_IF;
+
+  (* Line F *)
+  IF PF1 AND NOT PF2 AND ST_Z THEN
+    PF1:= 0;
+    PF2:= 1;
+    stable:= 0;
+  END_IF;
+  IF PF2 AND NOT PF3 AND NOT ST_Z AND NOT S_L THEN
+    PF2:= 0;
+    PF3:= 1;
+    stable:= 0;
+  END_IF;
+  IF PF3 AND NOT PF4 AND ST_Z THEN
+    PF3:= 0;
+    PF4:= 1;
+    stable:= 0;
+  END_IF;
+  IF PF4 AND NOT PF5 AND NOT ST_X THEN
+    PF4:= 0;
+    PF5:= 1;
+    stable:= 0;
+  END_IF;
+
+  (* Across Lines *)
+  IF PA4 AND PF5 AND NOT PC1 AND SL_M THEN
+    PA4:= 0;
+    PF5:= 0;
+    PC1:= 1;
+    stable:= 0;
+  END_IF;
+  IF PB4 AND PC8 AND NOT PD1 AND NOT ST_X AND SB_M THEN
+    PB4:= 0;
+    PC8:= 0;
+    PD1:= 1;
+    stable:= 0;
+  END_IF;
+  IF PD3 AND NOT PF1 AND NOT PE1 AND TM_1_td3.Q THEN
+    PD3:= 0;
+    PF1:= 1;
+    PE1:= 1;
+    stable:= 0;
+  END_IF;
+  IF PE7 AND NOT PA1 AND NOT PB1 AND SBC THEN
+    PE7:= 0;
+    PA1:= 1;
+    PB1:= 1;
+    stable:= 0;
+  END_IF;
+
+
+(*============================================================*)
+(* OUTPUTS *)
+(*============================================================*)
+
+IF PA2 OR PA3 THEN
+  AL_C:= 1;
+END_IF;
+IF PA4 THEN
+  AL_C:= 0;
+  AL_M:= 1;
+END_IF;
+IF PB2 OR PB3 THEN
+  AB_C:= 1;
+END_IF;
+IF PB4 THEN
+  AB_C:= 0;
+  AB_M:= 1;
+END_IF;
+IF PC1 OR PC2 OR PD1 OR PD2 THEN
+  AT_Z:= 1;
+END_IF;
+IF PC3 THEN
+  AT_G:= 1;
+END_IF;
+IF PC4 THEN
+  AL_M:= 0;
+END_IF;
+IF PC5 OR PC6 OR PF1 OR PF2 THEN
+  AT_Z:= 0;
+END_IF;
+IF PC7 OR PC8 OR PF3 OR PF4 THEN
+  AT_X:= 1;
+END_IF;
+IF PD3 THEN
+  AT_G:= 0;
+END_IF;
+IF PE1 THEN
+  AB_M:= 0;
+END_IF;
+IF PE2 OR PE3 THEN
+  RB_M:= 1;
+END_IF;
+IF PE4 THEN
+  AB_C:= 1;
+END_IF;
+IF PE5 THEN
+  RB_M:= 1;
+  AB_C:= 1;
+END_IF;
+IF PE6 OR PE7 THEN
+  RB_M:= 0;
+END_IF;
+IF PF5 THEN
+  AT_X:= 0;
+END_IF;
+  
+
+
+
+
+
+
+
+
+
+]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations>
+      <configuration name="Config0">
+        <resource name="Res0">
+          <task name="task0" priority="0" interval="T#20ms">
+            <pouInstance name="instance0" typeName="demo_factory"/>
+          </task>
+        </resource>
+      </configuration>
+    </configurations>
+  </instances>
+</project>
