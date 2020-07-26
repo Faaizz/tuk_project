@@ -37,16 +37,29 @@ Markdown Tips:
     - Communication with Matlab
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-## Week 1&2: 10.07.2020-23.07.2020
+## Weeks 1&2: 10.07.2020-23.07.2020
 ### Goals
-- Explore Facotry I/O and build a demo plant to get a hang of the software environment
+- Explore Facotry I/O and build a demo factory to get a hang of the software environment
 ### Deliverables
 - Simple virtual factory with basic controls implemented
 ### Results
+- Demo factory was created and basic controls implemented. 
+However, after a couple of operation cycles, the control goes berserk
+#### Source Files
 - /src/virtual_factories/demo-factory
 - /src/control_systems/modelling/demo_factory.pdf
 - /src/control_systems/implementation/demo_factory.st
 - /src/control_systems/validation/demo_factory.smv
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+## Weeks 2&3: 24.07.2020-06.08.2020
+### Goals
+- Troubleshoot and fix demo factory control
+### Deliverables
+
+### Results
+- ScadaBR was set-up and all SIPN places exported as PLC outputs to monitor factory state transitions
+#### Source Files
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
