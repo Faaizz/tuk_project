@@ -58,7 +58,7 @@ However, after a couple of operation cycles, the control goes berserk
 ### Deliverables
 
 ### Results
-- ScadaBR was set-up and all SIPN places exported as PLC outputs to monitor factory state transitions
+
 #### Source Files
 
 -------------------------------------------------------------------------------------------------------------------------------------------
