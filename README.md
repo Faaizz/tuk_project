@@ -56,11 +56,14 @@ However, after a couple of operation cycles, the control goes berserk
 ### Goals
 - Troubleshoot and fix demo factory control
 ### Deliverables
-
+- Virtual factory with working basic controls
 ### Results
-
+- PLC logic fixed to sustain control over multiple operation cycles
 #### Source Files
+- /src/virtual_factories/demo-factory
+- /src/control_systems/implementation/demo_factory.st
+-------------------------------------------------------------------------------------------------------------------------------------------
+## Weeks 5-11: 06.08.2020-23.09.2020
+Exam Preparation.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
-
-
