@@ -60,10 +60,16 @@ However, after a couple of operation cycles, the control goes berserk
 ### Results
 - PLC logic fixed to sustain control over multiple operation cycles
 #### Source Files
-- /src/virtual_factories/demo-factory
+- /src/virtual_factories/demo_factory
 - /src/control_systems/implementation/demo_factory.st
 -------------------------------------------------------------------------------------------------------------------------------------------
 ## Weeks 5-11: 06.08.2020-23.09.2020
 Exam Preparation.
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 2&3: 23.07.2020-06.10.2020
+
+#### Source Files
+- /src/virtual_factories/demo_factory_extended
 -------------------------------------------------------------------------------------------------------------------------------------------
