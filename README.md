@@ -1,7 +1,7 @@
 # Master Project
 Project work carried out at the [Institute of Automation Technology, Technical University of Kaiserslautern](https://www.eit.uni-kl.de/atplus/home/).
 
-The purpose of this repo is to document my learnings and keep track of my progress.
+The purpose of this repo is to document our learnings and keep track of our progress.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 ## Project description:
@@ -43,10 +43,9 @@ Markdown Tips:
 ### Deliverables
 - Simple virtual factory with basic controls implemented
 ### Results
-- Demo factory was created and basic controls implemented. 
-However, after a couple of operation cycles, the control goes berserk
+- Demo factory created and basic controls implemented,but control goes berserk after a couple of operation cycles.
 #### Source Files
-- /src/virtual_factories/demo-factory
+- /src/virtual_factories/demo_factory.factoryio
 - /src/control_systems/modelling/demo_factory.pdf
 - /src/control_systems/implementation/demo_factory.st
 - /src/control_systems/validation/demo_factory.smv
@@ -59,6 +58,8 @@ However, after a couple of operation cycles, the control goes berserk
 - Virtual factory with working basic controls
 ### Results
 - PLC logic fixed to sustain control over multiple operation cycles
+#### Visualization
+- [Simple 2 Axis Pick and Place](https://youtu.be/4csPRa-M_I4)
 #### Source Files
 - /src/virtual_factories/demo_factory
 - /src/control_systems/implementation/demo_factory.st
@@ -68,8 +69,29 @@ Exam Preparation.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-## Weeks 2&3: 23.07.2020-06.10.2020
-
+## Weeks 12: 23.07.2020-06.10.2020
+### Goals
+- Formulate an understanding of the nature and scope of the virtual factory
+- Lay down design goals
+### Deliverables
+- Draft of virtual factory schematics
+### Results
+- Sketch of virtual factory schematics with parts labelled
 #### Source Files
-- /src/virtual_factories/demo_factory_extended
+- /src/img/schematics_sketch_v1_1.jpg
+- /src/img/schematics_sketch_v1_2.jpg
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 13: 23.07.2020-06.10.2020
+### Goals
+- Divide the virtual factory into sections
+- Refine design goals for Section A and implement in Factory I/O
+### Deliverables
+- Implementation of Section A
+### Results
+- Advanced schematics of Section A
+- Implementation of Section A
+#### Source Files
+- /src/img/sec_A_sketch_v1.jpg
+- /src/virtual_factories/sec_A.factoryio
 -------------------------------------------------------------------------------------------------------------------------------------------
