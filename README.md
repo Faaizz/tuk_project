@@ -69,7 +69,7 @@ Exam Preparation.
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-## Weeks 12: 23.07.2020-06.10.2020
+## Weeks 12: 24.09.2020-30.09.2020
 ### Goals
 - Formulate an understanding of the nature and scope of the virtual factory
 - Lay down design goals
@@ -82,7 +82,7 @@ Exam Preparation.
 - /src/img/schematics_sketch_v1_2.jpg
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-## Weeks 13: 23.07.2020-06.10.2020
+## Weeks 13: 01.10.2020-07.10.2020
 ### Goals
 - Divide the virtual factory into sections
 - Refine design goals for Section A and implement in Factory I/O
