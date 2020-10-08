@@ -95,3 +95,16 @@ Exam Preparation.
 - /src/img/sec_A_sketch_v1.jpg
 - /src/virtual_factories/sec_A.factoryio
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 14: 08.10.2020-14.10.2020
+### Goals
+- Refine design goals for Section B and implement in Factory I/O
+### Deliverables
+- Implementation of Section B
+### Results
+- Advanced schematics of Section B
+- Implementation of Section A & B
+#### Source Files
+- /src/img/sec_B_sketch_v1.jpg
+- /src/virtual_factories/Section.factoryio
+-------------------------------------------------------------------------------------------------------------------------------------------
