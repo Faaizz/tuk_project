@@ -8,7 +8,7 @@ PROGRAM demo_factory
     SBC AT %IX100.5 : BOOL;
     SB_P AT %IX100.6 : BOOL;
     SB_M AT %IX100.7 : BOOL;
-    RUNNING AT %IX101.0 : BOOL;
+    RESET AT %IX101.0 : BOOL;
     AT_X AT %QX100.0 : BOOL := 0;
     AT_Z AT %QX100.1 : BOOL := 0;
     AT_G AT %QX100.2 : BOOL := 0;
@@ -18,7 +18,7 @@ PROGRAM demo_factory
     AB_C AT %QX100.6 : BOOL := 0;
     AB_M AT %QX100.7 : BOOL := 0;
     (* PLACES ARE SET AS OUTPUTS FOR DEBUGGING *)
-    (* PLACES *)                  (* MODBUS ADDRESS *)
+    (* PLACES *)                  (* MODBUS ADDERSS *)
     PA1 AT %QX000.0 : BOOL := 1;  (* 0 *)
     PA2 AT %QX000.1 : BOOL := 0;  (* 1 *)
     PA3 AT %QX000.2 : BOOL := 0;  (* 2 *)
@@ -50,7 +50,6 @@ PROGRAM demo_factory
     PF3 AT %QX003.4 : BOOL := 0;  (* 28 *)
     PF4 AT %QX003.5 : BOOL := 0;  (* 29 *)
     PF5 AT %QX003.6 : BOOL := 1;  (* 30 *)
-   
   END_VAR
   VAR
     TM_1_ta1 : TON;
@@ -67,9 +66,9 @@ PROGRAM demo_factory
   END_VAR
 
   (*============================================================*)
-  (* RUNNING *)
+  (* RESET *)
   (*============================================================*)
-  IF NOT RUNNING THEN
+  IF NOT RESET THEN
       (*OUTPUTS*)
       AT_X:= 0;
       AT_Z:= 0;
@@ -117,9 +116,9 @@ PROGRAM demo_factory
   (*============================================================*)
   (* TIMERS *)
   (*============================================================*)
-  TM_1_ta1(IN:= PA1, PT:= T#0000ms);
+  TM_1_ta1(IN:= PA1, PT:= T#2000ms);
   TM_1_tc3(IN:= PC3, PT:= T#2000ms);
-  TM_1_tb1(IN:= PB1, PT:= T#0000ms);
+  TM_1_tb1(IN:= PB1, PT:= T#2000ms);
   TM_1_td3(IN:= PD3, PT:= T#1000ms);
   TM_2_ta3(IN:= PA3, PT:= T#1000ms);
   TM_2_tb3(IN:= PB3, PT:= T#1000ms);

@@ -107,8 +107,11 @@ Exam Preparation.
 - Advanced schematics of Section B
 - Implementation of Section A, B & C
 - Advanced schematics of Section B & C
+- Sensor+Pusher Control for redundant paths
 
 #### Source Files
 - /src/img/sec_B_sketch_v1.jpg
 - /src/virtual_factories/Section.factoryio
+- /src/control_systems/implementation/editor/Sensor+PusherTest
+- /src/control_systems/implementation/Sensor_Pusher_Test.st
 -------------------------------------------------------------------------------------------------------------------------------------------
