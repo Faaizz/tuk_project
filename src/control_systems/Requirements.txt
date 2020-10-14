@@ -1,0 +1,11 @@
+=> Specification Requirements
+
+=> Production Line
+* Raw materials should be transported to a machining center to produce lids
+* Raw materials should be transported ta a machning center to produce bases
+* If a machining center is down, re-route its traffic to other available ones
+* Ensure that at any point in time during operation, there's an available machining center producing lids and another producing bases
+* Avoid clustering of items at all times
+* Sort produced items into a line of bases and a line of lids
+* Couple pairs of bases and lids
+* Arrange 3 pairs of coupled products ina stackable box and store
