@@ -121,3 +121,19 @@ Exam Preparation.
 - /src/control_systems/implementation/editor/Sensor+PusherTest
 - /src/control_systems/implementation/Sensor_Pusher_Test.st
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 15 & 16: 15.10.2020-28.10.2020
+### Goals
+- 
+### Deliverables
+- 
+### Results
+-  Redundancy reroute (Changed pusher to pivot arm)
+- Removed buffer before machning center
+-  Implemented collision prevention mechanism from output of the main route and redundant route of the machining centers.
+
+#### Source Files
+- /src/img/sec_B_sketch_v1.jpg
+- /src/img/sec_A_sketch_v1.jpg
+- SIPN.jpg
+-------------------------------------------------------------------------------------------------------------------------------------------
