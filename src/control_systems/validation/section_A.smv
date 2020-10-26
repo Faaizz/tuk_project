@@ -14,7 +14,7 @@ SB4: boolean;
 SB5: boolean;
 SB6: boolean;
 SB9: boolean;
-SB10: boolean;
+--SB10: boolean;
 
 
 SBR2: boolean;
@@ -31,16 +31,13 @@ SB8B1: boolean;
 SB8B2: boolean;
 SB8B3: boolean;
 
-SP=0: enun;
-SP=1: enun;
-SP=2: enun;
-
+SP: enum;
 
 MCB(Error): boolean;
 MCBR(Error): boolean;
 
 -- Conveyor scale <= 0.5 ==> true
-CSB1W: boolean;
+--CSB1W: boolean;
 
 
 
@@ -66,68 +63,6 @@ TLBR2: boolean;
 -- BASES
 
 
-EB1: 
-BCB1: 
-BCB2: 
-BCB3: 
-BCB4: 
-BCB5: 
-BCB6: 
-BCB7: 
-BCB9 
-BCB10 
-
-SBB1: 
-SBB2: 
-
-CSB1(+): 
-
-
-BCBR1: 
-BCBR2: 
-BCBR3: 
-BCBR4: 
-BCBR5: 
-BCBR6: ;
-BCBR7: ;
-BCBR8: ;
-
-
-
-PUWSB1(+): ; 
-PUWSB1(left): ; 
-PUWSB1(right): ; 
-
-PAS2turn: ;
-PAS2Belt(+): ;
-PAS2Belt(-): ;
-
-MCB: ;
-MCB(start): ;
-MCB(stop): ;
-MCBR: ;
-MCBR(stop): ;
-MCBR(start): ;
-
---LIDS
-EL1: ;
-BCL: ;
-BCLB1: ;
-BCLB2: ;
-BCLB3: ;
-BCLB4: ;
-BCLB5: ;
-BCLB6: ;
-BCLB7: ;
-BCLB8: ;
-BCLB9: ;
-BCLB10: ;
-BCLB11: ;
-
-PUWSL1(+): ;
-PUWSL1(left): ;
-PASLB1turn: ;
-PASLB1(+): ;
 
 
 
@@ -149,6 +84,155 @@ DEFINE
 --------------------------------------------------------------------
 -- OUTPUTS
 --------------------------------------------------------------------
+set_EB1:= PB0;
+reset_EB1:= PB1 | !PB0; 
+EB1:= set_EB1 & !reset_EB1;
+set_BCB1:= PB0;
+reset_BCB1:= !PB0;
+BCB1:= set_BCB1 & !reset_BCB1;
+set_BCB2:= PB2|(PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10)|(PBR1X|PBR2|PBR3|PBR4);
+reset_BCB2:= PBLR1 | !set_BCB2;
+BCB2:= set_BCB2 & !reset_BCB2;
+set_BCB3:= PB2|(PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10)|(PBR1X|PBR2|PBR3|PBR4);
+reset_BCB3:= PBLR1 | !set_BCB3;
+BCB3:= set_BCB3 & !reset_BCB3;
+set_BCB4:= PB2|(PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10)|(PBR1X|PBR2|PBR3|PBR4);
+reset_BCB4:= PBLR1 | !set_BCB4;
+BCB4:= set_BCB4 & !reset_BCB4;
+set_BCB5:= PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10;
+reset_BCB5:= (PBR1X|PBR1|PBR2|PBR3|PBR4) | !set_BCB5;
+BCB5:= set_BCB5 & !reset_BCB5;
+set_BCB6:= PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10;
+reset_BCB6:= (PBR1X|PBR1|PBR2|PBR3|PBR4) | !set_BCB6;
+BCB6:= set_BCB6 & !reset_BCB6;
+set_BCB7:= PB5|PB6|PB7|PB8|PB9|PB10;
+reset_BCB7:= PBLR1 | !set_BCB7;
+BCB7:= set_BCB7 & !reset_BCB7;
+set_BCB9:=  PB5|PB6|PB7|PB8|PB9|PB10;
+reset_BCB9:= PBLR1 | !set_BCB9;
+BCB9:= set_BCB9 & !reset_BCB9;
+--set_BCB10:= ;
+--reset_BCB10:= ; 
+
+set_SBB1:= PB7|PB8;
+reset_SBB1:= PB9 | !set_SBB1;
+SBB1:= set_SBB1 & !reset_SBB1;
+set_SBB2:= PB11;
+reset_SBB2:= PB12 | !set_SBB2;
+SBB2:= set_SBB2 & !reset_SBB2;
+
+--set_CSB1_plus:= 
+--reset_CSB1_plus:= 
+
+set_BCBR1:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
+reset_BCBR1:= PBLR1 | !set_BCBR1;
+BCBR1:= set_BCBR1 & !reset_BCBR1;
+set_BCBR2:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
+reset_BCBR2:= PBLR1 | !set_BCBR2;
+BCBR2:= set_BCBR2 & !reset_BCBR2;
+set_BCBR3:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
+reset_BCBR3:= PBLR1 | !set_BCBR3;
+BCBR3:= set_BCBR3 & !reset_BCBR3;
+set_BCBR4:= PBR1|PBR2|PBR3|PBR4|PB10;
+reset_BCBR4:= PBLR1 | !set_BCBR4;
+BCBR4:= set_BCBR4 & !reset_BCBR4;
+set_BCBR5:= PBR1|PBR2|PBR3|PBR4|PB10;
+reset_BCBR5:= PBLR1 | !set_BCBR5;
+BCBR5:= set_BCBR5 & !reset_BCBR5;
+set_BCBR6:= PBR1|PBR2|PBR3|PBR4|PB10;
+reset_BCBR6:= PBLR1 | !set_BCBR6;
+BCBR6:= set_BCBR6 & !reset_BCBR6;
+set_BCBR7:= PBR4|PB10;
+reset_BCBR7:= PBLR1 | !set_BCBR7;
+BCBR7:= set_BCBR7 & !reset_BCBR7;
+set_BCBR8:= PBR4|PB10;
+reset_BCBR8:= PBLR1 | !set_BCBR8;
+BCBR8:= set_BCBR8 & !set_BCBR8;
+
+set_PUWSB1_plus:= PBLR1; 
+reset_PUWSB1_plus:= !set_PUWSB1_plus; 
+PUWSB1_plus:= set_PUWSB1_plus & !reset_PUWSB1_plus;
+set_PUWSB1_left:= FALSE; 
+reset_PUWSB1_left:= !set_PUWSB1_left;
+PUWSB1_left:= set_PUWSB1_left & !reset_PUWSB1_left;
+set_PUWSB1_right:= PBLR1; 
+reset_PUWSB1_right:= !set_PUWSB1_right; 
+PUWSB1_right:= set_PUWSB1_right & !reset_PUWSB1_right;
+
+set_PAS2_turn:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
+--reset_PAS2_turn:= ;
+PAS2_turn:= set_PAS2_turn;
+set_PAS2Belt_plus:= |PBR1|PBR2|PBR3|PBR4|PB10;
+reset_PAS2Belt_plus:= ;
+PAS2Belt_plus:= set_PAS2Belt_plus & !reset_PAS2Belt_plus;
+-- set_PAS2Belt_minus:= ;
+reset_PAS2Belt_minus:= !set_PAS2Belt_minus;
+PAS2Belt_minus:= !reset_PAS2Belt_minus;
+
+
+set_MCB:= TRUE;
+reset_MCB:= FALSE;
+MCB:= set_MCB & !reset_MCB
+set_MCB_start:= TRUE;
+reset_MCB_start:= FALSE;
+MCB_start:= set_MCB_start & !reset_MCB_start;
+set_MCB_stop:= FALSE;
+reset_MCB_stop:= TRUE;
+MCB_stop:= set_MCB_stop & !reset_MCB_stop;
+set_MCBR:= TRUE;
+reset_MCBR:= FALSE;
+MCBR:= set_MCBR & !reset_MCBR;
+set_MCBR_stop:= FALSE;
+reset_MCBR_stop:= TRUE;
+MCBR_stop:= set_MCBR_stop & !reset_MCBR_stop;
+set_MCBR_start:= TRUE;
+reset_MCBR_start:= FALSE;
+MCBR_start:= set_MCBR_start & !reset_MCBR_start;
+
+
+--LIDS
+set_EL1:= PL0;
+reset_EL1:= PL1 | !PL0;
+EL1:= set_EL1 & !reset_EL1;
+set_BCL1:= PL0;
+reset_BCL1:= !set_BCL1;
+BCL1:= set_BCL1 & !reset_BCL1;
+set_BCLB1:= PBLR1|PBLR2;
+reset_BCLB1:= !PBLR1 & !PBLR2;
+BCLB1:= set_BCLB1 & !reset_BCLB1;
+set_BCLB2:= PBLR1|PBLR2;
+reset_BCLB2:= !PBLR1 & !PBLR2;
+set_BCLB3:= PBLR1|PBLR2;
+reset_BCLB3:= !PBLR1 & !PBLR2;
+set_BCLB4:= PBLR1|PBLR2;
+reset_BCLB4:= !PBLR1 & !PBLR2;
+set_BCLB5:= PBLR1|PBLR2;
+reset_BCLB5:= !PBLR1 & !PBLR2;
+set_BCLB6:= PBLR1|PBLR2;
+reset_BCLB6:= !PBLR1 & !PBLR2;
+set_BCLB7:= PBLR1|PBLR2;
+reset_BCLB7:= !PBLR1 & !PBLR2;
+set_BCLB8:= PBLR1|PBLR2;
+reset_BCLB8:= !PBLR1 & !PBLR2;
+set_BCLB9:= PBLR1|PBLR2;
+reset_BCLB9:= !PBLR1 & !PBLR2;
+set_BCLB10:= PBLR1|PBLR2;
+reset_BCLB10:= !PBLR1 & !PBLR2;
+set_BCLB11:= PBLR1|PBLR2;
+reset_BCLB11:= !PBLR1 & !PBLR2;
+
+set_PUWSL1_plus:= TRUE;
+reset_PUWSL1_plus:= FALSE;
+PUWSL1_plus:= set_PUWSL1_plus & !reset_PUWSL1_plus;
+set_PUWSL1_left:= FALSE;
+reset_PUWSL1_left:= TRUE;
+PUWSL1_left:= set_PUWSL1_left & !reset_PUWSL1_left;
+set_PASLB1_turn:= PBLR1|PBLR2;
+reset_PASLB1_turn:= !PBLR1 & !PBLR2;
+PASLB1_turn:= set_PASLB1_turn & !reset_PASLB1_turn;
+set_PASLB1_plus:= PBLR1|PBLR2;
+reset_PASLB1_plus:= !PBLR1 & !PBLR2;
+PASLB1_plus:= set_PASLB1_plus & !reset_PASLB1_plus;
 
 
 -- ====================================================================

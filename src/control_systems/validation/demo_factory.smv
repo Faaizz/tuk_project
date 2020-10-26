@@ -129,7 +129,7 @@ stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_mix;
 -- OUTPUTS
 --------------------------------------------------------------------
 set_AL_E:= PA1;
-reset_AL_E:= PA2 | !PA1 ;
+reset_AL_E:= PA2 | !PA1;
 AL_E:= set_AL_E & !reset_AL_E;
 
 set_AL_C:= PA2 | PA3;
