@@ -8,12 +8,126 @@ VAR
 --------------------------------------------------------------------
 -- INPUTS
 --------------------------------------------------------------------
+---- BASES
+SB1: boolean;
+SB4: boolean;
+SB5: boolean;
+SB6: boolean;
+SB9: boolean;
+SB10: boolean;
+
+
+SBR2: boolean;
+SBR3: boolean;
+SBR4: boolean;
+SBR5: boolean;
+
+SB7B0: boolean;
+SB7B1: boolean;
+SB7B2: boolean;
+SB7B3: boolean;
+SB8B0: boolean;
+SB8B1: boolean;
+SB8B2: boolean;
+SB8B3: boolean;
+
+SP=0: enun;
+SP=1: enun;
+SP=2: enun;
+
+
+MCB(Error): boolean;
+MCBR(Error): boolean;
+
+-- Conveyor scale <= 0.5 ==> true
+CSB1W: boolean;
+
+
+
+----LIDS
+SL1: boolean;
+
+
+MCL(Error): boolean;
+MCLR(Error): boolean;
+
+
+---- TIMERS
+-- 0.5 SECONDS
+TB2RX: boolean;
+TLBR2: boolean;
+
 
 
 
 --------------------------------------------------------------------
 -- PLACES
 --------------------------------------------------------------------
+-- BASES
+
+
+EB1: 
+BCB1: 
+BCB2: 
+BCB3: 
+BCB4: 
+BCB5: 
+BCB6: 
+BCB7: 
+BCB9 
+BCB10 
+
+SBB1: 
+SBB2: 
+
+CSB1(+): 
+
+
+BCBR1: 
+BCBR2: 
+BCBR3: 
+BCBR4: 
+BCBR5: 
+BCBR6: ;
+BCBR7: ;
+BCBR8: ;
+
+
+
+PUWSB1(+): ; 
+PUWSB1(left): ; 
+PUWSB1(right): ; 
+
+PAS2turn: ;
+PAS2Belt(+): ;
+PAS2Belt(-): ;
+
+MCB: ;
+MCB(start): ;
+MCB(stop): ;
+MCBR: ;
+MCBR(stop): ;
+MCBR(start): ;
+
+--LIDS
+EL1: ;
+BCL: ;
+BCLB1: ;
+BCLB2: ;
+BCLB3: ;
+BCLB4: ;
+BCLB5: ;
+BCLB6: ;
+BCLB7: ;
+BCLB8: ;
+BCLB9: ;
+BCLB10: ;
+BCLB11: ;
+
+PUWSL1(+): ;
+PUWSL1(left): ;
+PASLB1turn: ;
+PASLB1(+): ;
 
 
 
