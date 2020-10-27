@@ -31,10 +31,10 @@ SB8B1: boolean;
 SB8B2: boolean;
 SB8B3: boolean;
 
-SP: enum;
+SP: {0,1,2};
 
-MCB(Error): boolean;
-MCBR(Error): boolean;
+MCB_error: boolean;
+MCBR_error: boolean;
 
 -- Conveyor scale <= 0.5 ==> true
 --CSB1W: boolean;
@@ -45,14 +45,14 @@ MCBR(Error): boolean;
 SL1: boolean;
 
 
-MCL(Error): boolean;
-MCLR(Error): boolean;
+MCL_error: boolean;
+MCLR_error: boolean;
 
 
 ---- TIMERS
 -- 0.5 SECONDS
-TB2RX: boolean;
-TLBR2: boolean;
+TB2RX_time: boolean;
+TLBR2_time: boolean;
 
 
 
@@ -61,6 +61,35 @@ TLBR2: boolean;
 -- PLACES
 --------------------------------------------------------------------
 -- BASES
+--BASES
+PB0: boolean;
+PB1: boolean;
+PB2: boolean;
+PB3: boolean;
+PB4: boolean;
+PB5: boolean;
+PB6: boolean;
+PB7: boolean;
+PB8: boolean;
+PB9: boolean;
+PB10: boolean;
+PB11: boolean;
+PB12: boolean;
+
+
+
+PBLR1: boolean;
+PBR1X: boolean;
+PBR1: boolean;
+PBR2: boolean;
+PBR3: boolean;
+PBR4: boolean;
+
+
+--LIDS
+PL0: boolean;
+PL1: boolean;
+
 
 
 
@@ -74,12 +103,62 @@ DEFINE
 --------------------------------------------------------------------
 -- TRANSITIONS
 --------------------------------------------------------------------
+-- BASES
+TB01:= SB1;
+TBLR:= MCB_error & MCBR_error;
+TB12:= !(MCB_error & MCBR_error);
+stab_a:= !(TB01 | TBLR | TB12);
+
+TB23:= !MCB_error;
+TB2R:= MCB_error & !MCBR_error;
+TB30:= !SB4 & !SB5;
+stab_b:= !(TB23 | TB2R | TB30);
+
+TB34:= !SB4 & SB5;
+TB45:= SB4;
+TB56:= !SB6;
+stab_c:= !(TB34 | TB45 | TB56);
+
+TB2RX:= TB2RX_time;
+TBR10:= !SBR2 & !SBR3;
+TBR12:= !SBR2 & SBR3;
+stab_d:= !(TB2RX | TBR10 | TBR12);
+
+TBR23:= SBR2;
+TBR34:= !SBR4;
+TB10R4:= SB9;
+stab_e:= !(TBr23 | TBR34 | TB10R4);
+
+TB67:= SBR5 & !(SB7B0 | SB7B1 | SB7B2 | SB7B3) & (SB8B0 | SB8B1 | SB8B2 | SB8B3);
+TB78:= SB9;
+TB610:= SB9;
+stab_f:= !(TB67 | TB78 | TB610);
+
+TB89:= !SB9;
+TB910:= SB9;
+TB1011:= (SB10 & CSB1W) | SP_0;
+stab_g:= !(TB89 | TB910 | TB1011);
+
+TB1112:= CSB1W | SP_0;
+TB1012:= true;
+stab_h:= !(TB1112 | TB1012);
+
+--LIDS
+TL01:= SL1;
+TLBR:= MCL_error & MCLR_error;
+TLBR2:= TB2RX_time;
+stab_i:= !(TL01 | TLBR | TLBR2);
+
+
+
+
+
 
 
 --------------------------------------------------------------------
 -- STABLE FIRING
 --------------------------------------------------------------------
-
+stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_g & stab_h & stab_i;
 
 --------------------------------------------------------------------
 -- OUTPUTS
@@ -243,7 +322,17 @@ ASSIGN
 --------------------------------------------------------------------
 -- INPUTS
 --------------------------------------------------------------------
+init():= FALSE;
+next():=  case
+                stab: {TRUE, FALSE};
+                TRUE: ;
+            esac;
 
+init():= FALSE;
+next():=  case
+                stab: {TRUE, FALSE};
+                TRUE: ;
+            esac;
 
 -- ====================================================================
 -- SPECIFICATIONS
