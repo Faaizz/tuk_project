@@ -8,7 +8,7 @@ VAR
 --------------------------------------------------------------------
 -- INPUTS
 --------------------------------------------------------------------
----- BASES
+---- BASE
 SB1: boolean;
 SB4: boolean;
 SB5: boolean;
@@ -41,7 +41,7 @@ MCBR_error: boolean;
 
 
 
-----LIDS
+---- LID
 SL1: boolean;
 
 
@@ -60,8 +60,7 @@ TLBR2_time: boolean;
 --------------------------------------------------------------------
 -- PLACES
 --------------------------------------------------------------------
--- BASES
---BASES
+-- BASE
 PB0: boolean;
 PB1: boolean;
 PB2: boolean;
@@ -76,17 +75,21 @@ PB10: boolean;
 PB11: boolean;
 PB12: boolean;
 
-
-
-PBLR1: boolean;
-PBR1X: boolean;
+-- BASE REDUNDANT
 PBR1: boolean;
 PBR2: boolean;
 PBR3: boolean;
 PBR4: boolean;
 
+-- BASE-LID REDUNDANT
+PBLR1: boolean;
 
---LIDS
+-- LID-BASE REDUNDANT
+PLBR1: boolean;
+PLBR2: boolean;
+
+
+-- LID
 PL0: boolean;
 PL1: boolean;
 
@@ -103,7 +106,7 @@ DEFINE
 --------------------------------------------------------------------
 -- TRANSITIONS
 --------------------------------------------------------------------
--- BASES
+-- BASE
 TB01:= SB1;
 TBLR:= MCB_error & MCBR_error;
 TB12:= !(MCB_error & MCBR_error);
@@ -127,7 +130,7 @@ stab_d:= !(TB2RX | TBR10 | TBR12);
 TBR23:= SBR2;
 TBR34:= !SBR4;
 TB10R4:= SB9;
-stab_e:= !(TBr23 | TBR34 | TB10R4);
+stab_e:= !(TBR23 | TBR34 | TB10R4);
 
 TB67:= SBR5 & !(SB7B0 | SB7B1 | SB7B2 | SB7B3) & (SB8B0 | SB8B1 | SB8B2 | SB8B3);
 TB78:= SB9;
@@ -136,14 +139,15 @@ stab_f:= !(TB67 | TB78 | TB610);
 
 TB89:= !SB9;
 TB910:= SB9;
-TB1011:= (SB10 & CSB1W) | SP_0;
-stab_g:= !(TB89 | TB910 | TB1011);
+-- TB1011:= (SB10 & CSB1W) | (SP=0);
+-- stab_g:= !(TB89 | TB910 | TB1011);
+stab_g:= !(TB89 | TB910);
 
-TB1112:= CSB1W | SP_0;
-TB1012:= true;
-stab_h:= !(TB1112 | TB1012);
+-- TB1112:= CSB1W | (SP=0);
+-- TB1012:= true;
+-- stab_h:= !(TB1112 | TB1012);
 
---LIDS
+-- LID
 TL01:= SL1;
 TLBR:= MCL_error & MCLR_error;
 TLBR2:= TB2RX_time;
@@ -151,14 +155,11 @@ stab_i:= !(TL01 | TLBR | TLBR2);
 
 
 
-
-
-
-
 --------------------------------------------------------------------
 -- STABLE FIRING
 --------------------------------------------------------------------
-stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_g & stab_h & stab_i;
+-- stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_g & stab_h & stab_i;
+stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_g & stab_i;
 
 --------------------------------------------------------------------
 -- OUTPUTS
@@ -166,36 +167,46 @@ stab:= stab_a & stab_b & stab_c & stab_d & stab_e & stab_f & stab_g & stab_h & s
 set_EB1:= PB0;
 reset_EB1:= PB1 | !PB0; 
 EB1:= set_EB1 & !reset_EB1;
+
 set_BCB1:= PB0;
 reset_BCB1:= !PB0;
 BCB1:= set_BCB1 & !reset_BCB1;
+
 set_BCB2:= PB2|(PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10)|(PBR1X|PBR2|PBR3|PBR4);
 reset_BCB2:= PBLR1 | !set_BCB2;
 BCB2:= set_BCB2 & !reset_BCB2;
+
 set_BCB3:= PB2|(PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10)|(PBR1X|PBR2|PBR3|PBR4);
 reset_BCB3:= PBLR1 | !set_BCB3;
 BCB3:= set_BCB3 & !reset_BCB3;
+
 set_BCB4:= PB2|(PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10)|(PBR1X|PBR2|PBR3|PBR4);
 reset_BCB4:= PBLR1 | !set_BCB4;
 BCB4:= set_BCB4 & !reset_BCB4;
+
 set_BCB5:= PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10;
 reset_BCB5:= (PBR1X|PBR1|PBR2|PBR3|PBR4) | !set_BCB5;
 BCB5:= set_BCB5 & !reset_BCB5;
+
 set_BCB6:= PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10;
 reset_BCB6:= (PBR1X|PBR1|PBR2|PBR3|PBR4) | !set_BCB6;
 BCB6:= set_BCB6 & !reset_BCB6;
+
 set_BCB7:= PB5|PB6|PB7|PB8|PB9|PB10;
 reset_BCB7:= PBLR1 | !set_BCB7;
 BCB7:= set_BCB7 & !reset_BCB7;
+
 set_BCB9:=  PB5|PB6|PB7|PB8|PB9|PB10;
 reset_BCB9:= PBLR1 | !set_BCB9;
 BCB9:= set_BCB9 & !reset_BCB9;
+
 --set_BCB10:= ;
 --reset_BCB10:= ; 
 
 set_SBB1:= PB7|PB8;
 reset_SBB1:= PB9 | !set_SBB1;
 SBB1:= set_SBB1 & !reset_SBB1;
+
 set_SBB2:= PB11;
 reset_SBB2:= PB12 | !set_SBB2;
 SBB2:= set_SBB2 & !reset_SBB2;
@@ -206,24 +217,31 @@ SBB2:= set_SBB2 & !reset_SBB2;
 set_BCBR1:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
 reset_BCBR1:= PBLR1 | !set_BCBR1;
 BCBR1:= set_BCBR1 & !reset_BCBR1;
+
 set_BCBR2:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
 reset_BCBR2:= PBLR1 | !set_BCBR2;
 BCBR2:= set_BCBR2 & !reset_BCBR2;
+
 set_BCBR3:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
 reset_BCBR3:= PBLR1 | !set_BCBR3;
 BCBR3:= set_BCBR3 & !reset_BCBR3;
+
 set_BCBR4:= PBR1|PBR2|PBR3|PBR4|PB10;
 reset_BCBR4:= PBLR1 | !set_BCBR4;
 BCBR4:= set_BCBR4 & !reset_BCBR4;
+
 set_BCBR5:= PBR1|PBR2|PBR3|PBR4|PB10;
 reset_BCBR5:= PBLR1 | !set_BCBR5;
 BCBR5:= set_BCBR5 & !reset_BCBR5;
+
 set_BCBR6:= PBR1|PBR2|PBR3|PBR4|PB10;
 reset_BCBR6:= PBLR1 | !set_BCBR6;
 BCBR6:= set_BCBR6 & !reset_BCBR6;
+
 set_BCBR7:= PBR4|PB10;
 reset_BCBR7:= PBLR1 | !set_BCBR7;
 BCBR7:= set_BCBR7 & !reset_BCBR7;
+
 set_BCBR8:= PBR4|PB10;
 reset_BCBR8:= PBLR1 | !set_BCBR8;
 BCBR8:= set_BCBR8 & !set_BCBR8;
@@ -231,84 +249,122 @@ BCBR8:= set_BCBR8 & !set_BCBR8;
 set_PUWSB1_plus:= PBLR1; 
 reset_PUWSB1_plus:= !set_PUWSB1_plus; 
 PUWSB1_plus:= set_PUWSB1_plus & !reset_PUWSB1_plus;
+
 set_PUWSB1_left:= FALSE; 
 reset_PUWSB1_left:= !set_PUWSB1_left;
 PUWSB1_left:= set_PUWSB1_left & !reset_PUWSB1_left;
+
 set_PUWSB1_right:= PBLR1; 
 reset_PUWSB1_right:= !set_PUWSB1_right; 
 PUWSB1_right:= set_PUWSB1_right & !reset_PUWSB1_right;
 
 set_PAS2_turn:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
---reset_PAS2_turn:= ;
-PAS2_turn:= set_PAS2_turn;
-set_PAS2Belt_plus:= |PBR1|PBR2|PBR3|PBR4|PB10;
-reset_PAS2Belt_plus:= ;
+reset_PAS2_turn:= !set_PAS2_turn;
+PAS2_turn:= set_PAS2_turn & !reset_PAS2_turn;
+
+set_PAS2Belt_plus:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
+reset_PAS2Belt_plus:= !set_PAS2Belt_plus;
 PAS2Belt_plus:= set_PAS2Belt_plus & !reset_PAS2Belt_plus;
--- set_PAS2Belt_minus:= ;
+
+set_PAS2Belt_minus:= FALSE;
 reset_PAS2Belt_minus:= !set_PAS2Belt_minus;
-PAS2Belt_minus:= !reset_PAS2Belt_minus;
+PAS2Belt_minus:= set_PAS2Belt_minus & !reset_PAS2Belt_minus;
 
 
 set_MCB:= TRUE;
 reset_MCB:= FALSE;
-MCB:= set_MCB & !reset_MCB
+MCB:= set_MCB & !reset_MCB;
+
 set_MCB_start:= TRUE;
 reset_MCB_start:= FALSE;
 MCB_start:= set_MCB_start & !reset_MCB_start;
+
 set_MCB_stop:= FALSE;
 reset_MCB_stop:= TRUE;
 MCB_stop:= set_MCB_stop & !reset_MCB_stop;
+
 set_MCBR:= TRUE;
 reset_MCBR:= FALSE;
 MCBR:= set_MCBR & !reset_MCBR;
+
 set_MCBR_stop:= FALSE;
 reset_MCBR_stop:= TRUE;
 MCBR_stop:= set_MCBR_stop & !reset_MCBR_stop;
+
 set_MCBR_start:= TRUE;
 reset_MCBR_start:= FALSE;
 MCBR_start:= set_MCBR_start & !reset_MCBR_start;
 
 
---LIDS
+-- LID
 set_EL1:= PL0;
 reset_EL1:= PL1 | !PL0;
 EL1:= set_EL1 & !reset_EL1;
+
 set_BCL1:= PL0;
 reset_BCL1:= !set_BCL1;
 BCL1:= set_BCL1 & !reset_BCL1;
+
 set_BCLB1:= PBLR1|PBLR2;
 reset_BCLB1:= !PBLR1 & !PBLR2;
 BCLB1:= set_BCLB1 & !reset_BCLB1;
+
 set_BCLB2:= PBLR1|PBLR2;
 reset_BCLB2:= !PBLR1 & !PBLR2;
+BCLB2:= set_BCLB2 & !reset_BCLB2;
+
 set_BCLB3:= PBLR1|PBLR2;
 reset_BCLB3:= !PBLR1 & !PBLR2;
+BCLB3:= set_BCLB3 & !reset_BCLB3;
+
 set_BCLB4:= PBLR1|PBLR2;
 reset_BCLB4:= !PBLR1 & !PBLR2;
+BCLB4:= set_BCLB4 & !reset_BCLB4;
+
 set_BCLB5:= PBLR1|PBLR2;
 reset_BCLB5:= !PBLR1 & !PBLR2;
+BCLB5:= set_BCLB5 & !reset_BCLB5;
+
 set_BCLB6:= PBLR1|PBLR2;
 reset_BCLB6:= !PBLR1 & !PBLR2;
+BCLB6:= set_BCLB6 & !reset_BCLB6;
+
 set_BCLB7:= PBLR1|PBLR2;
 reset_BCLB7:= !PBLR1 & !PBLR2;
+BCLB7:= set_BCLB7 & !reset_BCLB7;
+
 set_BCLB8:= PBLR1|PBLR2;
 reset_BCLB8:= !PBLR1 & !PBLR2;
+BCLB8:= set_BCLB8 & !reset_BCLB8;
+
 set_BCLB9:= PBLR1|PBLR2;
 reset_BCLB9:= !PBLR1 & !PBLR2;
+BCLB9:= set_BCLB9 & !reset_BCLB9;
+
 set_BCLB10:= PBLR1|PBLR2;
 reset_BCLB10:= !PBLR1 & !PBLR2;
+BCLB10:= set_BCLB10 & !reset_BCLB10;
+
 set_BCLB11:= PBLR1|PBLR2;
 reset_BCLB11:= !PBLR1 & !PBLR2;
+BCLB11:= set_BCLB11 & !reset_BCLB11;
 
-set_PUWSL1_plus:= TRUE;
+set_PUWSL1_plus:= PLBR1 | PLBR2;
 reset_PUWSL1_plus:= FALSE;
 PUWSL1_plus:= set_PUWSL1_plus & !reset_PUWSL1_plus;
-set_PUWSL1_left:= FALSE;
-reset_PUWSL1_left:= TRUE;
+
+set_PUWSL1_left:= PLBR1 | PLBR2;
+reset_PUWSL1_left:= !set_PUWSL1_left;
 PUWSL1_left:= set_PUWSL1_left & !reset_PUWSL1_left;
+
+set_PUWSL1_right:= FALSE;
+reset_PUWSL1_right:= TRUE;
+PUWSL1_right:= set_PUWSL1_right & !reset_PUWSL1_right;
+
 set_PASLB1_turn:= PBLR1|PBLR2;
 reset_PASLB1_turn:= !PBLR1 & !PBLR2;
 PASLB1_turn:= set_PASLB1_turn & !reset_PASLB1_turn;
+
 set_PASLB1_plus:= PBLR1|PBLR2;
 reset_PASLB1_plus:= !PBLR1 & !PBLR2;
 PASLB1_plus:= set_PASLB1_plus & !reset_PASLB1_plus;
@@ -322,16 +378,281 @@ ASSIGN
 --------------------------------------------------------------------
 -- INPUTS
 --------------------------------------------------------------------
-init():= FALSE;
-next():=  case
+init(SB1):= FALSE;
+next(SB1):=  case
                 stab: {TRUE, FALSE};
-                TRUE: ;
+                TRUE: SB1;
             esac;
 
-init():= FALSE;
-next():=  case
+init(SB4):= FALSE;
+next(SB4):=  case
                 stab: {TRUE, FALSE};
-                TRUE: ;
+                TRUE: SB4;
+            esac;
+
+init(SB5):= FALSE;
+next(SB5):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB5;
+            esac;
+
+init(SB6):= FALSE;
+next(SB6):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB6;
+            esac;
+
+init(SB9):= FALSE;
+next(SB9):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB9;
+            esac;
+
+init(SBR2):= FALSE;
+next(SBR2):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SBR2;
+            esac;
+
+init(SBR3):= FALSE;
+next(SBR3):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SBR3;
+            esac;
+
+init(SBR4):= FALSE;
+next(SBR4):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SBR4;
+            esac;
+
+init(SBR5):= FALSE;
+next(SBR5):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SBR5;
+            esac;
+
+init(SB7B0):= FALSE;
+next(SB7B0):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB7B0;
+            esac;
+
+init(SB7B1):= FALSE;
+next(SB7B1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB7B1;
+            esac;
+
+init(SB7B2):= FALSE;
+next(SB7B2):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB7B2;
+            esac;
+
+init(SB8B0):= FALSE;
+next(SB8B0):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB8B0;
+            esac;
+
+init(SB8B1):= FALSE;
+next(SB8B1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB8B1;
+            esac;
+
+init(SB8B2):= FALSE;
+next(SB8B2):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB8B2;
+            esac;
+
+init(SB8B3):= FALSE;
+next(SB8B3):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SB8B3;
+            esac;
+
+init(SP):= 0;
+next(SP):=  case
+                stab: {0};
+                TRUE: SP;
+            esac;
+
+init(MCB_error):= FALSE;
+next(MCB_error):=  case
+                stab: {TRUE, FALSE};
+                TRUE: MCB_error;
+            esac;
+
+init(MCBR_error):= FALSE;
+next(MCBR_error):=  case
+                stab: {TRUE, FALSE};
+                TRUE: MCBR_error;
+            esac;
+
+-- LID
+init(SL1):= FALSE;
+next(SL1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: SL1;
+            esac;
+
+init(MCL_error):= FALSE;
+next(MCL_error):=  case
+                stab: {TRUE, FALSE};
+                TRUE: MCL_error;
+            esac;
+
+init(MCLR_error):= FALSE;
+next(MCLR_error):=  case
+                stab: {TRUE, FALSE};
+                TRUE: MCLR_error;
+            esac;
+
+-- BASE REDUNDANT            
+init(TB2RX_time):= FALSE;
+next(TB2RX_time):=  case
+                stab: {TRUE, FALSE};
+                TRUE: TB2RX_time;
+            esac;
+
+-- LID-BASE REDUNDANT
+init(TLBR2_time):= FALSE;
+next(TLBR2_time):=  case
+                stab: {TRUE, FALSE};
+                TRUE: TLBR2_time;
+            esac;
+
+
+
+--------------------------------------------------------------------
+-- PLACES
+--------------------------------------------------------------------
+
+-- BASE
+init(PB0):= TRUE;
+next(PB0):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB0;
+            esac;
+        
+init(PB1):= FALSE;
+next(PB1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB1;
+            esac;
+
+init(PB2):= FALSE;
+next(PB2):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB2;
+            esac;
+        
+init(PB3):= FALSE;
+next(PB3):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB3;
+            esac;
+
+init(PB4):= FALSE;
+next(PB4):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB4;
+            esac;
+        
+init(PB5):= FALSE;
+next(PB5):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB5;
+            esac;
+
+init(PB6):= FALSE;
+next(PB6):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB6;
+            esac;
+        
+init(PB7):= FALSE;
+next(PB7):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB7;
+            esac;
+
+init(PB8):= FALSE;
+next(PB8):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB8;
+            esac;
+        
+init(PB9):= FALSE;
+next(PB9):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB9;
+            esac;
+
+init(PB10):= FALSE;
+next(PB10):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB10;
+            esac;
+        
+init(PB11):= FALSE;
+next(PB11):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB11;
+            esac;
+
+init(PB12):= FALSE;
+next(PB12):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PB12;
+            esac;
+
+-- BASE REDUNDANT
+init(PBR1):= FALSE;
+next(PBR1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PBR1;
+            esac;
+
+init(PBR2):= FALSE;
+next(PBR2):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PBR2;
+            esac;
+
+init(PBR3):= FALSE;
+next(PBR3):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PBR3;
+            esac;
+
+init(PBR4):= FALSE;
+next(PBR4):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PBR4;
+            esac;
+
+-- BASE-LID REDUNDANT
+init(PBLR1):= FALSE;
+next(PBLR1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PBLR1;
+            esac;
+
+-- LID
+init(PL0):= TRUE;
+next(PL0):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PL0;
+            esac;
+
+init(PL1):= FALSE;
+next(PL1):=  case
+                stab: {TRUE, FALSE};
+                TRUE: PL1;
             esac;
 
 -- ====================================================================
