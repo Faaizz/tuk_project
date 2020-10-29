@@ -258,9 +258,9 @@ set_PUWSB1_right:= PBLR1;
 reset_PUWSB1_right:= !set_PUWSB1_right; 
 PUWSB1_right:= set_PUWSB1_right & !reset_PUWSB1_right;
 
-set_PAS2_turn:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
-reset_PAS2_turn:= !set_PAS2_turn;
-PAS2_turn:= set_PAS2_turn & !reset_PAS2_turn;
+set_PAS2turn:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
+reset_PAS2turn:= !set_PAS2turn;
+PAS2turn:= set_PAS2turn & !reset_PAS2turn;
 
 set_PAS2Belt_plus:= PBR1X|PBR1|PBR2|PBR3|PBR4|PB10;
 reset_PAS2Belt_plus:= !set_PAS2Belt_plus;
