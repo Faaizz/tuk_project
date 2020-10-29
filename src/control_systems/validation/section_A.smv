@@ -80,6 +80,7 @@ PBR1: boolean;
 PBR2: boolean;
 PBR3: boolean;
 PBR4: boolean;
+PBR1X: boolean;
 
 -- BASE-LID REDUNDANT
 PBLR1: boolean;
@@ -192,11 +193,15 @@ set_BCB6:= PB3|PB4|PB5|PB6|PB7|PB8|PB9|PB10;
 reset_BCB6:= (PBR1X|PBR1|PBR2|PBR3|PBR4) | !set_BCB6;
 BCB6:= set_BCB6 & !reset_BCB6;
 
-set_BCB7:= PB5|PB6|PB7|PB8|PB9|PB10;
+set_BCB7:= PB6|PB7|PB8|PB9|PB10;
 reset_BCB7:= PBLR1 | !set_BCB7;
 BCB7:= set_BCB7 & !reset_BCB7;
 
-set_BCB9:=  PB5|PB6|PB7|PB8|PB9|PB10;
+set_BCB8:= PB6|PB7|PB8|PB9|PB10;
+reset_BCB8:= PBLR1 | !set_BCB8;
+BCB8:= set_BCB8 & !reset_BCB8;
+
+set_BCB9:=  PB6|PB7|PB8|PB9|PB10;
 reset_BCB9:= PBLR1 | !set_BCB9;
 BCB9:= set_BCB9 & !reset_BCB9;
 
@@ -305,48 +310,48 @@ set_BCL1:= PL0;
 reset_BCL1:= !set_BCL1;
 BCL1:= set_BCL1 & !reset_BCL1;
 
-set_BCLB1:= PBLR1|PBLR2;
-reset_BCLB1:= !PBLR1 & !PBLR2;
+set_BCLB1:= PLBR1|PLBR2;
+reset_BCLB1:= !PLBR1 & !PLBR2;
 BCLB1:= set_BCLB1 & !reset_BCLB1;
 
-set_BCLB2:= PBLR1|PBLR2;
-reset_BCLB2:= !PBLR1 & !PBLR2;
+set_BCLB2:= PLBR1|PLBR2;
+reset_BCLB2:= !PLBR1 & !PLBR2;
 BCLB2:= set_BCLB2 & !reset_BCLB2;
 
-set_BCLB3:= PBLR1|PBLR2;
-reset_BCLB3:= !PBLR1 & !PBLR2;
+set_BCLB3:= PLBR1|PLBR2;
+reset_BCLB3:= !PLBR1 & !PLBR2;
 BCLB3:= set_BCLB3 & !reset_BCLB3;
 
-set_BCLB4:= PBLR1|PBLR2;
-reset_BCLB4:= !PBLR1 & !PBLR2;
+set_BCLB4:= PLBR1|PLBR2;
+reset_BCLB4:= !PLBR1 & !PLBR2;
 BCLB4:= set_BCLB4 & !reset_BCLB4;
 
-set_BCLB5:= PBLR1|PBLR2;
-reset_BCLB5:= !PBLR1 & !PBLR2;
+set_BCLB5:= PLBR1|PLBR2;
+reset_BCLB5:= !PLBR1 & !PLBR2;
 BCLB5:= set_BCLB5 & !reset_BCLB5;
 
-set_BCLB6:= PBLR1|PBLR2;
-reset_BCLB6:= !PBLR1 & !PBLR2;
+set_BCLB6:= PLBR1|PLBR2;
+reset_BCLB6:= !PLBR1 & !PLBR2;
 BCLB6:= set_BCLB6 & !reset_BCLB6;
 
-set_BCLB7:= PBLR1|PBLR2;
-reset_BCLB7:= !PBLR1 & !PBLR2;
+set_BCLB7:= PLBR1|PLBR2;
+reset_BCLB7:= !PLBR1 & !PLBR2;
 BCLB7:= set_BCLB7 & !reset_BCLB7;
 
-set_BCLB8:= PBLR1|PBLR2;
-reset_BCLB8:= !PBLR1 & !PBLR2;
+set_BCLB8:= PLBR1|PLBR2;
+reset_BCLB8:= !PLBR1 & !PLBR2;
 BCLB8:= set_BCLB8 & !reset_BCLB8;
 
-set_BCLB9:= PBLR1|PBLR2;
-reset_BCLB9:= !PBLR1 & !PBLR2;
+set_BCLB9:= PLBR1|PLBR2;
+reset_BCLB9:= !PLBR1 & !PLBR2;
 BCLB9:= set_BCLB9 & !reset_BCLB9;
 
-set_BCLB10:= PBLR1|PBLR2;
-reset_BCLB10:= !PBLR1 & !PBLR2;
+set_BCLB10:= PLBR1|PLBR2;
+reset_BCLB10:= !PLBR1 & !PLBR2;
 BCLB10:= set_BCLB10 & !reset_BCLB10;
 
-set_BCLB11:= PBLR1|PBLR2;
-reset_BCLB11:= !PBLR1 & !PBLR2;
+set_BCLB11:= PLBR1|PLBR2;
+reset_BCLB11:= !PLBR1 & !PLBR2;
 BCLB11:= set_BCLB11 & !reset_BCLB11;
 
 set_PUWSL1_plus:= PLBR1 | PLBR2;
@@ -361,12 +366,12 @@ set_PUWSL1_right:= FALSE;
 reset_PUWSL1_right:= TRUE;
 PUWSL1_right:= set_PUWSL1_right & !reset_PUWSL1_right;
 
-set_PASLB1_turn:= PBLR1|PBLR2;
-reset_PASLB1_turn:= !PBLR1 & !PBLR2;
+set_PASLB1_turn:= PLBR1|PLBR2;
+reset_PASLB1_turn:= !PLBR1 & !PLBR2;
 PASLB1_turn:= set_PASLB1_turn & !reset_PASLB1_turn;
 
-set_PASLB1_plus:= PBLR1|PBLR2;
-reset_PASLB1_plus:= !PBLR1 & !PBLR2;
+set_PASLB1_plus:= PLBR1|PLBR2;
+reset_PASLB1_plus:= !PLBR1 & !PLBR2;
 PASLB1_plus:= set_PASLB1_plus & !reset_PASLB1_plus;
 
 
@@ -658,3 +663,191 @@ next(PL1):=  case
 -- ====================================================================
 -- SPECIFICATIONS
 -- ====================================================================
+
+--------------------------------------------------------------------
+-- MCB GOOD
+--------------------------------------------------------------------
+DEFINE
+cond1:= !MCB_error & stab; 
+
+-- MCB produce lid from raw material
+SPEC
+AG( AF(cond1 -> PB10) );
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( (cond1 & SB4) -> EB1 );
+
+-- Belt Conveyors BCB2-BCB9 stay on after turning on the 1st time
+SPEC
+AG( cond1 & BCB2 -> AF(BCB2) );
+SPEC
+AG( cond1 & BCB3 -> AF(BCB3) );
+SPEC
+AG( cond1 & BCB4 -> AF(BCB4) );
+SPEC
+AG( cond1 & BCB5 -> AF(BCB5) );
+SPEC
+AG( cond1 & BCB6 -> AF(BCB6) );
+SPEC
+AG( cond1 & BCB7 -> AF(BCB7) );
+SPEC
+AG( cond1 & BCB8 -> AF(BCB8) );
+SPEC
+AG( cond1 & BCB9 -> AF(BCB9) );
+
+-- PAS2 stays off if MCB does not have error
+SPEC
+AG( (cond1) -> ( !PAS2_turn & !PAS2Belt_minus & !PAS2Belt_plus ) );
+
+
+--------------------------------------------------------------------
+-- MCB BAD AND MCBR GOOD
+--------------------------------------------------------------------
+DEFINE
+cond2:= MCB_error & !MCBR_error & stab;
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( ( cond2 & SBR2) -> EB1 );
+
+-- Belt Conveyors BCB2-BCB4 and BCB7-BCB9 stay on after turning on the 1st time
+SPEC
+AG( cond2 & BCB2 -> AF(BCB2) );
+SPEC
+AG( cond2 & BCB3 -> AF(BCB3) );
+SPEC
+AG( cond2 & BCB4 -> AF(BCB4) );
+SPEC
+AG( cond2 & BCB7 -> AF(BCB7) );
+SPEC
+AG( cond2 & BCB8 -> AF(BCB8) );
+SPEC
+AG( cond2 & BCB9 -> AF(BCB9) );
+
+-- Pivot Arm Sorter 2 stays ON after initial startup
+SPEC
+AG( cond2 & PBR1X -> AF(PAS2_turn & PAS2Belt_plus) );
+
+-- Belt Conveyors BCBR1-BCBR8 stay on after turning on the 1st time
+SPEC
+AG( cond2 & BCBR1 -> AF(BCBR1) );
+SPEC
+AG( cond2 & BCBR2 -> AF(BCBR2) );
+SPEC
+AG( cond2 & BCBR3 -> AF(BCBR3) );
+SPEC
+AG( cond2 & BCBR4 -> AF(BCBR4) );
+SPEC
+AG( cond2 & BCBR5 -> AF(BCBR5) );
+SPEC
+AG( cond2 & BCBR6 -> AF(BCBR6) );
+SPEC
+AG( cond2 & BCBR7 -> AF(BCBR7) );
+SPEC
+AG( cond2 & BCBR8 -> AF(BCBR8) );
+
+
+-- MCBR produce lid from raw material
+SPEC
+AG( AF(cond2 -> PB10) );
+
+
+--------------------------------------------------------------------
+-- MCL BAD AND MCLR BAD AND MCB GOOD AND MCBR GOOD
+--------------------------------------------------------------------
+DEFINE
+cond3:= MCL_error & MCLR_error & !MCB_error & !MCBR_error; 
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( ( cond3 & SB4) -> EB1 );
+
+-- EB1 should emit when there are less than 2 raw materials at MCBR feed
+SPEC
+AG( ( cond3 & SBR2) -> EB1 );
+
+-- Pivot Arm Sorter 2 is Turned off
+SPEC
+AG( cond3 -> AF(!PAS2_turn & !PAS2Belt_plus & !PAS2Belt_minus ) );
+
+-- Belt Conveyors BCB2-BCB9 stay on after turning on the 1st time
+SPEC
+AG( cond3 & BCB2 -> AF(BCB2) );
+SPEC
+AG( cond3 & BCB3 -> AF(BCB3) );
+SPEC
+AG( cond3 & BCB4 -> AF(BCB4) );
+SPEC
+AG( cond3 & BCB5 -> AF(BCB5) );
+SPEC
+AG( cond3 & BCB6 -> AF(BCB6) );
+SPEC
+AG( cond3 & BCB7 -> AF(BCB7) );
+SPEC
+AG( cond3 & BCB8 -> AF(BCB8) );
+SPEC
+AG( cond3 & BCB9 -> AF(BCB9) );
+
+-- Belt Conveyors BCBR1-BCBR3 are OFF
+SPEC
+AG( cond3 & BCBR1 -> AF(BCBR1) );
+SPEC
+AG( cond3 & BCBR2 -> AF(BCBR2) );
+SPEC
+AG( cond3 & BCBR3 -> AF(BCBR3) );
+
+-- Pop Up Wheel Sorter L1 diverts raw materials to the left
+SPEC
+AG( cond3 & PLBR1 -> AF(PUWSB1_plus & PUWSB1_left) );
+
+-- Belt Conveyors BCLB1-BCLB11 stay on after turning on the 1st time
+SPEC
+AG( cond3 & BCLB1 -> AF(BCLB1) );
+SPEC
+AG( cond3 & BCLB2 -> AF(BCLB2) );
+SPEC
+AG( cond3 & BCLB3 -> AF(BCLB3) );
+SPEC
+AG( cond3 & BCLB4 -> AF(BCLB4) );
+SPEC
+AG( cond3 & BCLB5 -> AF(BCLB5) );
+SPEC
+AG( cond3 & BCLB6 -> AF(BCLB6) );
+SPEC
+AG( cond3 & BCLB7 -> AF(BCLB7) );
+SPEC
+AG( cond3 & BCLB8 -> AF(BCLB8) );
+SPEC
+AG( cond3 & BCLB9 -> AF(BCLB9) );
+SPEC
+AG( cond3 & BCLB10 -> AF(BCLB10) );
+SPEC
+AG( cond3 & BCLB11 -> AF(BCLB11) );
+
+-- Pivot Arm Sorter LB1 is Turned On
+SPEC
+AG( cond3 & PLBR1 -> AF(PASLB1_turn & PASLB1_plus ) );
+
+-- Belt Conveyors BCBR4-BCBR8 stay on after turning on the 1st time
+SPEC
+AG( cond3 & BCBR4 -> AF(BCBR4) );
+SPEC
+AG( cond3 & BCBR5 -> AF(BCBR5) );
+SPEC
+AG( cond3 & BCBR6 -> AF(BCBR6) );
+SPEC
+AG( cond3 & BCBR7 -> AF(BCBR7) );
+SPEC
+AG( cond3 & BCBR8 -> AF(BCBR8) );
+
+-- Stop Blade B1 is activated to prevent collision of items from MCB and MCBR
+
+--------------------------------------------------------------------
+-- MCB BAD AND MCBR BAD
+--------------------------------------------------------------------
+DEFINE
+cond4:= MCB_error & MCBR_error;
+
+SPEC
+AG(cond4 & PBLR1 -> AF(PUWSB1_plus & PUWSB1_right));
