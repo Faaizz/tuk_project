@@ -1,0 +1,261 @@
+{
+    "places": {
+        "PL0": {
+            "1": ["EL1", "BCL1"],
+            "0": []
+        },
+
+        "PL1": {
+            "1": [],
+            "0": ["EL1"]
+        },
+        
+        "PLLR1": {
+            "1": ["PUWSL1_plus", "PUWSL1_right"],
+            "0": ["PUWSL1_left", "BCB2_BCB7", "BCBR1_BCBR9"]
+        },
+
+        "PL2": {
+            "1": ["PUWSL1", "BCB2_BCB4"],
+            "0": ["PUWSL1_right"]
+        },
+
+        "PL3": {
+            "1": ["BCB5", "BCB6"],
+            "0": ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCBtop"]
+        },
+
+        "PL4": {
+            "1": [],
+            "0": []
+        },
+
+        "PL5": {
+            "1": [],
+            "0": []
+        },
+
+        "PL6": {
+            "1": ["MCB", "MCB_start"],
+            "0": []
+        },
+
+        "PLR1X": {
+            "1": ["PAS2turn", "PAS2Belt_plus", "BCBR1-BCBR3"],
+            "0": ["PAS2Belt_minus", "BCB5-BCB6"]
+        },
+     
+        "PLR1": {
+            "1": ["BCBR4-BCBR6"],
+            "0": []
+        },
+
+        "PLR2": {
+            "1": [],
+            "0": []
+        },
+
+        "PLR3": {
+            "1": ["MCBR", "MCB_start"],
+            "0": []
+        },
+
+        "PLR4": {
+            "1": ["BCBR7", "BCBR8", "BCB9"],
+            "0": []
+        },
+            
+        "PL7": {
+            "1": ["SBL1"],
+            "0": []
+        },
+
+        "PL8": {
+            "1": [],
+            "0": []
+        },
+
+        "PL9": {
+            "1": [],
+            "0": ["SBL1"]
+        },
+
+        "PL10": {
+            "1": ["BCL10", "CSL1_plus"],
+            "0": []
+        },
+
+        "PL11": {
+            "1": ["SBB2"],
+            "0": []
+        },
+
+        "PL12": {
+            "1": [],
+            "0": ["SBB2"]
+        },
+
+        "PL0": {
+            "1": ["EL1", "BCL1"],
+            "0": []
+        },
+
+        "PL1": {
+            "1": [],
+            "0": ["EL1"]
+        },
+
+        "PLBR1": {
+            "1": ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
+            "0": ["PUWSL1_right"]
+        },
+
+        "PLBR2": {
+            "1": ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
+            "0": ["PUWSL1_right"]
+        }
+        
+    },
+
+    "inputs": {
+        "SL1": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB4": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB5": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB6": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB9": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SBR2": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SBR3": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SBR4": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SBR5": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB7B0": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB7L1": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB7B2": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB7B3": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB8B0": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB8L1": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB8B2": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SB8B3": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SP": {
+            "type": [0,1,2],
+            "init": 0
+        },
+
+        "MCB_error": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "MCBR_error": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "CSL1W": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "SL1": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "MCL_error": {
+            "type": "boolean",
+            "init": "false"
+        },
+        
+        "MCLR_error": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "tL2RX_time": {
+            "type": "boolean",
+            "init": "false"
+        },
+
+        "TLBR2_time": {
+            "type": "boolean",
+            "init": "false"
+        }
+
+    },
+
+    "transitions": {
+        "tL01": {
+            "pre": ["PL0"],
+            "post": ["PL1"],
+            "condition": ["SL1"]
+        }
+    }
+
+}
