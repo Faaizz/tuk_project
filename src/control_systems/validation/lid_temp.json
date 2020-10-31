@@ -12,7 +12,7 @@
         
         "PLLR1": [
             ["PUWSL1_plus", "PUWSL1_right"],
-            ["PUWSL1_left", "BCB2_BCB7", "BCBR1_BCBR9"]
+            ["PUWSL1_left", "BCB2_BCB7", "BCLR1_BCLR9"]
         ],
 
         "PL2": [
@@ -22,7 +22,7 @@
 
         "PL3": [
             ["BCB5", "BCB6"],
-            ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCBtop"]
+            ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCLstop"]
         ],
 
         "PL4": [
@@ -36,17 +36,17 @@
         ],
 
         "PL6": [
-            ["MCB", "MCB_start"],
+            ["MCL", "MCL_start"],
             []
         ],
 
         "PLR1X": [
-            ["PAS2turn", "PAS2Belt_plus", "BCBR1-BCBR3"],
+            ["PAS2turn", "PAS2Belt_plus", "BCLR1-BCLR3"],
             ["PAS2Belt_minus", "BCB5-BCB6"]
         ],
      
         "PLR1": [
-            ["BCBR4-BCBR6"],
+            ["BCLR4-BCLR6"],
             []
         ],
 
@@ -56,17 +56,17 @@
         ],
 
         "PLR3": [
-            ["MCBR", "MCB_start"],
+            ["MCLR", "MCL_start"],
             []
         ],
 
         "PLR4": [
-            ["BCBR7", "BCBR8", "BCB9"],
+            ["BCLR7", "BCLR8", "BCB9"],
             []
         ],
             
         "PL7": [
-            ["SBL1"],
+            ["SLL1"],
             []
         ],
 
@@ -77,7 +77,7 @@
 
         "PL9": [
             [],
-            ["SBL1"]
+            ["SLL1"]
         ],
 
         "PL10": [
@@ -86,13 +86,13 @@
         ],
 
         "PL11": [
-            ["SBB2"],
+            ["SLB2"],
             []
         ],
 
         "PL12": [
             [],
-            ["SBB2"]
+            ["SLB2"]
         ],
 
         "PL0": [
@@ -105,12 +105,12 @@
             ["EL1"]
         ],
 
-        "PLBR1": [
+        "PLLR1": [
             ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
             ["PUWSL1_right"]
         ],
 
-        "PLBR2": [
+        "PLLR2": [
             ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
             ["PUWSL1_right"]
         ]
@@ -122,67 +122,67 @@
             "false"
         ],
 
-        "SB4": [ "boolean",
+        "SL4": [ "boolean",
             "false"
         ],
 
-        "SB5": [ "boolean",
+        "SL5": [ "boolean",
             "false"
         ],
 
-        "SB6": [ "boolean",
+        "SL6": [ "boolean",
             "false"
         ],
 
-        "SB9": [ "boolean",
+        "SL9": [ "boolean",
             "false"
         ],
 
-        "SBR2": [ "boolean",
+        "SLR2": [ "boolean",
             "false"
         ],
 
-        "SBR3": [ "boolean",
+        "SLR3": [ "boolean",
             "false"
         ],
 
-        "SBR4": [ "boolean",
+        "SLR4": [ "boolean",
             "false"
         ],
 
-        "SBR5": [ "boolean",
+        "SLR5": [ "boolean",
             "false"
         ],
 
-        "SB7B0": [ "boolean",
+        "SL7B0": [ "boolean",
             "false"
         ],
 
-        "SB7L1": [ "boolean",
+        "SL7L1": [ "boolean",
             "init": "false"
         ],
 
-        "SB7B2": [ "boolean",
+        "SL7B2": [ "boolean",
             "false"
         ],
 
-        "SB7B3": [ "boolean",
+        "SL7B3": [ "boolean",
             "false"
         ],
 
-        "SB8B0": [ "boolean",
+        "SL8B0": [ "boolean",
             "false"
         ],
 
-        "SB8L1": [ "boolean",
+        "SL8L1": [ "boolean",
             "false"
         ],
 
-        "SB8B2": [ "boolean",
+        "SL8B2": [ "boolean",
             "false"
         ],
 
-        "SB8B3": [ "boolean",
+        "SL8B3": [ "boolean",
             "false"
         ],
 
@@ -190,11 +190,11 @@
             0
         ],
 
-        "MCB_error": [ "boolean",
+        "MCL_error": [ "boolean",
             "false"
         ],
 
-        "MCBR_error": [ "boolean",
+        "MCLR_error": [ "boolean",
             "false"
         ],
 
@@ -218,7 +218,7 @@
             "false"
         ],
 
-        "TLBR2_time": [ "boolean",
+        "TLLR2_time": [ "boolean",
             "false"
         ]
 
@@ -227,7 +227,11 @@
     "transitions": {
         "tL01": [
             ["PL0"],
-            [["SL1"]],
+            [
+                [
+                    ["SL1"], []
+                ]
+            ],
             ["PL1"]
         ]
     }
