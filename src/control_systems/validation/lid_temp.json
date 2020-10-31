@@ -1,261 +1,235 @@
 {
     "places": {
-        "PL0": {
-            "1": ["EL1", "BCL1"],
-            "0": []
-        },
+        "PL0": [
+            ["EL1", "BCL1"],
+            []
+        ],
 
-        "PL1": {
-            "1": [],
-            "0": ["EL1"]
-        },
+        "PL1": [
+            [],
+            ["EL1"]
+        ],
         
-        "PLLR1": {
-            "1": ["PUWSL1_plus", "PUWSL1_right"],
-            "0": ["PUWSL1_left", "BCB2_BCB7", "BCBR1_BCBR9"]
-        },
+        "PLLR1": [
+            ["PUWSL1_plus", "PUWSL1_right"],
+            ["PUWSL1_left", "BCB2_BCB7", "BCBR1_BCBR9"]
+        ],
 
-        "PL2": {
-            "1": ["PUWSL1", "BCB2_BCB4"],
-            "0": ["PUWSL1_right"]
-        },
+        "PL2": [
+            ["PUWSL1", "BCB2_BCB4"],
+            ["PUWSL1_right"]
+        ],
 
-        "PL3": {
-            "1": ["BCB5", "BCB6"],
-            "0": ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCBtop"]
-        },
+        "PL3": [
+            ["BCB5", "BCB6"],
+            ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCBtop"]
+        ],
 
-        "PL4": {
-            "1": [],
-            "0": []
-        },
+        "PL4": [
+            [],
+            []
+        ],
 
-        "PL5": {
-            "1": [],
-            "0": []
-        },
+        "PL5": [
+            [],
+            []
+        ],
 
-        "PL6": {
-            "1": ["MCB", "MCB_start"],
-            "0": []
-        },
+        "PL6": [
+            ["MCB", "MCB_start"],
+            []
+        ],
 
-        "PLR1X": {
-            "1": ["PAS2turn", "PAS2Belt_plus", "BCBR1-BCBR3"],
-            "0": ["PAS2Belt_minus", "BCB5-BCB6"]
-        },
+        "PLR1X": [
+            ["PAS2turn", "PAS2Belt_plus", "BCBR1-BCBR3"],
+            ["PAS2Belt_minus", "BCB5-BCB6"]
+        ],
      
-        "PLR1": {
-            "1": ["BCBR4-BCBR6"],
-            "0": []
-        },
+        "PLR1": [
+            ["BCBR4-BCBR6"],
+            []
+        ],
 
-        "PLR2": {
-            "1": [],
-            "0": []
-        },
+        "PLR2": [
+            [],
+            []
+        ],
 
-        "PLR3": {
-            "1": ["MCBR", "MCB_start"],
-            "0": []
-        },
+        "PLR3": [
+            ["MCBR", "MCB_start"],
+            []
+        ],
 
-        "PLR4": {
-            "1": ["BCBR7", "BCBR8", "BCB9"],
-            "0": []
-        },
+        "PLR4": [
+            ["BCBR7", "BCBR8", "BCB9"],
+            []
+        ],
             
-        "PL7": {
-            "1": ["SBL1"],
-            "0": []
-        },
+        "PL7": [
+            ["SBL1"],
+            []
+        ],
 
-        "PL8": {
-            "1": [],
-            "0": []
-        },
+        "PL8": [
+            [],
+            []
+        ],
 
-        "PL9": {
-            "1": [],
-            "0": ["SBL1"]
-        },
+        "PL9": [
+            [],
+            ["SBL1"]
+        ],
 
-        "PL10": {
-            "1": ["BCL10", "CSL1_plus"],
-            "0": []
-        },
+        "PL10": [
+            ["BCL10", "CSL1_plus"],
+            []
+        ],
 
-        "PL11": {
-            "1": ["SBB2"],
-            "0": []
-        },
+        "PL11": [
+            ["SBB2"],
+            []
+        ],
 
-        "PL12": {
-            "1": [],
-            "0": ["SBB2"]
-        },
+        "PL12": [
+            [],
+            ["SBB2"]
+        ],
 
-        "PL0": {
-            "1": ["EL1", "BCL1"],
-            "0": []
-        },
+        "PL0": [
+            ["EL1", "BCL1"],
+            []
+        ],
 
-        "PL1": {
-            "1": [],
-            "0": ["EL1"]
-        },
+        "PL1": [
+            [],
+            ["EL1"]
+        ],
 
-        "PLBR1": {
-            "1": ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
-            "0": ["PUWSL1_right"]
-        },
+        "PLBR1": [
+            ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
+            ["PUWSL1_right"]
+        ],
 
-        "PLBR2": {
-            "1": ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
-            "0": ["PUWSL1_right"]
-        }
+        "PLBR2": [
+            ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
+            ["PUWSL1_right"]
+        ]
         
     },
 
     "inputs": {
-        "SL1": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SL1": [ "boolean",
+            "false"
+        ],
 
-        "SB4": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB4": [ "boolean",
+            "false"
+        ],
 
-        "SB5": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB5": [ "boolean",
+            "false"
+        ],
 
-        "SB6": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB6": [ "boolean",
+            "false"
+        ],
 
-        "SB9": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB9": [ "boolean",
+            "false"
+        ],
 
-        "SBR2": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SBR2": [ "boolean",
+            "false"
+        ],
 
-        "SBR3": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SBR3": [ "boolean",
+            "false"
+        ],
 
-        "SBR4": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SBR4": [ "boolean",
+            "false"
+        ],
 
-        "SBR5": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SBR5": [ "boolean",
+            "false"
+        ],
 
-        "SB7B0": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB7B0": [ "boolean",
+            "false"
+        ],
 
-        "SB7L1": {
-            "type": "boolean",
+        "SB7L1": [ "boolean",
             "init": "false"
-        },
+        ],
 
-        "SB7B2": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB7B2": [ "boolean",
+            "false"
+        ],
 
-        "SB7B3": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB7B3": [ "boolean",
+            "false"
+        ],
 
-        "SB8B0": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB8B0": [ "boolean",
+            "false"
+        ],
 
-        "SB8L1": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB8L1": [ "boolean",
+            "false"
+        ],
 
-        "SB8B2": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB8B2": [ "boolean",
+            "false"
+        ],
 
-        "SB8B3": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SB8B3": [ "boolean",
+            "false"
+        ],
 
-        "SP": {
-            "type": [0,1,2],
-            "init": 0
-        },
+        "SP": [ [0,1,2],
+            0
+        ],
 
-        "MCB_error": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "MCB_error": [ "boolean",
+            "false"
+        ],
 
-        "MCBR_error": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "MCBR_error": [ "boolean",
+            "false"
+        ],
 
-        "CSL1W": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "CSL1W": [ "boolean",
+            "false"
+        ],
 
-        "SL1": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "SL1": [ "boolean",
+            "false"
+        ],
 
-        "MCL_error": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "MCL_error": [ "boolean",
+            "false"
+        ],
         
-        "MCLR_error": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "MCLR_error": [ "boolean",
+            "false"
+        ],
 
-        "tL2RX_time": {
-            "type": "boolean",
-            "init": "false"
-        },
+        "TB2RX_time": [ "boolean",
+            "false"
+        ],
 
-        "TLBR2_time": {
-            "type": "boolean",
-            "init": "false"
-        }
+        "TLBR2_time": [ "boolean",
+            "false"
+        ]
 
     },
 
     "transitions": {
-        "tL01": {
-            "pre": ["PL0"],
-            "post": ["PL1"],
-            "condition": ["SL1"]
-        }
+        "tL01": [
+            ["PL0"],
+            [["SL1"]],
+            ["PL1"]
+        ]
     }
 
 }

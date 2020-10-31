@@ -8,4 +8,4 @@
 * Avoid clustering of items at all times
 * Sort produced items into a line of bases and a line of lids
 * Couple pairs of bases and lids
-* Arrange 3 pairs of coupled products ina stackable box and store
+* Arrange 3 pairs of coupled products in a stackable box and store
