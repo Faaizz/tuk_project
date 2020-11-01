@@ -65,7 +65,7 @@ PF2: boolean;
 PF3: boolean;
 PF4: boolean;
 PF5: boolean;
-TEMP: {2,3,4};
+TEMP: {"2","3","4"};
 
 
 -- ====================================================================
@@ -249,9 +249,9 @@ next(TM_2):=  case
                 TRUE: TM_2;
             esac;
 
-init(TEMP):= 2;
+init(TEMP):= "2";
 next(TEMP):=  case
-                stab: {2};
+                stab: {"2"};
                 TRUE: TEMP;
             esac;
 
@@ -491,4 +491,4 @@ AG( (stab) -> !( (set_AT_G & reset_AT_G) | (!set_AT_G & !reset_AT_G) ) );
 SPEC
 AG( (stab) -> !( (set_RB_M & reset_RB_M) | (!set_RB_M & !reset_RB_M) ) );
 SPEC
-AG( (stab) -> (TEMP=2));
+AG( (stab) -> (TEMP="2"));
