@@ -1,0 +1,489 @@
+{
+    "places": {
+        "IDLE": [
+            [],
+            []
+        ],
+        "PB0": [
+            ["EB1", "BCB1"],
+            []
+        ],
+
+        "PB1": [
+            [],
+            ["EB1"]
+        ],
+        
+        "PBLR1": [
+            ["PUWSB1_plus", "PUWSB1_right"],
+            ["PUWSB1_left", "BCB2", "BCB3", "BCB4", "BCB5", "BCB6", "BCB7",
+                "BCBR1", "BCBR2", "BCBR3", "BCBR4", "BCBR5", "BCBR6", "BCBR7", "BCBR8", "BCBR9"]
+        ],
+
+        "PB2": [
+            ["PUWSB1", "BCB2", "BCB3", "BCB4"],
+            ["PUWSB1_right"]
+        ],
+
+        "PB3": [
+            ["BCB5", "BCB6"],
+            ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCB_stop"]
+        ],
+
+        "PB4": [
+            [],
+            []
+        ],
+
+        "PB5": [
+            ["MCB", "MCB_start"],
+            []
+        ],
+
+        "PB6": [
+            ["BCB7", "BCB8", "BCB9"],
+            []
+        ],
+
+        "PBR1X": [
+            ["PAS2turn", "PAS2Belt_plus", "BCBR1", "BCBR2", "BCBR3"],
+            ["PAS2Belt_minus", "BCB5", "BCB6"]
+        ],
+     
+        "PBR1": [
+            [ "BCBR4", "BCBR5", "BCBR6"],
+            []
+        ],
+
+        "PBR2": [
+            [],
+            []
+        ],
+
+        "PBR3": [
+            ["MCBR", "MCB_start"],
+            []
+        ],
+
+        "PBR4": [
+            ["BCBR7", "BCBR8", "BCB9"],
+            []
+        ],
+            
+        "PB7": [
+            ["SBB1"],
+            []
+        ],
+
+        "PB8": [
+            [],
+            []
+        ],
+
+        "PB9": [
+            [],
+            ["SBB1"]
+        ],
+
+        "PB10": [
+            ["BCB10", "CSB1_plus"],
+            []
+        ],
+
+        "PL0": [
+            ["EL1", "BCL1"],
+            []
+        ],
+
+        "PL1": [
+            [],
+            ["EL1"]
+        ],
+
+        "PLBR1": [
+            ["PUWSL1_plus", "PUWSL1_left", "BCLB1", "BCLB2", "BCLB3", "BCLB4", "BCLB5",
+                "BCLB6", "BCLB7", "BCLB8", "BCLB9", "BCLB10", "BCLB11", "PASLB1_turn", "PASLB1_plus"],
+            ["PUWSB1_right"]
+        ],
+
+        "PLBR2": [
+            ["PUWSL1_plus", "PUWSL1_left", "BCLB1", "BCLB2", "BCLB3", "BCLB4", "BCLB5",
+                "BCLB6", "BCLB7", "BCLB8", "BCLB9", "BCLB10", "BCLB11", "PASLB1_turn", "PASLB1_plus"],
+            ["PUWSB1_right"]
+        ],
+
+        "initial": ["IDLE"]
+        
+    },
+
+    "inputs": {
+        "START": [ "boolean",
+            "false"
+        ],
+        "STOP": ["boolean",
+            "false"
+        ],
+        "SB1": [ "boolean",
+            "false"
+        ],
+
+        "SB4": [ "boolean",
+            "false"
+        ],
+
+        "SB5": [ "boolean",
+            "false"
+        ],
+
+        "SB6": [ "boolean",
+            "false"
+        ],
+
+        "SB9": [ "boolean",
+            "false"
+        ],
+
+        "SBR2": [ "boolean",
+            "false"
+        ],
+
+        "SBR3": [ "boolean",
+            "false"
+        ],
+
+        "SBR4": [ "boolean",
+            "false"
+        ],
+
+        "SBR5": [ "boolean",
+            "false"
+        ],
+
+        "SB7B0": [ "boolean",
+            "false"
+        ],
+
+        "SB7B1": [ "boolean",
+            "false"
+        ],
+
+        "SB7B2": [ "boolean",
+            "false"
+        ],
+
+        "SB7B3": [ "boolean",
+            "false"
+        ],
+
+        "SB8B0": [ "boolean",
+            "false"
+        ],
+
+        "SB8B1": [ "boolean",
+            "false"
+        ],
+
+        "SB8B2": [ "boolean",
+            "false"
+        ],
+
+        "SB8B3": [ "boolean",
+            "false"
+        ],
+
+        "SP": [ ["0","1","2"],
+            "0"
+        ],
+
+        "MCB_error": [ "boolean",
+            "false"
+        ],
+
+        "MCBR_error": [ "boolean",
+            "false"
+        ],
+
+        "CSB1W": [ "boolean",
+            "false"
+        ],
+
+        "SL1": [ "boolean",
+            "false"
+        ],
+
+        "MCL_error": [ "boolean",
+            "false"
+        ],
+        
+        "MCLR_error": [ "boolean",
+            "false"
+        ],
+
+        "TB2RX_time": [ "boolean",
+            "false"
+        ],
+
+        "TLBR2_time": [ "boolean",
+            "false"
+        ]
+
+    },
+
+    "transitions": {
+        "RUN": [
+            ["IDLE"],
+            [
+                [
+                    ["START"],[]
+                ]
+            ],
+            ["PB0"]
+        ],
+        "HALT": [
+            ["PB10"],
+            [
+                [
+                    ["STOP"], []
+                ]
+            ],
+            ["IDLE"]
+        ],
+        "TB01": [
+            ["PB0"],
+            [
+                [
+                    ["SB1"], []
+                ]
+            ],
+            ["PB1"]
+        ],
+        "TBLR": [
+            ["PB1"],
+            [
+                [
+                    ["MCB_error", "MCBR_error"], []
+                ]
+            ],
+            ["PBLR1"]
+        ],
+        "TB12": [
+            ["PB1"],
+            [
+                [
+                    [], ["MCB_error", "MCBR_error"],
+                    ["MCB_error"], ["MCBR_error"],
+                    ["MCBR_error"], ["MCB_error"]
+                ]
+            ],
+            ["PB2"]
+        ],
+        "TB23": [
+            ["PB2"],
+            [
+                [
+                    [], ["MCB_error"]
+                ]
+            ],
+            ["PB3"]
+        ],
+        "TB2R": [
+            ["PB2"],
+            [
+                [
+                    ["MCB_error"], ["MCBR_error"]
+                ]
+            ],
+            ["PBR1X"]
+        ],
+        "TB30": [
+            ["PB3"],
+            [
+                [
+                    [], ["SB4", "SB5"]
+                ]
+            ],
+            ["PB0"]
+        ],
+        "TB34": [
+            ["PB3"],
+            [
+                [
+                    ["SB5"], ["SB4"]
+                ]
+            ],
+            ["PB4"]
+        ],
+        "TB45": [
+            ["PB4"],
+            [
+                [
+                    ["SB4"], []
+                ]
+            ],
+            ["PB5"]
+        ],
+        "TB56": [
+            ["PB5"],
+            [
+                [
+                    [], ["SB6"]
+                ]
+            ],
+            ["PB6"]
+        ],
+        "TB2RX": [
+            ["PBR1X"],
+            [
+                [
+                    ["TB2RX_time"], []
+                ]
+            ],
+            ["PBR1"]
+        ],
+        "TBR10": [
+            ["PBR1"],
+            [
+                [
+                    [], ["SBR2", "SBR3"]
+                ]
+            ],
+            ["PBR3"]
+        ],
+        "TBR12": [
+            ["PBR1"],
+            [
+                [
+                    ["SBR3"], ["SBR2"]
+                ]
+            ],
+            ["PBR2"]
+        ],
+        "TBR23": [
+            ["PBR2"],
+            [
+                [
+                    ["SBR2"], []
+                ]
+            ],
+            ["PBR3"]
+        ],
+        "TBR34": [
+            ["PBR3"],
+            [
+                [
+                    [], ["SBR4"]
+                ]
+            ],
+            ["PBR4"]
+        ],
+        "TB10R4": [
+            ["PBR4"],
+            [
+                [
+                    ["SB9"], []
+                ]
+            ],
+            ["PB10"]
+        ],
+        "CAM7_DET": [
+            ["TRUE"],
+            [
+                [
+                    ["SB7B0", "SB7B1", "SB7B2", "SB7B3"],[]
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "CAM8_DET": [
+            ["TRUE"],
+            [
+                [
+                    ["SB8B0", "SB8B1", "SB8B2", "SB8B3"],[]
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "TB67": [
+            ["PB6"],
+            [
+                [
+                    ["SBR5", "CAM8_DET"], ["CAM7_DET"]
+                ]
+            ],
+            ["PB7"]
+        ],
+        "TB678": [
+            ["PB7"],
+            [
+                [
+                    ["SB9"], []
+                ]
+            ],
+            ["PB8"]
+        ],
+        "TB89": [
+            ["PB8"],
+            [
+                [
+                    [], ["SB9"]
+                ]
+            ],
+            ["PB9"]
+        ],
+        "TB910": [
+            ["PB9"],
+            [
+                [
+                    ["SB9"], []
+                ]
+            ],
+            ["PB10"]
+        ],
+        "TB610": [
+            ["PB6"],
+            [
+                [
+                    ["SB9"], []
+                ]
+            ],
+            ["PB10"]
+        ],
+        "TL0": [
+            ["PL0"],
+            [
+                [
+                    ["SL1"],[]
+                ]
+            ],
+            ["PL1"]
+        ],
+        "TLBR": [
+            ["PL0"],
+            [
+                [
+                    ["MCL_error", "MCLR_error"],[]
+                ]
+            ],
+            ["PL1"]
+        ],
+        "TLBR1": [
+            ["PLBR1"],
+            [
+                [
+                    ["TLBR2_time"], []
+                ]
+            ],
+            ["PLBR2"]
+        ],
+        "TLBR2": [
+            ["PLBR2"],
+            [
+                [
+                    ["TLBR2_time"], []
+                ]
+            ],
+            ["PLBR1"]
+        ]
+    }
+
+}
