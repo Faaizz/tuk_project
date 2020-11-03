@@ -1,5 +1,9 @@
 {
     "places": {
+        "IDLE": [
+            [],
+            []
+        ],
         "PL0": [
             ["EL1", "BCL1"],
             []
@@ -9,20 +13,15 @@
             [],
             ["EL1"]
         ],
-        
-        "PLLR1": [
-            ["PUWSL1_plus", "PUWSL1_right"],
-            ["PUWSL1_left", "BCB2_BCB7", "BCLR1_BCLR9"]
-        ],
 
         "PL2": [
-            ["PUWSL1", "BCB2_BCB4"],
-            ["PUWSL1_right"]
+            ["PUWSL1", "BCL2", "BCL3", "BCL4"],
+            ["PUWSL1_left"]
         ],
 
         "PL3": [
-            ["BCB5", "BCB6"],
-            ["PAS2turn", "PAS2Belt_plus", "PAS2Belt_minus", "MCLstop"]
+            ["BCL5", "BCL6"],
+            ["PAS3turn", "PAS3Belt_plus", "PAS3Belt_minus", "MCL_stop"]
         ],
 
         "PL4": [
@@ -31,201 +30,75 @@
         ],
 
         "PL5": [
-            [],
-            []
-        ],
-
-        "PL6": [
             ["MCL", "MCL_start"],
             []
         ],
 
-        "PLR1X": [
-            ["PAS2turn", "PAS2Belt_plus", "BCLR1-BCLR3"],
-            ["PAS2Belt_minus", "BCB5-BCB6"]
-        ],
-     
-        "PLR1": [
-            ["BCLR4-BCLR6"],
-            []
-        ],
-
-        "PLR2": [
+        "PL6": [
+            ["BCL7", "BCL8", "BCL9"],
             [],
-            []
+            ["Product leaving MCL"]
         ],
 
-        "PLR3": [
-            ["MCLR", "MCL_start"],
-            []
-        ],
-
-        "PLR4": [
-            ["BCLR7", "BCLR8", "BCB9"],
-            []
-        ],
-            
         "PL7": [
-            ["SLL1"],
-            []
+            ["SBL1"], 
+            [],
+            ["Stop Blade B1 up"]
         ],
 
         "PL8": [
             [],
-            []
+            [],
+            [""]
         ],
 
         "PL9": [
             [],
-            ["SLL1"]
+            ["SBL1"],
+            ["Stop Blade L1"]
         ],
 
         "PL10": [
-            ["BCL10", "CSL1_plus"],
-            []
-        ],
-
-        "PL11": [
-            ["SLB2"],
-            []
-        ],
-
-        "PL12": [
             [],
-            ["SLB2"]
-        ],
-
-        "PL0": [
-            ["EL1", "BCL1"],
-            []
-        ],
-
-        "PL1": [
             [],
-            ["EL1"]
+            [""]
         ],
 
-        "PLLR1": [
-            ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
-            ["PUWSL1_right"]
+        "PLR1X": [
+            ["PAS3turn", "PAS3Belt_plus", "BCLR1", "BCLR2", "BCLR3"],
+            ["PAS3Belt_minus", "BCL5", "BCL6"],
+            ["Start of lid redundant path"]
+        ],
+     
+        "PLR1": [
+            ["BCLR4", "BCLR5"],
+            [],
+            [""]
         ],
 
-        "PLLR2": [
-            ["PUWSL1_plus", "PUWSL1_left", "BCLL1_BCLL11", "PASLL1_turn", "PASLL1_plus"],
-            ["PUWSL1_right"]
-        ]
+        "PLR2": [
+            [],
+            [],
+            ["2 items present at MCLR feed"]
+        ],
+
+        "PLR3": [
+            ["MCLR", "MCL_start"],
+            [],
+            ["Redundant machine starts (or continues working)"]
+        ],
+
+        "PLR4": [
+            ["BCLR7", "BCLR8", "BCL9"],
+            [],
+            ["Turn on conveyors that transport product from MCLR"]
+        ],
+        "initial": ["IDLE"]
         
-    },
-
-    "inputs": {
-        "SL1": [ "boolean",
-            "false"
-        ],
-
-        "SL4": [ "boolean",
-            "false"
-        ],
-
-        "SL5": [ "boolean",
-            "false"
-        ],
-
-        "SL6": [ "boolean",
-            "false"
-        ],
-
-        "SL9": [ "boolean",
-            "false"
-        ],
-
-        "SLR2": [ "boolean",
-            "false"
-        ],
-
-        "SLR3": [ "boolean",
-            "false"
-        ],
-
-        "SLR4": [ "boolean",
-            "false"
-        ],
-
-        "SLR5": [ "boolean",
-            "false"
-        ],
-
-        "SL7B0": [ "boolean",
-            "false"
-        ],
-
-        "SL7L1": [ "boolean",
-            "init": "false"
-        ],
-
-        "SL7B2": [ "boolean",
-            "false"
-        ],
-
-        "SL7B3": [ "boolean",
-            "false"
-        ],
-
-        "SL8B0": [ "boolean",
-            "false"
-        ],
-
-        "SL8L1": [ "boolean",
-            "false"
-        ],
-
-        "SL8B2": [ "boolean",
-            "false"
-        ],
-
-        "SL8B3": [ "boolean",
-            "false"
-        ],
-
-        "SP": [ [0,1,2],
-            0
-        ],
-
-        "MCL_error": [ "boolean",
-            "false"
-        ],
-
-        "MCLR_error": [ "boolean",
-            "false"
-        ],
-
-        "CSL1W": [ "boolean",
-            "false"
-        ],
-
-        "SL1": [ "boolean",
-            "false"
-        ],
-
-        "MCL_error": [ "boolean",
-            "false"
-        ],
-        
-        "MCLR_error": [ "boolean",
-            "false"
-        ],
-
-        "TB2RX_time": [ "boolean",
-            "false"
-        ],
-
-        "TLLR2_time": [ "boolean",
-            "false"
-        ]
-
     },
 
     "transitions": {
-        "tL01": [
+        "TL01": [
             ["PL0"],
             [
                 [
@@ -233,7 +106,217 @@
                 ]
             ],
             ["PL1"]
+        ],
+        "TL12": [
+            ["PL1"],
+            [
+                [
+                    [], ["MCL_error", "MCLR_error"]
+                ],
+                [
+                    ["MCL_error"], ["MCLR_error"]
+                ],
+                [
+                    ["MCLR_error"], ["MCL_error"]
+                ]
+            ],
+            ["PL2"]
+        ],
+        "TL23": [
+            ["PL2"],
+            [
+                [
+                    [], ["MCL_error"]
+                ]
+            ],
+            ["PL3"]
+        ],
+        "TL30": [
+            ["PL3"],
+            [
+                [
+                    [],["SL4", "SL5"]
+                ]
+            ],
+            ["PL0", "PL5"]
+        ],
+        "TL34": [
+            ["PL3"],
+            [
+                [
+                    ["SL5"], ["SL4"]
+                ]
+            ],
+            ["PL4"]
+        ],
+        "TL45": [
+            ["PL4"],
+            [
+                [
+                    ["SL4"], []
+                ]
+            ],
+            ["PL0", "PL5"]
+        ],
+        "TL56": [
+            ["PL5"],
+            [
+                [
+                    [], ["SL6"]
+                ]
+            ],
+            ["PL6"]
+        ],
+        "CAM_7_L": [
+            ["TRUE"],
+            [
+                [
+                    ["SL7B0", "SL7B1", "SL7B2", "SL7B3"], []
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "CAM_8_L": [
+            ["TRUE"],
+            [
+                [
+                    ["SL8B0", "SL8B1", "SL8B2", "SL8B3"], []
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "TL67": [
+            ["PL6"],
+            [
+                [
+                    ["SLR5", "CAM_8_L"], ["CAM_7_L"]
+                ]
+            ],
+            ["PL7"],
+            ["Product leaving MCL while another product is leaving MCLR, and there's no product on top of Stop Blade L1"]
+        ],
+        "TL78": [
+            ["PL7"],
+            [
+                [
+                    ["SL9"], []
+                ]
+            ],
+            ["PL8"],
+            ["Product exiting MCL has reached the main lid path"]
+        ],
+        "TL89": [
+            ["PL8"],
+            [
+                [
+                    [], ["SL9"]
+                ]
+            ],
+            ["PL9"]
+        ],
+        "TL910": [
+            ["PL9"],
+            [
+                [
+                    ["SL9"], []
+                ]
+            ],
+            ["PL10"],
+            ["Product released from Stop Blade L1 has reached SL9"]
+        ],
+        "TL2R": [
+            ["PL2"],
+            [
+                [
+                    ["MCL_error"], ["MCLR_error"]
+                ]
+            ],
+            ["PLR1X"],
+            ["MCL faulty, MCLR operational"]
+        ],
+        "TL2RX": [
+            ["PLR1X"],
+            [
+                [
+                    ["TL2RX_time"], []
+                ]
+            ],
+            ["PLR1"],
+            ["Timer inserted to prevent iterative firing, such that the outputs of the pre-place are set"]
+        ],
+        "TLR12": [
+            ["PLR1"],
+            [
+                [
+                    ["SLR3"], ["SLR2"]
+                ]
+            ],
+            ["PLR2"],
+            ["2 items present at MCLR feed"]
+        ],
+        "TLR10": [
+            ["PLR1"],
+            [
+                [
+                    [], ["SLR2", "SLR3"]
+                ]
+            ],
+            ["PLR3", "PL0"],
+            ["Only 1 item at MCLR feed, turn on emitter."]
+        ],
+        "TLR23": [
+            ["PLR2"],
+            [
+                [
+                    ["SLR2"], []
+                ]
+            ],
+            ["PLR3", "PL0"],
+            ["MCLR has picked up an item from its feed, only 1 item left "]
+        ],
+        "TLR34": [
+            ["PLR3"],
+            [
+                [
+                    [], ["SLR4"]
+                ]
+            ],
+            ["PLR4"]
+        ],
+        "TL10R4": [
+            ["PLR4"],
+            [
+                [
+                    ["SL9"], []
+                ]
+            ],
+            ["PLR10"],
+            ["Product joins main lid path from MCLR"]
         ]
+        
+    },
+
+    "inputs": {
+        "SL1": [ "boolean"],
+        "MCL_error": [ "boolean"],
+        "MCLR_error": [ "boolean"],
+        "SL4": [ "boolean"],
+        "SL5": [ "boolean"],
+        "SL6": [ "boolean"],
+        "SL7B0": [ "boolean"],
+        "SL7B1": [ "boolean"],
+        "SL7B2": [ "boolean"],
+        "SL7B3": [ "boolean"],
+        "SL8B0": [ "boolean"],
+        "SL8B1": [ "boolean"],
+        "SL8B2": [ "boolean"],
+        "SL8B3": [ "boolean"],
+        "SLR5": [ "boolean"],
+        "SL9": [ "boolean"],
+        "TL2RX_time": [ "boolean"],
+        "SLR3": [ "boolean"],
+        "SLR2": [ "boolean"],
+        "SLR4": [ "boolean"]
     }
 
 }

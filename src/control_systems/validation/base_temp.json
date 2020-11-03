@@ -116,119 +116,6 @@
         
     },
 
-    "inputs": {
-        "START": [ "boolean",
-            "false"
-        ],
-        "STOP": ["boolean",
-            "false"
-        ],
-        "SB1": [ "boolean",
-            "false"
-        ],
-
-        "SB4": [ "boolean",
-            "false"
-        ],
-
-        "SB5": [ "boolean",
-            "false"
-        ],
-
-        "SB6": [ "boolean",
-            "false"
-        ],
-
-        "SB9": [ "boolean",
-            "false"
-        ],
-
-        "SBR2": [ "boolean",
-            "false"
-        ],
-
-        "SBR3": [ "boolean",
-            "false"
-        ],
-
-        "SBR4": [ "boolean",
-            "false"
-        ],
-
-        "SBR5": [ "boolean",
-            "false"
-        ],
-
-        "SB7B0": [ "boolean",
-            "false"
-        ],
-
-        "SB7B1": [ "boolean",
-            "false"
-        ],
-
-        "SB7B2": [ "boolean",
-            "false"
-        ],
-
-        "SB7B3": [ "boolean",
-            "false"
-        ],
-
-        "SB8B0": [ "boolean",
-            "false"
-        ],
-
-        "SB8B1": [ "boolean",
-            "false"
-        ],
-
-        "SB8B2": [ "boolean",
-            "false"
-        ],
-
-        "SB8B3": [ "boolean",
-            "false"
-        ],
-
-        "SP": [ ["0","1","2"],
-            "0"
-        ],
-
-        "MCB_error": [ "boolean",
-            "false"
-        ],
-
-        "MCBR_error": [ "boolean",
-            "false"
-        ],
-
-        "CSB1W": [ "boolean",
-            "false"
-        ],
-
-        "SL1": [ "boolean",
-            "false"
-        ],
-
-        "MCL_error": [ "boolean",
-            "false"
-        ],
-        
-        "MCLR_error": [ "boolean",
-            "false"
-        ],
-
-        "TB2RX_time": [ "boolean",
-            "false"
-        ],
-
-        "TLBR2_time": [ "boolean",
-            "false"
-        ]
-
-    },
-
     "transitions": {
         "RUN": [
             ["IDLE"],
@@ -237,7 +124,7 @@
                     ["START"],[]
                 ]
             ],
-            ["PB0"]
+            ["PB0", "PL0"]
         ],
         "HALT": [
             ["PB10"],
@@ -270,8 +157,12 @@
             ["PB1"],
             [
                 [
-                    [], ["MCB_error", "MCBR_error"],
-                    ["MCB_error"], ["MCBR_error"],
+                    [], ["MCB_error", "MCBR_error"]
+                ],
+                [
+                    ["MCB_error"], ["MCBR_error"]
+                ],
+                [
                     ["MCBR_error"], ["MCB_error"]
                 ]
             ],
@@ -484,6 +375,63 @@
             ],
             ["PLBR1"]
         ]
+    },
+
+    "inputs": {
+        "START": [ "boolean" ],
+        "STOP": ["boolean" ],
+        "SB1": [ "boolean" ],
+
+        "SB4": [ "boolean" ],
+
+        "SB5": [ "boolean" ],
+
+        "SB6": [ "boolean" ],
+
+        "SB9": [ "boolean" ],
+
+        "SBR2": [ "boolean" ],
+
+        "SBR3": [ "boolean" ],
+
+        "SBR4": [ "boolean" ],
+
+        "SBR5": [ "boolean" ],
+
+        "SB7B0": [ "boolean" ],
+
+        "SB7B1": [ "boolean" ],
+
+        "SB7B2": [ "boolean" ],
+
+        "SB7B3": [ "boolean" ],
+
+        "SB8B0": [ "boolean" ],
+
+        "SB8B1": [ "boolean" ],
+
+        "SB8B2": [ "boolean" ],
+
+        "SB8B3": [ "boolean" ],
+
+        "SP": [ ["0","1","2"] ],
+
+        "MCB_error": [ "boolean" ],
+
+        "MCBR_error": [ "boolean" ],
+
+        "CSB1W": [ "boolean" ],
+
+        "SL1": [ "boolean" ],
+
+        "MCL_error": [ "boolean" ],
+        
+        "MCLR_error": [ "boolean" ],
+
+        "TB2RX_time": [ "boolean" ],
+
+        "TLBR2_time": [ "boolean" ]
+
     }
 
 }

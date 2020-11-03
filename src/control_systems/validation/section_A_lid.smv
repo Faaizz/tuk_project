@@ -1,0 +1,390 @@
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['SL1', 'MCL_error', 'MCLR_error', 'SL4', 'SL5', 'SL6', 'SL7B0', 'SL7B1', 'SL7B2', 'SL7B3', 'SL8B0', 'SL8B1', 'SL8B2', 'SL8B3', 'SLR5', 'SL9', 'TL2RX_time', 'SLR3', 'SLR2', 'SLR4']
+SL1: boolean;
+MCL_error: boolean;
+MCLR_error: boolean;
+SL4: boolean;
+SL5: boolean;
+SL6: boolean;
+SL7B0: boolean;
+SL7B1: boolean;
+SL7B2: boolean;
+SL7B3: boolean;
+SL8B0: boolean;
+SL8B1: boolean;
+SL8B2: boolean;
+SL8B3: boolean;
+SLR5: boolean;
+SL9: boolean;
+TL2RX_time: boolean;
+SLR3: boolean;
+SLR2: boolean;
+SLR4: boolean;
+ 
+-- PLACES
+-- ['IDLE', 'PL0', 'PL1', 'PL2', 'PL3', 'PL4', 'PL5', 'PL6', 'PL7', 'PL8', 'PL9', 'PL10', 'PLR1X', 'PLR1', 'PLR2', 'PLR3', 'PLR4', 'initial']
+IDLE: boolean;
+PL0: boolean;
+PL1: boolean;
+PL2: boolean;
+PL3: boolean;
+PL4: boolean;
+PL5: boolean;
+PL6: boolean;
+PL7: boolean;
+PL8: boolean;
+PL9: boolean;
+PL10: boolean;
+PLR1X: boolean;
+PLR1: boolean;
+PLR2: boolean;
+PLR3: boolean;
+PLR4: boolean;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+TL01:= (PL0) & ( (SL1) ) & (!PL1);
+TL12:= (PL1) & ( (!MCL_error & !MCLR_error) | (MCL_error & !MCLR_error) | (MCLR_error & !MCL_error) ) & (!PL2);
+TL23:= (PL2) & ( (!MCL_error) ) & (!PL3);
+TL30:= (PL3) & ( (!SL4 & !SL5) ) & (!PL0 & !PL5);
+TL34:= (PL3) & ( (SL5 & !SL4) ) & (!PL4);
+TL45:= (PL4) & ( (SL4) ) & (!PL0 & !PL5);
+TL56:= (PL5) & ( (!SL6) ) & (!PL6);
+CAM_7_L:= (TRUE) & ( (SL7B0 & SL7B1 & SL7B2 & SL7B3) ) & (!FALSE);
+CAM_8_L:= (TRUE) & ( (SL8B0 & SL8B1 & SL8B2 & SL8B3) ) & (!FALSE);
+TL67:= (PL6) & ( (SLR5 & CAM_8_L & !CAM_7_L) ) & (!PL7);
+TL78:= (PL7) & ( (SL9) ) & (!PL8);
+TL89:= (PL8) & ( (!SL9) ) & (!PL9);
+TL910:= (PL9) & ( (SL9) ) & (!PL10);
+TL2R:= (PL2) & ( (MCL_error & !MCLR_error) ) & (!PLR1X);
+TL2RX:= (PLR1X) & ( (TL2RX_time) ) & (!PLR1);
+TLR12:= (PLR1) & ( (SLR3 & !SLR2) ) & (!PLR2);
+TLR10:= (PLR1) & ( (!SLR2 & !SLR3) ) & (!PLR3 & !PL0);
+TLR23:= (PLR2) & ( (SLR2) ) & (!PLR3 & !PL0);
+TLR34:= (PLR3) & ( (!SLR4) ) & (!PLR4);
+TL10R4:= (PLR4) & ( (SL9) ) & (!PLR10);
+ 
+-- STABLE
+stab:= !(TL01 | TL12 | TL23 | TL30 | TL34 | TL45 | TL56 | CAM_7_L | CAM_8_L | TL67 | TL78 | TL89 | TL910 | TL2R | TL2RX | TLR12 | TLR10 | TLR23 | TLR34 | TL10R4);
+ 
+-- OUTPUTS
+-- SET
+BCL1_set:= PL0;
+BCL2_set:= PL2;
+BCL3_set:= PL2;
+BCL4_set:= PL2;
+BCL5_set:= PL3;
+BCL6_set:= PL3;
+BCL7_set:= PL6;
+BCL8_set:= PL6;
+BCL9_set:= PL6 | PLR4;
+BCLR1_set:= PLR1X;
+BCLR2_set:= PLR1X;
+BCLR3_set:= PLR1X;
+BCLR4_set:= PLR1;
+BCLR5_set:= PLR1;
+BCLR7_set:= PLR4;
+BCLR8_set:= PLR4;
+EL1_set:= PL0;
+MCL_set:= PL5;
+MCLR_set:= PLR3;
+MCL_start_set:= PL5 | PLR3;
+MCL_stop_set:= FALSE;
+PAS3Belt_minus_set:= FALSE;
+PAS3Belt_plus_set:= PLR1X;
+PAS3turn_set:= PLR1X;
+PUWSL1_set:= PL2;
+PUWSL1_left_set:= FALSE;
+SBL1_set:= PL7;
+-- RESET
+BCL1_reset:= FALSE;
+BCL2_reset:= FALSE;
+BCL3_reset:= FALSE;
+BCL4_reset:= FALSE;
+BCL5_reset:= PLR1X;
+BCL6_reset:= PLR1X;
+BCL7_reset:= FALSE;
+BCL8_reset:= FALSE;
+BCL9_reset:= FALSE;
+BCLR1_reset:= FALSE;
+BCLR2_reset:= FALSE;
+BCLR3_reset:= FALSE;
+BCLR4_reset:= FALSE;
+BCLR5_reset:= FALSE;
+BCLR7_reset:= FALSE;
+BCLR8_reset:= FALSE;
+EL1_reset:= PL1;
+MCL_reset:= FALSE;
+MCLR_reset:= FALSE;
+MCL_start_reset:= FALSE;
+MCL_stop_reset:= PL3;
+PAS3Belt_minus_reset:= PL3 | PLR1X;
+PAS3Belt_plus_reset:= PL3;
+PAS3turn_reset:= PL3;
+PUWSL1_reset:= FALSE;
+PUWSL1_left_reset:= PL2;
+SBL1_reset:= PL9;
+-- OUTPUT
+BCL1:= BCL1_set & !BCL1_reset;
+BCL2:= BCL2_set & !BCL2_reset;
+BCL3:= BCL3_set & !BCL3_reset;
+BCL4:= BCL4_set & !BCL4_reset;
+BCL5:= BCL5_set & !BCL5_reset;
+BCL6:= BCL6_set & !BCL6_reset;
+BCL7:= BCL7_set & !BCL7_reset;
+BCL8:= BCL8_set & !BCL8_reset;
+BCL9:= BCL9_set & !BCL9_reset;
+BCLR1:= BCLR1_set & !BCLR1_reset;
+BCLR2:= BCLR2_set & !BCLR2_reset;
+BCLR3:= BCLR3_set & !BCLR3_reset;
+BCLR4:= BCLR4_set & !BCLR4_reset;
+BCLR5:= BCLR5_set & !BCLR5_reset;
+BCLR7:= BCLR7_set & !BCLR7_reset;
+BCLR8:= BCLR8_set & !BCLR8_reset;
+EL1:= EL1_set & !EL1_reset;
+MCL:= MCL_set & !MCL_reset;
+MCLR:= MCLR_set & !MCLR_reset;
+MCL_start:= MCL_start_set & !MCL_start_reset;
+MCL_stop:= MCL_stop_set & !MCL_stop_reset;
+PAS3Belt_minus:= PAS3Belt_minus_set & !PAS3Belt_minus_reset;
+PAS3Belt_plus:= PAS3Belt_plus_set & !PAS3Belt_plus_reset;
+PAS3turn:= PAS3turn_set & !PAS3turn_reset;
+PUWSL1:= PUWSL1_set & !PUWSL1_reset;
+PUWSL1_left:= PUWSL1_left_set & !PUWSL1_left_reset;
+SBL1:= SBL1_set & !SBL1_reset;
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(SL1):= {TRUE, FALSE};
+init(MCL_error):= {TRUE, FALSE};
+init(MCLR_error):= {TRUE, FALSE};
+init(SL4):= {TRUE, FALSE};
+init(SL5):= {TRUE, FALSE};
+init(SL6):= {TRUE, FALSE};
+init(SL7B0):= {TRUE, FALSE};
+init(SL7B1):= {TRUE, FALSE};
+init(SL7B2):= {TRUE, FALSE};
+init(SL7B3):= {TRUE, FALSE};
+init(SL8B0):= {TRUE, FALSE};
+init(SL8B1):= {TRUE, FALSE};
+init(SL8B2):= {TRUE, FALSE};
+init(SL8B3):= {TRUE, FALSE};
+init(SLR5):= {TRUE, FALSE};
+init(SL9):= {TRUE, FALSE};
+init(TL2RX_time):= {TRUE, FALSE};
+init(SLR3):= {TRUE, FALSE};
+init(SLR2):= {TRUE, FALSE};
+init(SLR4):= {TRUE, FALSE};
+next(SL1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL1;
+esac;
+next(MCL_error):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCL_error;
+esac;
+next(MCLR_error):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCLR_error;
+esac;
+next(SL4):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL4;
+esac;
+next(SL5):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL5;
+esac;
+next(SL6):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL6;
+esac;
+next(SL7B0):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL7B0;
+esac;
+next(SL7B1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL7B1;
+esac;
+next(SL7B2):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL7B2;
+esac;
+next(SL7B3):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL7B3;
+esac;
+next(SL8B0):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL8B0;
+esac;
+next(SL8B1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL8B1;
+esac;
+next(SL8B2):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL8B2;
+esac;
+next(SL8B3):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL8B3;
+esac;
+next(SLR5):= case
+   stab: {TRUE, FALSE};
+   TRUE: SLR5;
+esac;
+next(SL9):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL9;
+esac;
+next(TL2RX_time):= case
+   stab: {TRUE, FALSE};
+   TRUE: TL2RX_time;
+esac;
+next(SLR3):= case
+   stab: {TRUE, FALSE};
+   TRUE: SLR3;
+esac;
+next(SLR2):= case
+   stab: {TRUE, FALSE};
+   TRUE: SLR2;
+esac;
+next(SLR4):= case
+   stab: {TRUE, FALSE};
+   TRUE: SLR4;
+esac;
+ 
+-- PLACES
+init(IDLE):= TRUE;
+init(PL0):= FALSE;
+init(PL1):= FALSE;
+init(PL2):= FALSE;
+init(PL3):= FALSE;
+init(PL4):= FALSE;
+init(PL5):= FALSE;
+init(PL6):= FALSE;
+init(PL7):= FALSE;
+init(PL8):= FALSE;
+init(PL9):= FALSE;
+init(PL10):= FALSE;
+init(PLR1X):= FALSE;
+init(PLR1):= FALSE;
+init(PLR2):= FALSE;
+init(PLR3):= FALSE;
+init(PLR4):= FALSE;
+next(IDLE):= case
+   TRUE: IDLE;
+esac;
+next(PL0):= case
+   TL01: FALSE;
+   TL30: TRUE;
+   TL45: TRUE;
+   TLR10: TRUE;
+   TLR23: TRUE;
+   TRUE: PL0;
+esac;
+next(PL1):= case
+   TL01: TRUE;
+   TL12: FALSE;
+   TRUE: PL1;
+esac;
+next(PL2):= case
+   TL12: TRUE;
+   TL23: FALSE;
+   TL2R: FALSE;
+   TRUE: PL2;
+esac;
+next(PL3):= case
+   TL23: TRUE;
+   TL30: FALSE;
+   TL34: FALSE;
+   TRUE: PL3;
+esac;
+next(PL4):= case
+   TL34: TRUE;
+   TL45: FALSE;
+   TRUE: PL4;
+esac;
+next(PL5):= case
+   TL30: TRUE;
+   TL45: TRUE;
+   TL56: FALSE;
+   TRUE: PL5;
+esac;
+next(PL6):= case
+   TL56: TRUE;
+   TL67: FALSE;
+   TRUE: PL6;
+esac;
+next(PL7):= case
+   TL67: TRUE;
+   TL78: FALSE;
+   TRUE: PL7;
+esac;
+next(PL8):= case
+   TL78: TRUE;
+   TL89: FALSE;
+   TRUE: PL8;
+esac;
+next(PL9):= case
+   TL89: TRUE;
+   TL910: FALSE;
+   TRUE: PL9;
+esac;
+next(PL10):= case
+   TL910: TRUE;
+   TRUE: PL10;
+esac;
+next(PLR1X):= case
+   TL2R: TRUE;
+   TL2RX: FALSE;
+   TRUE: PLR1X;
+esac;
+next(PLR1):= case
+   TL2RX: TRUE;
+   TLR12: FALSE;
+   TLR10: FALSE;
+   TRUE: PLR1;
+esac;
+next(PLR2):= case
+   TLR12: TRUE;
+   TLR23: FALSE;
+   TRUE: PLR2;
+esac;
+next(PLR3):= case
+   TLR10: TRUE;
+   TLR23: TRUE;
+   TLR34: FALSE;
+   TRUE: PLR3;
+esac;
+next(PLR4):= case
+   TLR34: TRUE;
+   TL10R4: FALSE;
+   TRUE: PLR4;
+esac;
