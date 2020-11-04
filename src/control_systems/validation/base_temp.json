@@ -15,7 +15,15 @@
         ],
         
         "PBLR1": [
-            ["PUWSB1_plus", "PUWSB1_right"],
+            ["PUWSB1_plus", "PUWSB1_right", "BCBL1", "BCBL2", "BCBL3", "BCBL4", "BCBL5", "BCBL6", 
+                "BCBL7", "BCBL8", "BCBL9", "BCBL10", "BCBL11"],
+            ["PUWSB1_left", "BCB2", "BCB3", "BCB4", "BCB5", "BCB6", "BCB7",
+                "BCBR1", "BCBR2", "BCBR3", "BCBR4", "BCBR5", "BCBR6", "BCBR7", "BCBR8", "BCBR9"]
+        ],
+
+        "PBLR2": [
+            ["PUWSB1_plus", "PUWSB1_right", "BCBL1", "BCBL2", "BCBL3", "BCBL4", "BCBL5", "BCBL6", 
+                "BCBL7", "BCBL8", "BCBL9", "BCBL10", "BCBL11"],
             ["PUWSB1_left", "BCB2", "BCB3", "BCB4", "BCB5", "BCB6", "BCB7",
                 "BCBR1", "BCBR2", "BCBR3", "BCBR4", "BCBR5", "BCBR6", "BCBR7", "BCBR8", "BCBR9"]
         ],
@@ -103,13 +111,15 @@
         "PLBR1": [
             ["PUWSL1_plus", "PUWSL1_left", "BCLB1", "BCLB2", "BCLB3", "BCLB4", "BCLB5",
                 "BCLB6", "BCLB7", "BCLB8", "BCLB9", "BCLB10", "BCLB11", "PASLB1_turn", "PASLB1_plus"],
-            ["PUWSB1_right"]
+            ["PUWSB1_right", "BCL2", "BCL3", "BCL4", "BCL5", "BCL6", "BCL7", "BCL8", "BCL9", 
+            "BCLR1", "BCLR2", "BCLR3", "BCLR4", "BCLR5", "BCLR7", "BCLR8"]
         ],
 
         "PLBR2": [
             ["PUWSL1_plus", "PUWSL1_left", "BCLB1", "BCLB2", "BCLB3", "BCLB4", "BCLB5",
                 "BCLB6", "BCLB7", "BCLB8", "BCLB9", "BCLB10", "BCLB11", "PASLB1_turn", "PASLB1_plus"],
-            ["PUWSB1_right"]
+            ["PUWSB1_right", "BCL2", "BCL3", "BCL4", "BCL5", "BCL6", "BCL7", "BCL8", "BCL9", 
+            "BCLR1", "BCLR2", "BCLR3", "BCLR4", "BCLR5", "BCLR7", "BCLR8"]
         ],
 
         "initial": ["IDLE"]
@@ -125,15 +135,6 @@
                 ]
             ],
             ["PB0", "PL0"]
-        ],
-        "HALT": [
-            ["PB10"],
-            [
-                [
-                    ["STOP"], []
-                ]
-            ],
-            ["IDLE"]
         ],
         "TB01": [
             ["PB0"],
@@ -152,6 +153,24 @@
                 ]
             ],
             ["PBLR1"]
+        ],
+        "TBLR1": [
+            ["PBLR1"],
+            [
+                [
+                    ["TBLR1_time"], []
+                ]
+            ],
+            ["PBLR2"]
+        ],
+        "TBLR2": [
+            ["PBLR2"],
+            [
+                [
+                    ["TBLR2_time"], []
+                ]
+            ],
+            ["PBLR1", "PLR1"]
         ],
         "TB12": [
             ["PB1"],
@@ -193,7 +212,7 @@
                     [], ["SB4", "SB5"]
                 ]
             ],
-            ["PB0"]
+            ["PB0", "PB5"]
         ],
         "TB34": [
             ["PB3"],
@@ -211,7 +230,7 @@
                     ["SB4"], []
                 ]
             ],
-            ["PB5"]
+            ["PB5", "PB0"]
         ],
         "TB56": [
             ["PB5"],
@@ -238,7 +257,7 @@
                     [], ["SBR2", "SBR3"]
                 ]
             ],
-            ["PBR3"]
+            ["PBR3", "PB0"]
         ],
         "TBR12": [
             ["PBR1"],
@@ -256,7 +275,7 @@
                     ["SBR2"], []
                 ]
             ],
-            ["PBR3"]
+            ["PBR3", "PB0"]
         ],
         "TBR34": [
             ["PBR3"],
@@ -339,7 +358,7 @@
             ],
             ["PB10"]
         ],
-        "TL0": [
+        "TL01": [
             ["PL0"],
             [
                 [
@@ -373,7 +392,7 @@
                     ["TLBR2_time"], []
                 ]
             ],
-            ["PLBR1"]
+            ["PLBR1", "PBR1"]
         ]
     },
 
@@ -430,6 +449,9 @@
 
         "TB2RX_time": [ "boolean" ],
 
+        "TBLR1_time": [ "boolean" ],
+        "TBLR2_time": [ "boolean" ],
+        "TLBR1_time": [ "boolean" ],
         "TLBR2_time": [ "boolean" ]
 
     }
