@@ -122,6 +122,12 @@
             "BCLR1", "BCLR2", "BCLR3", "BCLR4", "BCLR5", "BCLR7", "BCLR8"]
         ],
 
+        "PLR1": [
+            ["BCLR4", "BCLR5"],
+            [],
+            [""]
+        ],
+
         "initial": ["IDLE"]
         
     },

@@ -14,6 +14,20 @@
             ["EL1"]
         ],
 
+        "PLBR1": [
+            ["PUWSL1_plus", "PUWSL1_left", "BCLB1", "BCLB2", "BCLB3", "BCLB4", "BCLB5",
+                "BCLB6", "BCLB7", "BCLB8", "BCLB9", "BCLB10", "BCLB11", "PASLB1_turn", "PASLB1_plus"],
+            ["PUWSB1_right", "BCL2", "BCL3", "BCL4", "BCL5", "BCL6", "BCL7", "BCL8", "BCL9", 
+            "BCLR1", "BCLR2", "BCLR3", "BCLR4", "BCLR5", "BCLR7", "BCLR8"]
+        ],
+
+        "PLBR2": [
+            ["PUWSL1_plus", "PUWSL1_left", "BCLB1", "BCLB2", "BCLB3", "BCLB4", "BCLB5",
+                "BCLB6", "BCLB7", "BCLB8", "BCLB9", "BCLB10", "BCLB11", "PASLB1_turn", "PASLB1_plus"],
+            ["PUWSB1_right", "BCL2", "BCL3", "BCL4", "BCL5", "BCL6", "BCL7", "BCL8", "BCL9", 
+            "BCLR1", "BCLR2", "BCLR3", "BCLR4", "BCLR5", "BCLR7", "BCLR8"]
+        ],
+
         "PL2": [
             ["PUWSL1", "BCL2", "BCL3", "BCL4"],
             ["PUWSL1_left"]
@@ -93,11 +107,50 @@
             [],
             ["Turn on conveyors that transport product from MCLR"]
         ],
+
+        "PB0": [
+            ["EB1", "BCB1"],
+            []
+        ],
+
+        "PB1": [
+            [],
+            ["EB1"]
+        ],
+
+        "PBLR1": [
+            ["PUWSB1_plus", "PUWSB1_right", "BCBL1", "BCBL2", "BCBL3", "BCBL4", "BCBL5", "BCBL6", 
+                "BCBL7", "BCBL8", "BCBL9", "BCBL10", "BCBL11"],
+            ["PUWSB1_left", "BCB2", "BCB3", "BCB4", "BCB5", "BCB6", "BCB7",
+                "BCBR1", "BCBR2", "BCBR3", "BCBR4", "BCBR5", "BCBR6", "BCBR7", "BCBR8", "BCBR9"]
+        ],
+
+        "PBLR2": [
+            ["PUWSB1_plus", "PUWSB1_right", "BCBL1", "BCBL2", "BCBL3", "BCBL4", "BCBL5", "BCBL6", 
+                "BCBL7", "BCBL8", "BCBL9", "BCBL10", "BCBL11"],
+            ["PUWSB1_left", "BCB2", "BCB3", "BCB4", "BCB5", "BCB6", "BCB7",
+                "BCBR1", "BCBR2", "BCBR3", "BCBR4", "BCBR5", "BCBR6", "BCBR7", "BCBR8", "BCBR9"]
+        ],
+
+        "PBR1": [
+            [ "BCBR4", "BCBR5", "BCBR6"],
+            []
+        ],
+        
         "initial": ["IDLE"]
         
     },
 
     "transitions": {
+        "RUN": [
+            ["IDLE"],
+            [
+                [
+                    ["START"],[]
+                ]
+            ],
+            ["PB0", "PL0"]
+        ],
         "TL01": [
             ["PL0"],
             [
@@ -106,6 +159,42 @@
                 ]
             ],
             ["PL1"]
+        ],
+        "TLBR": [
+            ["PL0"],
+            [
+                [
+                    ["MCL_error", "MCLR_error"],[]
+                ]
+            ],
+            ["PL1"]
+        ],
+        "TLBR1": [
+            ["PLBR1"],
+            [
+                [
+                    ["TLBR1_time"], []
+                ]
+            ],
+            ["PLBR2"]
+        ],
+        "TLBR2": [
+            ["PLBR2"],
+            [
+                [
+                    ["TLBR2_time"], []
+                ]
+            ],
+            ["PLBR1", "PBR1"]
+        ],
+        "TB01": [
+            ["PB0"],
+            [
+                [
+                    ["SB1"],[]
+                ]
+            ],
+            ["PB1"]
         ],
         "TL12": [
             ["PL1"],
@@ -292,11 +381,40 @@
             ],
             ["PLR10"],
             ["Product joins main lid path from MCLR"]
+        ],
+        "TBLR": [
+            ["PB1"],
+            [
+                [
+                    ["MCB_error", "MCBR_error"], []
+                ]
+            ],
+            ["PBLR1"]
+        ],
+        "TBLR1": [
+            ["PBLR1"],
+            [
+                [
+                    ["TBLR1_time"], []
+                ]
+            ],
+            ["PBLR2"]
+        ],
+        "TBLR2": [
+            ["PBLR2"],
+            [
+                [
+                    ["TBLR2_time"], []
+                ]
+            ],
+            ["PBLR1", "PLR1"]
         ]
         
     },
 
     "inputs": {
+        "START": [ "boolean" ],
+        "STOP": ["boolean" ],
         "SL1": [ "boolean"],
         "MCL_error": [ "boolean"],
         "MCLR_error": [ "boolean"],
@@ -313,10 +431,13 @@
         "SL8B3": [ "boolean"],
         "SLR5": [ "boolean"],
         "SL9": [ "boolean"],
-        "TL2RX_time": [ "boolean"],
         "SLR3": [ "boolean"],
         "SLR2": [ "boolean"],
-        "SLR4": [ "boolean"]
+        "SLR4": [ "boolean"],
+        "TBLR1_time": [ "boolean" ],
+        "TBLR2_time": [ "boolean" ],
+        "TLBR1_time": [ "boolean" ],
+        "TLBR2_time": [ "boolean" ]
     }
 
 }

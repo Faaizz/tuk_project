@@ -1,0 +1,690 @@
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['START', 'STOP', 'SB1', 'SB4', 'SB5', 'SB6', 'SB9', 'SBR2', 'SBR3', 'SBR4', 'SBR5', 'SB7B0', 'SB7B1', 'SB7B2', 'SB7B3', 'SB8B0', 'SB8B1', 'SB8B2', 'SB8B3', 'SP', 'MCB_error', 'MCBR_error', 'CSB1W', 'SL1', 'MCL_error', 'MCLR_error', 'TB2RX_time', 'TBLR1_time', 'TBLR2_time', 'TLBR1_time', 'TLBR2_time']
+START: boolean;
+STOP: boolean;
+SB1: boolean;
+SB4: boolean;
+SB5: boolean;
+SB6: boolean;
+SB9: boolean;
+SBR2: boolean;
+SBR3: boolean;
+SBR4: boolean;
+SBR5: boolean;
+SB7B0: boolean;
+SB7B1: boolean;
+SB7B2: boolean;
+SB7B3: boolean;
+SB8B0: boolean;
+SB8B1: boolean;
+SB8B2: boolean;
+SB8B3: boolean;
+SP: {"0", "1", "2"};
+MCB_error: boolean;
+MCBR_error: boolean;
+CSB1W: boolean;
+SL1: boolean;
+MCL_error: boolean;
+MCLR_error: boolean;
+TB2RX_time: boolean;
+TBLR1_time: boolean;
+TBLR2_time: boolean;
+TLBR1_time: boolean;
+TLBR2_time: boolean;
+ 
+-- PLACES
+-- ['IDLE', 'PB0', 'PB1', 'PBLR1', 'PBLR2', 'PB2', 'PB3', 'PB4', 'PB5', 'PB6', 'PBR1X', 'PBR1', 'PBR2', 'PBR3', 'PBR4', 'PB7', 'PB8', 'PB9', 'PB10', 'PL0', 'PL1', 'PLBR1', 'PLBR2', 'PLR1', 'initial']
+IDLE: boolean;
+PB0: boolean;
+PB1: boolean;
+PBLR1: boolean;
+PBLR2: boolean;
+PB2: boolean;
+PB3: boolean;
+PB4: boolean;
+PB5: boolean;
+PB6: boolean;
+PBR1X: boolean;
+PBR1: boolean;
+PBR2: boolean;
+PBR3: boolean;
+PBR4: boolean;
+PB7: boolean;
+PB8: boolean;
+PB9: boolean;
+PB10: boolean;
+PL0: boolean;
+PL1: boolean;
+PLBR1: boolean;
+PLBR2: boolean;
+PLR1: boolean;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+RUN:= (IDLE) & ( (START) ) & (!PB0 & !PL0);
+TB01:= (PB0) & ( (SB1) ) & (!PB1);
+TBLR:= (PB1) & ( (MCB_error & MCBR_error) ) & (!PBLR1);
+TBLR1:= (PBLR1) & ( (TBLR1_time) ) & (!PBLR2);
+TBLR2:= (PBLR2) & ( (TBLR2_time) ) & (!PBLR1 & !PLR1);
+TB12:= (PB1) & ( (!MCB_error & !MCBR_error) | (MCB_error & !MCBR_error) | (MCBR_error & !MCB_error) ) & (!PB2);
+TB23:= (PB2) & ( (!MCB_error) ) & (!PB3);
+TB2R:= (PB2) & ( (MCB_error & !MCBR_error) ) & (!PBR1X);
+TB30:= (PB3) & ( (!SB4 & !SB5) ) & (!PB0 & !PB5);
+TB34:= (PB3) & ( (SB5 & !SB4) ) & (!PB4);
+TB45:= (PB4) & ( (SB4) ) & (!PB5 & !PB0);
+TB56:= (PB5) & ( (!SB6) ) & (!PB6);
+TB2RX:= (PBR1X) & ( (TB2RX_time) ) & (!PBR1);
+TBR10:= (PBR1) & ( (!SBR2 & !SBR3) ) & (!PBR3 & !PB0);
+TBR12:= (PBR1) & ( (SBR3 & !SBR2) ) & (!PBR2);
+TBR23:= (PBR2) & ( (SBR2) ) & (!PBR3 & !PB0);
+TBR34:= (PBR3) & ( (!SBR4) ) & (!PBR4);
+TB10R4:= (PBR4) & ( (SB9) ) & (!PB10);
+CAM7_DET:= (TRUE) & ( (SB7B0 & SB7B1 & SB7B2 & SB7B3) ) & (!FALSE);
+CAM8_DET:= (TRUE) & ( (SB8B0 & SB8B1 & SB8B2 & SB8B3) ) & (!FALSE);
+TB67:= (PB6) & ( (SBR5 & CAM8_DET & !CAM7_DET) ) & (!PB7);
+TB678:= (PB7) & ( (SB9) ) & (!PB8);
+TB89:= (PB8) & ( (!SB9) ) & (!PB9);
+TB910:= (PB9) & ( (SB9) ) & (!PB10);
+TB610:= (PB6) & ( (SB9) ) & (!PB10);
+TL01:= (PL0) & ( (SL1) ) & (!PL1);
+TLBR:= (PL0) & ( (MCL_error & MCLR_error) ) & (!PL1);
+TLBR1:= (PLBR1) & ( (TLBR2_time) ) & (!PLBR2);
+TLBR2:= (PLBR2) & ( (TLBR2_time) ) & (!PLBR1 & !PBR1);
+ 
+-- STABLE
+stab:= !(RUN | TB01 | TBLR | TBLR1 | TBLR2 | TB12 | TB23 | TB2R | TB30 | TB34 | TB45 | TB56 | TB2RX | TBR10 | TBR12 | TBR23 | TBR34 | TB10R4 | CAM7_DET | CAM8_DET | TB67 | TB678 | TB89 | TB910 | TB610 | TL01 | TLBR | TLBR1 | TLBR2);
+ 
+-- OUTPUTS
+-- SET
+BCB1_set:= PB0;
+BCB10_set:= PB10;
+BCB2_set:= PB2;
+BCB3_set:= PB2;
+BCB4_set:= PB2;
+BCB5_set:= PB3;
+BCB6_set:= PB3;
+BCB7_set:= PB6;
+BCB8_set:= PB6;
+BCB9_set:= PB6 | PBR4;
+BCBL1_set:= PBLR1 | PBLR2;
+BCBL10_set:= PBLR1 | PBLR2;
+BCBL11_set:= PBLR1 | PBLR2;
+BCBL2_set:= PBLR1 | PBLR2;
+BCBL3_set:= PBLR1 | PBLR2;
+BCBL4_set:= PBLR1 | PBLR2;
+BCBL5_set:= PBLR1 | PBLR2;
+BCBL6_set:= PBLR1 | PBLR2;
+BCBL7_set:= PBLR1 | PBLR2;
+BCBL8_set:= PBLR1 | PBLR2;
+BCBL9_set:= PBLR1 | PBLR2;
+BCBR1_set:= PBR1X;
+BCBR2_set:= PBR1X;
+BCBR3_set:= PBR1X;
+BCBR4_set:= PBR1;
+BCBR5_set:= PBR1;
+BCBR6_set:= PBR1;
+BCBR7_set:= PBR4;
+BCBR8_set:= PBR4;
+BCBR9_set:= FALSE;
+BCL1_set:= PL0;
+BCL2_set:= FALSE;
+BCL3_set:= FALSE;
+BCL4_set:= FALSE;
+BCL5_set:= FALSE;
+BCL6_set:= FALSE;
+BCL7_set:= FALSE;
+BCL8_set:= FALSE;
+BCL9_set:= FALSE;
+BCLB1_set:= PLBR1 | PLBR2;
+BCLB10_set:= PLBR1 | PLBR2;
+BCLB11_set:= PLBR1 | PLBR2;
+BCLB2_set:= PLBR1 | PLBR2;
+BCLB3_set:= PLBR1 | PLBR2;
+BCLB4_set:= PLBR1 | PLBR2;
+BCLB5_set:= PLBR1 | PLBR2;
+BCLB6_set:= PLBR1 | PLBR2;
+BCLB7_set:= PLBR1 | PLBR2;
+BCLB8_set:= PLBR1 | PLBR2;
+BCLB9_set:= PLBR1 | PLBR2;
+BCLR1_set:= FALSE;
+BCLR2_set:= FALSE;
+BCLR3_set:= FALSE;
+BCLR4_set:= PLR1;
+BCLR5_set:= PLR1;
+BCLR7_set:= FALSE;
+BCLR8_set:= FALSE;
+CSB1_plus_set:= PB10;
+EB1_set:= PB0;
+EL1_set:= PL0;
+MCB_set:= PB5;
+MCBR_set:= PBR3;
+MCB_start_set:= PB5 | PBR3;
+MCB_stop_set:= FALSE;
+PAS2Belt_minus_set:= FALSE;
+PAS2Belt_plus_set:= PBR1X;
+PAS2turn_set:= PBR1X;
+PASLB1_plus_set:= PLBR1 | PLBR2;
+PASLB1_turn_set:= PLBR1 | PLBR2;
+PUWSB1_set:= PB2;
+PUWSB1_left_set:= FALSE;
+PUWSB1_plus_set:= PBLR1 | PBLR2;
+PUWSB1_right_set:= PBLR1 | PBLR2;
+PUWSL1_left_set:= PLBR1 | PLBR2;
+PUWSL1_plus_set:= PLBR1 | PLBR2;
+SBB1_set:= PB7;
+-- RESET
+BCB1_reset:= FALSE;
+BCB10_reset:= FALSE;
+BCB2_reset:= PBLR1 | PBLR2;
+BCB3_reset:= PBLR1 | PBLR2;
+BCB4_reset:= PBLR1 | PBLR2;
+BCB5_reset:= PBLR1 | PBLR2 | PBR1X;
+BCB6_reset:= PBLR1 | PBLR2 | PBR1X;
+BCB7_reset:= PBLR1 | PBLR2;
+BCB8_reset:= FALSE;
+BCB9_reset:= FALSE;
+BCBL1_reset:= FALSE;
+BCBL10_reset:= FALSE;
+BCBL11_reset:= FALSE;
+BCBL2_reset:= FALSE;
+BCBL3_reset:= FALSE;
+BCBL4_reset:= FALSE;
+BCBL5_reset:= FALSE;
+BCBL6_reset:= FALSE;
+BCBL7_reset:= FALSE;
+BCBL8_reset:= FALSE;
+BCBL9_reset:= FALSE;
+BCBR1_reset:= PBLR1 | PBLR2;
+BCBR2_reset:= PBLR1 | PBLR2;
+BCBR3_reset:= PBLR1 | PBLR2;
+BCBR4_reset:= PBLR1 | PBLR2;
+BCBR5_reset:= PBLR1 | PBLR2;
+BCBR6_reset:= PBLR1 | PBLR2;
+BCBR7_reset:= PBLR1 | PBLR2;
+BCBR8_reset:= PBLR1 | PBLR2;
+BCBR9_reset:= PBLR1 | PBLR2;
+BCL1_reset:= FALSE;
+BCL2_reset:= PLBR1 | PLBR2;
+BCL3_reset:= PLBR1 | PLBR2;
+BCL4_reset:= PLBR1 | PLBR2;
+BCL5_reset:= PLBR1 | PLBR2;
+BCL6_reset:= PLBR1 | PLBR2;
+BCL7_reset:= PLBR1 | PLBR2;
+BCL8_reset:= PLBR1 | PLBR2;
+BCL9_reset:= PLBR1 | PLBR2;
+BCLB1_reset:= FALSE;
+BCLB10_reset:= FALSE;
+BCLB11_reset:= FALSE;
+BCLB2_reset:= FALSE;
+BCLB3_reset:= FALSE;
+BCLB4_reset:= FALSE;
+BCLB5_reset:= FALSE;
+BCLB6_reset:= FALSE;
+BCLB7_reset:= FALSE;
+BCLB8_reset:= FALSE;
+BCLB9_reset:= FALSE;
+BCLR1_reset:= PLBR1 | PLBR2;
+BCLR2_reset:= PLBR1 | PLBR2;
+BCLR3_reset:= PLBR1 | PLBR2;
+BCLR4_reset:= PLBR1 | PLBR2;
+BCLR5_reset:= PLBR1 | PLBR2;
+BCLR7_reset:= PLBR1 | PLBR2;
+BCLR8_reset:= PLBR1 | PLBR2;
+CSB1_plus_reset:= FALSE;
+EB1_reset:= PB1;
+EL1_reset:= PL1;
+MCB_reset:= FALSE;
+MCBR_reset:= FALSE;
+MCB_start_reset:= FALSE;
+MCB_stop_reset:= PB3;
+PAS2Belt_minus_reset:= PB3 | PBR1X;
+PAS2Belt_plus_reset:= PB3;
+PAS2turn_reset:= PB3;
+PASLB1_plus_reset:= FALSE;
+PASLB1_turn_reset:= FALSE;
+PUWSB1_reset:= FALSE;
+PUWSB1_left_reset:= PBLR1 | PBLR2;
+PUWSB1_plus_reset:= FALSE;
+PUWSB1_right_reset:= PB2 | PLBR1 | PLBR2;
+PUWSL1_left_reset:= FALSE;
+PUWSL1_plus_reset:= FALSE;
+SBB1_reset:= PB9;
+-- OUTPUT
+BCB1:= BCB1_set & !BCB1_reset;
+BCB10:= BCB10_set & !BCB10_reset;
+BCB2:= BCB2_set & !BCB2_reset;
+BCB3:= BCB3_set & !BCB3_reset;
+BCB4:= BCB4_set & !BCB4_reset;
+BCB5:= BCB5_set & !BCB5_reset;
+BCB6:= BCB6_set & !BCB6_reset;
+BCB7:= BCB7_set & !BCB7_reset;
+BCB8:= BCB8_set & !BCB8_reset;
+BCB9:= BCB9_set & !BCB9_reset;
+BCBL1:= BCBL1_set & !BCBL1_reset;
+BCBL10:= BCBL10_set & !BCBL10_reset;
+BCBL11:= BCBL11_set & !BCBL11_reset;
+BCBL2:= BCBL2_set & !BCBL2_reset;
+BCBL3:= BCBL3_set & !BCBL3_reset;
+BCBL4:= BCBL4_set & !BCBL4_reset;
+BCBL5:= BCBL5_set & !BCBL5_reset;
+BCBL6:= BCBL6_set & !BCBL6_reset;
+BCBL7:= BCBL7_set & !BCBL7_reset;
+BCBL8:= BCBL8_set & !BCBL8_reset;
+BCBL9:= BCBL9_set & !BCBL9_reset;
+BCBR1:= BCBR1_set & !BCBR1_reset;
+BCBR2:= BCBR2_set & !BCBR2_reset;
+BCBR3:= BCBR3_set & !BCBR3_reset;
+BCBR4:= BCBR4_set & !BCBR4_reset;
+BCBR5:= BCBR5_set & !BCBR5_reset;
+BCBR6:= BCBR6_set & !BCBR6_reset;
+BCBR7:= BCBR7_set & !BCBR7_reset;
+BCBR8:= BCBR8_set & !BCBR8_reset;
+BCBR9:= BCBR9_set & !BCBR9_reset;
+BCL1:= BCL1_set & !BCL1_reset;
+BCL2:= BCL2_set & !BCL2_reset;
+BCL3:= BCL3_set & !BCL3_reset;
+BCL4:= BCL4_set & !BCL4_reset;
+BCL5:= BCL5_set & !BCL5_reset;
+BCL6:= BCL6_set & !BCL6_reset;
+BCL7:= BCL7_set & !BCL7_reset;
+BCL8:= BCL8_set & !BCL8_reset;
+BCL9:= BCL9_set & !BCL9_reset;
+BCLB1:= BCLB1_set & !BCLB1_reset;
+BCLB10:= BCLB10_set & !BCLB10_reset;
+BCLB11:= BCLB11_set & !BCLB11_reset;
+BCLB2:= BCLB2_set & !BCLB2_reset;
+BCLB3:= BCLB3_set & !BCLB3_reset;
+BCLB4:= BCLB4_set & !BCLB4_reset;
+BCLB5:= BCLB5_set & !BCLB5_reset;
+BCLB6:= BCLB6_set & !BCLB6_reset;
+BCLB7:= BCLB7_set & !BCLB7_reset;
+BCLB8:= BCLB8_set & !BCLB8_reset;
+BCLB9:= BCLB9_set & !BCLB9_reset;
+BCLR1:= BCLR1_set & !BCLR1_reset;
+BCLR2:= BCLR2_set & !BCLR2_reset;
+BCLR3:= BCLR3_set & !BCLR3_reset;
+BCLR4:= BCLR4_set & !BCLR4_reset;
+BCLR5:= BCLR5_set & !BCLR5_reset;
+BCLR7:= BCLR7_set & !BCLR7_reset;
+BCLR8:= BCLR8_set & !BCLR8_reset;
+CSB1_plus:= CSB1_plus_set & !CSB1_plus_reset;
+EB1:= EB1_set & !EB1_reset;
+EL1:= EL1_set & !EL1_reset;
+MCB:= MCB_set & !MCB_reset;
+MCBR:= MCBR_set & !MCBR_reset;
+MCB_start:= MCB_start_set & !MCB_start_reset;
+MCB_stop:= MCB_stop_set & !MCB_stop_reset;
+PAS2Belt_minus:= PAS2Belt_minus_set & !PAS2Belt_minus_reset;
+PAS2Belt_plus:= PAS2Belt_plus_set & !PAS2Belt_plus_reset;
+PAS2turn:= PAS2turn_set & !PAS2turn_reset;
+PASLB1_plus:= PASLB1_plus_set & !PASLB1_plus_reset;
+PASLB1_turn:= PASLB1_turn_set & !PASLB1_turn_reset;
+PUWSB1:= PUWSB1_set & !PUWSB1_reset;
+PUWSB1_left:= PUWSB1_left_set & !PUWSB1_left_reset;
+PUWSB1_plus:= PUWSB1_plus_set & !PUWSB1_plus_reset;
+PUWSB1_right:= PUWSB1_right_set & !PUWSB1_right_reset;
+PUWSL1_left:= PUWSL1_left_set & !PUWSL1_left_reset;
+PUWSL1_plus:= PUWSL1_plus_set & !PUWSL1_plus_reset;
+SBB1:= SBB1_set & !SBB1_reset;
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(START):= {TRUE, FALSE};
+init(STOP):= {TRUE, FALSE};
+init(SB1):= {TRUE, FALSE};
+init(SB4):= {TRUE, FALSE};
+init(SB5):= {TRUE, FALSE};
+init(SB6):= {TRUE, FALSE};
+init(SB9):= {TRUE, FALSE};
+init(SBR2):= {TRUE, FALSE};
+init(SBR3):= {TRUE, FALSE};
+init(SBR4):= {TRUE, FALSE};
+init(SBR5):= {TRUE, FALSE};
+init(SB7B0):= {TRUE, FALSE};
+init(SB7B1):= {TRUE, FALSE};
+init(SB7B2):= {TRUE, FALSE};
+init(SB7B3):= {TRUE, FALSE};
+init(SB8B0):= {TRUE, FALSE};
+init(SB8B1):= {TRUE, FALSE};
+init(SB8B2):= {TRUE, FALSE};
+init(SB8B3):= {TRUE, FALSE};
+init(SP):= {"0", "1", "2"};
+init(MCB_error):= {TRUE, FALSE};
+init(MCBR_error):= {TRUE, FALSE};
+init(CSB1W):= {TRUE, FALSE};
+init(SL1):= {TRUE, FALSE};
+init(MCL_error):= {TRUE, FALSE};
+init(MCLR_error):= {TRUE, FALSE};
+init(TB2RX_time):= {TRUE, FALSE};
+init(TBLR1_time):= {TRUE, FALSE};
+init(TBLR2_time):= {TRUE, FALSE};
+init(TLBR1_time):= {TRUE, FALSE};
+init(TLBR2_time):= {TRUE, FALSE};
+next(START):= case
+   stab: {TRUE, FALSE};
+   TRUE: START;
+esac;
+next(STOP):= case
+   stab: {TRUE, FALSE};
+   TRUE: STOP;
+esac;
+next(SB1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB1;
+esac;
+next(SB4):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB4;
+esac;
+next(SB5):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB5;
+esac;
+next(SB6):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB6;
+esac;
+next(SB9):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB9;
+esac;
+next(SBR2):= case
+   stab: {TRUE, FALSE};
+   TRUE: SBR2;
+esac;
+next(SBR3):= case
+   stab: {TRUE, FALSE};
+   TRUE: SBR3;
+esac;
+next(SBR4):= case
+   stab: {TRUE, FALSE};
+   TRUE: SBR4;
+esac;
+next(SBR5):= case
+   stab: {TRUE, FALSE};
+   TRUE: SBR5;
+esac;
+next(SB7B0):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB7B0;
+esac;
+next(SB7B1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB7B1;
+esac;
+next(SB7B2):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB7B2;
+esac;
+next(SB7B3):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB7B3;
+esac;
+next(SB8B0):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB8B0;
+esac;
+next(SB8B1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB8B1;
+esac;
+next(SB8B2):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB8B2;
+esac;
+next(SB8B3):= case
+   stab: {TRUE, FALSE};
+   TRUE: SB8B3;
+esac;
+next(SP):= case
+   stab: {"0", "1", "2"};
+   TRUE: SP;
+esac;
+next(MCB_error):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCB_error;
+esac;
+next(MCBR_error):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCBR_error;
+esac;
+next(CSB1W):= case
+   stab: {TRUE, FALSE};
+   TRUE: CSB1W;
+esac;
+next(SL1):= case
+   stab: {TRUE, FALSE};
+   TRUE: SL1;
+esac;
+next(MCL_error):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCL_error;
+esac;
+next(MCLR_error):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCLR_error;
+esac;
+next(TB2RX_time):= case
+   stab: {TRUE, FALSE};
+   TRUE: TB2RX_time;
+esac;
+next(TBLR1_time):= case
+   stab: {TRUE, FALSE};
+   TRUE: TBLR1_time;
+esac;
+next(TBLR2_time):= case
+   stab: {TRUE, FALSE};
+   TRUE: TBLR2_time;
+esac;
+next(TLBR1_time):= case
+   stab: {TRUE, FALSE};
+   TRUE: TLBR1_time;
+esac;
+next(TLBR2_time):= case
+   stab: {TRUE, FALSE};
+   TRUE: TLBR2_time;
+esac;
+ 
+-- PLACES
+init(IDLE):= TRUE;
+init(PB0):= FALSE;
+init(PB1):= FALSE;
+init(PBLR1):= FALSE;
+init(PBLR2):= FALSE;
+init(PB2):= FALSE;
+init(PB3):= FALSE;
+init(PB4):= FALSE;
+init(PB5):= FALSE;
+init(PB6):= FALSE;
+init(PBR1X):= FALSE;
+init(PBR1):= FALSE;
+init(PBR2):= FALSE;
+init(PBR3):= FALSE;
+init(PBR4):= FALSE;
+init(PB7):= FALSE;
+init(PB8):= FALSE;
+init(PB9):= FALSE;
+init(PB10):= FALSE;
+init(PL0):= FALSE;
+init(PL1):= FALSE;
+init(PLBR1):= FALSE;
+init(PLBR2):= FALSE;
+init(PLR1):= FALSE;
+next(IDLE):= case
+   RUN: FALSE;
+   TRUE: IDLE;
+esac;
+next(PB0):= case
+   RUN: TRUE;
+   TB01: FALSE;
+   TB30: TRUE;
+   TB45: TRUE;
+   TBR10: TRUE;
+   TBR23: TRUE;
+   TRUE: PB0;
+esac;
+next(PB1):= case
+   TB01: TRUE;
+   TBLR: FALSE;
+   TB12: FALSE;
+   TRUE: PB1;
+esac;
+next(PBLR1):= case
+   TBLR: TRUE;
+   TBLR1: FALSE;
+   TBLR2: TRUE;
+   TRUE: PBLR1;
+esac;
+next(PBLR2):= case
+   TBLR1: TRUE;
+   TBLR2: FALSE;
+   TRUE: PBLR2;
+esac;
+next(PB2):= case
+   TB12: TRUE;
+   TB23: FALSE;
+   TB2R: FALSE;
+   TRUE: PB2;
+esac;
+next(PB3):= case
+   TB23: TRUE;
+   TB30: FALSE;
+   TB34: FALSE;
+   TRUE: PB3;
+esac;
+next(PB4):= case
+   TB34: TRUE;
+   TB45: FALSE;
+   TRUE: PB4;
+esac;
+next(PB5):= case
+   TB30: TRUE;
+   TB45: TRUE;
+   TB56: FALSE;
+   TRUE: PB5;
+esac;
+next(PB6):= case
+   TB56: TRUE;
+   TB67: FALSE;
+   TB610: FALSE;
+   TRUE: PB6;
+esac;
+next(PBR1X):= case
+   TB2R: TRUE;
+   TB2RX: FALSE;
+   TRUE: PBR1X;
+esac;
+next(PBR1):= case
+   TB2RX: TRUE;
+   TBR10: FALSE;
+   TBR12: FALSE;
+   TLBR2: TRUE;
+   TRUE: PBR1;
+esac;
+next(PBR2):= case
+   TBR12: TRUE;
+   TBR23: FALSE;
+   TRUE: PBR2;
+esac;
+next(PBR3):= case
+   TBR10: TRUE;
+   TBR23: TRUE;
+   TBR34: FALSE;
+   TRUE: PBR3;
+esac;
+next(PBR4):= case
+   TBR34: TRUE;
+   TB10R4: FALSE;
+   TRUE: PBR4;
+esac;
+next(PB7):= case
+   TB67: TRUE;
+   TB678: FALSE;
+   TRUE: PB7;
+esac;
+next(PB8):= case
+   TB678: TRUE;
+   TB89: FALSE;
+   TRUE: PB8;
+esac;
+next(PB9):= case
+   TB89: TRUE;
+   TB910: FALSE;
+   TRUE: PB9;
+esac;
+next(PB10):= case
+   TB10R4: TRUE;
+   TB910: TRUE;
+   TB610: TRUE;
+   TRUE: PB10;
+esac;
+next(PL0):= case
+   RUN: TRUE;
+   TL01: FALSE;
+   TLBR: FALSE;
+   TRUE: PL0;
+esac;
+next(PL1):= case
+   TL01: TRUE;
+   TLBR: TRUE;
+   TRUE: PL1;
+esac;
+next(PLBR1):= case
+   TLBR1: FALSE;
+   TLBR2: TRUE;
+   TRUE: PLBR1;
+esac;
+next(PLBR2):= case
+   TLBR1: TRUE;
+   TLBR2: FALSE;
+   TRUE: PLBR2;
+esac;
+next(PLR1):= case
+   TBLR2: TRUE;
+   TRUE: PLR1;
+esac;
+-- ====================================================================
+-- SPECIFICATIONS
+-- ====================================================================
+
+--------------------------------------------------------------------
+-- MCB GOOD
+--------------------------------------------------------------------
+DEFINE
+cond1:= !MCB_error & stab & !IDLE; 
+
+-- MCB produces base from raw material
+SPEC
+AG( cond1 -> EF(PB10) );
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( (cond1 & SB4) -> EB1 );
+
+-- PAS2 stays off if MCB does not have error
+SPEC
+AG( (cond1) -> AG( !PAS2turn & !PAS2Belt_minus & !PAS2Belt_plus ) );

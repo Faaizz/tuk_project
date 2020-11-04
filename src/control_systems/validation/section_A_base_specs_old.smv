@@ -1,0 +1,189 @@
+-- ====================================================================
+-- SPECIFICATIONS
+-- ====================================================================
+
+--------------------------------------------------------------------
+-- MCB GOOD
+--------------------------------------------------------------------
+DEFINE
+cond1:= !MCB_error & stab & !IDLE; 
+
+-- MCB produce base from raw material
+SPEC
+AG( EF(cond1 -> PB10) );
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( (cond1 & SB4) -> EB1 );
+
+-- Belt Conveyors BCB2-BCB9 stay on Efter turning on the 1st time
+SPEC
+AG( cond1 & BCB2 -> EF(BCB2) );
+SPEC
+AG( cond1 & BCB3 -> EF(BCB3) );
+SPEC
+AG( cond1 & BCB4 -> EF(BCB4) );
+SPEC
+AG( cond1 & BCB5 -> EF(BCB5) );
+SPEC
+AG( cond1 & BCB6 -> EF(BCB6) );
+SPEC
+AG( cond1 & BCB7 -> EF(BCB7) );
+SPEC
+AG( cond1 & BCB8 -> EF(BCB8) );
+SPEC
+AG( cond1 & BCB9 -> EF(BCB9) );
+
+-- PAS2 stays off if MCB does not have error
+SPEC
+AG( (cond1) -> ( !PAS2turn & !PAS2Belt_minus & !PAS2Belt_plus ) );
+
+--------------------------------------------------------------------
+-- MCB BAD AND MCBR GOOD
+--------------------------------------------------------------------
+DEFINE
+cond2:= MCB_error & !MCBR_error & stab & !IDLE;
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( ( cond2 & SBR2) -> EB1 );
+
+-- Belt Conveyors BCB2-BCB4 and BCB7-BCB9 stay on Efter turning on the 1st time
+SPEC
+AG( cond2 & BCB2 -> EF(BCB2) );
+SPEC
+AG( cond2 & BCB3 -> EF(BCB3) );
+SPEC
+AG( cond2 & BCB4 -> EF(BCB4) );
+SPEC
+AG( cond2 & BCB7 -> EF(BCB7) );
+SPEC
+AG( cond2 & BCB8 -> EF(BCB8) );
+SPEC
+AG( cond2 & BCB9 -> EF(BCB9) );
+
+-- Pivot Arm Sorter 2 stays ON Efter initial startup
+SPEC
+AG( cond2 & PBR1X -> EF(PAS2turn & PAS2Belt_plus) );
+
+-- Belt Conveyors BCBR1-BCBR8 stay on Efter turning on the 1st time
+SPEC
+cond2 & BCBR1 -> AG(BCBR1);
+SPEC
+cond2 & BCBR2 -> AG(BCBR2);
+SPEC
+cond2 & BCBR3 -> AG(BCBR3);
+SPEC
+cond2 & BCBR4 -> AG(BCBR4);
+SPEC
+cond2 & BCBR5 -> AG(BCBR5);
+SPEC
+cond2 & BCBR6 -> AG(BCBR6);
+SPEC
+cond2 & BCBR7 -> AG(BCBR7);
+SPEC
+cond2 & BCBR8 -> AG(BCBR8);
+
+
+-- MCBR produce lid from raw material
+SPEC
+AG( EF(cond2 -> PB10) );
+
+--------------------------------------------------------------------
+-- MCL BAD AND MCLR BAD AND MCB GOOD AND MCBR GOOD
+--------------------------------------------------------------------
+DEFINE
+cond3:= MCL_error & MCLR_error & !MCB_error & !MCBR_error & !IDLE; 
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( ( cond3 & SB4) -> EB1 );
+
+-- EB1 should emit when there are less than 2 raw materials at MCBR feed
+SPEC
+AG( ( cond3 & SBR2) -> EB1 );
+
+-- Pivot Arm Sorter 2 is Turned off
+SPEC
+AG( cond3 -> EF(!PAS2turn & !PAS2Belt_plus & !PAS2Belt_minus ) );
+
+-- Belt Conveyors BCB2-BCB9 stay on Efter turning on the 1st time
+SPEC
+AG( cond3 & BCB2 -> EF(BCB2) );
+SPEC
+AG( cond3 & BCB3 -> EF(BCB3) );
+SPEC
+AG( cond3 & BCB4 -> EF(BCB4) );
+SPEC
+AG( cond3 & BCB5 -> EF(BCB5) );
+SPEC
+AG( cond3 & BCB6 -> EF(BCB6) );
+SPEC
+AG( cond3 & BCB7 -> EF(BCB7) );
+SPEC
+AG( cond3 & BCB8 -> EF(BCB8) );
+SPEC
+AG( cond3 & BCB9 -> EF(BCB9) );
+
+-- Belt Conveyors BCBR1-BCBR3 are OFF
+SPEC
+AG( cond3 & BCBR1 -> EF(BCBR1) );
+SPEC
+AG( cond3 & BCBR2 -> EF(BCBR2) );
+SPEC
+AG( cond3 & BCBR3 -> EF(BCBR3) );
+
+-- Pop Up Wheel Sorter L1 diverts raw materials to the left
+SPEC
+AG( cond3 & PLBR1 -> EF(PUWSB1_plus & PUWSB1_left) );
+
+-- Belt Conveyors BCLB1-BCLB11 stay on Efter turning on the 1st time
+SPEC
+AG( cond3 & BCLB1 -> EF(BCLB1) );
+SPEC
+AG( cond3 & BCLB2 -> EF(BCLB2) );
+SPEC
+AG( cond3 & BCLB3 -> EF(BCLB3) );
+SPEC
+AG( cond3 & BCLB4 -> EF(BCLB4) );
+SPEC
+AG( cond3 & BCLB5 -> EF(BCLB5) );
+SPEC
+AG( cond3 & BCLB6 -> EF(BCLB6) );
+SPEC
+AG( cond3 & BCLB7 -> EF(BCLB7) );
+SPEC
+AG( cond3 & BCLB8 -> EF(BCLB8) );
+SPEC
+AG( cond3 & BCLB9 -> EF(BCLB9) );
+SPEC
+AG( cond3 & BCLB10 -> EF(BCLB10) );
+SPEC
+AG( cond3 & BCLB11 -> EF(BCLB11) );
+
+-- Pivot Arm Sorter LB1 is Turned On
+SPEC
+AG( cond3 & PLBR1 -> EF(PASLB1_turn & PASLB1_plus ) );
+
+-- Belt Conveyors BCBR4-BCBR8 stay on Efter turning on the 1st time
+SPEC
+AG( cond3 & BCBR4 -> EF(BCBR4) );
+SPEC
+AG( cond3 & BCBR5 -> EF(BCBR5) );
+SPEC
+AG( cond3 & BCBR6 -> EF(BCBR6) );
+SPEC
+AG( cond3 & BCBR7 -> EF(BCBR7) );
+SPEC
+AG( cond3 & BCBR8 -> EF(BCBR8) );
+
+-- Stop Blade B1 is activated to prevent collision of items from MCB and MCBR
+
+--------------------------------------------------------------------
+-- MCB BAD AND MCBR BAD
+--------------------------------------------------------------------
+DEFINE
+cond4:= MCB_error & MCBR_error & !IDLE;
+
+SPEC
+AG(cond4 & PBLR1 -> EF(PUWSB1_plus & PUWSB1_right));

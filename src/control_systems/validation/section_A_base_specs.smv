@@ -1,0 +1,21 @@
+-- ====================================================================
+-- SPECIFICATIONS
+-- ====================================================================
+
+--------------------------------------------------------------------
+-- MCB GOOD
+--------------------------------------------------------------------
+DEFINE
+cond1:= !MCB_error & stab & !IDLE; 
+
+-- MCB produces base from raw material
+SPEC
+AG( cond1 -> EF(PB10) );
+
+-- EB1 should emit when there are less than 2 raw materials at MCB feed
+SPEC
+AG( (cond1 & SB4) -> EB1 );
+
+-- PAS2 stays off if MCB does not have error
+SPEC
+AG( (cond1) -> AG( !PAS2turn & !PAS2Belt_minus & !PAS2Belt_plus ) );
