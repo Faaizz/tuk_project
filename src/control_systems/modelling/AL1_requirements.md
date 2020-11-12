@@ -2,13 +2,6 @@
 
 For simplicity, it is assumed that all conveyors are turned ON.  
 
-1. Transport item (lid/base) to conveyor scale via BC_AL1_1 and BC_AL1_2.​  
-    - If an item is about to reach the conveyor scale (S_AL1=1) while an item is still on the scale (CS_AL1_W > 0.5), block the incoming item (push up SB_AL1=1).  
-
-1. Weight item at conveyor scale (CS_AL1_W).​  
-    - If item weights less than 4.5kg (lid= 5kg) or more than 7.5kg (base- 7kg), pass it straight ahead (PUWS_AL1_PLUS) and dispose of it via BC_AL1_BIN1-BC_AL1_BIN10.  
-    - Otherwise, set an internal controller variable (AL1_TYPE) to tell if it's a lid (weights between 4.5 - 5.5kg; AL1_TYPE= 1) or a base (weights between 6.5 - 7.5kg; AL1_TYPE= 2) and pass it to the right (PUWS_AL1_RT) for assembly.​  
-
 1. Push base/lid onto Pick & Place line buffer​.  
     - If item is a base (AL1_TYPE= 1), then push it onto the base line (activate P_AL1_B) when the item is detected (1 second after S_AL1_B= 1). After pushing (P_AL1_B_FT=1), restore the pusher to its rest position (P_AL1_B=0).​  
     - If item is a lid (AL1_TYPE= 0), then  push it onto the lid line (activate P_AL1_L) when the item is detected (1 second after S_AL1_L= 1). After pushing (P_AL1_L_FT=1), restore the pusher to its rest position (P_AL1_L=0).​   

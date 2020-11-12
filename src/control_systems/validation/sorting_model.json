@@ -1,0 +1,175 @@
+{
+    "places": {
+        "P0": [
+            [],
+            [],
+            "Item recieved from production line"
+        ],
+        "P1": [
+            [],
+            ["SB_AL1", "AL1_LID", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Conveyor scale free"
+        ],
+        "P2": [
+            [],
+            ["SB_AL1", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Item at conveyor scale"
+        ],
+        "P3": [
+            ["SB_AL1"],
+            ["PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Item on conveyor scale"
+        ],
+        "P4": [
+            ["SB_AL1", "PUWS_AL1_1_PLUS"],
+            ["PUWS_AL1_1_RT"],
+            "Invalid item, pass to bin"
+        ],
+        "BIN1": [
+            [],
+            [],
+            "Bin standby"
+        ],
+        "BIN2": [
+            [],
+            [],
+            "Item on bin line"
+        ],
+        "P5": [
+            ["SB_AL1", "AL1_LID", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            ["AL1_BASE"],
+            "Scale detects a lid"
+        ],
+        "P6": [
+            ["SB_AL1", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            ["AL1_LID"],
+            "Scale detects a base"
+        ],
+        "ASSEMBLY": [
+            [],
+            [],
+            "Item passed to assembly"
+        ],
+        "initial": ["P0", "P1", "BIN1"]
+    },
+
+    "outputs": {
+        "SB_AL1": "Stop blade",
+        "PUWS_AL1_1_PLUS": "Pop up wheel sorter forward",
+        "PUWS_AL1_1_RT": "Pop up wheel sorter right"
+    },
+
+    "internal": {
+        "AL1_BASE": "Base detected",
+        "AL1_LID": "Lid detected"
+    },
+
+    "transitions": {
+        "T0212": [
+            ["P0", "P1"],
+            [
+                [
+                    ["S_AL1"], []
+                ]
+            ],
+            ["P2"],
+            "Item arriving at conveyor scale"
+        ],
+        "T23": [
+            ["P2"],
+            [
+                [
+                    ["timer_0_5_P2"], []
+                ]
+            ],
+            ["P3"],
+            "Item fully on scale"
+        ],
+        "T34": [
+            ["P3"],
+            [
+                ["(CS_AL1_W < 4) | (CS_AL1_W > 8)"]
+            ],
+            ["P4"],
+            "Invalid item (weights less than 4kg or more than 8kg)"
+        ],
+        "T4B2": [
+            ["P4", "BIN1"],
+            [
+                [
+                    ["S_BIN_1"], []
+                ]
+            ],
+            ["BIN2"],
+            "Item arriving at bin line"
+        ],
+        "TB21": [
+            ["BIN2"],
+            [
+                [
+                    [], ["S_BIN_1"]
+                ]
+            ],
+            ["BIN1"],
+            "Item being transported to bin"
+        ],
+        "T35": [
+            ["P3"],
+            [
+                ["(CS_AL1_W > 4) | (CS_AL1_W <= 6)"]
+            ],
+            ["P5"],
+            "Item is lid"
+        ],
+        "T36": [
+            ["P3"],
+            [
+                ["(CS_AL1_W > 6) | (CS_AL1_W <= 8)"]
+            ],
+            ["P6"]
+        ],
+        "T57": [
+            ["P5"],
+            [
+                [
+                    ["S_AL1_BL"], []
+                ]
+            ],
+            ["ASSEMBLY"],
+            "Item arriving at assembly"
+        ],
+        "T67": [
+            ["P6"],
+            [
+                [
+                    ["S_AL1_BL"], []
+                ]
+            ],
+            ["ASSEMBLY"],
+            "Item arriving at assembly"
+        ],
+        "ASS_P0": [
+            ["ASSEMBLY"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["P0"],
+            "Return token to P0 from assembly for reversibility"
+        ]
+    },
+
+    "inputs": {
+        "S_AL1": "boolean",
+        "timer_0_5_P2": "boolean",
+        "CS_AL1_W": [
+            "0..9",
+            0,
+            "{2, 5, 7}"
+        ],
+        "S_BIN_1": "boolean",
+        "S_AL1_BL": "boolean"
+    }
+
+}
