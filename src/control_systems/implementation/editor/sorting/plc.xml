@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <fileHeader companyName="Unknown" productName="Unnamed" productVersion="1" creationDateTime="2020-11-12T17:27:51"/>
+  <contentHeader name="Unnamed" modificationDateTime="2020-11-13T00:00:16">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="10" y="10"/>
+      </fbd>
+      <ld>
+        <scaling x="10" y="10"/>
+      </ld>
+      <sfc>
+        <scaling x="10" y="10"/>
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes/>
+    <pous>
+      <pou name="sorting" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="S_AL1" address="%IX100.0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="S_BIN_1" address="%IX100.1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="S_AL1_BL" address="%IX100.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="RUNNING" address="%IX100.7">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="CS_AL1_W" address="%IW100">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="SB_AL1" address="%QX100.0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PUWS_AL1_1_PLUS" address="%QX100.1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PUWS_AL1_1_RT" address="%QX100.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="CS_AL1_PLUS" address="%QX100.3">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <localVars>
+            <variable name="STABLE">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P3">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P4">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PB">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P5">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P6">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="BIN1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="BIN2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="ASSEMBLY">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PRODUCTION">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="timer_1_P2">
+              <type>
+                <derived name="TON"/>
+              </type>
+            </variable>
+            <variable name="timer_1_P3">
+              <type>
+                <derived name="TON"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[
+(*Timers*)
+timer_1_P2(IN:= P2, PT:= T#1000ms);
+timer_1_P3(IN:= P3, PT:= T#3000ms);
+
+(*RUNNING*)
+IF NOT RUNNING THEN
+  (*OUTPUT*)
+  SB_AL1:= 0;
+  PUWS_AL1_1_PLUS:= 0;
+  PUWS_AL1_1_RT:= 0;
+  
+  (*PLACES*)
+  P0:= 1;
+  P1:= 1;
+  P2:= 0;
+  P3:= 0;
+  P4:= 0;
+  PB:= 0;
+  BIN1:= 1;
+  BIN2:= 0;
+  P5:= 0;
+  P6:= 0;
+  ASSEMBLY:= 0;
+  PRODUCTION:= 0;
+END_IF;
+
+(*============================================================*)
+(* TRANSITIONS *)
+(*============================================================*)
+STABLE:= 1;
+(*T0112*)
+IF P0 AND P1 AND S_AL1 AND NOT P2 THEN
+  P0:= 0;
+  P1:= 0;
+  P2:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T23*)
+IF P2 AND timer_1_P2.Q AND NOT P3 THEN
+  P2:= 0;
+  P3:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T34*)
+IF P3 AND timer_1_P3.Q AND NOT P4 THEN
+  P3:= 0;
+  P4:= 1;
+END_IF;
+
+(*T4B*)
+IF P4 AND ( (CS_AL1_W < 200) OR (CS_AL1_W > 400) ) AND NOT PB THEN
+  P4:= 0;
+  PB:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T4B2*)
+IF PB AND BIN1 AND S_BIN_1 AND NOT BIN2 AND NOT P1 AND NOT PRODUCTION THEN
+  PB:= 0;
+  BIN1:= 0;
+  BIN2:= 1;
+  P1:= 1;
+  PRODUCTION:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*TB21*)
+IF BIN2 AND NOT S_BIN_1 AND NOT BIN1 THEN
+  BIN2:= 0;
+  BIN1:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T35*)
+IF P4 AND ( (CS_AL1_W > 200) AND (CS_AL1_W <= 300) ) AND NOT P5 THEN
+  P4:= 0;
+  P5:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T36*)
+IF P4 AND ( (CS_AL1_W > 300) AND (CS_AL1_W <= 400) ) AND NOT P6 THEN
+  P4:= 0;
+  P6:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T57*)
+IF P5 AND S_AL1_BL AND NOT ASSEMBLY AND NOT P1 THEN
+  P5:= 0;
+  ASSEMBLY:= 1;
+  P1:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T67*)
+IF P6 AND S_AL1_BL AND NOT ASSEMBLY AND NOT P1 THEN
+  P6:= 0;
+  ASSEMBLY:= 1;
+  P1:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*TROPD*)
+IF ASSEMBLY AND NOT PRODUCTION THEN
+  ASSEMBLY:= 0;
+  PRODUCTION:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*T0*)
+IF PRODUCTION AND NOT P0 THEN
+  PRODUCTION:= 0;
+  P0:= 1;
+  STABLE:= 0;
+END_IF;
+
+(*============================================================*)
+(* OUTPUTS *)
+(*============================================================*)
+(*SET SB_AL1*)
+IF P3 OR P4 OR P5 OR P6 AND STABLE THEN
+  SB_AL1:= 1;
+END_IF;
+(*RESET SB_AL1*)
+IF P1 OR P5 AND STABLE THEN
+  SB_AL1:= 0;
+END_IF;
+
+(*SET PUWS_AL1_1_PLUS*)
+IF P4 OR P5 OR P6 AND STABLE THEN
+  PUWS_AL1_1_PLUS:= 1;
+END_IF;
+
+(*RESET PUWS_AL1_1_PLUS*)
+IF P1 OR P2 OR P3 AND STABLE THEN
+  PUWS_AL1_1_PLUS:= 0;
+END_IF;
+
+(*SET PUWS_AL1_1_RT*)
+IF P5 OR P6 AND STABLE THEN
+  PUWS_AL1_1_RT:= 1;
+END_IF;
+
+(*RESET PUWS_AL1_1_RT*)
+IF P1 OR P2 OR P3 OR P4 AND STABLE THEN
+  PUWS_AL1_1_RT:= 0;
+END_IF;
+
+(*SET CS_AL1_PLUS*)
+IF P1 OR P2 OR P3 OR P5 OR P6 OR PB THEN
+  CS_AL1_PLUS:= 1;
+END_IF;
+
+(*RESET CS_AL1_PLUS*)
+IF P4 THEN
+  CS_AL1_PLUS:= 0;
+END_IF;
+
+
+
+]]></xhtml:p>
+          </ST>
+        </body>
+        <documentation>
+          <xhtml:p><![CDATA[Sorting stage]]></xhtml:p>
+        </documentation>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations>
+      <configuration name="Config0">
+        <resource name="Res0">
+          <task name="task0" priority="0" interval="T#20ms">
+            <pouInstance name="instance0" typeName="sorting"/>
+          </task>
+        </resource>
+      </configuration>
+    </configurations>
+  </instances>
+</project>
