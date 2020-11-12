@@ -50,6 +50,11 @@
             [],
             "Item passed to assembly"
         ],
+        "PRODUCTION": [
+            [],
+            [],
+            "Item leaving production"
+        ],
         "initial": ["P0", "P1", "BIN1"]
     },
 
@@ -100,7 +105,7 @@
                     ["S_BIN_1"], []
                 ]
             ],
-            ["BIN2"],
+            ["BIN2", "P1", "PRODUCTION"],
             "Item arriving at bin line"
         ],
         "TB21": [
@@ -116,7 +121,7 @@
         "T35": [
             ["P3"],
             [
-                ["(CS_AL1_W > 4) | (CS_AL1_W <= 6)"]
+                ["(CS_AL1_W > 4) & (CS_AL1_W <= 6)"]
             ],
             ["P5"],
             "Item is lid"
@@ -124,7 +129,7 @@
         "T36": [
             ["P3"],
             [
-                ["(CS_AL1_W > 6) | (CS_AL1_W <= 8)"]
+                ["(CS_AL1_W > 6) & (CS_AL1_W <= 8)"]
             ],
             ["P6"]
         ],
@@ -135,7 +140,7 @@
                     ["S_AL1_BL"], []
                 ]
             ],
-            ["ASSEMBLY"],
+            ["ASSEMBLY", "P1"],
             "Item arriving at assembly"
         ],
         "T67": [
@@ -145,18 +150,27 @@
                     ["S_AL1_BL"], []
                 ]
             ],
-            ["ASSEMBLY"],
+            ["ASSEMBLY", "P1"],
             "Item arriving at assembly"
         ],
-        "ASS_P0": [
+        "TPROD": [
             ["ASSEMBLY"],
             [
                 [
                     ["TRUE"], []
                 ]
             ],
-            ["P0"],
+            ["PRODUCTION"],
             "Return token to P0 from assembly for reversibility"
+        ],
+        "T0": [
+            ["PRODUCTION"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["P0"]
         ]
     },
 
@@ -170,6 +184,16 @@
         ],
         "S_BIN_1": "boolean",
         "S_AL1_BL": "boolean"
+    },
+
+    "specifications": {
+        "manual": [
+            "AG( (stab & P0 & P1) -> EF(P4) )",
+            "AG( (stab & P0 & P1) -> EF(P5) )",
+            "AG( (stab & P0 & P1) -> EF(P6) )",
+            "AG( stab -> EF(ASSEMBLY))",
+            "AG( stab -> EF(PRODUCTION))"
+        ]
     }
 
 }
