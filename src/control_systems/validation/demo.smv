@@ -1,0 +1,33 @@
+MODULE main
+
+VAR 
+-- INTEGER DECLARATION
+input1: 0..10;
+P1: boolean;
+P2: boolean;
+
+
+DEFINE
+T1:= P1 & (input1 = 9) & !P2;
+
+ASSIGN
+init(input1):= 0;
+next(input1):= case
+    TRUE: {0, 1, 2, 3};
+esac;
+
+init(P1):= TRUE;
+next(P1):= case
+    T1: FALSE;
+    TRUE: P1;
+esac;
+
+init(P2):= FALSE;
+next(P2):= case
+    T1: TRUE;
+    TRUE: P2;
+esac;
+
+
+SPEC
+EF(P2);
