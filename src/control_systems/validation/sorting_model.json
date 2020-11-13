@@ -16,14 +16,14 @@
             "Item at conveyor scale"
         ],
         "P3": [
-            ["SB_AL1", "CS_AL1_PLUS"],
-            ["PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
-            "Item on conveyor scale"
+            ["SB_AL1"],
+            ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Weighting in progress"
         ],
         "P4": [
             ["SB_AL1"],
             ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
-            "Weighting in progress"
+            "Evaluate weight"
         ],
         "PB": [
             ["SB_AL1", "PUWS_AL1_1_PLUS", "CS_AL1_PLUS"],
@@ -207,7 +207,6 @@
             "AG( (stab & P0 & P1) -> EF(PB) )",
             "AG( (stab & P0 & P1) -> EF(P5) )",
             "AG( (stab & P0 & P1) -> EF(P6) )",
-            "AG( (stab & P4) -> EF(CS_AL1_PLUS) )",
             "AG( stab -> EF(ASSEMBLY))",
             "AG( stab -> EF(PRODUCTION))"
         ]

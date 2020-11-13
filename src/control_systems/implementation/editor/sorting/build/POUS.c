@@ -209,7 +209,6 @@ void SORTING_init__(SORTING *data__, BOOL retain) {
   __INIT_VAR(data__->SB_AL1,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PUWS_AL1_1_PLUS,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PUWS_AL1_1_RT,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->PUWS_AL1_1_RT0,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->CS_AL1_PLUS,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->STABLE,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->P0,__BOOL_LITERAL(FALSE),retain)
@@ -236,7 +235,7 @@ void SORTING_body__(SORTING *data__) {
   __SET_VAR(data__->TIMER_1_P2.,PT,,__time_to_timespec(1, 1000, 0, 0, 0, 0));
   TON_body__(&data__->TIMER_1_P2);
   __SET_VAR(data__->TIMER_1_P3.,IN,,__GET_VAR(data__->P3,));
-  __SET_VAR(data__->TIMER_1_P3.,PT,,__time_to_timespec(1, 1000, 0, 0, 0, 0));
+  __SET_VAR(data__->TIMER_1_P3.,PT,,__time_to_timespec(1, 3000, 0, 0, 0, 0));
   TON_body__(&data__->TIMER_1_P3);
   if (!(__GET_VAR(data__->RUNNING,))) {
     __SET_VAR(data__->,SB_AL1,,0);
@@ -321,28 +320,28 @@ void SORTING_body__(SORTING *data__) {
     __SET_VAR(data__->,P0,,1);
     __SET_VAR(data__->,STABLE,,0);
   };
-  if ((((__GET_VAR(data__->P3,) || __GET_VAR(data__->P4,)) || __GET_VAR(data__->P5,)) || (__GET_VAR(data__->P6,) && __GET_VAR(data__->STABLE,)))) {
+  if (((((__GET_VAR(data__->P3,) || __GET_VAR(data__->P4,)) || __GET_VAR(data__->PB,)) || __GET_VAR(data__->P5,)) || (__GET_VAR(data__->P6,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,SB_AL1,,1);
   };
-  if ((__GET_VAR(data__->P1,) || (__GET_VAR(data__->P5,) && __GET_VAR(data__->STABLE,)))) {
+  if ((__GET_VAR(data__->P1,) || (__GET_VAR(data__->P2,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,SB_AL1,,0);
   };
-  if (((__GET_VAR(data__->P4,) || __GET_VAR(data__->P5,)) || (__GET_VAR(data__->P6,) && __GET_VAR(data__->STABLE,)))) {
+  if (((__GET_VAR(data__->PB,) || __GET_VAR(data__->P5,)) || (__GET_VAR(data__->P6,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,PUWS_AL1_1_PLUS,,1);
   };
-  if (((__GET_VAR(data__->P1,) || __GET_VAR(data__->P2,)) || (__GET_VAR(data__->P3,) && __GET_VAR(data__->STABLE,)))) {
+  if ((((__GET_VAR(data__->P1,) || __GET_VAR(data__->P2,)) || __GET_VAR(data__->P3,)) || (__GET_VAR(data__->P4,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,PUWS_AL1_1_PLUS,,0);
   };
   if ((__GET_VAR(data__->P5,) || (__GET_VAR(data__->P6,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,PUWS_AL1_1_RT,,1);
   };
-  if ((((__GET_VAR(data__->P1,) || __GET_VAR(data__->P2,)) || __GET_VAR(data__->P3,)) || (__GET_VAR(data__->P4,) && __GET_VAR(data__->STABLE,)))) {
+  if (((((__GET_VAR(data__->P1,) || __GET_VAR(data__->P2,)) || __GET_VAR(data__->P3,)) || __GET_VAR(data__->P4,)) || (__GET_VAR(data__->PB,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,PUWS_AL1_1_RT,,0);
   };
-  if ((((((__GET_VAR(data__->P1,) || __GET_VAR(data__->P2,)) || __GET_VAR(data__->P3,)) || __GET_VAR(data__->P5,)) || __GET_VAR(data__->P6,)) || __GET_VAR(data__->PB,))) {
+  if (((((__GET_VAR(data__->P1,) || __GET_VAR(data__->P2,)) || __GET_VAR(data__->P5,)) || __GET_VAR(data__->P6,)) || __GET_VAR(data__->PB,))) {
     __SET_VAR(data__->,CS_AL1_PLUS,,1);
   };
-  if (__GET_VAR(data__->P4,)) {
+  if ((__GET_VAR(data__->P3,) || __GET_VAR(data__->P4,))) {
     __SET_VAR(data__->,CS_AL1_PLUS,,0);
   };
 

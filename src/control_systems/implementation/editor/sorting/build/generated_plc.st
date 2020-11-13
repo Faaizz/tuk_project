@@ -8,23 +8,26 @@ PROGRAM sorting
     SB_AL1 AT %QX100.0 : BOOL;
     PUWS_AL1_1_PLUS AT %QX100.1 : BOOL;
     PUWS_AL1_1_RT AT %QX100.2 : BOOL;
-    PUWS_AL1_1_RT0 AT %QX100.3 : BOOL;
-    CS_AL1_PLUS AT %QX100.4 : BOOL;
+    CS_AL1_PLUS AT %QX100.3 : BOOL;
   END_VAR
   VAR
     STABLE : BOOL;
-    P0 : BOOL;
-    P1 : BOOL;
-    P2 : BOOL;
-    P3 : BOOL;
-    P4 : BOOL;
-    PB : BOOL;
-    P5 : BOOL;
-    P6 : BOOL;
-    BIN1 : BOOL;
-    BIN2 : BOOL;
-    ASSEMBLY : BOOL;
-    PRODUCTION : BOOL;
+  END_VAR
+  VAR
+    P0 AT %QX200.0 : BOOL;
+    P1 AT %QX200.1 : BOOL;
+    P2 AT %QX200.2 : BOOL;
+    P3 AT %QX200.3 : BOOL;
+    P4 AT %QX200.4 : BOOL;
+    PB AT %QX200.5 : BOOL;
+    P5 AT %QX200.6 : BOOL;
+    P6 AT %QX200.7 : BOOL;
+    BIN1 AT %QX201.0 : BOOL;
+    BIN2 AT %QX201.1 : BOOL;
+    ASSEMBLY AT %QX201.2 : BOOL;
+    PRODUCTION AT %QX201.3 : BOOL;
+  END_VAR
+  VAR
     timer_1_P2 : TON;
     timer_1_P3 : TON;
   END_VAR
@@ -32,7 +35,7 @@ PROGRAM sorting
 
   (*Timers*)
   timer_1_P2(IN:= P2, PT:= T#1000ms);
-  timer_1_P3(IN:= P3, PT:= T#1000ms);
+  timer_1_P3(IN:= P3, PT:= T#3000ms);
 
   (*RUNNING*)
   IF NOT RUNNING THEN
@@ -105,14 +108,14 @@ PROGRAM sorting
     STABLE:= 0;
   END_IF;
 
-  (*T35*)
+  (*T45*)
   IF P4 AND ( (CS_AL1_W > 200) AND (CS_AL1_W <= 300) ) AND NOT P5 THEN
     P4:= 0;
     P5:= 1;
     STABLE:= 0;
   END_IF;
 
-  (*T36*)
+  (*T46*)
   IF P4 AND ( (CS_AL1_W > 300) AND (CS_AL1_W <= 400) ) AND NOT P6 THEN
     P4:= 0;
     P6:= 1;
@@ -153,21 +156,21 @@ PROGRAM sorting
   (* OUTPUTS *)
   (*============================================================*)
   (*SET SB_AL1*)
-  IF P3 OR P4 OR P5 OR P6 AND STABLE THEN
+  IF P3 OR P4 OR PB OR P5 OR P6 AND STABLE THEN
     SB_AL1:= 1;
   END_IF;
   (*RESET SB_AL1*)
-  IF P1 OR P5 AND STABLE THEN
+  IF P1 OR P2 AND STABLE THEN
     SB_AL1:= 0;
   END_IF;
 
   (*SET PUWS_AL1_1_PLUS*)
-  IF P4 OR P5 OR P6 AND STABLE THEN
+  IF PB OR P5 OR P6 AND STABLE THEN
     PUWS_AL1_1_PLUS:= 1;
   END_IF;
 
   (*RESET PUWS_AL1_1_PLUS*)
-  IF P1 OR P2 OR P3 AND STABLE THEN
+  IF P1 OR P2 OR P3 OR P4 AND STABLE THEN
     PUWS_AL1_1_PLUS:= 0;
   END_IF;
 
@@ -177,17 +180,17 @@ PROGRAM sorting
   END_IF;
 
   (*RESET PUWS_AL1_1_RT*)
-  IF P1 OR P2 OR P3 OR P4 AND STABLE THEN
+  IF P1 OR P2 OR P3 OR P4 OR PB AND STABLE THEN
     PUWS_AL1_1_RT:= 0;
   END_IF;
 
   (*SET CS_AL1_PLUS*)
-  IF P1 OR P2 OR P3 OR P5 OR P6 OR PB THEN
+  IF P1 OR P2 OR P5 OR P6 OR PB THEN
     CS_AL1_PLUS:= 1;
   END_IF;
 
   (*RESET CS_AL1_PLUS*)
-  IF P4 THEN
+  IF P3 OR P4 THEN
     CS_AL1_PLUS:= 0;
   END_IF;
 
