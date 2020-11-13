@@ -9,20 +9,22 @@ VAR
 
 
 -- INPUTS
--- ['S_AL1', 'timer_0_5_P2', 'CS_AL1_W', 'S_BIN_1', 'S_AL1_BL']
+-- ['S_AL1', 'timer_1_P2', 'timer_1_P3', 'CS_AL1_W', 'S_BIN_1', 'S_AL1_BL']
 S_AL1: boolean;
-timer_0_5_P2: boolean;
+timer_1_P2: boolean;
+timer_1_P3: boolean;
 CS_AL1_W: 0..9;
 S_BIN_1: boolean;
 S_AL1_BL: boolean;
  
 -- PLACES
--- ['P0', 'P1', 'P2', 'P3', 'P4', 'BIN1', 'BIN2', 'P5', 'P6', 'ASSEMBLY', 'PRODUCTION', 'initial']
+-- ['P0', 'P1', 'P2', 'P3', 'P4', 'PB', 'BIN1', 'BIN2', 'P5', 'P6', 'ASSEMBLY', 'PRODUCTION', 'initial']
 P0: boolean;
 P1: boolean;
 P2: boolean;
 P3: boolean;
 P4: boolean;
+PB: boolean;
 BIN1: boolean;
 BIN2: boolean;
 P5: boolean;
@@ -40,36 +42,40 @@ DEFINE
 
 -- TRANSITIONS
 T0212:= (P0 & P1) & ( (S_AL1) ) & (!P2);
-T23:= (P2) & ( (timer_0_5_P2) ) & (!P3);
-T34:= (P3) & ( ((CS_AL1_W < 4) | (CS_AL1_W > 8)) ) & (!P4);
-T4B2:= (P4 & BIN1) & ( (S_BIN_1) ) & (!BIN2 & !P1 & !PRODUCTION);
+T23:= (P2) & ( (timer_1_P2) ) & (!P3);
+T34:= (P3) & ( (timer_1_P3) ) & (!P4);
+T4B:= (P4) & ( ((CS_AL1_W < 2) | (CS_AL1_W > 4)) ) & (!PB);
+T4B2:= (PB & BIN1) & ( (S_BIN_1) ) & (!BIN2 & !P1 & !PRODUCTION);
 TB21:= (BIN2) & ( (!S_BIN_1) ) & (!BIN1);
-T35:= (P3) & ( ((CS_AL1_W > 4) & (CS_AL1_W <= 6)) ) & (!P5);
-T36:= (P3) & ( ((CS_AL1_W > 6) & (CS_AL1_W <= 8)) ) & (!P6);
+T45:= (P4) & ( ((CS_AL1_W > 2) & (CS_AL1_W <= 3)) ) & (!P5);
+T46:= (P4) & ( ((CS_AL1_W > 3) & (CS_AL1_W <= 4)) ) & (!P6);
 T57:= (P5) & ( (S_AL1_BL) ) & (!ASSEMBLY & !P1);
 T67:= (P6) & ( (S_AL1_BL) ) & (!ASSEMBLY & !P1);
 TPROD:= (ASSEMBLY) & ( (TRUE) ) & (!PRODUCTION);
 T0:= (PRODUCTION) & ( (TRUE) ) & (!P0);
  
 -- STABLE
-stab:= !(T0212 | T23 | T34 | T4B2 | TB21 | T35 | T36 | T57 | T67 | TPROD | T0);
+stab:= !(T0212 | T23 | T34 | T4B | T4B2 | TB21 | T45 | T46 | T57 | T67 | TPROD | T0);
  
 -- OUTPUTS
 -- SET
 AL1_BASE_set:= P6;
 AL1_LID_set:= P5;
-PUWS_AL1_1_PLUS_set:= P4 | P5 | P6;
+CS_AL1_PLUS_set:= P1 | P2 | P3 | PB | P5 | P6;
+PUWS_AL1_1_PLUS_set:= PB | P5 | P6;
 PUWS_AL1_1_RT_set:= P5 | P6;
-SB_AL1_set:= P3 | P4 | P5 | P6;
+SB_AL1_set:= P3 | P4 | PB | P5 | P6;
 -- RESET
 AL1_BASE_reset:= P1 | P5;
 AL1_LID_reset:= P1 | P6;
-PUWS_AL1_1_PLUS_reset:= P1 | P2 | P3;
-PUWS_AL1_1_RT_reset:= P1 | P2 | P3 | P4;
+CS_AL1_PLUS_reset:= P4;
+PUWS_AL1_1_PLUS_reset:= P1 | P2 | P3 | P4;
+PUWS_AL1_1_RT_reset:= P1 | P2 | P3 | P4 | PB;
 SB_AL1_reset:= P1 | P2;
 -- OUTPUT
 AL1_BASE:= AL1_BASE_set & !AL1_BASE_reset;
 AL1_LID:= AL1_LID_set & !AL1_LID_reset;
+CS_AL1_PLUS:= CS_AL1_PLUS_set & !CS_AL1_PLUS_reset;
 PUWS_AL1_1_PLUS:= PUWS_AL1_1_PLUS_set & !PUWS_AL1_1_PLUS_reset;
 PUWS_AL1_1_RT:= PUWS_AL1_1_RT_set & !PUWS_AL1_1_RT_reset;
 SB_AL1:= SB_AL1_set & !SB_AL1_reset;
@@ -84,7 +90,8 @@ ASSIGN
 
 -- INPUTS
 init(S_AL1):= {TRUE, FALSE};
-init(timer_0_5_P2):= {TRUE, FALSE};
+init(timer_1_P2):= {TRUE, FALSE};
+init(timer_1_P3):= {TRUE, FALSE};
 init(CS_AL1_W):= 0;
 init(S_BIN_1):= {TRUE, FALSE};
 init(S_AL1_BL):= {TRUE, FALSE};
@@ -92,12 +99,16 @@ next(S_AL1):= case
    stab: {TRUE, FALSE};
    TRUE: S_AL1;
 esac;
-next(timer_0_5_P2):= case
+next(timer_1_P2):= case
    stab: {TRUE, FALSE};
-   TRUE: timer_0_5_P2;
+   TRUE: timer_1_P2;
+esac;
+next(timer_1_P3):= case
+   stab: {TRUE, FALSE};
+   TRUE: timer_1_P3;
 esac;
 next(CS_AL1_W):= case
-   stab: {2, 5, 7};
+   stab: {1, 2, 3, 4};
    TRUE: CS_AL1_W;
 esac;
 next(S_BIN_1):= case
@@ -115,6 +126,7 @@ init(P1):= TRUE;
 init(P2):= FALSE;
 init(P3):= FALSE;
 init(P4):= FALSE;
+init(PB):= FALSE;
 init(BIN1):= TRUE;
 init(BIN2):= FALSE;
 init(P5):= FALSE;
@@ -141,14 +153,19 @@ esac;
 next(P3):= case
    T23: TRUE;
    T34: FALSE;
-   T35: FALSE;
-   T36: FALSE;
    TRUE: P3;
 esac;
 next(P4):= case
    T34: TRUE;
-   T4B2: FALSE;
+   T4B: FALSE;
+   T45: FALSE;
+   T46: FALSE;
    TRUE: P4;
+esac;
+next(PB):= case
+   T4B: TRUE;
+   T4B2: FALSE;
+   TRUE: PB;
 esac;
 next(BIN1):= case
    T4B2: FALSE;
@@ -161,12 +178,12 @@ next(BIN2):= case
    TRUE: BIN2;
 esac;
 next(P5):= case
-   T35: TRUE;
+   T45: TRUE;
    T57: FALSE;
    TRUE: P5;
 esac;
 next(P6):= case
-   T36: TRUE;
+   T46: TRUE;
    T67: FALSE;
    TRUE: P6;
 esac;
@@ -189,11 +206,13 @@ esac;
 --=====================================================================
 
 SPEC
-AG( (stab & P0 & P1) -> EF(P4) );
+AG( (stab & P0 & P1) -> EF(PB) );
 SPEC
 AG( (stab & P0 & P1) -> EF(P5) );
 SPEC
 AG( (stab & P0 & P1) -> EF(P6) );
+SPEC
+AG( (stab & P4) -> EF(CS_AL1_PLUS) );
 SPEC
 AG( stab -> EF(ASSEMBLY));
 SPEC
