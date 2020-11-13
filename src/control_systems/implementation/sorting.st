@@ -24,8 +24,9 @@ PROGRAM sorting
     P6 AT %QX200.7 : BOOL;
     BIN1 AT %QX201.0 : BOOL;
     BIN2 AT %QX201.1 : BOOL;
-    ASSEMBLY AT %QX201.2 : BOOL;
-    PRODUCTION AT %QX201.3 : BOOL;
+    P_LID AT %QX201.2 : BOOL;
+    P_BASE AT %QX201.3 : BOOL;
+    PRODUCTION AT %QX201.4 : BOOL;
   END_VAR
   VAR
     timer_1_P2 : TON;
@@ -55,102 +56,116 @@ PROGRAM sorting
     BIN2:= 0;
     P5:= 0;
     P6:= 0;
-    ASSEMBLY:= 0;
+    P_LID:= 0;
+    P_BASE:= 0;
     PRODUCTION:= 0;
   END_IF;
 
   (*============================================================*)
   (* TRANSITIONS *)
   (*============================================================*)
-  STABLE:= 1;
-  (*T0112*)
-  IF P0 AND P1 AND S_AL1 AND NOT P2 THEN
-    P0:= 0;
-    P1:= 0;
-    P2:= 1;
-    STABLE:= 0;
-  END_IF;
+  STABLE:= 0;
 
-  (*T23*)
-  IF P2 AND timer_1_P2.Q AND NOT P3 THEN
-    P2:= 0;
-    P3:= 1;
-    STABLE:= 0;
-  END_IF;
+  WHILE STABLE= 0 DO
+    STABLE:= 1;
+    (*T0112*)
+    IF P0 AND P1 AND S_AL1 AND NOT P2 THEN
+      P0:= 0;
+      P1:= 0;
+      P2:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T34*)
-  IF P3 AND timer_1_P3.Q AND NOT P4 THEN
-    P3:= 0;
-    P4:= 1;
-  END_IF;
+    (*T23*)
+    IF P2 AND timer_1_P2.Q AND NOT P3 THEN
+      P2:= 0;
+      P3:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T4B*)
-  IF P4 AND ( (CS_AL1_W < 200) OR (CS_AL1_W > 400) ) AND NOT PB THEN
-    P4:= 0;
-    PB:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T34*)
+    IF P3 AND timer_1_P3.Q AND NOT P4 THEN
+      P3:= 0;
+      P4:= 1;
+    END_IF;
 
-  (*T4B2*)
-  IF PB AND BIN1 AND S_BIN_1 AND NOT BIN2 AND NOT P1 AND NOT PRODUCTION THEN
-    PB:= 0;
-    BIN1:= 0;
-    BIN2:= 1;
-    P1:= 1;
-    PRODUCTION:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T4B*)
+    IF P4 AND ( (CS_AL1_W < 200) OR (CS_AL1_W > 400) ) AND NOT PB THEN
+      P4:= 0;
+      PB:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*TB21*)
-  IF BIN2 AND NOT S_BIN_1 AND NOT BIN1 THEN
-    BIN2:= 0;
-    BIN1:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T4B2*)
+    IF PB AND BIN1 AND S_BIN_1 AND NOT BIN2 AND NOT P1 AND NOT PRODUCTION THEN
+      PB:= 0;
+      BIN1:= 0;
+      BIN2:= 1;
+      P1:= 1;
+      PRODUCTION:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T45*)
-  IF P4 AND ( (CS_AL1_W > 200) AND (CS_AL1_W <= 300) ) AND NOT P5 THEN
-    P4:= 0;
-    P5:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*TB21*)
+    IF BIN2 AND NOT S_BIN_1 AND NOT BIN1 THEN
+      BIN2:= 0;
+      BIN1:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T46*)
-  IF P4 AND ( (CS_AL1_W > 300) AND (CS_AL1_W <= 400) ) AND NOT P6 THEN
-    P4:= 0;
-    P6:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T45*)
+    IF P4 AND ( (CS_AL1_W > 200) AND (CS_AL1_W <= 300) ) AND NOT P5 THEN
+      P4:= 0;
+      P5:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T57*)
-  IF P5 AND S_AL1_BL AND NOT ASSEMBLY AND NOT P1 THEN
-    P5:= 0;
-    ASSEMBLY:= 1;
-    P1:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T46*)
+    IF P4 AND ( (CS_AL1_W > 300) AND (CS_AL1_W <= 400) ) AND NOT P6 THEN
+      P4:= 0;
+      P6:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T67*)
-  IF P6 AND S_AL1_BL AND NOT ASSEMBLY AND NOT P1 THEN
-    P6:= 0;
-    ASSEMBLY:= 1;
-    P1:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T57*)
+    IF P5 AND S_AL1_BL AND NOT P_LID AND NOT P1 THEN
+      P5:= 0;
+      P_LID:= 1;
+      P1:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*TROPD*)
-  IF ASSEMBLY AND NOT PRODUCTION THEN
-    ASSEMBLY:= 0;
-    PRODUCTION:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*T67*)
+    IF P6 AND S_AL1_BL AND NOT P_LID AND NOT P1 THEN
+      P6:= 0;
+      P_LID:= 1;
+      P1:= 1;
+      STABLE:= 0;
+    END_IF;
 
-  (*T0*)
-  IF PRODUCTION AND NOT P0 THEN
-    PRODUCTION:= 0;
-    P0:= 1;
-    STABLE:= 0;
-  END_IF;
+    (*TPROD1*)
+    IF P_LID AND NOT PRODUCTION THEN
+      P_LID:= 0;
+      PRODUCTION:= 1;
+      STABLE:= 0;
+    END_IF;
+
+    (*TPROD2*)
+    IF P_BASE AND NOT PRODUCTION THEN
+      P_BASE:= 0;
+      PRODUCTION:= 1;
+      STABLE:= 0;
+    END_IF;
+
+
+    (*T0*)
+    IF PRODUCTION AND NOT P0 THEN
+      PRODUCTION:= 0;
+      P0:= 1;
+      STABLE:= 0;
+    END_IF;
+    
+  END_WHILE;
 
   (*============================================================*)
   (* OUTPUTS *)

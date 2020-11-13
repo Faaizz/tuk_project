@@ -50,10 +50,15 @@
             ["AL1_LID"],
             "Scale detects a base"
         ],
-        "ASSEMBLY": [
+        "P_LID": [
             [],
             [],
-            "Item passed to assembly"
+            "Item passed to lid buffer"
+        ],
+        "P_BASE": [
+            [],
+            [],
+            "Item passed to base buffer"
         ],
         "PRODUCTION": [
             [],
@@ -155,8 +160,8 @@
                     ["S_AL1_BL"], []
                 ]
             ],
-            ["ASSEMBLY", "P1"],
-            "Item arriving at assembly"
+            ["P_LID", "P1"],
+            "Item arriving at buffer"
         ],
         "T67": [
             ["P6"],
@@ -165,18 +170,28 @@
                     ["S_AL1_BL"], []
                 ]
             ],
-            ["ASSEMBLY", "P1"],
-            "Item arriving at assembly"
+            ["P_BASE", "P1"],
+            "Item arriving at buffer"
         ],
-        "TPROD": [
-            ["ASSEMBLY"],
+        "TPROD1": [
+            ["P_BASE"],
             [
                 [
                     ["TRUE"], []
                 ]
             ],
             ["PRODUCTION"],
-            "Return token to P0 from assembly for reversibility"
+            "Return token to P0 from buffer for reversibility"
+        ],
+        "TPROD2": [
+            ["P_LID"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PRODUCTION"],
+            "Return token to P0 from buffer for reversibility"
         ],
         "T0": [
             ["PRODUCTION"],
@@ -207,7 +222,7 @@
             "AG( (stab & P0 & P1) -> EF(PB) )",
             "AG( (stab & P0 & P1) -> EF(P5) )",
             "AG( (stab & P0 & P1) -> EF(P6) )",
-            "AG( stab -> EF(ASSEMBLY))",
+            "AG( stab -> EF(P_LID | P_BASE))",
             "AG( stab -> EF(PRODUCTION))"
         ]
     }

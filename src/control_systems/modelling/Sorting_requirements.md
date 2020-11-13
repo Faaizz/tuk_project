@@ -8,4 +8,4 @@ For simplicity, it is assumed that all conveyors are turned ON.
 
 1. Weight item at conveyor scale (CS_AL1_W).​  
     - If item weights less than 4kg(2V) (lid= 5kg) or more than 8kg(4V) (base- 7kg), pass it straight ahead (PUWS_AL1_PLUS) and dispose of it via BC_AL1_BIN1-BC_AL1_BIN10.  
-    - Otherwise, set an internal controller variablew (AL1_LID=1, AL1_BASE=0) to tell if it's a lid (weights between 4 - 6kg (2-3V); AL1_TYPE= 1) or a base (weights between 6 - 8kg (3-4V); AL1_LID=0, AL1_BASE=1) and pass it to the right (PUWS_AL1_RT) for assembly.​  
+    - Pass it to the right (PUWS_AL1_RT) towards the buffer.​  
