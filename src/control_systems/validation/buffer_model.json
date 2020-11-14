@@ -1,0 +1,217 @@
+{
+    "places": {
+        "P_LID": [
+            [],
+            [],
+            "Incoming item is a lid"
+        ],
+        "P_BASE": [
+            [],
+            ["P_AL1_B"],
+            "Incoming item is a base"
+        ],
+        "PB1": [
+            [],
+            ["P_AL1_B"],
+            "Waiting for item to get within pusher range"
+        ],
+        "PUSH_B": [
+            [],
+            [],
+            "Base pusher free"
+        ],
+        "PB2": [
+            ["P_AL1_B"],
+            [],
+            "Push base"
+        ],
+        "PB23": [
+            ["P_AL1_B"],
+            [],
+            "Pushing base"
+        ],
+        "PB3": [
+            [],
+            ["P_AL1_B"],
+            "Retracting base pusher"
+        ],
+        "PB4": [
+            [],
+            [],
+            "Item on base line"
+        ],
+        "PBF1": [
+            [],
+            ["SB_AL1_B1"],
+            "Base buffer 1 free"
+        ],
+        "PB5": [
+            ["SB_AL1_B1"],
+            [],
+            "Stop blade base 1 up"
+        ],
+        "PBF2": [
+            [],
+            ["SB_AL1_B2"],
+            "Base buffer 2 free"
+        ],
+        "PB6": [
+            ["SB_AL1_B2"],
+            [],
+            "Stop blade base 2 up"
+        ],
+        "PBF3": [
+            [],
+            ["SB_AL1_B3"],
+            "Base buffer 3 free"
+        ],
+        "PB7": [
+            ["SB_AL1_B3"],
+            [],
+            "Stop blade base 3 up"
+        ],
+        "PBF4": [
+            [],
+            ["LP_AL1_CLAMP"],
+            "Base clamp free"
+        ],
+        "PB8": [
+            ["LP_AL1_CLAMP"],
+            [],
+            "Base clamping in progress"
+        ],
+        "PB9": [
+            ["LP_AL1_CLAMP"],
+            [],
+            "Base clamped"
+        ],
+        "initial": ["P_BASE", "PUSH_B", "PBF1", "PBF2", "PBF3", "PBF4"]
+    },
+
+    "outputs": {
+        "P_AL1_B": "Base pusher",
+        "SB_AL1_B1": "Base stop blade 1",
+        "SB_AL1_B2": "Base stop blade 2",
+        "SB_AL1_B3": "Base stop blade 3",
+        "LP_AL1_CLAMP": "Clamp base"
+    },
+
+    "transitions": {
+        "TB0": [
+            ["P_BASE"],
+            [
+                [
+                    ["S_AL1_B"], []
+                ]
+            ],
+            ["PB1"],
+            "Incoming item detected"
+        ],
+        "TB1": [
+            ["PB1", "PUSH_B"],
+            [
+                [
+                    ["timer_1_TB1"], []
+                ]
+            ],
+            ["PB2"],
+            "Pusher waiting time reached"
+        ],
+        "TB23": [
+            ["PB2"],
+            [
+                [
+                    [], ["P_AL1_B_BK"]
+                ]
+            ],
+            ["PB23"],
+            "Base pusher extending"
+        ],
+        "TB2": [
+            ["PB23"],
+            [
+                [
+                    ["P_AL1_B_FT"], []
+                ]
+            ],
+            ["PB3"],
+            "Base pusher fully extended"
+        ],
+        "TB3": [
+            ["PB3"],
+            [
+                [
+                    ["P_AL1_B_BK"], []
+                ]
+            ],
+            ["PB4", "PUSH_B", "P_BASE"],
+            "Base pusher fully retracted"
+        ],
+        "TB4": [
+            ["PB4", "PBF1"],
+            [
+                [
+                    ["S_AL1_B1"], []
+                ]
+            ],
+            ["PB5"]
+        ],
+        "TB5": [
+            ["PB5", "PBF2"],
+            [
+                [
+                    ["S_AL1_B2"], []
+                ]
+            ],
+            ["PB6", "PBF1"]
+        ],
+        "TB6": [
+            ["PB6", "PBF3"],
+            [
+                [
+                    ["S_AL1_B3"], []
+                ]
+            ],
+            ["PB7", "PBF2"]
+        ],
+        "TB7": [
+            ["PB7", "PBF4"],
+            [
+                [
+                    ["S_AL1_LP"], []
+                ]
+            ],
+            ["PB8"]
+        ],
+        "TB8": [
+            ["PB8"],
+            [
+                [
+                    ["LP_AL1_CLAMPED"], []
+                ]
+            ],
+            ["PB9"]
+        ],
+        "TB9": [
+            ["PB9"],
+            [
+                [
+                    [], ["LP_AL1_CLAMPED"]
+                ]
+            ],
+            ["PBF4", "PBF3"]
+        ]
+    },
+
+    "inputs": {
+        "S_AL1_B": "boolean",
+        "P_AL1_B_FT": "boolean",
+        "P_AL1_B_BK": "boolean",
+        "S_AL1_B1": "boolean",
+        "S_AL1_B2": "boolean",
+        "S_AL1_B3": "boolean",
+        "LP_AL1_CLAMPED": "boolean",
+        "S_AL1_LP": "boolean",
+        "timer_1_TB1": "boolean"
+    }
+}

@@ -1,0 +1,147 @@
+#include "beremiz.h"
+#ifndef __POUS_H
+#define __POUS_H
+
+#include "accessor.h"
+#include "iec_std_lib.h"
+
+__DECLARE_ENUMERATED_TYPE(LOGLEVEL,
+  LOGLEVEL__CRITICAL,
+  LOGLEVEL__WARNING,
+  LOGLEVEL__INFO,
+  LOGLEVEL__DEBUG
+)
+// FUNCTION_BLOCK LOGGER
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,TRIG)
+  __DECLARE_VAR(STRING,MSG)
+  __DECLARE_VAR(LOGLEVEL,LEVEL)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,TRIG0)
+
+} LOGGER;
+
+void LOGGER_init__(LOGGER *data__, BOOL retain);
+// Code part
+void LOGGER_body__(LOGGER *data__);
+// FUNCTION_BLOCK PYTHON_EVAL
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,TRIG)
+  __DECLARE_VAR(STRING,CODE)
+  __DECLARE_VAR(BOOL,ACK)
+  __DECLARE_VAR(STRING,RESULT)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(DWORD,STATE)
+  __DECLARE_VAR(STRING,BUFFER)
+  __DECLARE_VAR(STRING,PREBUFFER)
+  __DECLARE_VAR(BOOL,TRIGM1)
+  __DECLARE_VAR(BOOL,TRIGGED)
+
+} PYTHON_EVAL;
+
+void PYTHON_EVAL_init__(PYTHON_EVAL *data__, BOOL retain);
+// Code part
+void PYTHON_EVAL_body__(PYTHON_EVAL *data__);
+// FUNCTION_BLOCK PYTHON_POLL
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,TRIG)
+  __DECLARE_VAR(STRING,CODE)
+  __DECLARE_VAR(BOOL,ACK)
+  __DECLARE_VAR(STRING,RESULT)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(DWORD,STATE)
+  __DECLARE_VAR(STRING,BUFFER)
+  __DECLARE_VAR(STRING,PREBUFFER)
+  __DECLARE_VAR(BOOL,TRIGM1)
+  __DECLARE_VAR(BOOL,TRIGGED)
+
+} PYTHON_POLL;
+
+void PYTHON_POLL_init__(PYTHON_POLL *data__, BOOL retain);
+// Code part
+void PYTHON_POLL_body__(PYTHON_POLL *data__);
+// FUNCTION_BLOCK PYTHON_GEAR
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(UINT,N)
+  __DECLARE_VAR(BOOL,TRIG)
+  __DECLARE_VAR(STRING,CODE)
+  __DECLARE_VAR(BOOL,ACK)
+  __DECLARE_VAR(STRING,RESULT)
+
+  // FB private variables - TEMP, private and located variables
+  PYTHON_EVAL PY_EVAL;
+  __DECLARE_VAR(UINT,COUNTER)
+  __DECLARE_VAR(UINT,ADD10_OUT)
+  __DECLARE_VAR(BOOL,EQ13_OUT)
+  __DECLARE_VAR(UINT,SEL15_OUT)
+  __DECLARE_VAR(BOOL,AND7_OUT)
+
+} PYTHON_GEAR;
+
+void PYTHON_GEAR_init__(PYTHON_GEAR *data__, BOOL retain);
+// Code part
+void PYTHON_GEAR_body__(PYTHON_GEAR *data__);
+// PROGRAM BUFFER_STAGE
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,S_AL1_B)
+  __DECLARE_VAR(BOOL,P_AL1_B_FT)
+  __DECLARE_VAR(BOOL,P_AL1_B_BK)
+  __DECLARE_VAR(BOOL,S_AL1_B1)
+  __DECLARE_VAR(BOOL,S_AL1_B2)
+  __DECLARE_VAR(BOOL,S_AL1_B3)
+  __DECLARE_VAR(BOOL,LP_AL1_CLAMPED)
+  __DECLARE_VAR(BOOL,S_AL1_LP)
+  __DECLARE_VAR(BOOL,RUNNING)
+  TON TIMER_1_TB1;
+  __DECLARE_VAR(BOOL,P_AL1_B)
+  __DECLARE_VAR(BOOL,SB_AL1_B1)
+  __DECLARE_VAR(BOOL,SB_AL1_B2)
+  __DECLARE_VAR(BOOL,SB_AL1_B3)
+  __DECLARE_VAR(BOOL,LP_AL1_CLAMP)
+  __DECLARE_VAR(BOOL,P_BASE)
+  __DECLARE_VAR(BOOL,PB1)
+  __DECLARE_VAR(BOOL,PUSH_B)
+  __DECLARE_VAR(BOOL,PB2)
+  __DECLARE_VAR(BOOL,PB23)
+  __DECLARE_VAR(BOOL,PB3)
+  __DECLARE_VAR(BOOL,PB4)
+  __DECLARE_VAR(BOOL,PB5)
+  __DECLARE_VAR(BOOL,PB6)
+  __DECLARE_VAR(BOOL,PB7)
+  __DECLARE_VAR(BOOL,PB8)
+  __DECLARE_VAR(BOOL,PB9)
+  __DECLARE_VAR(BOOL,PBF1)
+  __DECLARE_VAR(BOOL,PBF2)
+  __DECLARE_VAR(BOOL,PBF3)
+  __DECLARE_VAR(BOOL,PBF4)
+  __DECLARE_VAR(BOOL,STABLE)
+
+} BUFFER_STAGE;
+
+void BUFFER_STAGE_init__(BUFFER_STAGE *data__, BOOL retain);
+// Code part
+void BUFFER_STAGE_body__(BUFFER_STAGE *data__);
+#endif //__POUS_H

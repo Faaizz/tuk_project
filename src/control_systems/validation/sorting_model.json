@@ -71,7 +71,8 @@
     "outputs": {
         "SB_AL1": "Stop blade",
         "PUWS_AL1_1_PLUS": "Pop up wheel sorter forward",
-        "PUWS_AL1_1_RT": "Pop up wheel sorter right"
+        "PUWS_AL1_1_RT": "Pop up wheel sorter right",
+        "CS_AL1_PLUS": "Conveyor scale forward"
     },
 
     "internal": {
