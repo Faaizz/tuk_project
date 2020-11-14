@@ -6,22 +6,27 @@
             "Item recieved from production line"
         ],
         "P1": [
-            [],
+            ["CS_AL1_PLUS"],
             ["SB_AL1", "AL1_LID", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
             "Conveyor scale free"
         ],
         "P2": [
-            [],
+            ["CS_AL1_PLUS"],
             ["SB_AL1", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
             "Item at conveyor scale"
         ],
         "P3": [
             ["SB_AL1"],
-            ["PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
-            "Item on conveyor scale"
+            ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Weighting in progress"
         ],
         "P4": [
-            ["SB_AL1", "PUWS_AL1_1_PLUS"],
+            ["SB_AL1"],
+            ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Evaluate weight"
+        ],
+        "PB": [
+            ["SB_AL1", "PUWS_AL1_1_PLUS", "CS_AL1_PLUS"],
             ["PUWS_AL1_1_RT"],
             "Invalid item, pass to bin"
         ],
@@ -36,12 +41,12 @@
             "Item on bin line"
         ],
         "P5": [
-            ["SB_AL1", "AL1_LID", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            ["SB_AL1", "AL1_LID", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT", "CS_AL1_PLUS"],
             ["AL1_BASE"],
             "Scale detects a lid"
         ],
         "P6": [
-            ["SB_AL1", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            ["SB_AL1", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT", "CS_AL1_PLUS"],
             ["AL1_LID"],
             "Scale detects a base"
         ],
@@ -84,7 +89,7 @@
             ["P2"],
             [
                 [
-                    ["timer_0_5_P2"], []
+                    ["timer_1_P2"], []
                 ]
             ],
             ["P3"],
@@ -93,13 +98,23 @@
         "T34": [
             ["P3"],
             [
-                ["(CS_AL1_W < 4) | (CS_AL1_W > 8)"]
+                [
+                    ["timer_1_P3"], []
+                ]
             ],
             ["P4"],
+            "Stop conveyor belt to allow accurate weight measurement"
+        ],
+        "T4B": [
+            ["P4"],
+            [
+                ["(CS_AL1_W < 2) | (CS_AL1_W > 4)"]
+            ],
+            ["PB"],
             "Invalid item (weights less than 4kg or more than 8kg)"
         ],
         "T4B2": [
-            ["P4", "BIN1"],
+            ["PB", "BIN1"],
             [
                 [
                     ["S_BIN_1"], []
@@ -118,18 +133,18 @@
             ["BIN1"],
             "Item being transported to bin"
         ],
-        "T35": [
-            ["P3"],
+        "T45": [
+            ["P4"],
             [
-                ["(CS_AL1_W > 4) & (CS_AL1_W <= 6)"]
+                ["(CS_AL1_W > 2) & (CS_AL1_W <= 3)"]
             ],
             ["P5"],
             "Item is lid"
         ],
-        "T36": [
-            ["P3"],
+        "T46": [
+            ["P4"],
             [
-                ["(CS_AL1_W > 6) & (CS_AL1_W <= 8)"]
+                ["(CS_AL1_W > 3) & (CS_AL1_W <= 4)"]
             ],
             ["P6"]
         ],
@@ -176,11 +191,12 @@
 
     "inputs": {
         "S_AL1": "boolean",
-        "timer_0_5_P2": "boolean",
+        "timer_1_P2": "boolean",
+        "timer_1_P3": "boolean",
         "CS_AL1_W": [
             "0..9",
             0,
-            "{2, 5, 7}"
+            "{1, 2, 3, 4}"
         ],
         "S_BIN_1": "boolean",
         "S_AL1_BL": "boolean"
@@ -188,7 +204,7 @@
 
     "specifications": {
         "manual": [
-            "AG( (stab & P0 & P1) -> EF(P4) )",
+            "AG( (stab & P0 & P1) -> EF(PB) )",
             "AG( (stab & P0 & P1) -> EF(P5) )",
             "AG( (stab & P0 & P1) -> EF(P6) )",
             "AG( stab -> EF(ASSEMBLY))",
