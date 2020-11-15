@@ -136,9 +136,9 @@ PROGRAM sorting
     END_IF;
 
     (*T67*)
-    IF P6 AND S_AL1_BL AND NOT P_LID AND NOT P1 THEN
+    IF P6 AND S_AL1_BL AND NOT P_BASE AND NOT P1 THEN
       P6:= 0;
-      P_LID:= 1;
+      P_BASE:= 1;
       P1:= 1;
       STABLE:= 0;
     END_IF;

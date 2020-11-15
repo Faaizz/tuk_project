@@ -174,26 +174,6 @@
             ["P_BASE", "P1"],
             "Item arriving at buffer"
         ],
-        "TPROD1": [
-            ["P_BASE"],
-            [
-                [
-                    ["TRUE"], []
-                ]
-            ],
-            ["PRODUCTION"],
-            "Return token to P0 from buffer for reversibility"
-        ],
-        "TPROD2": [
-            ["P_LID"],
-            [
-                [
-                    ["TRUE"], []
-                ]
-            ],
-            ["PRODUCTION"],
-            "Return token to P0 from buffer for reversibility"
-        ],
         "T0": [
             ["PRODUCTION"],
             [
@@ -223,8 +203,7 @@
             "AG( (stab & P0 & P1) -> EF(PB) )",
             "AG( (stab & P0 & P1) -> EF(P5) )",
             "AG( (stab & P0 & P1) -> EF(P6) )",
-            "AG( stab -> EF(P_LID | P_BASE))",
-            "AG( stab -> EF(PRODUCTION))"
+            "AG( stab -> EF(P_LID | P_BASE))"
         ]
     }
 
