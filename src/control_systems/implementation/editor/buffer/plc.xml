@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <project xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
   <fileHeader companyName="Unknown" productName="Unnamed" productVersion="1" creationDateTime="2020-11-13T22:51:02"/>
-  <contentHeader name="Unnamed" modificationDateTime="2020-11-14T02:50:23">
+  <contentHeader name="Unnamed" modificationDateTime="2020-11-15T00:57:42">
     <coordinateInfo>
       <fbd>
         <scaling x="10" y="10"/>
@@ -60,7 +60,47 @@
                 <BOOL/>
               </type>
             </variable>
-            <variable name="RUNNING" address="%IX101.0">
+            <variable name="S_AL1_L" address="%IX101.0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P_AL1_L_FT" address="%IX101.1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P_AL1_L_BK" address="%IX101.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="S_AL1_L1" address="%IX101.3">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="S_AL1_L2" address="%IX101.4">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="S_AL1_L3" address="%IX101.5">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="RP_AL1_CLAMPED" address="%IX101.6">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="S_AL1_RP" address="%IX101.7">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="RUNNING" address="%IX102.0">
               <type>
                 <BOOL/>
               </type>
@@ -68,6 +108,11 @@
           </localVars>
           <localVars>
             <variable name="timer_1_TB1">
+              <type>
+                <derived name="TON"/>
+              </type>
+            </variable>
+            <variable name="timer_1_TL1">
               <type>
                 <derived name="TON"/>
               </type>
@@ -95,6 +140,31 @@
               </type>
             </variable>
             <variable name="LP_AL1_CLAMP" address="%QX100.4">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="P_AL1_L" address="%QX101.0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SB_AL1_L1" address="%QX101.1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SB_AL1_L2" address="%QX101.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="SB_AL1_L3" address="%QX101.3">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="RP_AL1_CLAMP" address="%QX101.4">
               <type>
                 <BOOL/>
               </type>
@@ -179,7 +249,87 @@
                 <BOOL/>
               </type>
             </variable>
-            <variable name="STABLE" address="%QX202.0">
+            <variable name="P_LID" address="%QX204.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL1" address="%QX202.0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL2" address="%QX202.1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PUSH_L" address="%QX202.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL23" address="%QX202.3">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL3" address="%QX202.4">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL4" address="%QX202.5">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL5" address="%QX202.6">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL6" address="%QX202.7">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL7" address="%QX203.0">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL8" address="%QX203.1">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PL9" address="%QX203.2">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PLF1" address="%QX203.3">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PLF2" address="%QX203.4">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PLF3" address="%QX203.5">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="PLF4" address="%QX203.6">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+            <variable name="STABLE" address="%QX204.1">
               <type>
                 <BOOL/>
               </type>
@@ -190,10 +340,11 @@
           <ST>
             <xhtml:p><![CDATA[(*Timer*)
 timer_1_TB1(IN:= PB1, PT:= T#900ms);
+timer_1_TL1(IN:= PL1, PT:= T#900ms);
 
 (*If plant is stopped*)
 IF NOT RUNNING THEN
-  P_BASE:= 1;
+  P_BASE:= 0;
   PB1:= 0;
   PUSH_B:= 1;
   PB2:= 0;
@@ -209,6 +360,23 @@ IF NOT RUNNING THEN
   PBF2:=1;
   PBF3:=1;
   PBF4:=1;
+  
+  P_LID:= 1;
+  PL1:= 0;
+  PUSH_L:= 1;
+  PL2:= 0;
+  PL23:= 0;
+  PL3:= 0;
+  PL4:= 0;
+  PL5:= 0;
+  PL6:= 0;
+  PL7:= 0;
+  PL8:= 0;
+  PL9:=0;
+  PLF1:=1;
+  PLF2:=1;
+  PLF3:=1;
+  PLF4:=1;
   
 END_IF;
 
@@ -232,6 +400,7 @@ WHILE STABLE= 0 DO
     PB1:=0;
     PUSH_B:=0;
     PB2:=1;
+    STABLE:=0;
   END_IF;
   
   (*TB23*)
@@ -298,14 +467,102 @@ WHILE STABLE= 0 DO
     STABLE:=0;
   END_IF;
   
-  (*TB9*)
-  IF PB9 AND NOT LP_AL1_CLAMPED AND NOT PBF3 AND NOT PBF4 THEN
+  (*TB9*)
+  IF PB9 AND NOT LP_AL1_CLAMPED AND NOT PBF3 AND NOT PBF4 THEN
     PB9:=0;
-    PBF3:=1;
-    PBF4:=1;
-    STABLE:=0;
+    PBF3:=1;
+    PBF4:=1;
+    STABLE:=0;
   END_IF;
 
+
+
+  (*TL0*)
+  IF P_LID AND S_AL1_L AND NOT PL1 THEN
+    P_LID:=0;
+    PL1:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL1*)
+  IF PL1 AND PUSH_L AND timer_1_TL1.Q AND NOT PL2 THEN
+    PL1:=0;
+    PUSH_L:=0;
+    PL2:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL23*)
+  IF PL2 AND P_AL1_L_FT AND NOT PL23 THEN
+    PL2:=0;
+    PL23:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL2*)
+  IF PL23 AND P_AL1_L_FT AND NOT PL3 THEN
+    PL23:=0;
+    PL3:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL3*)
+  IF PL3 AND P_AL1_L_BK AND NOT PL4 AND NOT PUSH_L AND NOT P_LID THEN
+    PL3:=0;
+    PL4:=1;
+    PUSH_L:=1;
+    P_LID:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL4*)
+  IF PL4 AND PLF1 AND S_AL1_L1 AND NOT PL5 THEN 
+    PL4:=0;
+    PLF1:=0;
+    PL5:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL5*)
+  IF PL5 AND PLF2 AND S_AL1_L2 AND NOT PL6 AND NOT PLF1 THEN
+    PL5:=0;
+    PLF2:=0;
+    PL6:=1;
+    PLF1:=1;
+    STABLE:=0;
+  END_IF; 
+  
+  (*TL6*)
+  IF PL6 AND PLF3 AND S_AL1_L3 AND  NOT PL7 AND NOT PLF2 THEN 
+    PL6:=0;
+    PLF3:=0;
+    PL7:=1;
+    PLF2:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL7*)
+  IF PL7 AND PLF4 AND S_AL1_LP AND NOT PL8 THEN
+    PL7:=0;
+    PLF4:=0;
+    PL8:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL8*)
+  IF PL8 AND LP_AL1_CLAMPED AND NOT PL9 THEN
+    PL8:=0;
+    PL9:=1;
+    STABLE:=0;
+  END_IF;
+  
+  (*TL9*)
+  IF PL9 AND NOT LP_AL1_CLAMPED AND NOT PLF3 AND NOT PLF4 THEN
+    PL9:=0;
+    PLF3:=1;
+    PLF4:=1;
+    STABLE:=0;
+  END_IF;
     
 END_WHILE;
   
@@ -353,6 +610,46 @@ IF PBF4 THEN
   LP_AL1_CLAMP:=0;
 END_IF;
   
+
+(*P_AL1_L*)
+IF PL2 OR PL23 THEN 
+  P_AL1_L:=1;
+END_IF;
+IF P_LID OR PL1 OR PL3 THEN
+  P_AL1_L:=0;
+END_IF;
+
+(*SB_AL1_L1*)
+IF PL5 THEN
+  SB_AL1_L1:=1;
+END_IF;
+IF PLF1 THEN
+  SB_AL1_L1:=0;
+END_IF;
+
+(*SB_AL1_L2*)
+IF PL6 THEN
+  SB_AL1_L2:=1;
+END_IF;
+IF PLF2 THEN 
+  SB_AL1_L2:=0;
+END_IF;
+
+(*SB_AL1_L3*)
+IF PL7 THEN
+  SB_AL1_L3:=1;
+END_IF;
+IF PLF3 THEN
+  SB_AL1_L3:=0;
+END_IF;
+
+(*LP_AL1_CLAMP*)
+IF PL8 OR PL9 THEN
+  LP_AL1_CLAMP:=1;
+END_IF;
+IF PLF4 THEN
+  LP_AL1_CLAMP:=0;
+END_IF;
   
   
   

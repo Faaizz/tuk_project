@@ -209,13 +209,27 @@ void BUFFER_STAGE_init__(BUFFER_STAGE *data__, BOOL retain) {
   __INIT_VAR(data__->S_AL1_B3,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->LP_AL1_CLAMPED,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->S_AL1_LP,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_AL1_L,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->P_AL1_L_FT,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->P_AL1_L_BK,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_AL1_L1,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_AL1_L2,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_AL1_L3,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->RP_AL1_CLAMPED,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_AL1_RP,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->RUNNING,__BOOL_LITERAL(FALSE),retain)
   TON_init__(&data__->TIMER_1_TB1,retain);
+  TON_init__(&data__->TIMER_1_TL1,retain);
   __INIT_VAR(data__->P_AL1_B,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->SB_AL1_B1,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->SB_AL1_B2,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->SB_AL1_B3,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->LP_AL1_CLAMP,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->P_AL1_L,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->SB_AL1_L1,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->SB_AL1_L2,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->SB_AL1_L3,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->RP_AL1_CLAMP,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->P_BASE,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PB1,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PUSH_B,__BOOL_LITERAL(FALSE),retain)
@@ -232,6 +246,22 @@ void BUFFER_STAGE_init__(BUFFER_STAGE *data__, BOOL retain) {
   __INIT_VAR(data__->PBF2,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PBF3,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PBF4,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->P_LID,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL1,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL2,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PUSH_L,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL23,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL3,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL4,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL5,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL6,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL7,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL8,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PL9,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PLF1,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PLF2,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PLF3,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->PLF4,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->STABLE,__BOOL_LITERAL(FALSE),retain)
 }
 
@@ -242,6 +272,9 @@ void BUFFER_STAGE_body__(BUFFER_STAGE *data__) {
   __SET_VAR(data__->TIMER_1_TB1.,IN,,__GET_VAR(data__->PB1,));
   __SET_VAR(data__->TIMER_1_TB1.,PT,,__time_to_timespec(1, 900, 0, 0, 0, 0));
   TON_body__(&data__->TIMER_1_TB1);
+  __SET_VAR(data__->TIMER_1_TL1.,IN,,__GET_VAR(data__->PL1,));
+  __SET_VAR(data__->TIMER_1_TL1.,PT,,__time_to_timespec(1, 900, 0, 0, 0, 0));
+  TON_body__(&data__->TIMER_1_TL1);
   if (!(__GET_VAR(data__->RUNNING,))) {
     __SET_VAR(data__->,P_BASE,,1);
     __SET_VAR(data__->,PB1,,0);
@@ -259,6 +292,22 @@ void BUFFER_STAGE_body__(BUFFER_STAGE *data__) {
     __SET_VAR(data__->,PBF2,,1);
     __SET_VAR(data__->,PBF3,,1);
     __SET_VAR(data__->,PBF4,,1);
+    __SET_VAR(data__->,P_LID,,1);
+    __SET_VAR(data__->,PL1,,0);
+    __SET_VAR(data__->,PUSH_L,,1);
+    __SET_VAR(data__->,PL2,,0);
+    __SET_VAR(data__->,PL23,,0);
+    __SET_VAR(data__->,PL3,,0);
+    __SET_VAR(data__->,PL4,,0);
+    __SET_VAR(data__->,PL5,,0);
+    __SET_VAR(data__->,PL6,,0);
+    __SET_VAR(data__->,PL7,,0);
+    __SET_VAR(data__->,PL8,,0);
+    __SET_VAR(data__->,PL9,,0);
+    __SET_VAR(data__->,PLF1,,1);
+    __SET_VAR(data__->,PLF2,,1);
+    __SET_VAR(data__->,PLF3,,1);
+    __SET_VAR(data__->,PLF4,,1);
   };
   __SET_VAR(data__->,STABLE,,0);
   while ((__GET_VAR(data__->STABLE,) == 0)) {
@@ -272,6 +321,7 @@ void BUFFER_STAGE_body__(BUFFER_STAGE *data__) {
       __SET_VAR(data__->,PB1,,0);
       __SET_VAR(data__->,PUSH_B,,0);
       __SET_VAR(data__->,PB2,,1);
+      __SET_VAR(data__->,STABLE,,0);
     };
     if (((__GET_VAR(data__->PB2,) && __GET_VAR(data__->P_AL1_B_FT,)) && !(__GET_VAR(data__->PB23,)))) {
       __SET_VAR(data__->,PB2,,0);
@@ -327,6 +377,71 @@ void BUFFER_STAGE_body__(BUFFER_STAGE *data__) {
       __SET_VAR(data__->,PBF4,,1);
       __SET_VAR(data__->,STABLE,,0);
     };
+    if (((__GET_VAR(data__->P_LID,) && __GET_VAR(data__->S_AL1_B,)) && !(__GET_VAR(data__->PL1,)))) {
+      __SET_VAR(data__->,P_LID,,0);
+      __SET_VAR(data__->,PL1,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((__GET_VAR(data__->PL1,) && __GET_VAR(data__->PUSH_L,)) && __GET_VAR(data__->TIMER_1_TL1.Q,)) && !(__GET_VAR(data__->PL2,)))) {
+      __SET_VAR(data__->,PL1,,0);
+      __SET_VAR(data__->,PUSH_L,,0);
+      __SET_VAR(data__->,PL2,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->PL2,) && __GET_VAR(data__->P_AL1_L_FT,)) && !(__GET_VAR(data__->PL23,)))) {
+      __SET_VAR(data__->,PL2,,0);
+      __SET_VAR(data__->,PL23,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->PL23,) && __GET_VAR(data__->P_AL1_L_FT,)) && !(__GET_VAR(data__->PL3,)))) {
+      __SET_VAR(data__->,PL23,,0);
+      __SET_VAR(data__->,PL3,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((((__GET_VAR(data__->PL3,) && __GET_VAR(data__->P_AL1_L_BK,)) && !(__GET_VAR(data__->PL4,))) && !(__GET_VAR(data__->PUSH_L,))) && !(__GET_VAR(data__->P_LID,)))) {
+      __SET_VAR(data__->,PL3,,0);
+      __SET_VAR(data__->,PL4,,1);
+      __SET_VAR(data__->,PUSH_L,,1);
+      __SET_VAR(data__->,P_LID,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((__GET_VAR(data__->PL4,) && __GET_VAR(data__->PLF1,)) && __GET_VAR(data__->S_AL1_L1,)) && !(__GET_VAR(data__->PL5,)))) {
+      __SET_VAR(data__->,PL4,,0);
+      __SET_VAR(data__->,PLF1,,0);
+      __SET_VAR(data__->,PL5,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((((__GET_VAR(data__->PL5,) && __GET_VAR(data__->PLF2,)) && __GET_VAR(data__->S_AL1_L2,)) && !(__GET_VAR(data__->PL6,))) && !(__GET_VAR(data__->PLF1,)))) {
+      __SET_VAR(data__->,PL5,,0);
+      __SET_VAR(data__->,PLF2,,0);
+      __SET_VAR(data__->,PL6,,1);
+      __SET_VAR(data__->,PLF1,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((((__GET_VAR(data__->PL6,) && __GET_VAR(data__->PLF3,)) && __GET_VAR(data__->S_AL1_L3,)) && !(__GET_VAR(data__->PL7,))) && !(__GET_VAR(data__->PLF2,)))) {
+      __SET_VAR(data__->,PL6,,0);
+      __SET_VAR(data__->,PLF3,,0);
+      __SET_VAR(data__->,PL7,,1);
+      __SET_VAR(data__->,PLF2,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((__GET_VAR(data__->PL7,) && __GET_VAR(data__->PLF4,)) && __GET_VAR(data__->S_AL1_LP,)) && !(__GET_VAR(data__->PL8,)))) {
+      __SET_VAR(data__->,PL7,,0);
+      __SET_VAR(data__->,PLF4,,0);
+      __SET_VAR(data__->,PL8,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->PL8,) && __GET_VAR(data__->LP_AL1_CLAMPED,)) && !(__GET_VAR(data__->PL9,)))) {
+      __SET_VAR(data__->,PL8,,0);
+      __SET_VAR(data__->,PL9,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((__GET_VAR(data__->PL9,) && !(__GET_VAR(data__->LP_AL1_CLAMPED,))) && !(__GET_VAR(data__->PLF3,))) && !(__GET_VAR(data__->PLF4,)))) {
+      __SET_VAR(data__->,PL9,,0);
+      __SET_VAR(data__->,PLF3,,1);
+      __SET_VAR(data__->,PLF4,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
   };
   if ((__GET_VAR(data__->PB2,) || __GET_VAR(data__->PB23,))) {
     __SET_VAR(data__->,P_AL1_B,,1);
@@ -356,6 +471,36 @@ void BUFFER_STAGE_body__(BUFFER_STAGE *data__) {
     __SET_VAR(data__->,LP_AL1_CLAMP,,1);
   };
   if (__GET_VAR(data__->PBF4,)) {
+    __SET_VAR(data__->,LP_AL1_CLAMP,,0);
+  };
+  if ((__GET_VAR(data__->PL2,) || __GET_VAR(data__->PL23,))) {
+    __SET_VAR(data__->,P_AL1_L,,1);
+  };
+  if (((__GET_VAR(data__->P_LID,) || __GET_VAR(data__->PL1,)) || __GET_VAR(data__->PL3,))) {
+    __SET_VAR(data__->,P_AL1_L,,0);
+  };
+  if (__GET_VAR(data__->PL5,)) {
+    __SET_VAR(data__->,SB_AL1_L1,,1);
+  };
+  if (__GET_VAR(data__->PLF1,)) {
+    __SET_VAR(data__->,SB_AL1_L1,,0);
+  };
+  if (__GET_VAR(data__->PL6,)) {
+    __SET_VAR(data__->,SB_AL1_L2,,1);
+  };
+  if (__GET_VAR(data__->PLF2,)) {
+    __SET_VAR(data__->,SB_AL1_L2,,0);
+  };
+  if (__GET_VAR(data__->PL7,)) {
+    __SET_VAR(data__->,SB_AL1_L3,,1);
+  };
+  if (__GET_VAR(data__->PLF3,)) {
+    __SET_VAR(data__->,SB_AL1_L3,,0);
+  };
+  if ((__GET_VAR(data__->PL8,) || __GET_VAR(data__->PL9,))) {
+    __SET_VAR(data__->,LP_AL1_CLAMP,,1);
+  };
+  if (__GET_VAR(data__->PLF4,)) {
     __SET_VAR(data__->,LP_AL1_CLAMP,,0);
   };
 
