@@ -133,6 +133,7 @@ set_AL_E:= PA1;
 reset_AL_E:= PA2 | !PA1;
 AL_E:= set_AL_E & !reset_AL_E;
 
+
 set_AL_C:= PA2 | PA3;
 reset_AL_C:= PA4 | !(PA2 | PA3);
 AL_C:= set_AL_C & !reset_AL_C;

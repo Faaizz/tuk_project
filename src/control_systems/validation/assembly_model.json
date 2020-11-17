@@ -1,0 +1,239 @@
+{
+    "places": {
+        "PA0": [
+            [
+                [],
+                []
+            ],
+            "Assembler free"
+        ],
+        "PA1": [
+            [
+                [],
+                []
+            ],
+            ["AL1_X_SET=800", "AL1_Y_SET=150"],
+            "Request grabber movement to lid position"
+        ],
+        "PA2": [
+            [
+                [],
+                []
+            ],
+            ["AL_Z_SET=800"],
+            "Grabber at lid position. Lower grabber to pick lid"
+        ],
+        "PA3": [
+            [
+                ["AL1_GRAB"],
+                ["RP_AL1_CLAMP"]
+            ],
+            "Pick up lid and release lid clamp"
+        ],
+        "PA4": [
+            [
+                ["AL1_GRAB"],
+                []
+            ],
+            ["AL1_Z_SET=400"],
+            "Raise grabber up a little"
+        ],
+        "PA5": [
+            [
+                ["AL1_GRAB"],
+                []
+            ],
+            ["AL1_X_SET=200", "AL1_Y_SET=150"],
+            "Move grabber to base position for fitting"
+        ],
+        "PA6": [
+            [
+                [],
+                []
+            ],
+            ["AL1_Z_SET=830"],
+            "Fit lid on base"
+        ],
+        "PA7": [
+            [
+                [],
+                ["AL1_GRAB"]
+            ],
+            ["AL1_Z_SET=400"],
+            "Release lid and raise grabber back up"
+        ],
+        "PA8": [
+            [
+                [],
+                ["LP_AL1_CLAMP"]
+            ],
+            "Release base clamp"
+        ],
+        "PA9": [
+            [
+                ["LP_AL1_RAISE"],
+                []
+            ],
+            "Raise base clamp so that assembled product can pass"
+        ],
+        "PA10": [
+            [
+                ["LP_AL1_RAISE"],
+                []
+            ],
+            "Base clamp going up"
+        ],
+        "PA11": [
+            [
+                [],
+                ["LP_AL1_RAISE"]
+            ],
+            "Put clamp back down"
+        ],
+        "PA12": [
+            [
+                [],
+                ["LP_AL1_RAISE"]
+            ],
+            "Base clamp going back down"
+        ],
+        "PA13": [
+            [
+                [],
+                []
+            ],
+            "Assembled product out"
+        ]
+    },
+    "transitions": {
+        "TA0": [
+            ["PL9", "PA0"],
+            [
+                [
+                    ["RP_AL1_CLAMPED"], ["AL1_DETECTED"]
+                ]
+            ],
+            ["PA1"]
+        ],
+        "TA1": [
+            ["PA1"],
+            [
+                [
+                    "AL1_X_POS=800"
+                ],
+                [
+                    "AL1_Y_POS=150"
+                ]
+            ],
+            ["PA2"],
+            "Grabber arrives at lid position"
+        ],
+        "TA2": [
+            ["PA2"],
+            [
+                [
+                    "AL1_Z_POS=080"
+                ]
+            ],
+            ["PA3"],
+            ""
+        ],
+        "TA3": [
+            ["PA3"],
+            [
+                [
+                    [], ["RP_AL1_CLAMPED"]
+                ]
+            ],
+            ["PA4"]
+        ],
+        "TA4": [
+            ["PA4"],
+            [
+                [
+                    "AL1_Z_POS=400"
+                ]
+            ],
+            ["PA5", "PLF3", "PLF4"]
+        ],
+        "TA5": [
+            ["PB9", "PA5"],
+            [
+                [
+                    ["AL1_DETECTED", "AL1_GRAB", "LP_AL1_CLAMPED"], []
+                ],
+                [
+                    "AL1_X_SET=800"
+                ],
+                [
+                    "AL1_Y_SET=150"
+                ]
+            ],
+            ["PA6"]
+        ],
+       "TA6": [
+           ["PA6"],
+           [
+               [
+                   "AL1_Z_POS=830"
+               ]
+           ],
+           ["PA7"]
+       ],
+       "TA7": [
+           ["PA7"],
+           [
+               [
+                   "AL1_Z_POS=400"
+               ]
+           ],
+           ["PA8"]
+       ], 
+       "TA8": [
+           ["PA8"],
+           [
+               [
+                   [], ["LP_AL1_CLAMPED"]
+               ]
+           ],
+           ["PA9"]
+       ],
+       "TA9": [
+           ["PA9"],
+           [
+               [
+                   [], ["LP_AL1_LIMIT"]
+               ]
+           ],
+           ["PA10"]
+       ],
+       "TA10": [
+           ["PA10"],
+           [
+               [
+                   ["LP_AL1_LIMIT"], []
+               ]
+           ],
+           ["PA11"]
+       ],
+       "TA11": [
+            ["PA11"],
+            [
+                [
+                    [], ["LP_AL1_LIMIT"]
+                ]
+            ],
+            ["PA12"]
+        ],
+        "TA12": [
+            ["PA12"],
+            [
+                [
+                    ["LP_AL1_LIMIT"], []
+                ]
+            ],
+            ["PA13", "PA0", "PBF3", "PBF4"]
+        ]
+
+    }
+}
