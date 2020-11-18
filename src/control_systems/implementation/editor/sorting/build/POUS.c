@@ -221,7 +221,8 @@ void SORTING_init__(SORTING *data__, BOOL retain) {
   __INIT_VAR(data__->P6,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->BIN1,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->BIN2,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->ASSEMBLY,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->P_LID,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->P_BASE,__BOOL_LITERAL(FALSE),retain)
   __INIT_VAR(data__->PRODUCTION,__BOOL_LITERAL(FALSE),retain)
   TON_init__(&data__->TIMER_1_P2,retain);
   TON_init__(&data__->TIMER_1_P3,retain);
@@ -235,7 +236,7 @@ void SORTING_body__(SORTING *data__) {
   __SET_VAR(data__->TIMER_1_P2.,PT,,__time_to_timespec(1, 1000, 0, 0, 0, 0));
   TON_body__(&data__->TIMER_1_P2);
   __SET_VAR(data__->TIMER_1_P3.,IN,,__GET_VAR(data__->P3,));
-  __SET_VAR(data__->TIMER_1_P3.,PT,,__time_to_timespec(1, 3000, 0, 0, 0, 0));
+  __SET_VAR(data__->TIMER_1_P3.,PT,,__time_to_timespec(1, 1000, 0, 0, 0, 0));
   TON_body__(&data__->TIMER_1_P3);
   if (!(__GET_VAR(data__->RUNNING,))) {
     __SET_VAR(data__->,SB_AL1,,0);
@@ -251,74 +252,83 @@ void SORTING_body__(SORTING *data__) {
     __SET_VAR(data__->,BIN2,,0);
     __SET_VAR(data__->,P5,,0);
     __SET_VAR(data__->,P6,,0);
-    __SET_VAR(data__->,ASSEMBLY,,0);
+    __SET_VAR(data__->,P_LID,,0);
+    __SET_VAR(data__->,P_BASE,,0);
     __SET_VAR(data__->,PRODUCTION,,0);
   };
-  __SET_VAR(data__->,STABLE,,1);
-  if ((((__GET_VAR(data__->P0,) && __GET_VAR(data__->P1,)) && __GET_VAR(data__->S_AL1,)) && !(__GET_VAR(data__->P2,)))) {
-    __SET_VAR(data__->,P0,,0);
-    __SET_VAR(data__->,P1,,0);
-    __SET_VAR(data__->,P2,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if (((__GET_VAR(data__->P2,) && __GET_VAR(data__->TIMER_1_P2.Q,)) && !(__GET_VAR(data__->P3,)))) {
-    __SET_VAR(data__->,P2,,0);
-    __SET_VAR(data__->,P3,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if (((__GET_VAR(data__->P3,) && __GET_VAR(data__->TIMER_1_P3.Q,)) && !(__GET_VAR(data__->P4,)))) {
-    __SET_VAR(data__->,P3,,0);
-    __SET_VAR(data__->,P4,,1);
-  };
-  if (((__GET_VAR(data__->P4,) && ((__GET_VAR(data__->CS_AL1_W,) < 200) || (__GET_VAR(data__->CS_AL1_W,) > 400))) && !(__GET_VAR(data__->PB,)))) {
-    __SET_VAR(data__->,P4,,0);
-    __SET_VAR(data__->,PB,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if ((((((__GET_VAR(data__->PB,) && __GET_VAR(data__->BIN1,)) && __GET_VAR(data__->S_BIN_1,)) && !(__GET_VAR(data__->BIN2,))) && !(__GET_VAR(data__->P1,))) && !(__GET_VAR(data__->PRODUCTION,)))) {
-    __SET_VAR(data__->,PB,,0);
-    __SET_VAR(data__->,BIN1,,0);
-    __SET_VAR(data__->,BIN2,,1);
-    __SET_VAR(data__->,P1,,1);
-    __SET_VAR(data__->,PRODUCTION,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if (((__GET_VAR(data__->BIN2,) && !(__GET_VAR(data__->S_BIN_1,))) && !(__GET_VAR(data__->BIN1,)))) {
-    __SET_VAR(data__->,BIN2,,0);
-    __SET_VAR(data__->,BIN1,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if (((__GET_VAR(data__->P4,) && ((__GET_VAR(data__->CS_AL1_W,) > 200) && (__GET_VAR(data__->CS_AL1_W,) <= 300))) && !(__GET_VAR(data__->P5,)))) {
-    __SET_VAR(data__->,P4,,0);
-    __SET_VAR(data__->,P5,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if (((__GET_VAR(data__->P4,) && ((__GET_VAR(data__->CS_AL1_W,) > 300) && (__GET_VAR(data__->CS_AL1_W,) <= 400))) && !(__GET_VAR(data__->P6,)))) {
-    __SET_VAR(data__->,P4,,0);
-    __SET_VAR(data__->,P6,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if ((((__GET_VAR(data__->P5,) && __GET_VAR(data__->S_AL1_BL,)) && !(__GET_VAR(data__->ASSEMBLY,))) && !(__GET_VAR(data__->P1,)))) {
-    __SET_VAR(data__->,P5,,0);
-    __SET_VAR(data__->,ASSEMBLY,,1);
-    __SET_VAR(data__->,P1,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if ((((__GET_VAR(data__->P6,) && __GET_VAR(data__->S_AL1_BL,)) && !(__GET_VAR(data__->ASSEMBLY,))) && !(__GET_VAR(data__->P1,)))) {
-    __SET_VAR(data__->,P6,,0);
-    __SET_VAR(data__->,ASSEMBLY,,1);
-    __SET_VAR(data__->,P1,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if ((__GET_VAR(data__->ASSEMBLY,) && !(__GET_VAR(data__->PRODUCTION,)))) {
-    __SET_VAR(data__->,ASSEMBLY,,0);
-    __SET_VAR(data__->,PRODUCTION,,1);
-    __SET_VAR(data__->,STABLE,,0);
-  };
-  if ((__GET_VAR(data__->PRODUCTION,) && !(__GET_VAR(data__->P0,)))) {
-    __SET_VAR(data__->,PRODUCTION,,0);
-    __SET_VAR(data__->,P0,,1);
-    __SET_VAR(data__->,STABLE,,0);
+  __SET_VAR(data__->,STABLE,,0);
+  while ((__GET_VAR(data__->STABLE,) == 0)) {
+    __SET_VAR(data__->,STABLE,,1);
+    if ((((__GET_VAR(data__->P0,) && __GET_VAR(data__->P1,)) && __GET_VAR(data__->S_AL1,)) && !(__GET_VAR(data__->P2,)))) {
+      __SET_VAR(data__->,P0,,0);
+      __SET_VAR(data__->,P1,,0);
+      __SET_VAR(data__->,P2,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->P2,) && __GET_VAR(data__->TIMER_1_P2.Q,)) && !(__GET_VAR(data__->P3,)))) {
+      __SET_VAR(data__->,P2,,0);
+      __SET_VAR(data__->,P3,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->P3,) && __GET_VAR(data__->TIMER_1_P3.Q,)) && !(__GET_VAR(data__->P4,)))) {
+      __SET_VAR(data__->,P3,,0);
+      __SET_VAR(data__->,P4,,1);
+    };
+    if (((__GET_VAR(data__->P4,) && ((__GET_VAR(data__->CS_AL1_W,) < 200) || (__GET_VAR(data__->CS_AL1_W,) > 400))) && !(__GET_VAR(data__->PB,)))) {
+      __SET_VAR(data__->,P4,,0);
+      __SET_VAR(data__->,PB,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((((__GET_VAR(data__->PB,) && __GET_VAR(data__->BIN1,)) && __GET_VAR(data__->S_BIN_1,)) && !(__GET_VAR(data__->BIN2,))) && !(__GET_VAR(data__->P1,))) && !(__GET_VAR(data__->PRODUCTION,)))) {
+      __SET_VAR(data__->,PB,,0);
+      __SET_VAR(data__->,BIN1,,0);
+      __SET_VAR(data__->,BIN2,,1);
+      __SET_VAR(data__->,P1,,1);
+      __SET_VAR(data__->,PRODUCTION,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->BIN2,) && !(__GET_VAR(data__->S_BIN_1,))) && !(__GET_VAR(data__->BIN1,)))) {
+      __SET_VAR(data__->,BIN2,,0);
+      __SET_VAR(data__->,BIN1,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->P4,) && ((__GET_VAR(data__->CS_AL1_W,) > 200) && (__GET_VAR(data__->CS_AL1_W,) <= 300))) && !(__GET_VAR(data__->P5,)))) {
+      __SET_VAR(data__->,P4,,0);
+      __SET_VAR(data__->,P5,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if (((__GET_VAR(data__->P4,) && ((__GET_VAR(data__->CS_AL1_W,) > 300) && (__GET_VAR(data__->CS_AL1_W,) <= 400))) && !(__GET_VAR(data__->P6,)))) {
+      __SET_VAR(data__->,P4,,0);
+      __SET_VAR(data__->,P6,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((__GET_VAR(data__->P5,) && __GET_VAR(data__->S_AL1_BL,)) && !(__GET_VAR(data__->P_LID,))) && !(__GET_VAR(data__->P1,)))) {
+      __SET_VAR(data__->,P5,,0);
+      __SET_VAR(data__->,P_LID,,1);
+      __SET_VAR(data__->,P1,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((((__GET_VAR(data__->P6,) && __GET_VAR(data__->S_AL1_BL,)) && !(__GET_VAR(data__->P_LID,))) && !(__GET_VAR(data__->P1,)))) {
+      __SET_VAR(data__->,P6,,0);
+      __SET_VAR(data__->,P_LID,,1);
+      __SET_VAR(data__->,P1,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((__GET_VAR(data__->P_LID,) && !(__GET_VAR(data__->PRODUCTION,)))) {
+      __SET_VAR(data__->,P_LID,,0);
+      __SET_VAR(data__->,PRODUCTION,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((__GET_VAR(data__->P_BASE,) && !(__GET_VAR(data__->PRODUCTION,)))) {
+      __SET_VAR(data__->,P_BASE,,0);
+      __SET_VAR(data__->,PRODUCTION,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
+    if ((__GET_VAR(data__->PRODUCTION,) && !(__GET_VAR(data__->P0,)))) {
+      __SET_VAR(data__->,PRODUCTION,,0);
+      __SET_VAR(data__->,P0,,1);
+      __SET_VAR(data__->,STABLE,,0);
+    };
   };
   if (((((__GET_VAR(data__->P3,) || __GET_VAR(data__->P4,)) || __GET_VAR(data__->PB,)) || __GET_VAR(data__->P5,)) || (__GET_VAR(data__->P6,) && __GET_VAR(data__->STABLE,)))) {
     __SET_VAR(data__->,SB_AL1,,1);
