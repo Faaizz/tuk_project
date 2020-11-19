@@ -431,6 +431,7 @@ FUNCTION_BLOCK base_buffer
     LP_AL1_CLAMP:=0;
   END_IF;  
 
+
 END_FUNCTION_BLOCK
 
 
@@ -835,33 +836,6 @@ PROGRAM sorting_buffer
   (* SORTING *)
   (*------------------------------------------------------------*)
 
-  (* BUFFER *)
-  (*------------------------------------------------------------*)
-  IF NOT RUNNING THEN
-   
-    P_LID:= 0;
-    PL1:= 0;
-    PUSH_L:= 1;
-    PL2:= 0;
-    PL23:= 0;
-    PL3:= 0;
-    PL4:= 0;
-    PL5:= 0;
-    PL6:= 0;
-    PL7:= 0;
-    PL8:= 0;
-    PL9:=0;
-    PLF1:=1;
-    PLF2:=1;
-    PLF3:=1;
-    PLF4:=1;
-    
-  END_IF;
-
-
-  (* ITEM FROM PRODUCTION *)
-  (*------------------------------------------------------------*)
-  P0:= 1;
 
 
 
@@ -921,30 +895,30 @@ CONFIGURATION Config0
   (* SORTING *)
   (*------------------------------------------------------------*)
   VAR_GLOBAL
-    P0 AT %QX0.0 : BOOL;
-    P1 AT %QX0.1 : BOOL;
-    P2 AT %QX0.2 : BOOL;
-    P3 AT %QX0.3 : BOOL;
-    P4 AT %QX0.4 : BOOL;
-    PB AT %QX0.5 : BOOL;
-    P5 AT %QX0.6 : BOOL;
-    P6 AT %QX0.7 : BOOL;
-    BIN1 AT %QX1.0 : BOOL;
-    BIN2 AT %QX1.1 : BOOL;
-    P_LID AT %QX1.2 : BOOL;
-    P_BASE AT %QX1.3 : BOOL;
+    P0 AT %QX103.0 : BOOL;
+    P1 AT %QX103.1 : BOOL;
+    P2 AT %QX103.2 : BOOL;
+    P3 AT %QX103.3 : BOOL;
+    P4 AT %QX103.4 : BOOL;
+    PB AT %QX103.5 : BOOL;
+    P5 AT %QX103.6 : BOOL;
+    P6 AT %QX103.7 : BOOL;
+    BIN1 AT %QX104.0 : BOOL;
+    BIN2 AT %QX104.1 : BOOL;
+    P_LID AT %QX104.2 : BOOL;
+    P_BASE AT %QX104.3 : BOOL;
   END_VAR
 
   (* BUFFER *)
   (*------------------------------------------------------------*)
   VAR_GLOBAL
-    PB1 AT %QX2.1 : BOOL;
-    PUSH_B AT %QX2.2 : BOOL;
-    PB2 AT %QX2.3 : BOOL;
-    PB23 AT %QX2.4 : BOOL;
-    PB3 AT %QX2.5 : BOOL;
-    PB4 AT %QX2.6 : BOOL;
-    PB5 AT %QX2.7 : BOOL;
+    PB1 AT %QX104.4 : BOOL;
+    PUSH_B AT %QX104.5 : BOOL;
+    PB2 AT %QX104.6 : BOOL;
+    PB23 AT %QX104.7 : BOOL;
+    PB3 AT %QX105.0 : BOOL;
+    PB4 AT %QX105.1 : BOOL;
+    PB5 AT %QX105.2 : BOOL;
     PB6 AT %QX3.0 : BOOL;
     PB7 AT %QX3.1 : BOOL;
     PB8 AT %QX3.2 : BOOL;
