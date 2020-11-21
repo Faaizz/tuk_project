@@ -3,8 +3,9 @@
         "PA0": [
             [
                 [],
-                ["AL1_X_SET=200", "AL1_Y_SET=150", "AL1_Z_SET=400", "LP_AL1_RAISE", "AL1_GRAB"]
+                ["LP_AL1_RAISE", "AL1_GRAB"]
             ],
+            ["AL1_X_SET:=200", "AL1_Y_SET:=150", "AL1_Z_SET:=400"],
             "Assembler free"
         ],
         "PA1": [
@@ -12,7 +13,7 @@
                 [],
                 ["AL1_GRAB", "LP_AL1_RAISE"]
             ],
-            ["AL1_X_SET=800", "AL1_Y_SET=150"],
+            ["AL1_X_SET:=800", "AL1_Y_SET:=150"],
             "Request grabber movement to lid position"
         ],
         "PA2": [
@@ -20,7 +21,7 @@
                 [],
                 ["AL1_GRAB", "LP_AL1_RAISE"]
             ],
-            ["AL_Z_SET=800"],
+            ["AL_Z_SET:=800"],
             "Grabber at lid position. Lower grabber to pick lid"
         ],
         "PA3": [
@@ -35,7 +36,7 @@
                 ["AL1_GRAB"],
                 ["RP_AL1_CLAMP", "LP_AL1_RAISE"]
             ],
-            ["AL1_Z_SET=400"],
+            ["AL1_Z_SET:=400"],
             "Raise grabber up a little"
         ],
         "PA5": [
@@ -43,7 +44,7 @@
                 ["AL1_GRAB"],
                 ["LP_AL1_RAISE"]
             ],
-            ["AL1_X_SET=200", "AL1_Y_SET=150"],
+            ["AL1_X_SET:=200", "AL1_Y_SET:=150"],
             "Move grabber to base position for fitting"
         ],
         "PA6": [
@@ -51,7 +52,7 @@
                 ["AL1_GRAB", "LP_AL1_CLAMP"],
                 ["LP_AL1_RAISE"]
             ],
-            ["AL1_Z_SET=820"],
+            ["AL1_Z_SET:=820"],
             "Fit lid on base"
         ],
         "PA7": [
@@ -59,7 +60,7 @@
                 ["LP_AL1_CLAMP"],
                 ["AL1_GRAB", "LP_AL1_RAISE"]
             ],
-            ["AL1_Z_SET=400"],
+            ["AL1_Z_SET:=400"],
             "Release lid and raise grabber back up"
         ],
         "PA8": [
@@ -130,10 +131,10 @@
             ["PA1"],
             [
                 [
-                    "AL1_X_POS=800"
+                    "AL1_X_POS:=800"
                 ],
                 [
-                    "AL1_Y_POS=150"
+                    "AL1_Y_POS:=150"
                 ]
             ],
             ["PA2"],
@@ -143,7 +144,7 @@
             ["PA2"],
             [
                 [
-                    "AL1_Z_POS=800"
+                    "AL1_Z_POS:=800"
                 ]
             ],
             ["PA3"],
@@ -162,7 +163,7 @@
             ["PA4"],
             [
                 [
-                    "AL1_Z_POS=400"
+                    "AL1_Z_POS:=400"
                 ]
             ],
             ["PA5", "PLF3", "PLF4"]
@@ -174,10 +175,10 @@
                     ["AL1_DETECTED", "LP_AL1_CLAMPED"], []
                 ],
                 [
-                    "AL1_X_POS=200"
+                    "AL1_X_POS:=200"
                 ],
                 [
-                    "AL1_Y_POS=150"
+                    "AL1_Y_POS:=150"
                 ]
             ],
             ["PA6"]
@@ -186,7 +187,7 @@
            ["PA6"],
            [
                [
-                   "AL1_Z_POS=820"
+                   "AL1_Z_POS:=820"
                ]
            ],
            ["PA7"]
@@ -195,7 +196,7 @@
            ["PA7"],
            [
                [
-                   "AL1_Z_POS=400"
+                   "AL1_Z_POS:=400"
                ]
            ],
            ["PA8"]
