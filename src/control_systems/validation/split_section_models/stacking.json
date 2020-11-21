@@ -10,7 +10,7 @@
             [
                 [], []
             ],
-            ["AL1_ST_X_SET=0", "AL1_ST_Y_SET=560", "AL1_ST_Z_SET=410"],
+            ["AL1_ST_X_SET:=0", "AL1_ST_Y_SET:=560", "AL1_ST_Z_SET:=410"],
             "Stacker is free"
         ],
         "PSC": [
@@ -35,14 +35,14 @@
             [
                 ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
             ],
-            ["AL1_ST_Y_SET=560"],
+            ["AL1_ST_Y_SET:=560"],
             "Move grabber to product location"
         ],
         "PS4": [
             [
                 ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
             ],
-            ["AL1_ST_Z_SET=750"],
+            ["AL1_ST_Z_SET:=750"],
             "Move grabber down to pick up product"
         ],
         "PS5": [
@@ -55,21 +55,21 @@
             [
                 ["AL1_ST_GRAB"], []
             ],
-            ["AL1_ST_Z_SET=410"],
+            ["AL1_ST_Z_SET:=410"],
             "Raise grabber up a little"
         ],
         "PS7": [
             [
                 ["AL1_ST_GRAB"], []
             ],
-            ["AL1_ST_X_SET=860"],
+            ["AL1_ST_X_SET:=860"],
             "Move grabber to box location"
         ],
         "PS8": [
             [
                 ["AL1_ST_GRAB"], []
             ],
-            ["AL1_Z_SET=600"],
+            ["AL1_Z_SET:=600"],
             "Lower grabber to drop product into box"
         ],
         "PS9": [
