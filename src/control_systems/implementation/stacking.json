@@ -118,13 +118,13 @@
     },
 
     "outputs": {
-        "AL1_ST_X_SET": "%QW100",
-        "AL1_ST_Y_SET":  "%QW101",
-        "AL1_ST_Z_SET":  "%QW102",
-        "RP_AL1_ST_CLAMP":  "%QX100.0",
-        "AL1_ST_GRAB": "%QX100.1",
-        "AL1_EMIT": "%QX100.2",
-        "RC_AL1_ST": "%QX100.3"
+        "AL1_ST_X_SET": ["%QW100", "INT"],
+        "AL1_ST_Y_SET":  ["%QW101", "INT"],
+        "AL1_ST_Z_SET":  ["%QW102", "INT"],
+        "RP_AL1_ST_CLAMP":  ["%QX100.0"],
+        "AL1_ST_GRAB": ["%QX100.1"],
+        "AL1_EMIT": ["%QX100.2"],
+        "RC_AL1_ST": ["%QX100.3"]
     },
 
     "transitions": {
@@ -171,7 +171,7 @@
                     "(AL1_ST_Z_POS>730) & (AL1_ST_Z_POS<770)"
                 ]
             ],
-            ["PSC", "PS5", "PA13"]
+            ["PSC", "PS5"]
         ],
         "TS6": [
             ["PS5"],
@@ -212,30 +212,38 @@
         "TS10": [
             ["PS9"],
             [
-                [], ["AL1_ST_DETECTED"]
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
             ],
-            ["PS0", "PS10"]
+            ["PS0", "PS10", "PA13"]
         ],
         "TS11": [
             ["PS9"],
             [
-                [], ["AL1_ST_DETECTED"]
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
             ],
-            ["PS0", "PS11"]
+            ["PS0", "PS11", "PA13"]
         ],
         "TS12": [
             ["PS9"],
             [
-                [], ["AL1_ST_DETECTED"]
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
             ],
-            ["PS0", "PS12"]
+            ["PS0", "PS12", "PA13"]
         ],
         "TS13": [
             ["PS10", "PS11", "PS12"],
             [
-                ["TRUE"], []
+                [
+                    ["TRUE"], []
+                ]
             ],
-            ["PS13"]
+            ["PSE1"]
         ],
         "TSE1": [
             ["PSE1"],
@@ -287,6 +295,7 @@
                 "{0, 200, 410, 750}"
             ],
             "%IW102"
-        ]
+        ],
+        "RUNNING": ["boolean", "%IX100.7"]
     }
 }

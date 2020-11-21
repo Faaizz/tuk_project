@@ -1,0 +1,286 @@
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['S_AL1_ST1', 'S_AL1_ST2', 'S_AL1_ST3', 'RP_AL1_ST_CLAMPED', 'AL1_ST_DETECTED', 'RESET', 'AL1_ST_X_POS', 'AL1_ST_Y_POS', 'AL1_ST_Z_POS', 'RUNNING']
+S_AL1_ST1: boolean;
+S_AL1_ST2: boolean;
+S_AL1_ST3: boolean;
+RP_AL1_ST_CLAMPED: boolean;
+AL1_ST_DETECTED: boolean;
+RESET: boolean;
+AL1_ST_X_POS: {0, 400, 860};
+AL1_ST_Y_POS: {0, 300, 560};
+AL1_ST_Z_POS: {0, 200, 410, 750};
+RUNNING: boolean;
+ 
+-- PLACES
+-- ['PA13', 'PS0', 'PSC', 'PS1', 'PS2', 'PS3', 'PS4', 'PS5', 'PS6', 'PS7', 'PS8', 'PS9', 'PS10', 'PS11', 'PS12', 'PSE1', 'PSE2', 'PSE0', 'initial']
+PA13: boolean;
+PS0: boolean;
+PSC: boolean;
+PS1: boolean;
+PS2: boolean;
+PS3: boolean;
+PS4: boolean;
+PS5: boolean;
+PS6: boolean;
+PS7: boolean;
+PS8: boolean;
+PS9: boolean;
+PS10: boolean;
+PS11: boolean;
+PS12: boolean;
+PSE1: boolean;
+PSE2: boolean;
+PSE0: boolean;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+TS1:= (PA13) & ( (S_AL1_ST1) ) & (!PS1);
+TS2:= (PS0 & PSC & PS1) & ( (S_AL1_ST2) ) & (!PS2);
+TS3:= (PS2) & ( (RP_AL1_ST_CLAMPED) ) & (!PS3);
+TS4:= (PS3) & ( ((AL1_ST_Y_POS>540) & (AL1_ST_Y_POS<580)) ) & (!PS4);
+TS5:= (PS4) & ( ((AL1_ST_Z_POS>730) & (AL1_ST_Z_POS<770)) ) & (!PSC & !PS5);
+TS6:= (PS5) & ( (AL1_ST_DETECTED) ) & (!PS6);
+TS7:= (PS6) & ( ((AL1_ST_Z_POS>390) & (AL1_ST_Z_POS<430)) ) & (!PS7);
+TS8:= (PS7) & ( ((AL1_ST_X_POS>840) & (AL1_ST_X_POS<880)) ) & (!PS8);
+TS9:= (PS8) & ( ((AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)) ) & (!PS9);
+TS10:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS10 & !PA13);
+TS11:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS11 & !PA13);
+TS12:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS12 & !PA13);
+TS13:= (PS10 & PS11 & PS12) & ( (TRUE) ) & (!PSE1);
+TSE1:= (PSE1) & ( (!S_AL1_ST3) ) & (!PSE2);
+TSE2:= (PSE1) & ( (S_AL1_ST3) ) & (!PSE0);
+ 
+-- STABLE
+stab:= !(TS1 | TS2 | TS3 | TS4 | TS5 | TS6 | TS7 | TS8 | TS9 | TS10 | TS11 | TS12 | TS13 | TSE1 | TSE2);
+ 
+-- OUTPUTS
+-- SET
+AL1_EMIT_set:= PSE1;
+AL1_ST_GRAB_set:= PS5 | PS6 | PS7 | PS8;
+RC_AL1_ST_set:= PSE1 | PSE2;
+RP_AL1_ST_CLAMP_set:= PS2 | PS3 | PS4;
+-- RESET
+AL1_EMIT_reset:= PSE2 | PSE0;
+AL1_ST_GRAB_reset:= PS2 | PS3 | PS4 | PS9;
+RC_AL1_ST_reset:= PSE0;
+RP_AL1_ST_CLAMP_reset:= PSC;
+-- OUTPUT
+AL1_EMIT:= AL1_EMIT_set & !AL1_EMIT_reset;
+AL1_ST_GRAB:= AL1_ST_GRAB_set & !AL1_ST_GRAB_reset;
+RC_AL1_ST:= RC_AL1_ST_set & !RC_AL1_ST_reset;
+RP_AL1_ST_CLAMP:= RP_AL1_ST_CLAMP_set & !RP_AL1_ST_CLAMP_reset;
+-- Non-Boolean Outputs
+AL1_ST_X_SET:= case
+   PS7: 860;
+   TRUE: 0;
+esac;
+AL1_ST_Y_SET:= case
+   PS3: 560;
+   TRUE: 0;
+esac;
+AL1_ST_Z_SET:= case
+   PS6: 410;
+   TRUE: 0;
+esac;
+AL1_Z_SET:= case
+   PS8: 600;
+   TRUE: 0;
+esac;
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(S_AL1_ST1):= {TRUE, FALSE};
+init(S_AL1_ST2):= {TRUE, FALSE};
+init(S_AL1_ST3):= {TRUE, FALSE};
+init(RP_AL1_ST_CLAMPED):= {TRUE, FALSE};
+init(AL1_ST_DETECTED):= {TRUE, FALSE};
+init(RESET):= {TRUE, FALSE};
+init(AL1_ST_X_POS):= 0;
+init(AL1_ST_Y_POS):= 0;
+init(AL1_ST_Z_POS):= 0;
+init(RUNNING):= {TRUE, FALSE};
+next(S_AL1_ST1):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_ST1;
+esac;
+next(S_AL1_ST2):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_ST2;
+esac;
+next(S_AL1_ST3):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_ST3;
+esac;
+next(RP_AL1_ST_CLAMPED):= case
+   stab: {TRUE, FALSE};
+   TRUE: RP_AL1_ST_CLAMPED;
+esac;
+next(AL1_ST_DETECTED):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_ST_DETECTED;
+esac;
+next(RESET):= case
+   stab: {TRUE, FALSE};
+   TRUE: RESET;
+esac;
+next(AL1_ST_X_POS):= case
+   stab: {0, 400, 860};
+   TRUE: AL1_ST_X_POS;
+esac;
+next(AL1_ST_Y_POS):= case
+   stab: {0, 300, 560};
+   TRUE: AL1_ST_Y_POS;
+esac;
+next(AL1_ST_Z_POS):= case
+   stab: {0, 200, 410, 750};
+   TRUE: AL1_ST_Z_POS;
+esac;
+next(RUNNING):= case
+   stab: {TRUE, FALSE};
+   TRUE: RUNNING;
+esac;
+ 
+-- PLACES
+init(PA13):= TRUE;
+init(PS0):= TRUE;
+init(PSC):= TRUE;
+init(PS1):= FALSE;
+init(PS2):= FALSE;
+init(PS3):= FALSE;
+init(PS4):= FALSE;
+init(PS5):= FALSE;
+init(PS6):= FALSE;
+init(PS7):= FALSE;
+init(PS8):= FALSE;
+init(PS9):= FALSE;
+init(PS10):= FALSE;
+init(PS11):= FALSE;
+init(PS12):= FALSE;
+init(PSE1):= FALSE;
+init(PSE2):= FALSE;
+init(PSE0):= TRUE;
+next(PA13):= case
+   TS1: FALSE;
+   TS10: TRUE;
+   TS11: TRUE;
+   TS12: TRUE;
+   TRUE: PA13;
+esac;
+next(PS0):= case
+   TS2: FALSE;
+   TS10: TRUE;
+   TS11: TRUE;
+   TS12: TRUE;
+   TRUE: PS0;
+esac;
+next(PSC):= case
+   TS2: FALSE;
+   TS5: TRUE;
+   TRUE: PSC;
+esac;
+next(PS1):= case
+   TS1: TRUE;
+   TS2: FALSE;
+   TRUE: PS1;
+esac;
+next(PS2):= case
+   TS2: TRUE;
+   TS3: FALSE;
+   TRUE: PS2;
+esac;
+next(PS3):= case
+   TS3: TRUE;
+   TS4: FALSE;
+   TRUE: PS3;
+esac;
+next(PS4):= case
+   TS4: TRUE;
+   TS5: FALSE;
+   TRUE: PS4;
+esac;
+next(PS5):= case
+   TS5: TRUE;
+   TS6: FALSE;
+   TRUE: PS5;
+esac;
+next(PS6):= case
+   TS6: TRUE;
+   TS7: FALSE;
+   TRUE: PS6;
+esac;
+next(PS7):= case
+   TS7: TRUE;
+   TS8: FALSE;
+   TRUE: PS7;
+esac;
+next(PS8):= case
+   TS8: TRUE;
+   TS9: FALSE;
+   TRUE: PS8;
+esac;
+next(PS9):= case
+   TS9: TRUE;
+   TS10: FALSE;
+   TS11: FALSE;
+   TS12: FALSE;
+   TRUE: PS9;
+esac;
+next(PS10):= case
+   TS10: TRUE;
+   TS13: FALSE;
+   TRUE: PS10;
+esac;
+next(PS11):= case
+   TS11: TRUE;
+   TS13: FALSE;
+   TRUE: PS11;
+esac;
+next(PS12):= case
+   TS12: TRUE;
+   TS13: FALSE;
+   TRUE: PS12;
+esac;
+next(PSE1):= case
+   TS13: TRUE;
+   TSE1: FALSE;
+   TSE2: FALSE;
+   TRUE: PSE1;
+esac;
+next(PSE2):= case
+   TSE1: TRUE;
+   TRUE: PSE2;
+esac;
+next(PSE0):= case
+   TSE2: TRUE;
+   TRUE: PSE0;
+esac;
+
+
+--=====================================================================
+--SPECIFICATIONS
+--=====================================================================
+
