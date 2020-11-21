@@ -178,3 +178,14 @@ Exam Preparation.
 - /src/control_systems/implementation/sorting_buffer.st
 - /src/control_systems/implementation/sorting_buffer_assembly.st
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 20 19.11.2020-25.11.2020
+### Results
+- Implementation of control for a combination of sorting and buffer stages
+
+#### Problems
+
+#### Source Files
+- /src/control_systems/virtual_factories/stacking.factoryio
+- /src/control_systems/validation/split_section_model/stacking.json
+-------------------------------------------------------------------------------------------------------------------------------------------
