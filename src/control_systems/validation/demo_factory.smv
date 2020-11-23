@@ -170,6 +170,11 @@ set_RB_M:= PE2 | PE3 | PE5;
 reset_RB_M:= (PE6 | PE7) | !(PE2 | PE3 | PE5);
 RB_M:= set_RB_M & !reset_RB_M;
 
+temp_out:= case
+                PA1: 900;
+                TRUE: 0;
+            esac;
+
 -- ====================================================================
 -- ASSIGNMENTS
 -- ====================================================================
@@ -469,27 +474,29 @@ SPEC
 AG( EF(!stab) );
 
 -- Formally Correctness
+--SPEC
+--AG( (stab) -> !( (set_AL_E & reset_AL_E) | (!set_AL_E & !reset_AL_E) ) );
+--SPEC
+--AG( (stab) -> !( (set_AL_C & reset_AL_C) | (!set_AL_C & !reset_AL_C) ) );
+--SPEC
+--AG( (stab) -> !( (set_AL_C & reset_AL_C) | (!set_AL_C & !reset_AL_C) ) );
+--SPEC
+--AG( (stab) -> !( (set_AL_M & reset_AL_M) | (!set_AL_M & !reset_AL_M) ) );
+--SPEC
+--AG( (stab) -> !( (set_AB_E & reset_AB_E) | (!set_AB_E & !reset_AB_E) ) );
+--SPEC
+--AG( (stab) -> !( (set_AB_C & reset_AB_C) | (!set_AB_C & !reset_AB_C) ) );
+--SPEC
+--AG( (stab) -> !( (set_AB_M & reset_AB_M) | (!set_AB_M & !reset_AB_M) ) );
+--SPEC
+--AG( (stab) -> !( (set_AT_Z & reset_AT_Z) | (!set_AT_Z & !reset_AT_Z) ) );
+--SPEC
+--AG( (stab) -> !( (set_AT_X & reset_AT_X) | (!set_AT_X & !reset_AT_X) ) );
+--SPEC
+--AG( (stab) -> !( (set_AT_G & reset_AT_G) | (!set_AT_G & !reset_AT_G) ) );
+--SPEC
+--AG( (stab) -> !( (set_RB_M & reset_RB_M) | (!set_RB_M & !reset_RB_M) ) );
+--SPEC
+--AG( (stab) -> (TEMP="2"));
 SPEC
-AG( (stab) -> !( (set_AL_E & reset_AL_E) | (!set_AL_E & !reset_AL_E) ) );
-SPEC
-AG( (stab) -> !( (set_AL_C & reset_AL_C) | (!set_AL_C & !reset_AL_C) ) );
-SPEC
-AG( (stab) -> !( (set_AL_C & reset_AL_C) | (!set_AL_C & !reset_AL_C) ) );
-SPEC
-AG( (stab) -> !( (set_AL_M & reset_AL_M) | (!set_AL_M & !reset_AL_M) ) );
-SPEC
-AG( (stab) -> !( (set_AB_E & reset_AB_E) | (!set_AB_E & !reset_AB_E) ) );
-SPEC
-AG( (stab) -> !( (set_AB_C & reset_AB_C) | (!set_AB_C & !reset_AB_C) ) );
-SPEC
-AG( (stab) -> !( (set_AB_M & reset_AB_M) | (!set_AB_M & !reset_AB_M) ) );
-SPEC
-AG( (stab) -> !( (set_AT_Z & reset_AT_Z) | (!set_AT_Z & !reset_AT_Z) ) );
-SPEC
-AG( (stab) -> !( (set_AT_X & reset_AT_X) | (!set_AT_X & !reset_AT_X) ) );
-SPEC
-AG( (stab) -> !( (set_AT_G & reset_AT_G) | (!set_AT_G & !reset_AT_G) ) );
-SPEC
-AG( (stab) -> !( (set_RB_M & reset_RB_M) | (!set_RB_M & !reset_RB_M) ) );
-SPEC
-AG( (stab) -> (TEMP="2"));
+PA1 -> temp_out=900;

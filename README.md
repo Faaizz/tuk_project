@@ -123,17 +123,69 @@ Exam Preparation.
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Weeks 15 & 16: 15.10.2020-28.10.2020
-### Goals
-- 
-### Deliverables
-- 
 ### Results
--  Redundancy reroute (Changed pusher to pivot arm)
-- Removed buffer before machning center
--  Implemented collision prevention mechanism from output of the main route and redundant route of the machining centers.
+- Redundancy reroute (Changed pusher to pivot arm).
+- Removed buffer before machning center.
+- Implemented collision prevention mechanism from output of the main route and redundant route of the machining centers.
 
 #### Source Files
 - /src/img/sec_B_sketch_v1.jpg
 - /src/img/sec_A_sketch_v1.jpg
 - SIPN.jpg
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 17 29.10.2020-04.11.2020
+### Results
+- Plant redesign to implement 2 seperate assembly stages.
+
+#### Source Files
+- /src/control_systems/virtual_factories/Section.factoryio
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 18 05.10.2020-11.11.2020
+### Results
+- Implementation of control for sorting stage
+- Implementation of control for sorting stage
+
+#### Source Files
+- /src/control_systems/virtual_factories/sorting.factoryio
+- /src/control_systems/virtual_factories/buffer.factoryio
+- /src/control_systems/modelling/Sorting_requirements.md
+- /src/control_systems/modelling/Buffer_requirements.md
+- /src/control_systems/validation/split_section_models/sorting_model.json
+- /src/control_systems/validation/split_section_models/lid_buffer_model.json
+- /src/control_systems/validation/split_section_models/base_buffer_model.json
+- /src/control_systems/implementation/sorting.st
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 19 12.11.2020-18.11.2020
+### Results
+- Implementation of control for a combination of sorting and buffer stages
+- Implementation of control for assembly stage
+- Implementation of control for a combination of sorting, buffer, and assembly stages
+
+#### Problems
+- Setting an output from  2 different function blocks results in some unexplainable error 
+
+#### Source Files
+- /src/control_systems/virtual_factories/sorting_buffer.factoryio
+- /src/control_systems/virtual_factories/sorting_buffer_assembly.factoryio
+- /src/control_systems/modelling/Assembly_requirements.md
+- /src/control_systems/validation/sorting_model.json
+- /src/control_systems/validation/lid_buffer_model.json
+- /src/control_systems/validation/base_buffer_model.json
+- /src/control_systems/validation/assembly_model.json
+- /src/control_systems/implementation/sorting_buffer.st
+- /src/control_systems/implementation/sorting_buffer_assembly.st
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 20 19.11.2020-25.11.2020
+### Results
+- Implementation of control for a combination of sorting and buffer stages
+
+#### Problems
+
+#### Source Files
+- /src/control_systems/virtual_factories/stacking.factoryio
+- /src/control_systems/validation/split_section_model/stacking.json
 -------------------------------------------------------------------------------------------------------------------------------------------
