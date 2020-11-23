@@ -243,7 +243,7 @@ next(PS9):= case
    TS10: FALSE;
    TS11: FALSE;
    TS12: FALSE;
-   TRUE: PS9;
+   TRUE: PS9; 
 esac;
 next(PS10):= case
    TS10: TRUE;
