@@ -1,9 +1,21 @@
+MODULE timer_T1_mod
+
+VAR 
+Q: boolean;
+
+ASSIGN
+init(Q):= {TRUE, FALSE};
+next(Q):= {TRUE, FALSE};
+    
+
 MODULE main
 
 -- ====================================================================
 -- VARIABLES
 -- ====================================================================
 VAR
+
+timer_T1: timer_T1_mod;
 
 --------------------------------------------------------------------
 -- INPUTS
@@ -77,7 +89,7 @@ DEFINE
 -- TRANSITIONS
 --------------------------------------------------------------------
 -- LINE A
-ta1:= PA1 & !PA2 & TM_1;
+ta1:= PA1 & !PA2 & TM_1 & timer_T1.Q;
 ta2:= PA2 & !PA3 & SL_P;
 ta3:= PA3 & ! PA4 & TM_2;
 stab_a:= !(ta1 | ta2 | ta3);
@@ -470,8 +482,8 @@ next(PF5):=  case
 -- ====================================================================
 
 -- No unstable cycles
-SPEC
-AG( EF(!stab) );
+--SPEC
+--AG( EF(!stab) );
 
 -- Formally Correctness
 --SPEC
@@ -498,5 +510,6 @@ AG( EF(!stab) );
 --AG( (stab) -> !( (set_RB_M & reset_RB_M) | (!set_RB_M & !reset_RB_M) ) );
 --SPEC
 --AG( (stab) -> (TEMP="2"));
+
 SPEC
-PA1 -> temp_out=900;
+EF(!timer_T1.Q);
