@@ -63,9 +63,9 @@ TS9:= (PS8) & ( ((AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)) ) & (!PS9);
 TS10:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS10 & !PA13);
 TS11:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS11 & !PA13);
 TS12:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS12 & !PA13);
-TS13:= (PS10 & PS11 & PS12) & ( (TRUE) ) & (!PSE1);
+TS13:= (PS10 & PS11 & PS12 & PSE0) & ( (TRUE) ) & (!PSE1);
 TSE1:= (PSE1) & ( (!S_AL1_ST3) ) & (!PSE2);
-TSE2:= (PSE1) & ( (S_AL1_ST3) ) & (!PSE0);
+TSE2:= (PSE2) & ( (S_AL1_ST3) ) & (!PSE0);
  
 -- STABLE
 stab:= !(TS1 | TS2 | TS3 | TS4 | TS5 | TS6 | TS7 | TS8 | TS9 | TS10 | TS11 | TS12 | TS13 | TSE1 | TSE2);
@@ -96,10 +96,6 @@ AL1_ST_Y_SET:= case
    TRUE: 0;
 esac;
 AL1_ST_Z_SET:= case
-   PS6: 410;
-   TRUE: 0;
-esac;
-AL1_Z_SET:= case
    PS8: 600;
    TRUE: 0;
 esac;
@@ -247,7 +243,7 @@ next(PS9):= case
    TS10: FALSE;
    TS11: FALSE;
    TS12: FALSE;
-   TRUE: PS9;
+   TRUE: PS9; 
 esac;
 next(PS10):= case
    TS10: TRUE;
@@ -267,14 +263,15 @@ esac;
 next(PSE1):= case
    TS13: TRUE;
    TSE1: FALSE;
-   TSE2: FALSE;
    TRUE: PSE1;
 esac;
 next(PSE2):= case
    TSE1: TRUE;
+   TSE2: FALSE;
    TRUE: PSE2;
 esac;
 next(PSE0):= case
+   TS13: FALSE;
    TSE2: TRUE;
    TRUE: PSE0;
 esac;
@@ -284,3 +281,89 @@ esac;
 --SPECIFICATIONS
 --=====================================================================
 
+--CHECK LIVENESS
+SPEC
+AG(EF(TS1));
+SPEC
+AG(EF(TS2));
+SPEC
+AG(EF(TS3));
+SPEC
+AG(EF(TS4));
+SPEC
+AG(EF(TS5));
+SPEC
+AG(EF(TS6));
+SPEC
+AG(EF(TS7));
+SPEC
+AG(EF(TS8));
+SPEC
+AG(EF(TS9));
+SPEC
+AG(EF(TS10));
+SPEC
+AG(EF(TS11));
+SPEC
+AG(EF(TS12));
+SPEC
+AG(EF(TS13));
+SPEC
+AG(EF(TSE1));
+SPEC
+AG(EF(TSE2));
+--CHECK DEADLOCKS
+SPEC
+AG(EF( TS1 | TS2 | TS3 | TS4 | TS5 | TS6 | TS7 | TS8 | TS9 | TS10 | TS11 | TS12 | TS13 | TSE1 | TSE2 ));
+--CHECK DEAD TRANSITIONS
+SPEC
+EF(TS1);
+SPEC
+EF(TS2);
+SPEC
+EF(TS3);
+SPEC
+EF(TS4);
+SPEC
+EF(TS5);
+SPEC
+EF(TS6);
+SPEC
+EF(TS7);
+SPEC
+EF(TS8);
+SPEC
+EF(TS9);
+SPEC
+EF(TS10);
+SPEC
+EF(TS11);
+SPEC
+EF(TS12);
+SPEC
+EF(TS13);
+SPEC
+EF(TSE1);
+SPEC
+EF(TSE2);
+--CHECK UNSTABLE CYCLES
+SPEC
+AG(EF(stab));
+--CHECK CONTRADICTORY OUTPUTS
+SPEC
+AG( ! (RP_AL1_ST_CLAMP_set & RP_AL1_ST_CLAMP_reset) );
+SPEC
+AG( ! (AL1_ST_GRAB_set & AL1_ST_GRAB_reset) );
+SPEC
+AG( ! (AL1_EMIT_set & AL1_EMIT_reset) );
+SPEC
+AG( ! (RC_AL1_ST_set & RC_AL1_ST_reset) );
+--CHECK EMPTY OUTPUTS
+SPEC
+AG( RP_AL1_ST_CLAMP_set | RP_AL1_ST_CLAMP_reset );
+SPEC
+AG( AL1_ST_GRAB_set | AL1_ST_GRAB_reset );
+SPEC
+AG( AL1_EMIT_set | AL1_EMIT_reset );
+SPEC
+AG( RC_AL1_ST_set | RC_AL1_ST_reset );

@@ -69,7 +69,7 @@
             [
                 ["AL1_ST_GRAB"], []
             ],
-            ["AL1_Z_SET:=600"],
+            ["AL1_ST_Z_SET:=600"],
             "Lower grabber to drop product into box"
         ],
         "PS9": [
@@ -118,9 +118,9 @@
     },
 
     "outputs": {
-        "AL1_ST_X_SET": ["%QW100", "INT"],
-        "AL1_ST_Y_SET":  ["%QW101", "INT"],
-        "AL1_ST_Z_SET":  ["%QW102", "INT"],
+        "AL1_ST_X_SET": ["%QW100", "WORD"],
+        "AL1_ST_Y_SET":  ["%QW101", "WORD"],
+        "AL1_ST_Z_SET":  ["%QW102", "WORD"],
         "RP_AL1_ST_CLAMP":  ["%QX100.0"],
         "AL1_ST_GRAB": ["%QX100.1"],
         "AL1_EMIT": ["%QX100.2"],
@@ -237,7 +237,7 @@
             ["PS0", "PS12", "PA13"]
         ],
         "TS13": [
-            ["PS10", "PS11", "PS12"],
+            ["PS10", "PS11", "PS12", "PSE0"],
             [
                 [
                     ["TRUE"], []
@@ -255,7 +255,7 @@
             ["PSE2"]
         ],
         "TSE2": [
-            ["PSE1"],
+            ["PSE2"],
             [
                 [
                     ["S_AL1_ST3"], []
@@ -297,5 +297,9 @@
             "%IW102"
         ],
         "RUNNING": ["boolean", "%IX100.7"]
+    },
+
+    "specifications": {
+        "auto": true
     }
 }
