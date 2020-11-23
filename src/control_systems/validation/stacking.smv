@@ -96,10 +96,6 @@ AL1_ST_Y_SET:= case
    TRUE: 0;
 esac;
 AL1_ST_Z_SET:= case
-   PS6: 410;
-   TRUE: 0;
-esac;
-AL1_Z_SET:= case
    PS8: 600;
    TRUE: 0;
 esac;
