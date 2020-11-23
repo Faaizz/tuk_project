@@ -297,5 +297,9 @@
             "%IW102"
         ],
         "RUNNING": ["boolean", "%IX100.7"]
+    },
+
+    "specifications": {
+        "auto": true
     }
 }

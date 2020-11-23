@@ -36,25 +36,25 @@ VAR
 
 (*PLACES*)
 
-PA13 AT %QX101.0 : BOOL := 1;
-PS0 AT %QX101.1 : BOOL := 1;
-PSC AT %QX101.2 : BOOL := 1;
-PS1 AT %QX101.3 : BOOL := 0;
-PS2 AT %QX101.4 : BOOL := 0;
-PS3 AT %QX101.5 : BOOL := 0;
-PS4 AT %QX101.6 : BOOL := 0;
-PS5 AT %QX101.7 : BOOL := 0;
-PS6 AT %QX102.0 : BOOL := 0;
-PS7 AT %QX102.1 : BOOL := 0;
-PS8 AT %QX102.2 : BOOL := 0;
-PS9 AT %QX102.3 : BOOL := 0;
-PS10 AT %QX102.4 : BOOL := 0;
-PS11 AT %QX102.5 : BOOL := 0;
-PS12 AT %QX102.6 : BOOL := 0;
-PSE1 AT %QX102.7 : BOOL := 0;
-PSE2 AT %QX103.0 : BOOL := 0;
-PSE0 AT %QX103.1 : BOOL := 1;
-STABLE AT %QX103.2 : BOOL := 0;
+PA13 : BOOL := 1;
+PS0 : BOOL := 1;
+PSC : BOOL := 1;
+PS1 : BOOL := 0;
+PS2 : BOOL := 0;
+PS3 : BOOL := 0;
+PS4 : BOOL := 0;
+PS5 : BOOL := 0;
+PS6 : BOOL := 0;
+PS7 : BOOL := 0;
+PS8 : BOOL := 0;
+PS9 : BOOL := 0;
+PS10 : BOOL := 0;
+PS11 : BOOL := 0;
+PS12 : BOOL := 0;
+PSE1 : BOOL := 0;
+PSE2 : BOOL := 0;
+PSE0 : BOOL := 1;
+STABLE : BOOL := 0;
 
 END_VAR
 
@@ -153,7 +153,7 @@ WHILE STABLE=0 DO
        PS10:=0;
        PS11:=0;
        PS12:=0;
-       PSE0:= 0;
+       PSE0:=0;
        PSE1:=1;
        STABLE:=0;
    END_IF;
