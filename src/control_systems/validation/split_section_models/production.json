@@ -1,5 +1,93 @@
 {
+    "places":{
+        "PP0": [
+            [
+                ["E_AL1_B1"],["MCB_CONTROL"]
+            ],
+            "Initial place"
+        ],
+        "PP1": [
+            [
+                ["E_AL1_B1"], []
+            ],
+            ""
+        ],
+        "PP2": [
+            [
+                ["PUWS_AL1_B1_PLUS"], ["E_AL1_B1", "PUWS_AL1_B1_RIGHT"]
+            ],
+            "Turn off emitter and divert"
+        ],
+        "PP3": [
+            [
+                [], ["PAS_AL1_TURN", "PAS_AL1_PLUS"]
+            ],
+            "Product goes towards MCB"
+        ],
+        "MCB":[
+            [
+                [], []
+            ],
+            "MCB Busy"
+        ],
+        "PPEB": [
+            [
+                ["E_AL1_B1"], []
+            ],
+            "MCB Feed free"
+        ],
+    },
+
     "transitions": {
-        
+        "TP0": [
+            ["PP0"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PP1"]
+        ],
+        "TP1": [
+            ["PP1"],
+            [
+                [
+                    ["S_AL1_P_B1"], []
+                ]
+            ],
+            ["PP2"]
+        ],
+        "TP2": [
+            ["PP2"],
+            [
+                [
+                    [], ["MCB_CONTROL"]
+                ]
+            ],
+            ["PP3"]
+        ],
+        "TP3": [
+            ["PP3", "MCB"],
+            [
+                [
+                    ["S_AL1_MCB"], []
+                ]
+            ],
+            ["PP4"]
+        ],
+        "TP4": [
+            ["PP4"],
+            [
+                [
+                    [], ["S_AL1_MCB"]
+                ]
+            ],
+            ["PPEB"]
+        ],
+        "TPEB":[
+            ["PPEB"],
+            [],
+            ["PP1"]
+        ],
     }
 }
