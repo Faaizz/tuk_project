@@ -183,9 +183,20 @@ Exam Preparation.
 ### Results
 - Implementation of control for a combination of sorting and buffer stages
 
-#### Problems
-
 #### Source Files
 - /src/control_systems/virtual_factories/stacking.factoryio
 - /src/control_systems/validation/split_section_model/stacking.json
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Weeks 26 19.11.2020-02.12.2020
+### Results
+- SIPN and json model for production stage
+- Implementation of control for production stage
+
+#### Problems
+
+#### Source Files
+- /src/control_systems/virtual_factories/production.factoryio
+- /src/control_systems/implementation/production.st
+- /src/control_systems/validation/split_section_model/production.json
 -------------------------------------------------------------------------------------------------------------------------------------------
