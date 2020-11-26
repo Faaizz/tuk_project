@@ -10,38 +10,38 @@ FUNCTION_BLOCK sorting
   (* INPUT *)
   (*------------------------------------------------------------*)
   VAR_INPUT
-    S_AL1: BOOL; 
-    S_BIN_1: BOOL;
-    S_AL1_BL: BOOL;
-    CS_AL1_W: INT;
-    RUNNING: BOOL;
+    S_AL1 : BOOL; 
+    S_BIN_1 : BOOL;
+    S_AL1_BL : BOOL;
+    CS_AL1_W : INT;
+    RUNNING : BOOL;
   END_VAR 
 
   (* OUTPUT *)
   (*------------------------------------------------------------*)
   VAR_OUTPUT
-    SB_AL1: BOOL;
-    PUWS_AL1_1_PLUS: BOOL;
-    PUWS_AL1_1_RT: BOOL;
-    CS_AL1_PLUS: BOOL;
+    SB_AL1 : BOOL;
+    PUWS_AL1_1_PLUS : BOOL;
+    PUWS_AL1_1_RT : BOOL;
+    CS_AL1_PLUS : BOOL;
   END_VAR
   
   (* PLACES *)
   (*------------------------------------------------------------*)
   VAR_EXTERNAL
-    P0: BOOL;
-    P1: BOOL;
-    P2: BOOL;
-    P3: BOOL;
-    P4: BOOL;
-    PB: BOOL;
-    P5: BOOL;
-    P6: BOOL;
-    BIN1: BOOL;
-    BIN2: BOOL;
-    P_LID: BOOL;
-    P_BASE: BOOL;
-    STABLE: BOOL;
+    P0 : BOOL;
+    P1 : BOOL;
+    P2 : BOOL;
+    P3 : BOOL;
+    P4 : BOOL;
+    PB : BOOL;
+    P5 : BOOL;
+    P6 : BOOL;
+    BIN1 : BOOL;
+    BIN2 : BOOL;
+    P_LID : BOOL;
+    P_BASE : BOOL;
+    STABLE : BOOL;
   END_VAR
 
 
@@ -216,25 +216,25 @@ FUNCTION_BLOCK base_buffer
   (* INPUT *)
   (*------------------------------------------------------------*)
   VAR_INPUT
-    S_AL1_B: BOOL; 
-    P_AL1_B_FT: BOOL;
-    P_AL1_B_BK: BOOL;
-    S_AL1_B1: BOOL;
-    S_AL1_B2: BOOL;
+    S_AL1_B : BOOL; 
+    P_AL1_B_FT : BOOL;
+    P_AL1_B_BK : BOOL;
+    S_AL1_B1 : BOOL;
+    S_AL1_B2 : BOOL;
     S_AL1_B3 : BOOL;
-    S_AL1_LP: BOOL;
-    RUNNING: BOOL;
+    S_AL1_LP : BOOL;
+    RUNNING : BOOL;
   END_VAR 
 
 
   (* OUTPUT *)
   (*------------------------------------------------------------*)
   VAR_OUTPUT
-    P_AL1_B: BOOL;
+    P_AL1_B : BOOL;
     SB_AL1_B1 : BOOL;
     SB_AL1_B2 : BOOL;
     SB_AL1_B3 : BOOL;
-    STABLE: BOOL;
+    STABLE : BOOL;
   END_VAR
 
   
@@ -420,25 +420,25 @@ FUNCTION_BLOCK lid_buffer
   (* INPUT *)
   (*------------------------------------------------------------*)
   VAR_INPUT
-    S_AL1_L: BOOL; 
-    P_AL1_L_FT: BOOL;
-    P_AL1_L_BK: BOOL;
-    S_AL1_L1: BOOL;
-    S_AL1_L2: BOOL;
+    S_AL1_L : BOOL; 
+    P_AL1_L_FT : BOOL;
+    P_AL1_L_BK : BOOL;
+    S_AL1_L1 : BOOL;
+    S_AL1_L2 : BOOL;
     S_AL1_L3 : BOOL;
-    S_AL1_RP: BOOL;
-    RUNNING: BOOL;
+    S_AL1_RP : BOOL;
+    RUNNING : BOOL;
   END_VAR 
 
 
   (* OUTPUT *)
   (*------------------------------------------------------------*)
   VAR_OUTPUT
-    P_AL1_L: BOOL;
+    P_AL1_L : BOOL;
     SB_AL1_L1 : BOOL;
     SB_AL1_L2 : BOOL;
     SB_AL1_L3 : BOOL;
-    STABLE: BOOL;
+    STABLE : BOOL;
   END_VAR
 
   
@@ -624,30 +624,30 @@ FUNCTION_BLOCK assembly
   (* INPUT *)
   (*------------------------------------------------------------*)
   VAR_INPUT
-    AL1_DETECTED: BOOL; 
-    AL1_X_POS: WORD;
-    AL1_Y_POS: WORD;
-    AL1_Z_POS: WORD;
-    LP_AL1_CLAMPED: BOOL;
-    LP_AL1_LIMIT: BOOL;
-    RP_AL1_CLAMPED: BOOL;
-    RUNNING: BOOL;
+    AL1_DETECTED : BOOL; 
+    AL1_X_POS : WORD;
+    AL1_Y_POS : WORD;
+    AL1_Z_POS : WORD;
+    LP_AL1_CLAMPED : BOOL;
+    LP_AL1_LIMIT : BOOL;
+    RP_AL1_CLAMPED : BOOL;
+    RUNNING : BOOL;
   END_VAR 
 
 
   (* OUTPUT *)
   (*------------------------------------------------------------*)
   VAR_OUTPUT
-    AL1_X_SET: WORD;
-    AL1_Y_SET: WORD;
-    AL1_Z_SET: WORD;
+    AL1_X_SET : WORD;
+    AL1_Y_SET : WORD;
+    AL1_Z_SET : WORD;
     AL1_GRAB : BOOL;
     RP_AL1_CLAMP : BOOL;
     LP_AL1_RAISE : BOOL;
     LP_AL1_CLAMP : BOOL;
-    SB_AL1_B3: BOOL;
-    SB_AL1_L3: BOOL;
-    STABLE: BOOL;
+    SB_AL1_B3 : BOOL;
+    SB_AL1_L3 : BOOL;
+    STABLE : BOOL;
   END_VAR
 
   (* PLACES *)
@@ -664,7 +664,7 @@ FUNCTION_BLOCK assembly
     PA8 : BOOL;
     PA9 : BOOL;
     PA10 : BOOL;
-    PA11: BOOL;
+    PA11 : BOOL;
     PA12 : BOOL;
     PA13 : BOOL;
     PB8 : BOOL;
@@ -1019,18 +1019,18 @@ PROGRAM sorting_buffer_assembly
   (*------------------------------------------------------------*)
   VAR
     (* INPUTS *)
-    AL1_DETECTED AT %IX102.3: BOOL;
-    LP_AL1_LIMIT AT %IX102.4: BOOL;
-    AL1_X_POS AT %IW101: WORD;
-    AL1_Y_POS AT %IW102: WORD;
-    AL1_Z_POS AT %IW103: WORD;
+    AL1_DETECTED AT %IX102.3 : BOOL;
+    LP_AL1_LIMIT AT %IX102.4 : BOOL;
+    AL1_X_POS AT %IW101 : WORD;
+    AL1_Y_POS AT %IW102 : WORD;
+    AL1_Z_POS AT %IW103 : WORD;
 
     (* OUTPUTS *)
-    AL1_GRAB AT %QX101.6: BOOL;
-    LP_AL1_RAISE AT %QX101.7: BOOL;
-    AL1_X_SET AT %QW100: WORD;
-    AL1_Y_SET AT %QW101: WORD;
-    AL1_Z_SET AT %QW102: WORD;
+    AL1_GRAB AT %QX101.6 : BOOL;
+    LP_AL1_RAISE AT %QX101.7 : BOOL;
+    AL1_X_SET AT %QW100 : WORD;
+    AL1_Y_SET AT %QW101 : WORD;
+    AL1_Z_SET AT %QW102 : WORD;
 
   END_VAR
 
@@ -1048,20 +1048,20 @@ PROGRAM sorting_buffer_assembly
   (*------------------------------------------------------------*)
   VAR_EXTERNAL
     
-    PA0: BOOL;
-    PA1: BOOL;
-    PA2: BOOL;
-    PA3: BOOL;
-    PA4: BOOL;
-    PA5: BOOL;
-    PA6: BOOL;
-    PA7: BOOL;
-    PA8: BOOL;
-    PA9: BOOL;
-    PA10: BOOL;
-    PA11: BOOL;
-    PA12: BOOL;
-    PA13: BOOL;
+    PA0 : BOOL;
+    PA1 : BOOL;
+    PA2 : BOOL;
+    PA3 : BOOL;
+    PA4 : BOOL;
+    PA5 : BOOL;
+    PA6 : BOOL;
+    PA7 : BOOL;
+    PA8 : BOOL;
+    PA9 : BOOL;
+    PA10 : BOOL;
+    PA11 : BOOL;
+    PA12 : BOOL;
+    PA13 : BOOL;
     PL9 : BOOL;
     PB9 : BOOL;
     PBF3 : BOOL;
@@ -1073,7 +1073,7 @@ PROGRAM sorting_buffer_assembly
   (* OTHERS *)
   (*==========================================================================================*)
   VAR_EXTERNAL
-    STABLE: BOOL;
+    STABLE : BOOL;
   END_VAR
 
 
@@ -1088,10 +1088,10 @@ PROGRAM sorting_buffer_assembly
   (* FUNTION BLOCKS *)
   (*==========================================================================================*)
   VAR
-    sorting0: sorting;
-    base_buffer0: base_buffer;
-    lid_buffer0: lid_buffer;
-    assembly0: assembly;
+    sorting0 : sorting;
+    base_buffer0 : base_buffer;
+    lid_buffer0 : lid_buffer;
+    assembly0 : assembly;
   END_VAR
 
 
@@ -1225,20 +1225,20 @@ CONFIGURATION Config0
   (* ASSEMBLY *)
   (*------------------------------------------------------------*)
   VAR_GLOBAL
-    PA0 AT %QX109.0: BOOL;
-    PA1 AT %QX109.1: BOOL;
-    PA2 AT %QX109.2: BOOL;
-    PA3 AT %QX109.3: BOOL;
-    PA4 AT %QX109.4: BOOL;
-    PA5 AT %QX109.5: BOOL;
-    PA6 AT %QX109.6: BOOL;
-    PA7 AT %QX109.7: BOOL;
-    PA8 AT %QX110.0: BOOL;
-    PA9 AT %QX110.1: BOOL;
-    PA10 AT %QX110.2: BOOL;
-    PA11 AT %QX110.3: BOOL;
-    PA12 AT %QX110.4: BOOL;
-    PA13 AT %QX110.5: BOOL;
+    PA0 AT %QX109.0 : BOOL;
+    PA1 AT %QX109.1 : BOOL;
+    PA2 AT %QX109.2 : BOOL;
+    PA3 AT %QX109.3 : BOOL;
+    PA4 AT %QX109.4 : BOOL;
+    PA5 AT %QX109.5 : BOOL;
+    PA6 AT %QX109.6 : BOOL;
+    PA7 AT %QX109.7 : BOOL;
+    PA8 AT %QX110.0 : BOOL;
+    PA9 AT %QX110.1 : BOOL;
+    PA10 AT %QX110.2 : BOOL;
+    PA11 AT %QX110.3 : BOOL;
+    PA12 AT %QX110.4 : BOOL;
+    PA13 AT %QX110.5 : BOOL;
   END_VAR
 
 

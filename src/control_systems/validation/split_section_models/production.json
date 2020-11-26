@@ -1,41 +1,111 @@
 {
     "places":{
+        "PPAL1": [
+            [
+                ["PUWS_AL1_B1_PLUS"], ["PUWS_AL1_B1_RIGHT"]
+            ],
+            "MCB and MCBR fault free"
+        ],
         "PP0": [
             [
-                ["E_AL1_B1"],["MCB_CONTROL"]
+                ["E_AL1_B1"], 
+                ["MCB_CONTROL", "PAS_AL1_PLUS", "PAS_AL1_TURN"]
             ],
             "Initial place"
         ],
         "PP1": [
             [
-                ["E_AL1_B1"], []
+                ["E_AL1_B1"], ["PAS_AL1_PLUS", "PAS_AL1_TURN"]
             ],
-            ""
+            "Emit raw material"
         ],
         "PP2": [
             [
-                ["PUWS_AL1_B1_PLUS"], ["E_AL1_B1", "PUWS_AL1_B1_RIGHT"]
+                ["PUWS_AL1_B1_PLUS"], 
+                ["E_AL1_B1", "PUWS_AL1_B1_RIGHT", "PAS_AL1_PLUS", "PAS_AL1_TURN"]
             ],
-            "Turn off emitter and divert"
+            "Turn off emitter and do not divert"
         ],
         "PP3": [
             [
-                [], ["PAS_AL1_TURN", "PAS_AL1_PLUS"]
+                [], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
             ],
             "Product goes towards MCB"
         ],
-        "MCB":[
+        "PP4":[
+            [
+                [], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
+            ],
+            "Raw material at MCB"
+        ],
+        "MCB": [
             [
                 [], []
             ],
-            "MCB Busy"
+            "MCB Free"
         ],
-        "PPEB": [
+        "PP5": [
             [
-                ["E_AL1_B1"], []
+                ["MCB_CONTROL"], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
             ],
-            "MCB Feed free"
+            "MCB busy. Set MCBR as next raw material destination."
         ],
+        "PP6": [
+            [
+                [], []
+            ]
+        ],
+        "PP7": [
+            [
+                [], []
+            ],
+            "Base heading towards sorting stage"
+        ],
+        "PPL3": [
+            [
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1"]
+            ],
+            "Raw material heads towards MCBR"
+        ],
+        "PPL4": [
+            [
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1"]
+            ],
+            "Raw material at MCBR"
+        ],
+        "MCBR": [
+            [
+                [], []
+            ],
+            "MCBR free"
+        ],
+        "PPL5": [
+            [
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1", "MCB_CONTROL"]
+            ],
+            "MCBR busy. Set MCb as the next raw material destination."
+        ],
+        "PPL6": [
+            [
+                [], []
+            ]
+        ],
+        "PPL7": [
+            [
+                [], []
+            ],
+            "Lid heading to sorting stage."
+        ],
+        "initial": ["PPAL1", "PP0", "MCB", "MCBR"]
+
+    },
+
+    "outputs": {
+        "E_AL1_B1": ["%QX100.0"],
+        "PUWS_AL1_B1_PLUS": ["%QX100.1"],
+        "PUWS_AL1_B1_RIGHT": ["%QX100.2"],
+        "PAS_AL1_PLUS": ["%QX100.3"],
+        "PAS_AL1_TURN": ["%QX100.4"]
     },
 
     "transitions": {
@@ -43,7 +113,7 @@
             ["PP0"],
             [
                 [
-                    ["TRUE"], []
+                    [], ["MCB_CONTROL"]
                 ]
             ],
             ["PP1"]
@@ -61,13 +131,13 @@
             ["PP2"],
             [
                 [
-                    [], ["MCB_CONTROL"]
+                    ["S_AL1_P_B2"], ["MCB_CONTROL"]
                 ]
             ],
             ["PP3"]
         ],
         "TP3": [
-            ["PP3", "MCB"],
+            ["PP3"],
             [
                 [
                     ["S_AL1_MCB"], []
@@ -76,18 +146,105 @@
             ["PP4"]
         ],
         "TP4": [
-            ["PP4"],
+            ["PP4", "MCB"],
+            [
+                [
+                    ["MCB_BUSY"], []
+                ]
+            ],
+            ["PP5"]
+        ],
+        "TP5": [
+            ["PP5"],
             [
                 [
                     [], ["S_AL1_MCB"]
                 ]
             ],
-            ["PPEB"]
+            ["PP1", "PP6"]
         ],
-        "TPEB":[
-            ["PPEB"],
-            [],
-            ["PP1"]
+        "TP6": [
+            ["PP6"],
+            [
+                [
+                    [], ["MCB_BUSY"]
+                ]
+            ],
+            ["PP7", "MCB"]
         ],
+        "TPL2": [
+            ["PP2"],
+            [
+                [
+                    ["S_AL1_P_B2", "MCB_CONTROL"], []
+                ]
+            ],
+            ["PPL3"]
+        ],
+        "TPL3": [
+            ["PPL3"],
+            [
+                [
+                    ["S_AL1_MCBR"], []
+                ]
+            ],
+            ["PPL4"]
+        ],
+        "TPL4": [
+            ["PPL4", "MCBR"],
+            [
+                [
+                    ["MCBR_BUSY"], []
+                ]
+            ],
+            ["PPL5"]
+        ],
+        "TPL5": [
+            ["PPL5"],
+            [
+                [
+                    [], ["S_AL1_MCBR"]
+                ]
+            ],
+            ["PP1", "PPL6"]
+        ],
+        "TPL6": [
+            ["PPL6"],
+            [
+                [
+                    [], ["MCBR_BUSY"]
+                ]
+            ],
+            ["PPL7", "MCBR"]
+        ]
+    },
+
+    "inputs": {
+        "S_AL1_P_B1": ["boolean", "%IX100.0"],
+        "S_AL1_P_B2": ["boolean", "%IX100.1"],
+        "S_AL1_MCB": ["boolean", "%IX100.2"],
+        "MCB_BUSY": ["boolean", "%IX100.3"],
+        "S_AL1_MCBR": ["boolean", "%IX100.4"],
+        "MCBR_BUSY": ["boolean", "%IX100.5"]
+    },
+
+    "internals": {
+        "MCB_CONTROL": [
+            [
+                
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ]
+    },
+
+    "specifications": {
+        "auto": false,
+        "manual": [
+            "AG( (!PP7 & stab) -> EF(PP7) )",
+            "AG( (!PPL7 & stab) -> EF(PPL7) )"
+        ]
     }
 }
