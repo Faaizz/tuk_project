@@ -1,0 +1,446 @@
+*** This is NuSMV 2.5.4 (compiled on Fri Oct 28 14:15:02 UTC 2011)
+*** Enabled addons are: compass 
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <nusmv-users@fbk.eu>
+
+*** Copyright (c) 2010, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://www.cs.chalmers.se/Cs/Research/FormalMethods/MiniSat
+*** Copyright (c) 2003-2005, Niklas Een, Niklas Sorensson 
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification AG (EF TS1)  is true
+-- specification AG (EF TS2)  is true
+-- specification AG (EF TS3)  is true
+-- specification AG (EF TS4)  is true
+-- specification AG (EF TS5)  is true
+-- specification AG (EF TS6)  is true
+-- specification AG (EF TS7)  is true
+-- specification AG (EF TS8)  is true
+-- specification AG (EF TS9)  is true
+-- specification AG (EF TS10)  is true
+-- specification AG (EF TS11)  is true
+-- specification AG (EF TS12)  is true
+-- specification AG (EF TS13)  is true
+-- specification AG (EF TSE1)  is true
+-- specification AG (EF TSE2)  is true
+-- specification AG (EF ((((((((((((((TS1 | TS2) | TS3) | TS4) | TS5) | TS6) | TS7) | TS8) | TS9) | TS10) | TS11) | TS12) | TS13) | TSE1) | TSE2))  is true
+-- specification EF TS1  is true
+-- specification EF TS2  is true
+-- specification EF TS3  is true
+-- specification EF TS4  is true
+-- specification EF TS5  is true
+-- specification EF TS6  is true
+-- specification EF TS7  is true
+-- specification EF TS8  is true
+-- specification EF TS9  is true
+-- specification EF TS10  is true
+-- specification EF TS11  is true
+-- specification EF TS12  is true
+-- specification EF TS13  is true
+-- specification EF TSE1  is true
+-- specification EF TSE2  is true
+-- specification AG (EF stab)  is true
+-- specification AG !(RP_AL1_ST_CLAMP_set & RP_AL1_ST_CLAMP_reset)  is true
+-- specification AG !(AL1_ST_GRAB_set & AL1_ST_GRAB_reset)  is true
+-- specification AG !(AL1_EMIT_set & AL1_EMIT_reset)  is true
+-- specification AG !(RC_AL1_ST_set & RC_AL1_ST_reset)  is true
+-- specification AG (RP_AL1_ST_CLAMP_set | RP_AL1_ST_CLAMP_reset)  is true
+-- specification AG (AL1_ST_GRAB_set | AL1_ST_GRAB_reset)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+-> State: 1.1 <-
+  S_AL1_ST1 = FALSE
+  S_AL1_ST2 = FALSE
+  S_AL1_ST3 = FALSE
+  RP_AL1_ST_CLAMPED = FALSE
+  AL1_ST_DETECTED = FALSE
+  RESET = FALSE
+  AL1_ST_X_POS = 0
+  AL1_ST_Y_POS = 0
+  AL1_ST_Z_POS = 0
+  RUNNING = FALSE
+  PA13 = TRUE
+  PS0 = TRUE
+  PSC = TRUE
+  PS1 = FALSE
+  PS2 = FALSE
+  PS3 = FALSE
+  PS4 = FALSE
+  PS5 = FALSE
+  PS6 = FALSE
+  PS7 = FALSE
+  PS8 = FALSE
+  PS9 = FALSE
+  PS10 = FALSE
+  PS11 = FALSE
+  PS12 = FALSE
+  PSE1 = FALSE
+  PSE2 = FALSE
+  PSE0 = TRUE
+  AL1_ST_Z_SET = 0
+  AL1_ST_Y_SET = 0
+  AL1_ST_X_SET = 0
+  RP_AL1_ST_CLAMP = FALSE
+  RC_AL1_ST = FALSE
+  AL1_ST_GRAB = FALSE
+  AL1_EMIT = FALSE
+  RP_AL1_ST_CLAMP_reset = TRUE
+  RC_AL1_ST_reset = TRUE
+  AL1_ST_GRAB_reset = FALSE
+  AL1_EMIT_reset = TRUE
+  RP_AL1_ST_CLAMP_set = FALSE
+  RC_AL1_ST_set = FALSE
+  AL1_ST_GRAB_set = FALSE
+  AL1_EMIT_set = FALSE
+  stab = TRUE
+  TSE2 = FALSE
+  TSE1 = FALSE
+  TS13 = FALSE
+  TS12 = FALSE
+  TS11 = FALSE
+  TS10 = FALSE
+  TS9 = FALSE
+  TS8 = FALSE
+  TS7 = FALSE
+  TS6 = FALSE
+  TS5 = FALSE
+  TS4 = FALSE
+  TS3 = FALSE
+  TS2 = FALSE
+  TS1 = FALSE
+-- specification AG (AL1_EMIT_set | AL1_EMIT_reset)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+-> State: 2.1 <-
+  S_AL1_ST1 = FALSE
+  S_AL1_ST2 = FALSE
+  S_AL1_ST3 = FALSE
+  RP_AL1_ST_CLAMPED = FALSE
+  AL1_ST_DETECTED = FALSE
+  RESET = FALSE
+  AL1_ST_X_POS = 0
+  AL1_ST_Y_POS = 0
+  AL1_ST_Z_POS = 0
+  RUNNING = FALSE
+  PA13 = TRUE
+  PS0 = TRUE
+  PSC = TRUE
+  PS1 = FALSE
+  PS2 = FALSE
+  PS3 = FALSE
+  PS4 = FALSE
+  PS5 = FALSE
+  PS6 = FALSE
+  PS7 = FALSE
+  PS8 = FALSE
+  PS9 = FALSE
+  PS10 = FALSE
+  PS11 = FALSE
+  PS12 = FALSE
+  PSE1 = FALSE
+  PSE2 = FALSE
+  PSE0 = TRUE
+  AL1_ST_Z_SET = 0
+  AL1_ST_Y_SET = 0
+  AL1_ST_X_SET = 0
+  RP_AL1_ST_CLAMP = FALSE
+  RC_AL1_ST = FALSE
+  AL1_ST_GRAB = FALSE
+  AL1_EMIT = FALSE
+  RP_AL1_ST_CLAMP_reset = TRUE
+  RC_AL1_ST_reset = TRUE
+  AL1_ST_GRAB_reset = FALSE
+  AL1_EMIT_reset = TRUE
+  RP_AL1_ST_CLAMP_set = FALSE
+  RC_AL1_ST_set = FALSE
+  AL1_ST_GRAB_set = FALSE
+  AL1_EMIT_set = FALSE
+  stab = TRUE
+  TSE2 = FALSE
+  TSE1 = FALSE
+  TS13 = FALSE
+  TS12 = FALSE
+  TS11 = FALSE
+  TS10 = FALSE
+  TS9 = FALSE
+  TS8 = FALSE
+  TS7 = FALSE
+  TS6 = FALSE
+  TS5 = FALSE
+  TS4 = FALSE
+  TS3 = FALSE
+  TS2 = FALSE
+  TS1 = FALSE
+-> State: 2.2 <-
+  S_AL1_ST1 = TRUE
+  S_AL1_ST2 = TRUE
+  RP_AL1_ST_CLAMPED = TRUE
+  AL1_ST_DETECTED = TRUE
+  AL1_ST_Y_POS = 560
+  AL1_ST_Z_POS = 750
+  stab = FALSE
+  TS1 = TRUE
+-> State: 2.3 <-
+  PA13 = FALSE
+  PS1 = TRUE
+  TS2 = TRUE
+  TS1 = FALSE
+-> State: 2.4 <-
+  PS0 = FALSE
+  PSC = FALSE
+  PS1 = FALSE
+  PS2 = TRUE
+  RP_AL1_ST_CLAMP = TRUE
+  RP_AL1_ST_CLAMP_reset = FALSE
+  AL1_ST_GRAB_reset = TRUE
+  RP_AL1_ST_CLAMP_set = TRUE
+  TS3 = TRUE
+  TS2 = FALSE
+-> State: 2.5 <-
+  PS2 = FALSE
+  PS3 = TRUE
+  AL1_ST_Y_SET = 560
+  TS4 = TRUE
+  TS3 = FALSE
+-> State: 2.6 <-
+  PS3 = FALSE
+  PS4 = TRUE
+  AL1_ST_Y_SET = 0
+  TS5 = TRUE
+  TS4 = FALSE
+-> State: 2.7 <-
+  PSC = TRUE
+  PS4 = FALSE
+  PS5 = TRUE
+  RP_AL1_ST_CLAMP = FALSE
+  AL1_ST_GRAB = TRUE
+  RP_AL1_ST_CLAMP_reset = TRUE
+  AL1_ST_GRAB_reset = FALSE
+  RP_AL1_ST_CLAMP_set = FALSE
+  AL1_ST_GRAB_set = TRUE
+  TS6 = TRUE
+  TS5 = FALSE
+-> State: 2.8 <-
+  PS5 = FALSE
+  PS6 = TRUE
+  stab = TRUE
+  TS6 = FALSE
+-> State: 2.9 <-
+  S_AL1_ST1 = FALSE
+  S_AL1_ST2 = FALSE
+  RP_AL1_ST_CLAMPED = FALSE
+  AL1_ST_DETECTED = FALSE
+  AL1_ST_X_POS = 860
+  AL1_ST_Y_POS = 0
+  AL1_ST_Z_POS = 410
+  stab = FALSE
+  TS7 = TRUE
+-> State: 2.10 <-
+  PS6 = FALSE
+  PS7 = TRUE
+  AL1_ST_X_SET = 860
+  TS8 = TRUE
+  TS7 = FALSE
+-> State: 2.11 <-
+  PS7 = FALSE
+  PS8 = TRUE
+  AL1_ST_Z_SET = 600
+  AL1_ST_X_SET = 0
+  stab = TRUE
+  TS8 = FALSE
+-> State: 2.12 <-
+  AL1_ST_X_POS = 0
+  AL1_ST_Z_POS = 600
+  stab = FALSE
+  TS9 = TRUE
+-> State: 2.13 <-
+  PS8 = FALSE
+  PS9 = TRUE
+  PSE0 = FALSE
+  AL1_ST_Z_SET = 0
+  AL1_ST_GRAB = FALSE
+  RC_AL1_ST_reset = FALSE
+  AL1_ST_GRAB_reset = TRUE
+  AL1_EMIT_reset = FALSE
+  AL1_ST_GRAB_set = FALSE
+  TS12 = TRUE
+  TS11 = TRUE
+  TS10 = TRUE
+  TS9 = FALSE
+-- specification AG (RC_AL1_ST_set | RC_AL1_ST_reset)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+-> State: 3.1 <-
+  S_AL1_ST1 = FALSE
+  S_AL1_ST2 = FALSE
+  S_AL1_ST3 = FALSE
+  RP_AL1_ST_CLAMPED = FALSE
+  AL1_ST_DETECTED = FALSE
+  RESET = FALSE
+  AL1_ST_X_POS = 0
+  AL1_ST_Y_POS = 0
+  AL1_ST_Z_POS = 0
+  RUNNING = FALSE
+  PA13 = TRUE
+  PS0 = TRUE
+  PSC = TRUE
+  PS1 = FALSE
+  PS2 = FALSE
+  PS3 = FALSE
+  PS4 = FALSE
+  PS5 = FALSE
+  PS6 = FALSE
+  PS7 = FALSE
+  PS8 = FALSE
+  PS9 = FALSE
+  PS10 = FALSE
+  PS11 = FALSE
+  PS12 = FALSE
+  PSE1 = FALSE
+  PSE2 = FALSE
+  PSE0 = TRUE
+  AL1_ST_Z_SET = 0
+  AL1_ST_Y_SET = 0
+  AL1_ST_X_SET = 0
+  RP_AL1_ST_CLAMP = FALSE
+  RC_AL1_ST = FALSE
+  AL1_ST_GRAB = FALSE
+  AL1_EMIT = FALSE
+  RP_AL1_ST_CLAMP_reset = TRUE
+  RC_AL1_ST_reset = TRUE
+  AL1_ST_GRAB_reset = FALSE
+  AL1_EMIT_reset = TRUE
+  RP_AL1_ST_CLAMP_set = FALSE
+  RC_AL1_ST_set = FALSE
+  AL1_ST_GRAB_set = FALSE
+  AL1_EMIT_set = FALSE
+  stab = TRUE
+  TSE2 = FALSE
+  TSE1 = FALSE
+  TS13 = FALSE
+  TS12 = FALSE
+  TS11 = FALSE
+  TS10 = FALSE
+  TS9 = FALSE
+  TS8 = FALSE
+  TS7 = FALSE
+  TS6 = FALSE
+  TS5 = FALSE
+  TS4 = FALSE
+  TS3 = FALSE
+  TS2 = FALSE
+  TS1 = FALSE
+-> State: 3.2 <-
+  S_AL1_ST1 = TRUE
+  S_AL1_ST2 = TRUE
+  RP_AL1_ST_CLAMPED = TRUE
+  AL1_ST_DETECTED = TRUE
+  AL1_ST_Y_POS = 560
+  AL1_ST_Z_POS = 750
+  stab = FALSE
+  TS1 = TRUE
+-> State: 3.3 <-
+  PA13 = FALSE
+  PS1 = TRUE
+  TS2 = TRUE
+  TS1 = FALSE
+-> State: 3.4 <-
+  PS0 = FALSE
+  PSC = FALSE
+  PS1 = FALSE
+  PS2 = TRUE
+  RP_AL1_ST_CLAMP = TRUE
+  RP_AL1_ST_CLAMP_reset = FALSE
+  AL1_ST_GRAB_reset = TRUE
+  RP_AL1_ST_CLAMP_set = TRUE
+  TS3 = TRUE
+  TS2 = FALSE
+-> State: 3.5 <-
+  PS2 = FALSE
+  PS3 = TRUE
+  AL1_ST_Y_SET = 560
+  TS4 = TRUE
+  TS3 = FALSE
+-> State: 3.6 <-
+  PS3 = FALSE
+  PS4 = TRUE
+  AL1_ST_Y_SET = 0
+  TS5 = TRUE
+  TS4 = FALSE
+-> State: 3.7 <-
+  PSC = TRUE
+  PS4 = FALSE
+  PS5 = TRUE
+  RP_AL1_ST_CLAMP = FALSE
+  AL1_ST_GRAB = TRUE
+  RP_AL1_ST_CLAMP_reset = TRUE
+  AL1_ST_GRAB_reset = FALSE
+  RP_AL1_ST_CLAMP_set = FALSE
+  AL1_ST_GRAB_set = TRUE
+  TS6 = TRUE
+  TS5 = FALSE
+-> State: 3.8 <-
+  PS5 = FALSE
+  PS6 = TRUE
+  stab = TRUE
+  TS6 = FALSE
+-> State: 3.9 <-
+  S_AL1_ST1 = FALSE
+  S_AL1_ST2 = FALSE
+  RP_AL1_ST_CLAMPED = FALSE
+  AL1_ST_DETECTED = FALSE
+  AL1_ST_X_POS = 860
+  AL1_ST_Y_POS = 0
+  AL1_ST_Z_POS = 410
+  stab = FALSE
+  TS7 = TRUE
+-> State: 3.10 <-
+  PS6 = FALSE
+  PS7 = TRUE
+  AL1_ST_X_SET = 860
+  TS8 = TRUE
+  TS7 = FALSE
+-> State: 3.11 <-
+  PS7 = FALSE
+  PS8 = TRUE
+  AL1_ST_Z_SET = 600
+  AL1_ST_X_SET = 0
+  stab = TRUE
+  TS8 = FALSE
+-> State: 3.12 <-
+  AL1_ST_X_POS = 0
+  AL1_ST_Z_POS = 600
+  stab = FALSE
+  TS9 = TRUE
+-> State: 3.13 <-
+  PS8 = FALSE
+  PS9 = TRUE
+  PSE0 = FALSE
+  AL1_ST_Z_SET = 0
+  AL1_ST_GRAB = FALSE
+  RC_AL1_ST_reset = FALSE
+  AL1_ST_GRAB_reset = TRUE
+  AL1_EMIT_reset = FALSE
+  AL1_ST_GRAB_set = FALSE
+  TS12 = TRUE
+  TS11 = TRUE
+  TS10 = TRUE
+  TS9 = FALSE

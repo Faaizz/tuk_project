@@ -18,7 +18,7 @@ AL1_ST_DETECTED: boolean;
 RESET: boolean;
 AL1_ST_X_POS: {0, 400, 860};
 AL1_ST_Y_POS: {0, 300, 560};
-AL1_ST_Z_POS: {0, 200, 410, 750};
+AL1_ST_Z_POS: {0, 200, 410, 600, 750};
 RUNNING: boolean;
  
 -- PLACES
@@ -59,10 +59,10 @@ TS5:= (PS4) & ( ((AL1_ST_Z_POS>730) & (AL1_ST_Z_POS<770)) ) & (!PSC & !PS5);
 TS6:= (PS5) & ( (AL1_ST_DETECTED) ) & (!PS6);
 TS7:= (PS6) & ( ((AL1_ST_Z_POS>390) & (AL1_ST_Z_POS<430)) ) & (!PS7);
 TS8:= (PS7) & ( ((AL1_ST_X_POS>840) & (AL1_ST_X_POS<880)) ) & (!PS8);
-TS9:= (PS8) & ( ((AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)) ) & (!PS9);
-TS10:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS10 & !PA13);
-TS11:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS11 & !PA13);
-TS12:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS12 & !PA13);
+TS9:= (PS8 & PSE0) & ( ((AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)) ) & (!PS9);
+TS10:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS10 & !PSE0 & !PA13);
+TS11:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS11 & !PSE0 & !PA13);
+TS12:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS12 & !PSE0 & !PA13);
 TS13:= (PS10 & PS11 & PS12 & PSE0) & ( (TRUE) ) & (!PSE1);
 TSE1:= (PSE1) & ( (!S_AL1_ST3) ) & (!PSE2);
 TSE2:= (PSE2) & ( (S_AL1_ST3) ) & (!PSE0);
@@ -152,7 +152,7 @@ next(AL1_ST_Y_POS):= case
    TRUE: AL1_ST_Y_POS;
 esac;
 next(AL1_ST_Z_POS):= case
-   stab: {0, 200, 410, 750};
+   stab: {0, 200, 410, 600, 750};
    TRUE: AL1_ST_Z_POS;
 esac;
 next(RUNNING):= case
@@ -243,7 +243,7 @@ next(PS9):= case
    TS10: FALSE;
    TS11: FALSE;
    TS12: FALSE;
-   TRUE: PS9; 
+   TRUE: PS9;
 esac;
 next(PS10):= case
    TS10: TRUE;
@@ -271,6 +271,10 @@ next(PSE2):= case
    TRUE: PSE2;
 esac;
 next(PSE0):= case
+   TS9: FALSE;
+   TS10: TRUE;
+   TS11: TRUE;
+   TS12: TRUE;
    TS13: FALSE;
    TSE2: TRUE;
    TRUE: PSE0;

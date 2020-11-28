@@ -1,0 +1,228 @@
+{
+    "places": {
+        "P0": [
+            [],
+            [],
+            "Item recieved from production line"
+        ],
+        "P1": [
+            ["CS_AL1_PLUS"],
+            ["SB_AL1", "AL1_LID", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Conveyor scale free"
+        ],
+        "P2": [
+            ["CS_AL1_PLUS"],
+            ["SB_AL1", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Item at conveyor scale"
+        ],
+        "P3": [
+            ["SB_AL1"],
+            ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Weighting in progress"
+        ],
+        "P4": [
+            ["SB_AL1"],
+            ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"],
+            "Evaluate weight"
+        ],
+        "PB": [
+            ["SB_AL1", "PUWS_AL1_1_PLUS", "CS_AL1_PLUS"],
+            ["PUWS_AL1_1_RT"],
+            "Invalid item, pass to bin"
+        ],
+        "BIN1": [
+            [],
+            [],
+            "Bin standby"
+        ],
+        "BIN2": [
+            [],
+            [],
+            "Item on bin line"
+        ],
+        "P5": [
+            ["SB_AL1", "AL1_LID", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT", "CS_AL1_PLUS"],
+            ["AL1_BASE"],
+            "Scale detects a lid"
+        ],
+        "P6": [
+            ["SB_AL1", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT", "CS_AL1_PLUS"],
+            ["AL1_LID"],
+            "Scale detects a base"
+        ],
+        "P_LID": [
+            [],
+            [],
+            "Item passed to lid buffer"
+        ],
+        "P_BASE": [
+            [],
+            [],
+            "Item passed to base buffer"
+        ],
+        "PRODUCTION": [
+            [],
+            [],
+            "Item leaving production"
+        ],
+        "initial": ["P0", "P1", "BIN1"]
+    },
+
+    "outputs": {
+        "SB_AL1": "Stop blade",
+        "PUWS_AL1_1_PLUS": "Pop up wheel sorter forward",
+        "PUWS_AL1_1_RT": "Pop up wheel sorter right",
+        "CS_AL1_PLUS": "Conveyor scale forward"
+    },
+
+    "internal": {
+        "AL1_BASE": "Base detected",
+        "AL1_LID": "Lid detected"
+    },
+
+    "transitions": {
+        "T0212": [
+            ["P0", "P1"],
+            [
+                [
+                    ["S_AL1"], []
+                ]
+            ],
+            ["P2"],
+            "Item arriving at conveyor scale"
+        ],
+        "T23": [
+            ["P2"],
+            [
+                [
+                    ["timer_1_P2"], []
+                ]
+            ],
+            ["P3"],
+            "Item fully on scale"
+        ],
+        "T34": [
+            ["P3"],
+            [
+                [
+                    ["timer_1_P3"], []
+                ]
+            ],
+            ["P4"],
+            "Stop conveyor belt to allow accurate weight measurement"
+        ],
+        "T4B": [
+            ["P4"],
+            [
+                ["(CS_AL1_W < 2) | (CS_AL1_W > 4)"]
+            ],
+            ["PB"],
+            "Invalid item (weights less than 4kg or more than 8kg)"
+        ],
+        "T4B2": [
+            ["PB", "BIN1"],
+            [
+                [
+                    ["S_BIN_1"], []
+                ]
+            ],
+            ["BIN2", "P1", "PRODUCTION"],
+            "Item arriving at bin line"
+        ],
+        "TB21": [
+            ["BIN2"],
+            [
+                [
+                    [], ["S_BIN_1"]
+                ]
+            ],
+            ["BIN1"],
+            "Item being transported to bin"
+        ],
+        "T45": [
+            ["P4"],
+            [
+                ["(CS_AL1_W > 2) & (CS_AL1_W <= 3)"]
+            ],
+            ["P5"],
+            "Item is lid"
+        ],
+        "T46": [
+            ["P4"],
+            [
+                ["(CS_AL1_W > 3) & (CS_AL1_W <= 4)"]
+            ],
+            ["P6"]
+        ],
+        "T57": [
+            ["P5"],
+            [
+                [
+                    ["S_AL1_BL"], []
+                ]
+            ],
+            ["P_LID", "P1"],
+            "Item arriving at buffer"
+        ],
+        "T67": [
+            ["P6"],
+            [
+                [
+                    ["S_AL1_BL"], []
+                ]
+            ],
+            ["P_BASE", "P1"],
+            "Item arriving at buffer"
+        ],
+        "TPROD1": [
+            ["P_LID"],
+            [
+                [
+                    ["TRUE"],  []
+                ]
+            ],
+            ["PRODUCTION"]
+        ],
+        "TPROD2": [
+            ["P_BASE"],
+            [
+                [
+                    ["TRUE"],  []
+                ]
+            ],
+            ["PRODUCTION"]
+        ],
+        "T0": [
+            ["PRODUCTION"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["P0"]
+        ]
+    },
+
+    "inputs": {
+        "S_AL1": "boolean",
+        "timer_1_P2": "boolean",
+        "timer_1_P3": "boolean",
+        "CS_AL1_W": [
+            "0..9",
+            0,
+            "{1, 2, 3, 4}"
+        ],
+        "S_BIN_1": "boolean",
+        "S_AL1_BL": "boolean"
+    },
+
+    "specifications": {
+        "manual": [
+            "AG( (stab & P0 & P1) -> EF(PB) )",
+            "AG( (stab & P0 & P1) -> EF(P5) )",
+            "AG( (stab & P0 & P1) -> EF(P6) )",
+            "AG( stab -> EF(P_LID | P_BASE))"
+        ]
+    }
+
+}
