@@ -192,11 +192,15 @@ Exam Preparation.
 ### Results
 - SIPN and json model for production stage
 - Implementation of control for production stage
+- Implementation of control for entire Manufacturing Line 1 (production + sorting + buffer + stacking)
 
 #### Problems
 
 #### Source Files
 - /src/control_systems/virtual_factories/production.factoryio
+- /src/control_systems/virtual_factories/production_sorting_buffer_assembly.factoryio
 - /src/control_systems/implementation/production.st
-- /src/control_systems/validation/split_section_model/production.json
+- /src/control_systems/implementation/production_sorting_buffer_assembly.st
+- /src/control_systems/validation/split_section_models/production.json
+- /src/control_systems/validation/json_models/production_sorting_buffer_assembly.json
 -------------------------------------------------------------------------------------------------------------------------------------------
