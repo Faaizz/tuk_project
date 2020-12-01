@@ -15,26 +15,26 @@
         ],
         "PP1": [
             [
-                ["E_AL1_B1"], ["PAS_AL1_PLUS", "PAS_AL1_TURN"]
+                ["E_AL1_B1"], []
             ],
             "Emit raw material"
         ],
         "PP2": [
             [
                 ["PUWS_AL1_B1_PLUS"], 
-                ["E_AL1_B1", "PUWS_AL1_B1_RIGHT", "PAS_AL1_PLUS", "PAS_AL1_TURN"]
+                ["E_AL1_B1", "PUWS_AL1_B1_RIGHT"]
             ],
             "Turn off emitter and do not divert"
         ],
         "PP3": [
             [
-                [], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
+                ["MCB_CONTROL"], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
             ],
             "Product goes towards MCB"
         ],
         "PP4":[
             [
-                [], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
+                [], ["PAS_AL1_TURN", "PAS_AL1_PLUS"]
             ],
             "Raw material at MCB"
         ],
@@ -46,14 +46,9 @@
         ],
         "PP5": [
             [
-                ["MCB_CONTROL"], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
+                [], []
             ],
             "MCB busy. Set MCBR as next raw material destination."
-        ],
-        "PP6": [
-            [
-                [], []
-            ]
         ],
         "PP7": [
             [
@@ -63,13 +58,13 @@
         ],
         "PPL3": [
             [
-                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1"]
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1", "MCB_CONTROL"]
             ],
             "Raw material heads towards MCBR"
         ],
         "PPL4": [
             [
-                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1"]
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], []
             ],
             "Raw material at MCBR"
         ],
@@ -81,14 +76,9 @@
         ],
         "PPL5": [
             [
-                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1", "MCB_CONTROL"]
+                [], []
             ],
             "MCBR busy. Set MCb as the next raw material destination."
-        ],
-        "PPL6": [
-            [
-                [], []
-            ]
         ],
         "PPL7": [
             [
@@ -709,7 +699,7 @@
                     ["S_AL1_MCB"], []
                 ]
             ],
-            ["PP4"]
+            ["PP4", "PP1"]
         ],
         "TP4": [
             ["PP4", "MCB"],
@@ -720,20 +710,11 @@
             ],
             ["PP5"]
         ],
-        "TP5": [
+        "TP6": [
             ["PP5"],
             [
                 [
-                    [], ["S_AL1_MCB"]
-                ]
-            ],
-            ["PP1", "PP6"]
-        ],
-        "TP6": [
-            ["PP6"],
-            [
-                [
-                    [], ["MCB_BUSY"]
+                    ["S_AL1_MCB2"], []
                 ]
             ],
             ["PP7", "MCB"]
@@ -754,7 +735,7 @@
                     ["S_AL1_P_B2", "MCB_CONTROL"], []
                 ]
             ],
-            ["PPL3"]
+            ["PPL3", "PP1"]
         ],
         "TPL3": [
             ["PPL3"],
@@ -774,20 +755,11 @@
             ],
             ["PPL5"]
         ],
-        "TPL5": [
+        "TPL6": [
             ["PPL5"],
             [
                 [
-                    [], ["S_AL1_MCBR"]
-                ]
-            ],
-            ["PP1", "PPL6"]
-        ],
-        "TPL6": [
-            ["PPL6"],
-            [
-                [
-                    [], ["MCBR_BUSY"]
+                    ["S_AL1_MCBR2"], []
                 ]
             ],
             ["PPL7", "MCBR"]
@@ -1459,6 +1431,8 @@
         "MCBR_BUSY": ["boolean", "%IX103.3"],
         "MCBR_ERROR": ["boolean", "%IX103.4"],
         "S_AL1_P_B3": ["boolean", "%IX103.5"],
+        "S_AL1_MCB2": ["boolean", "%IX103.6"],
+        "S_AL1_MCBR2": ["boolean", "%IX103.7"],
 
 
         "S_AL1_B": ["boolean", "%IX100.0"],
@@ -1522,11 +1496,11 @@
         ],
 
 
-        "S_AL1_ST1": ["boolean", "%IX103.6"],
-        "S_AL1_ST2": ["boolean", "%IX103.7"],
-        "S_AL1_ST3": ["boolean", "%IX104.0"],
-        "RP_AL1_ST_CLAMPED": ["boolean", "%IX104.1"],
-        "AL1_ST_DETECTED": ["boolean", "%IX104.2"],
+        "S_AL1_ST1": ["boolean", "%IX104.0"],
+        "S_AL1_ST2": ["boolean", "%IX104.1"],
+        "S_AL1_ST3": ["boolean", "%IX104.2"],
+        "RP_AL1_ST_CLAMPED": ["boolean", "%IX104.3"],
+        "AL1_ST_DETECTED": ["boolean", "%IX104.4"],
         "AL1_ST_X_POS": [
             [
                 "{0, 400, 860}",
