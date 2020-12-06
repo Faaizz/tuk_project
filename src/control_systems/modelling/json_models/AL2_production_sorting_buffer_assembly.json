@@ -1,0 +1,1532 @@
+{
+    "places": {
+        "P2PAL2": [
+            [
+                ["PUWS_AL2_B1_PLUS"], ["PUWS_AL2_B1_RIGHT"]
+            ],
+            "MCL and MCLR fault free"
+        ],
+        "P2P0": [
+            [
+                ["E_AL2_B1"], 
+                ["MCL_CONTROL", "PAS_AL2_PLUS", "PAS_AL2_TURN"]
+            ],
+            "Initial place"
+        ],
+        "P2P1": [
+            [
+                ["E_AL2_B1"], []
+            ],
+            "Emit raw material"
+        ],
+        "P2P2": [
+            [
+                ["PUWS_AL2_B1_PLUS"], 
+                ["E_AL2_B1", "PUWS_AL2_B1_RIGHT"]
+            ],
+            "Turn off emitter and do not divert"
+        ],
+        "P2P3": [
+            [
+                ["MCL_CONTROL"], ["E_AL2_B1", "PAS_AL2_TURN", "PAS_AL2_PLUS"]
+            ],
+            "Product goes towards MCL"
+        ],
+        "P2P4":[
+            [
+                [], ["PAS_AL2_TURN", "PAS_AL2_PLUS"]
+            ],
+            "Raw material at MCL"
+        ],
+        "MCL": [
+            [
+                [], []
+            ],
+            "MCL Free"
+        ],
+        "P2P5": [
+            [
+                [], []
+            ],
+            "MCL busy. Set MCLR as next raw material destination."
+        ],
+        "P2P7": [
+            [
+                [], []
+            ],
+            "Base heading towards sorting stage"
+        ],
+        "P2PL3": [
+            [
+                ["PAS_AL2_TURN", "PAS_AL2_PLUS"], ["E_AL2_B1", "MCL_CONTROL"]
+            ],
+            "Raw material heads towards MCLR"
+        ],
+        "P2PL4": [
+            [
+                ["PAS_AL2_TURN", "PAS_AL2_PLUS"], []
+            ],
+            "Raw material at MCLR"
+        ],
+        "MCLR": [
+            [
+                [], []
+            ],
+            "MCLR free"
+        ],
+        "P2PL5": [
+            [
+                [], []
+            ],
+            "MCLR busy. Set MCb as the next raw material destination."
+        ],
+        "P2PL7": [
+            [
+                [], []
+            ],
+            "Lid heading to sorting stage."
+        ],
+
+
+        "P20": [
+            [
+                [],
+                []
+            ],
+            "Item recieved from production line"
+        ],
+        "P21": [
+            [
+                ["CS_AL2_PLUS"],
+                ["SB_AL2", "AL2_LID", "AL2_BASE", "PUWS_AL2_1_PLUS", "PUWS_AL2_1_RT"]
+            ],
+            "Conveyor scale free"
+        ],
+        "P22": [
+            [
+                ["CS_AL2_PLUS"],
+                ["SB_AL2", "PUWS_AL2_1_PLUS", "PUWS_AL2_1_RT"]
+            ],
+            "Item at conveyor scale"
+        ],
+        "P23": [
+            [
+                ["SB_AL2"],
+                ["CS_AL2_PLUS", "PUWS_AL2_1_PLUS", "PUWS_AL2_1_RT"]
+            ],
+            "Weighting in progress"
+        ],
+        "P24": [
+            [
+                ["SB_AL2"],
+                ["CS_AL2_PLUS", "PUWS_AL2_1_PLUS", "PUWS_AL2_1_RT"]
+            ],
+            "Evaluate weight"
+        ],
+        "P2B": [
+            [
+                ["SB_AL2", "PUWS_AL2_1_PLUS", "CS_AL2_PLUS"],
+                ["PUWS_AL2_1_RT"]
+            ],
+            "Invalid item, pass to bin"
+        ],
+        "BIN21": [
+            [
+                [],
+                []
+            ],
+            "Bin standby"
+        ],
+        "BIN22": [
+            [
+                [],
+                []
+            ],
+            "Item on bin line"
+        ],
+        "P25": [
+            [
+                ["SB_AL2", "AL2_LID", "PUWS_AL2_1_PLUS", "PUWS_AL2_1_RT", "CS_AL2_PLUS"],
+                ["AL2_BASE"]
+            ],
+            "Scale detects a lid"
+        ],
+        "P26": [
+            [
+                ["SB_AL2", "AL2_BASE", "PUWS_AL2_1_PLUS", "PUWS_AL2_1_RT", "CS_AL2_PLUS"],
+                ["AL2_LID"]
+            ],
+            "Scale detects a base"
+        ],
+
+
+        "P2_BASE": [
+            [
+                [],
+                ["P_AL2_B"]
+            ],
+            "Incoming item is a base"
+        ],
+        "P2B1": [
+            [
+                [],
+                ["P_AL2_B"]
+            ],
+            "Waiting for item to get within pusher range"
+        ],
+        "PUSH2_B": [
+            [
+                [],
+                []
+            ],
+            "Base pusher free"
+        ],
+        "P2B2": [
+            [
+                ["P_AL2_B"],
+                []
+            ],
+            "Push base"
+        ],
+        "P2B23": [
+            [
+                ["P_AL2_B"],
+                []
+            ],
+            "Pushing base"
+        ],
+        "P2B3": [
+            [
+                [],
+                ["P_AL2_B"]
+            ],
+            "Retracting base pusher"
+        ],
+        "P2B4": [
+            [
+                [],
+                []
+            ],
+            "Item on base line"
+        ],
+        "P2BF1": [
+            [
+                [],
+                ["SB_AL2_B1"]
+            ],
+            "Base buffer 1 free"
+        ],
+        "P2B5": [
+            [
+                ["SB_AL2_B1"],
+                []
+            ],
+            "Stop blade base 1 up"
+        ],
+        "P2BF2": [
+            [
+                [],
+                ["SB_AL2_B2"]
+            ],
+            "Base buffer 2 free"
+        ],
+        "P2B6": [
+            [
+                ["SB_AL2_B2"],
+                []
+            ],
+            "Stop blade base 2 up"
+        ],
+        "P2BF3": [
+            [
+                [],
+                ["SB_AL2_B3"]
+            ],
+            "Base buffer 3 free"
+        ],
+        "P2B7": [
+            [
+                ["SB_AL2_B3"],
+                []
+            ],
+            "Stop blade base 3 up"
+        ],
+
+
+        "P2_LID": [
+            [
+                [],
+                ["P_AL2_L"]
+            ],
+            "Incoming item is a lid"
+        ],
+        "P2L1": [
+            [
+                [],
+                ["P_AL2_L"]
+            ],
+            "Waiting for item to get within pusher range"
+        ],
+        "PUSH2_L": [
+            [
+                [],
+                []
+            ],
+            "Lid pusher free"
+        ],
+        "P2L2": [
+            [
+                ["P_AL2_L"],
+                []
+            ],
+            "Push lid"
+        ],
+        "P2L23": [
+            [
+                ["P_AL2_L"],
+                []
+            ],
+            "Pushing lid"
+        ],
+        "P2L3": [
+            [
+                [],
+                ["P_AL2_L"]
+            ],
+            "Retracting lid pusher"
+        ],
+        "P2L4": [
+            [
+                [],
+                []
+            ],
+            "Item on lid line"
+        ],
+        "P2LF1": [
+            [
+                [],
+                ["SB_AL2_L1"]
+            ],
+            "Lid buffer 1 free"
+        ],
+        "P2L5": [
+            [
+                ["SB_AL2_L1"],
+                []
+            ],
+            "Stop blade lid 1 up"
+        ],
+        "P2LF2": [
+            [
+                [],
+                ["SB_AL2_L2"]
+            ],
+            "Lid buffer 2 free"
+        ],
+        "P2L6": [
+            [
+                ["SB_AL2_L2"],
+                []
+            ],
+            "Stop blade lid 2 up"
+        ],
+        "P2LF3": [
+            [
+                [],
+            [   "SB_AL2_L3"]
+            ],
+            "Lid buffer 3 free"
+        ],
+        "P2L7": [
+            [
+                ["SB_AL2_L3"],
+                []
+            ],
+            "Stop blade lid 3 up"
+        ],
+        
+
+        "P2A0": [
+            [
+                [],
+                ["LP_AL2_RAISE", "AL2_GRAB"]
+            ],
+            ["AL2_X_SET:=210", "AL2_Y_SET:=150", "AL2_Z_SET:=400"],
+            "Assembler free"
+        ],
+        "P2A1": [
+            [
+                [],
+                ["AL2_GRAB", "LP_AL2_RAISE"]
+            ],
+            ["AL2_X_SET:=800", "AL2_Y_SET:=150"],
+            "Request grabber movement to lid position"
+        ],
+        "P2A2": [
+            [
+                [],
+                ["AL2_GRAB", "LP_AL2_RAISE"]
+            ],
+            ["AL2_Z_SET:=800"],
+            "Grabber at lid position. Lower grabber to pick lid"
+        ],
+        "P2A3": [
+            [
+                ["AL2_GRAB"],
+                ["RP_AL2_CLAMP", "LP_AL2_RAISE"]
+            ],
+            "P2ick up lid and release lid clamp"
+        ],
+        "P2A4": [
+            [
+                ["AL2_GRAB"],
+                ["RP_AL2_CLAMP", "LP_AL2_RAISE"]
+            ],
+            ["AL2_Z_SET:=400"],
+            "Raise grabber up a little"
+        ],
+        "P2A5": [
+            [
+                ["AL2_GRAB"],
+                ["LP_AL2_RAISE"]
+            ],
+            ["AL2_X_SET:=210", "AL2_Y_SET:=150"],
+            "Move grabber to base position for fitting"
+        ],
+        "P2A6": [
+            [
+                ["AL2_GRAB", "LP_AL2_CLAMP"],
+                ["LP_AL2_RAISE"]
+            ],
+            ["AL2_Z_SET:=818"],
+            "Fit lid on base"
+        ],
+        "P2A7": [
+            [
+                ["LP_AL2_CLAMP"],
+                ["AL2_GRAB", "LP_AL2_RAISE"]
+            ],
+            ["AL2_Z_SET:=400"],
+            "Release lid and raise grabber back up"
+        ],
+        "P2A8": [
+            [
+                [],
+                ["AL2_GRAB", "LP_AL2_CLAMP", "LP_AL2_RAISE"]
+            ],
+            "Release base clamp"
+        ],
+        "P2A9": [
+            [
+                ["LP_AL2_RAISE"],
+                ["LP_AL2_CLAMP"]
+            ],
+            "Raise base clamp so that assembled product can pass"
+        ],
+        "P2A10": [
+            [
+                ["LP_AL2_RAISE"],
+                ["LP_AL2_CLAMP"]
+            ],
+            "Base clamp going up"
+        ],
+        "P2A11": [
+            [
+                [],
+                ["LP_AL2_CLAMP", "LP_AL2_RAISE"]
+            ],
+            "P2ut clamp back down"
+        ],
+        "P2A12": [
+            [
+                [],
+                ["LP_AL2_CLAMP","LP_AL2_RAISE"]
+            ],
+            "Base clamp going back down"
+        ],
+        "P2A13": [
+            [
+                [],
+                []
+            ],
+            "Assembled product out"
+        ],
+        "P2BF4": [
+            [
+                [],
+                ["LP_AL2_CLAMP"]
+            ],
+            "Base clamp free"
+        ],
+        "P2B8": [
+            [
+                ["LP_AL2_CLAMP"],
+                []
+            ],
+            "Base clamping in progress"
+        ],
+        "P2B9": [
+            [
+                ["LP_AL2_CLAMP"],
+                []
+            ],
+            "Base clamped"
+        ],
+        "P2LF4": [
+            [
+                [],
+                ["RP_AL2_CLAMP"]
+            ],
+            "Lid clamp free"
+        ],
+        "P2L8": [
+            [
+                ["RP_AL2_CLAMP"],
+                []
+            ],
+            "Lid clamping in progress"
+        ],
+        "P2L9": [
+            [
+                ["RP_AL2_CLAMP"],
+                []
+            ],
+            "Lid clamped"
+        ],
+
+
+        "P2S0": [
+            [
+                [], []
+            ],
+            ["AL2_ST_X_SET:=0", "AL2_ST_Y_SET:=560", "AL2_ST_Z_SET:=410"],
+            "Stacker is free"
+        ],
+        "P2SC": [
+            [
+                [], ["RP_AL2_ST_CLAMP"]
+            ],
+            "Clamp is free"
+        ],
+        "P2S1": [
+            [
+                [], []
+            ],
+            "Product reaches stacker"
+        ],
+        "P2S2": [
+            [
+                ["RP_AL2_ST_CLAMP"], ["AL2_ST_GRAB"]
+            ],
+            "Product gets withing graber range"
+        ],
+        "P2S3": [
+            [
+                ["RP_AL2_ST_CLAMP"], ["AL2_ST_GRAB"]
+            ],
+            ["AL2_ST_Y_SET:=560"],
+            "Move grabber to product location"
+        ],
+        "P2S4": [
+            [
+                ["RP_AL2_ST_CLAMP"], ["AL2_ST_GRAB"]
+            ],
+            ["AL2_ST_Z_SET:=750"],
+            "Move grabber down to pick up product"
+        ],
+        "P2S5": [
+            [
+                ["AL2_ST_GRAB"], []
+            ],
+            "Grab product"
+        ],
+        "P2S6": [
+            [
+                ["AL2_ST_GRAB"], []
+            ],
+            ["AL2_ST_Z_SET:=410"],
+            "Raise grabber up a little"
+        ],
+        "P2S7": [
+            [
+                ["AL2_ST_GRAB"], []
+            ],
+            ["AL2_ST_X_SET:=860"],
+            "Move grabber to box location"
+        ],
+        "P2S8": [
+            [
+                ["AL2_ST_GRAB"], []
+            ],
+            ["AL2_ST_Z_SET:=600"],
+            "Lower grabber to drop product into box"
+        ],
+        "P2S9": [
+            [
+                [], ["AL2_ST_GRAB"]
+            ],
+            "Drop product"
+        ],
+        "P2S10": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "P2S11": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "P2S12": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "P2SE1": [
+            [
+                ["AL2_EMIT", "RC_AL2_ST"], []
+            ],
+            "Three products in box, roll box away and emit new box"
+        ],
+        "P2SE2": [
+            [
+                ["RC_AL2_ST"], ["AL2_EMIT"]
+            ],
+            "Roll box off conveyor on to the next conveyor"
+        ],
+        "P2SE0": [
+            [
+                [], ["AL2_EMIT", "RC_AL2_ST"]
+            ],
+            "New box arrived, stop conveyor"
+        ],
+
+
+        "initial": [
+            "P2PAL2", "P2P0", "MCL", "MCLR",
+
+            "P20", "P21", "BIN21", 
+
+            "P2USH_B", "P2BF1", "P2BF2", "P2BF3", "P2BF4",
+
+            "P2USH_L", "P2LF1", "P2LF2", "P2LF3", "P2LF4",
+            
+            "P2A0",
+
+            "P2S0", "P2SC", "P2SE0"
+        ]
+    },
+
+    "outputs": {
+        "E_AL2_B1": ["%QX103.4"],
+        "PUWS_AL2_B1_PLUS": ["%QX103.5"],
+        "PUWS_AL2_B1_RIGHT": ["%QX103.6"],
+        "PAS_AL2_PLUS": ["%QX103.7"],
+        "PAS_AL2_TURN": ["%QX104.0"],
+
+
+        "SB_AL2": ["%QX104.1"],
+        "PUWS_AL2_1_PLUS": ["%QX104.2"],
+        "PUWS_AL2_1_RT": ["%QX104.3"],
+        "CS_AL2_PLUS": ["%QX104.4"],
+
+
+        "P_AL2_B": ["%QX104.5"],
+        "SB_AL2_B1": ["%QX104.6"],
+        "SB_AL2_B2": ["%QX104.7"],
+        "SB_AL2_B3": ["%QX105.0"],
+        "LP_AL2_CLAMP": ["%QX105.1"],
+
+
+        "P_AL2_L": ["%QX106.2"],
+        "SB_AL2_L1": ["%QX106.3"],
+        "SB_AL2_L2": ["%QX106.4"],
+        "SB_AL2_L3": ["%QX106.5"],
+        "RP_AL2_CLAMP": ["%QX106.6"],
+
+
+        "AL2_GRAB": ["%QX106.7"],
+        "LP_AL2_RAISE": ["%QX107.1"],
+        "AL2_X_SET": ["%QW108", "WORD"],
+        "AL2_Y_SET": ["%QW109", "WORD"],
+        "AL2_Z_SET": ["%QW110", "WORD"],
+
+
+        "AL2_ST_X_SET": ["%QW111", "WORD"],
+        "AL2_ST_Y_SET":  ["%QW112", "WORD"],
+        "AL2_ST_Z_SET":  ["%QW113", "WORD"],
+        "RP_AL2_ST_CLAMP":  ["%QX107.2"],
+        "AL2_ST_GRAB": ["%QX107.3"],
+        "AL2_EMIT": ["%QX107.4"],
+        "RC_AL2_ST": ["%QX107.5"]
+    },
+
+    "transitions": {
+        "TP0": [
+            ["P2P0"],
+            [
+                [
+                    [], ["MCL_CONTROL"]
+                ]
+            ],
+            ["P2P1"]
+        ],
+        "TP1": [
+            ["P2P1"],
+            [
+                [
+                    ["S_AL2_P_B1"], []
+                ]
+            ],
+            ["P2P2"]
+        ],
+        "TP2": [
+            ["P2P2"],
+            [
+                [
+                    ["S_AL2_P_B2"], ["MCL_CONTROL"]
+                ]
+            ],
+            ["P2P3"]
+        ],
+        "TP3": [
+            ["P2P3"],
+            [
+                [
+                    ["S_AL2_MCL"], []
+                ]
+            ],
+            ["P2P4", "P2P1"]
+        ],
+        "TP4": [
+            ["P2P4", "MCL"],
+            [
+                [
+                    ["MCL_BUSY"], []
+                ]
+            ],
+            ["P2P5"]
+        ],
+        "TP6": [
+            ["P2P5"],
+            [
+                [
+                    ["S_AL2_MCL2"], []
+                ]
+            ],
+            ["P2P7", "MCL"]
+        ],
+        "TP7": [
+            ["P2P7"],
+            [
+                [
+                    ["S_AL2_P_B3"], []
+                ]
+            ],
+            ["P20"]
+        ],
+        "TPL2": [
+            ["P2P2"],
+            [
+                [
+                    ["S_AL2_P_B2", "MCL_CONTROL"], []
+                ]
+            ],
+            ["P2PL3", "P2P1"]
+        ],
+        "TPL3": [
+            ["P2PL3"],
+            [
+                [
+                    ["S_AL2_MCLR"], []
+                ]
+            ],
+            ["P2PL4"]
+        ],
+        "TPL4": [
+            ["P2PL4", "MCLR"],
+            [
+                [
+                    ["MCLR_BUSY"], []
+                ]
+            ],
+            ["P2PL5"]
+        ],
+        "TPL6": [
+            ["P2PL5"],
+            [
+                [
+                    ["S_AL2_MCLR2"], []
+                ]
+            ],
+            ["P2PL7", "MCLR"]
+        ],
+        "TPL7": [
+            ["P2PL7"],
+            [
+                [
+                    ["S_AL2_P_B3"], []
+                ]
+            ],
+            ["P20"]
+        ],
+
+
+        "T0212": [
+            ["P20", "P21"],
+            [
+                [
+                    ["S_AL2"], []
+                ]
+            ],
+            ["P22"],
+            "Item arriving at conveyor scale"
+        ],
+        "T23": [
+            ["P22"],
+            [
+                [
+                    ["timer_2_1_P2.Q"], []
+                ]
+            ],
+            ["P23"],
+            "Item fully on scale"
+        ],
+        "T34": [
+            ["P23"],
+            [
+                [
+                    ["timer_2_1_P3.Q"], []
+                ]
+            ],
+            ["P24"],
+            "Stop conveyor belt to allow accurate weight measurement"
+        ],
+        "T4B": [
+            ["P24"],
+            [
+                ["(CS_AL2_W < 200) | (CS_AL2_W > 400)"]
+            ],
+            ["P2B"],
+            "Invalid item (weights less than 4kg or more than 8kg)"
+        ],
+        "T4B2": [
+            ["P2B", "BIN21"],
+            [
+                [
+                    ["S_BIN2_1"], []
+                ]
+            ],
+            ["BIN22", "P21"],
+            "Item arriving at bin line"
+        ],
+        "TB21": [
+            ["BIN22"],
+            [
+                [
+                    [], ["S_BIN2_1"]
+                ]
+            ],
+            ["BIN21"],
+            "Item being transported to bin"
+        ],
+        "T45": [
+            ["P24"],
+            [
+                ["(CS_AL2_W > 200) & (CS_AL2_W <= 300)"]
+            ],
+            ["P25"],
+            "Item is lid"
+        ],
+        "T46": [
+            ["P24"],
+            [
+                ["(CS_AL2_W > 300) & (CS_AL2_W <= 400)"]
+            ],
+            ["P26"]
+        ],
+        "T57": [
+            ["P25"],
+            [
+                [
+                    ["S_AL2_BL"], []
+                ]
+            ],
+            ["P2_LID", "P21"],
+            "Item arriving at buffer"
+        ],
+        "T67": [
+            ["P26"],
+            [
+                [
+                    ["S_AL2_BL"], []
+                ]
+            ],
+            ["P2_BASE", "P21"],
+            "Item arriving at buffer"
+        ],
+        
+
+        "TB0": [
+            ["P2_BASE"],
+            [
+                [
+                    ["S_AL2_B"], []
+                ]
+            ],
+            ["P2B1"],
+            "Incoming item detected"
+        ],
+        "TB1": [
+            ["P2B1", "PUSH2_B"],
+            [
+                [
+                    ["timer_2_1_TB1.Q"], []
+                ]
+            ],
+            ["P2B2"],
+            "Pusher waiting time reached"
+        ],
+        "TB23": [
+            ["P2B2"],
+            [
+                [
+                    ["P_AL2_B_FT"], []
+                ]
+            ],
+            ["P2B23"],
+            "Base pusher extending"
+        ],
+        "TB2": [
+            ["P2B23"],
+            [
+                [
+                    ["P_AL2_B_FT"], []
+                ]
+            ],
+            ["P2B3"],
+            "Base pusher fully extended"
+        ],
+        "TB3": [
+            ["P2B3"],
+            [
+                [
+                    ["P_AL2_B_BK"], []
+                ]
+            ],
+            ["P2B4", "PUSH2_B"],
+            "Base pusher fully retracted"
+        ],
+        "TB4": [
+            ["P2B4", "P2BF1"],
+            [
+                [
+                    ["S_AL2_B1"], []
+                ]
+            ],
+            ["P2B5"]
+        ],
+        "TB5": [
+            ["P2B5", "P2BF2"],
+            [
+                [
+                    ["S_AL2_B2"], []
+                ]
+            ],
+            ["P2B6", "P2BF1"]
+        ],
+        "TB6": [
+            ["P2B6", "P2BF3"],
+            [
+                [
+                    ["S_AL2_B3"], []
+                ]
+            ],
+            ["P2B7", "P2BF2"]
+        ],
+        "TB7": [
+            ["P2B7", "P2BF4"],
+            [
+                [
+                    ["S_AL2_LP"], []
+                ]
+            ],
+            ["P2B8"]
+        ],
+
+
+        "TL0": [
+            ["P2_LID"],
+            [
+                [
+                    ["S_AL2_L"], []
+                ]
+            ],
+            ["P2L1"],
+            "Incoming item detected"
+        ],
+        "TL1": [
+            ["P2L1", "PUSH2_L"],
+            [
+                [
+                    ["timer_2_1_TL1.Q"], []
+                ]
+            ],
+            ["P2L2"],
+            "Pusher waiting time reached"
+        ],
+        "TL23": [
+            ["P2L2"],
+            [
+                [
+                    ["P_AL2_L_FT"], []
+                ]
+            ],
+            ["P2L23"],
+            "Lid pusher extending"
+        ],
+        "TL2": [
+            ["P2L23"],
+            [
+                [
+                    ["P_AL2_L_FT"], []
+                ]
+            ],
+            ["P2L3"],
+            "Lid pusher fully extended"
+        ],
+        "TL3": [
+            ["P2L3"],
+            [
+                [
+                    ["P_AL2_L_BK"], []
+                ]
+            ],
+            ["P2L4", "PUSH2_L"],
+            "Lid pusher fully retracted"
+        ],
+        "TL4": [
+            ["P2L4", "P2LF1"],
+            [
+                [
+                    ["S_AL2_L1"], []
+                ]
+            ],
+            ["P2L5"]
+        ],
+        "TL5": [
+            ["P2L5", "P2LF2"],
+            [
+                [
+                    ["S_AL2_L2"], []
+                ]
+            ],
+            ["P2L6", "P2LF1"]
+        ],
+        "TL6": [
+            ["P2L6", "P2LF3"],
+            [
+                [
+                    ["S_AL2_L3"], []
+                ]
+            ],
+            ["P2L7", "P2LF2"]
+        ],
+        "TL7": [
+            ["P2L7", "P2LF4"],
+            [
+                [
+                    ["S_AL2_RP"], []
+                ]
+            ],
+            ["P2L8"]
+        ],
+
+
+
+        "TL8": [
+            ["P2L8"],
+            [
+                [
+                    ["RP_AL2_CLAMPED"], []
+                ]
+            ],
+            ["P2L9"]
+        ],
+        "TB8": [
+            ["P2B8"],
+            [
+                [
+                    ["LP_AL2_CLAMPED"], []
+                ]
+            ],
+            ["P2B9"]
+        ],
+        "TA0": [
+            ["P2L9", "P2A0"],
+            [
+                [
+                    ["timer_2_1_PL9.Q", "RP_AL2_CLAMPED"], ["AL2_DETECTED"]
+                ]
+            ],
+            ["P2A1"]
+        ],
+        "TA1": [
+            ["P2A1"],
+            [
+                [
+                    "AL2_X_POS>798 & AL2_X_POS<802"
+                ]
+            ],
+            ["P2A2"],
+            "Grabber arrives at lid position"
+        ],
+        "TA2": [
+            ["P2A2"],
+            [
+                [
+                    "AL2_Z_POS>798 & AL2_Z_POS<802"
+                ]
+            ],
+            ["P2A3"],
+            ""
+        ],
+        "TA3": [
+            ["P2A3"],
+            [
+                [
+                    [], ["RP_AL2_CLAMPED"]
+                ]
+            ],
+            ["P2A4"]
+        ],
+        "TA4": [
+            ["P2A4"],
+            [
+                [
+                    "AL2_Z_POS>398 & AL2_Z_POS<402"
+                ]
+            ],
+            ["P2A5", "P2LF3", "P2LF4"]
+        ],
+        "TA5": [
+            ["P2B9", "P2A5"],
+            [
+                [
+                    "AL2_DETECTED & LP_AL2_CLAMPED & AL2_X_POS>208 & AL2_X_POS<212"
+                ]
+            ],
+            ["P2A6"]
+        ],
+       "TA6": [
+           ["P2A6"],
+           [
+               [
+                   "AL2_Z_POS>810 & AL2_Z_POS<820"
+               ]
+           ],
+           ["P2A7"]
+       ],
+       "TA7": [
+           ["P2A7"],
+           [
+               [
+                   "AL2_Z_POS>398 & AL2_Z_POS<402"
+               ]
+           ],
+           ["P2A8"]
+       ], 
+       "TA8": [
+           ["P2A8"],
+           [
+               [
+                   [], ["LP_AL2_CLAMPED"]
+               ]
+           ],
+           ["P2A9"]
+       ],
+       "TA9": [
+           ["P2A9"],
+           [
+               [
+                   [], ["LP_AL2_LIMIT"]
+               ]
+           ],
+           ["P2A10"]
+       ],
+       "TA10": [
+           ["P2A10"],
+           [
+               [
+                   ["LP_AL2_LIMIT"], []
+               ]
+           ],
+           ["P2A11"]
+       ],
+       "TA11": [
+            ["P2A11"],
+            [
+                [
+                    [], ["LP_AL2_LIMIT"]
+                ]
+            ],
+            ["P2A12"]
+        ],
+        "TA12": [
+            ["P2A12"],
+            [
+                [
+                    ["LP_AL2_LIMIT"], []
+                ]
+            ],
+            ["P2A13", "P2A0", "P2BF3", "P2BF4"]
+        ],
+
+
+        "TS1": [
+            ["P2A13"],
+            [
+                [
+                    ["S_AL2_ST1"], []
+                ]
+            ],
+            ["P2S1"]
+        ],
+        "TS2": [
+            ["P2S0", "P2SC", "P2S1"],
+            [
+                [
+                    ["S_AL2_ST2"], []
+                ]
+            ],
+            ["P2S2"]
+        ],
+        "TS3": [
+            ["P2S2"],
+            [
+                [
+                    ["RP_AL2_ST_CLAMPED"], []
+                ]
+            ],
+            ["P2S3"]
+        ],
+        "TS4": [
+            ["P2S3"],
+            [
+                [
+                    "(AL2_ST_Y_POS>540) & (AL2_ST_Y_POS<580)"
+                ]
+            ],
+            ["P2S4"]
+        ],
+        "TS5": [
+            ["P2S4"],
+            [
+                [
+                    "(AL2_ST_Z_POS>730) & (AL2_ST_Z_POS<770)"
+                ]
+            ],
+            ["P2SC", "P2S5"]
+        ],
+        "TS6": [
+            ["P2S5"],
+            [
+                [
+                    ["AL2_ST_DETECTED"], []
+                ]
+            ],
+            ["P2S6"]
+        ],
+        "TS7": [
+            ["P2S6"],
+            [
+                [
+                    "(AL2_ST_Z_POS>390) & (AL2_ST_Z_POS<430)"
+                ]
+            ],
+            ["P2S7"]
+        ],
+        "TS8": [
+            ["P2S7"],
+            [
+                [
+                    "(AL2_ST_X_POS>840) & (AL2_ST_X_POS<880)"
+                ]
+            ],
+            ["P2S8"]
+        ],
+        "TS9": [
+            ["P2S8", "P2SE0"],
+            [
+                [
+                    "(AL2_ST_Z_POS>580) & (AL2_ST_Z_POS<620)"
+                ]
+            ],
+            ["P2S9"]
+        ],
+        "TS10": [
+            ["P2S9"],
+            [
+                [
+                    [], ["AL2_ST_DETECTED"]
+                ]
+            ],
+            ["P2S0", "P2S10", "P2SE0"]
+        ],
+        "TS11": [
+            ["P2S9"],
+            [
+                [
+                    [], ["AL2_ST_DETECTED"]
+                ]
+            ],
+            ["P2S0", "P2S11", "P2SE0"]
+        ],
+        "TS12": [
+            ["P2S9"],
+            [
+                [
+                    [], ["AL2_ST_DETECTED"]
+                ]
+            ],
+            ["P2S0", "P2S12", "P2SE0"]
+        ],
+        "TS13": [
+            ["P2S10", "P2S11", "P2S12", "P2SE0"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["P2SE1"]
+        ],
+        "TSE1": [
+            ["P2SE1"],
+            [
+                [
+                    [], ["S_AL2_ST3"]
+                ]
+            ],
+            ["P2SE2"]
+        ],
+        "TSE2": [
+            ["P2SE2"],
+            [
+                [
+                    ["S_AL2_ST3"], []
+                ]
+            ],
+            ["P2SE0"]
+        ]
+
+    },
+
+    "internals": {
+        "MCL_CONTROL": [
+            [
+                
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ],
+
+
+        "timer_2_1_TL1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_2_1_TL1(IN:= P2L1, PT:= T#750ms)"
+            ]
+        ],
+        "timer_2_1_TB1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_2_1_TB1(IN:= P2B1, PT:= T#900ms)"
+            ]
+        ],
+        "timer_2_1_P2": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_2_1_P2(IN:= P22, PT:= T#1000ms)"
+            ]
+        ],
+        "timer_2_1_P3": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_2_1_P3(IN:= P23, PT:= T#1000ms)"
+            ]
+        ],
+        "AL2_BASE":[
+            [
+                "boolean",
+                "{TRUE, FALSE}",
+                "{TRUE, FALSE}"
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ],
+        "AL2_LID": [
+            [
+                "boolean",
+                "{TRUE, FALSE}",
+                "{TRUE, FALSE}"
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ],
+        "timer_2_1_PL9": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_2_1_PL9(IN:= P2L9, PT:= T#300ms)"
+            ]
+        ]
+
+    },
+
+    "inputs": {
+        "S_AL2_P_B1": ["boolean", "%IX104.7"],
+        "S_AL2_P_B2": ["boolean", "%IX105.0"],
+        "S_AL2_MCL": ["boolean", "%IX105.1"],
+        "MCL_BUSY": ["boolean", "%IX105.2"],
+        "MCL_ERROR": ["boolean", "%IX105.3"],
+        "S_AL2_MCLR": ["boolean", "%IX105.4"],
+        "MCLR_BUSY": ["boolean", "%IX105.5"],
+        "MCLR_ERROR": ["boolean", "%IX105.6"],
+        "S_AL2_P_B3": ["boolean", "%IX105.7"],
+        "S_AL2_MCL2": ["boolean", "%IX106.0"],
+        "S_AL2_MCLR2": ["boolean", "%IX106.1"],
+
+
+        "S_AL2_B": ["boolean", "%IX106.2"],
+        "P_AL2_B_FT": ["boolean", "%IX106.3"],
+        "P_AL2_B_BK": ["boolean", "%IX106.4"],
+        "S_AL2_B1": ["boolean", "%IX106.5"],
+        "S_AL2_B2": ["boolean", "%IX106.6"],
+        "S_AL2_B3": ["boolean", "%IX106.7"],
+        "LP_AL2_CLAMPED": ["boolean", "%IX107.0"],
+        "S_AL2_LP": ["boolean", "%IX107.1"],
+
+
+        "S_AL2_L": ["boolean", "%IX107.2"],
+        "P_AL2_L_FT": ["boolean", "%IX107.3"],
+        "P_AL2_L_BK": ["boolean", "%IX107.4"],
+        "S_AL2_L1": ["boolean", "%IX107.5"],
+        "S_AL2_L2": ["boolean", "%IX107.6"],
+        "S_AL2_L3": ["boolean", "%IX107.7"],
+        "RP_AL2_CLAMPED": ["boolean", "%IX108.0"],
+        "S_AL2_RP": ["boolean", "%IX108.1"],
+
+
+        "S_AL2": ["boolean", "%IX108.2"],
+        "CS_AL2_W": [
+            [
+                "{0, 100, 300, 500, 700, 900}",
+                0,
+                "{0, 100, 300, 500, 700, 900}"
+            ],
+            "%IW109"
+        ],
+        "S_BIN2_1": ["boolean", "%IX108.3"],
+        "S_AL2_BL": ["boolean", "%IX108.4"],
+
+
+        "AL2_DETECTED": ["boolean", "%IX108.5"],
+        "LP_AL2_LIMIT": ["boolean", "%IX108.6"],
+        "AL2_X_POS":  [
+            [
+                "{0, 200, 700, 900}",
+                0,
+                "{0, 200, 700, 900}"
+            ],
+            "%IW110"
+        ],
+        "AL2_Y_POS":  [
+            [
+                "{0, 150, 300}",
+                0,
+                "{0, 150, 300}"
+            ],
+            "%IW111"
+        ],
+        "AL2_Z_POS":  [
+            [
+                "{0, 100, 400, 800}",
+                0,
+                "{0, 100, 400, 800}"
+            ],
+            "%IW112"
+        ],
+
+
+        "S_AL2_ST1": ["boolean", "%IX108.7"],
+        "S_AL2_ST2": ["boolean", "%IX109.0"],
+        "S_AL2_ST3": ["boolean", "%IX109.1"],
+        "RP_AL2_ST_CLAMPED": ["boolean", "%IX109.2"],
+        "AL2_ST_DETECTED": ["boolean", "%IX109.3"],
+        "AL2_ST_X_POS": [
+            [
+                "{0, 400, 860}",
+                0,
+                "{0, 400, 860}"
+            ],
+            "%IW113"
+        ],
+        "AL2_ST_Y_POS": [
+            [
+                "{0, 300, 560}",
+                0,
+                "{0, 300, 560}"
+            ],
+            "%IW114"
+        ],
+        "AL2_ST_Z_POS": [
+            [
+                "{0, 200, 410, 600, 750}",
+                0,
+                "{0, 200, 410, 600, 750}"
+            ],
+            "%IW115"
+        ]
+
+        
+    }
+
+}

@@ -1,0 +1,974 @@
+
+PROGRAM program0
+
+
+
+(*=====================================================================*)
+(*DECLARATION*)
+(*=====================================================================*)
+
+VAR
+
+
+(*INPUTS*)
+S_AL2_P_B1 AT %IX104.7 : BOOL;
+S_AL2_P_B2 AT %IX105.0 : BOOL;
+S_AL2_MCL AT %IX105.1 : BOOL;
+MCL_BUSY AT %IX105.2 : BOOL;
+MCL_ERROR AT %IX105.3 : BOOL;
+S_AL2_MCLR AT %IX105.4 : BOOL;
+MCLR_BUSY AT %IX105.5 : BOOL;
+MCLR_ERROR AT %IX105.6 : BOOL;
+S_AL2_P_B3 AT %IX105.7 : BOOL;
+S_AL2_MCL2 AT %IX106.0 : BOOL;
+S_AL2_MCLR2 AT %IX106.1 : BOOL;
+S_AL2_B AT %IX106.2 : BOOL;
+P_AL2_B_FT AT %IX106.3 : BOOL;
+P_AL2_B_BK AT %IX106.4 : BOOL;
+S_AL2_B1 AT %IX106.5 : BOOL;
+S_AL2_B2 AT %IX106.6 : BOOL;
+S_AL2_B3 AT %IX106.7 : BOOL;
+LP_AL2_CLAMPED AT %IX107.0 : BOOL;
+S_AL2_LP AT %IX107.1 : BOOL;
+S_AL2_L AT %IX107.2 : BOOL;
+P_AL2_L_FT AT %IX107.3 : BOOL;
+P_AL2_L_BK AT %IX107.4 : BOOL;
+S_AL2_L1 AT %IX107.5 : BOOL;
+S_AL2_L2 AT %IX107.6 : BOOL;
+S_AL2_L3 AT %IX107.7 : BOOL;
+RP_AL2_CLAMPED AT %IX108.0 : BOOL;
+S_AL2_RP AT %IX108.1 : BOOL;
+S_AL2 AT %IX108.2 : BOOL;
+CS_AL2_W AT %IW109 : WORD;
+S_BIN2_1 AT %IX108.3 : BOOL;
+S_AL2_BL AT %IX108.4 : BOOL;
+AL2_DETECTED AT %IX108.5 : BOOL;
+LP_AL2_LIMIT AT %IX108.6 : BOOL;
+AL2_X_POS AT %IW110 : WORD;
+AL2_Y_POS AT %IW111 : WORD;
+AL2_Z_POS AT %IW112 : WORD;
+S_AL2_ST1 AT %IX108.7 : BOOL;
+S_AL2_ST2 AT %IX109.0 : BOOL;
+S_AL2_ST3 AT %IX109.1 : BOOL;
+RP_AL2_ST_CLAMPED AT %IX109.2 : BOOL;
+AL2_ST_DETECTED AT %IX109.3 : BOOL;
+AL2_ST_X_POS AT %IW113 : WORD;
+AL2_ST_Y_POS AT %IW114 : WORD;
+AL2_ST_Z_POS AT %IW115 : WORD;
+E_AL2_B1 AT %QX103.4 : BOOL;
+PUWS_AL2_B1_PLUS AT %QX103.5 : BOOL;
+PUWS_AL2_B1_RIGHT AT %QX103.6 : BOOL;
+PAS_AL2_PLUS AT %QX103.7 : BOOL;
+PAS_AL2_TURN AT %QX104.0 : BOOL;
+SB_AL2 AT %QX104.1 : BOOL;
+PUWS_AL2_1_PLUS AT %QX104.2 : BOOL;
+PUWS_AL2_1_RT AT %QX104.3 : BOOL;
+CS_AL2_PLUS AT %QX104.4 : BOOL;
+P_AL2_B AT %QX104.5 : BOOL;
+SB_AL2_B1 AT %QX104.6 : BOOL;
+SB_AL2_B2 AT %QX104.7 : BOOL;
+SB_AL2_B3 AT %QX105.0 : BOOL;
+LP_AL2_CLAMP AT %QX105.1 : BOOL;
+P_AL2_L AT %QX106.2 : BOOL;
+SB_AL2_L1 AT %QX106.3 : BOOL;
+SB_AL2_L2 AT %QX106.4 : BOOL;
+SB_AL2_L3 AT %QX106.5 : BOOL;
+RP_AL2_CLAMP AT %QX106.6 : BOOL;
+AL2_GRAB AT %QX106.7 : BOOL;
+LP_AL2_RAISE AT %QX107.1 : BOOL;
+AL2_X_SET AT %QW108 : WORD;
+AL2_Y_SET AT %QW109 : WORD;
+AL2_Z_SET AT %QW110 : WORD;
+AL2_ST_X_SET AT %QW111 : WORD;
+AL2_ST_Y_SET AT %QW112 : WORD;
+AL2_ST_Z_SET AT %QW113 : WORD;
+RP_AL2_ST_CLAMP AT %QX107.2 : BOOL;
+AL2_ST_GRAB AT %QX107.3 : BOOL;
+AL2_EMIT AT %QX107.4 : BOOL;
+RC_AL2_ST AT %QX107.5 : BOOL;
+
+END_VAR
+
+
+VAR
+
+(*PLACES*)
+
+P2PAL2 : BOOL := 1;
+P2P0 : BOOL := 1;
+P2P1 : BOOL := 0;
+P2P2 : BOOL := 0;
+P2P3 : BOOL := 0;
+P2P4 : BOOL := 0;
+MCL : BOOL := 1;
+P2P5 : BOOL := 0;
+P2P7 : BOOL := 0;
+P2PL3 : BOOL := 0;
+P2PL4 : BOOL := 0;
+MCLR : BOOL := 1;
+P2PL5 : BOOL := 0;
+P2PL7 : BOOL := 0;
+P20 : BOOL := 1;
+P21 : BOOL := 1;
+P22 : BOOL := 0;
+P23 : BOOL := 0;
+P24 : BOOL := 0;
+P2B : BOOL := 0;
+BIN21 : BOOL := 1;
+BIN22 : BOOL := 0;
+P25 : BOOL := 0;
+P26 : BOOL := 0;
+P2_BASE : BOOL := 0;
+P2B1 : BOOL := 0;
+PUSH2_B : BOOL := 0;
+P2B2 : BOOL := 0;
+P2B23 : BOOL := 0;
+P2B3 : BOOL := 0;
+P2B4 : BOOL := 0;
+P2BF1 : BOOL := 1;
+P2B5 : BOOL := 0;
+P2BF2 : BOOL := 1;
+P2B6 : BOOL := 0;
+P2BF3 : BOOL := 1;
+P2B7 : BOOL := 0;
+P2_LID : BOOL := 0;
+P2L1 : BOOL := 0;
+PUSH2_L : BOOL := 0;
+P2L2 : BOOL := 0;
+P2L23 : BOOL := 0;
+P2L3 : BOOL := 0;
+P2L4 : BOOL := 0;
+P2LF1 : BOOL := 1;
+P2L5 : BOOL := 0;
+P2LF2 : BOOL := 1;
+P2L6 : BOOL := 0;
+P2LF3 : BOOL := 1;
+P2L7 : BOOL := 0;
+P2A0 : BOOL := 1;
+P2A1 : BOOL := 0;
+P2A2 : BOOL := 0;
+P2A3 : BOOL := 0;
+P2A4 : BOOL := 0;
+P2A5 : BOOL := 0;
+P2A6 : BOOL := 0;
+P2A7 : BOOL := 0;
+P2A8 : BOOL := 0;
+P2A9 : BOOL := 0;
+P2A10 : BOOL := 0;
+P2A11 : BOOL := 0;
+P2A12 : BOOL := 0;
+P2A13 : BOOL := 0;
+P2BF4 : BOOL := 1;
+P2B8 : BOOL := 0;
+P2B9 : BOOL := 0;
+P2LF4 : BOOL := 1;
+P2L8 : BOOL := 0;
+P2L9 : BOOL := 0;
+P2S0 : BOOL := 1;
+P2SC : BOOL := 1;
+P2S1 : BOOL := 0;
+P2S2 : BOOL := 0;
+P2S3 : BOOL := 0;
+P2S4 : BOOL := 0;
+P2S5 : BOOL := 0;
+P2S6 : BOOL := 0;
+P2S7 : BOOL := 0;
+P2S8 : BOOL := 0;
+P2S9 : BOOL := 0;
+P2S10 : BOOL := 0;
+P2S11 : BOOL := 0;
+P2S12 : BOOL := 0;
+P2SE1 : BOOL := 0;
+P2SE2 : BOOL := 0;
+P2SE0 : BOOL := 1;
+STABLE : BOOL := 0;
+
+END_VAR
+
+
+VAR
+
+(*INTERNAL VARIABLES*)
+
+MCL_CONTROL : BOOL;
+timer_2_1_TL1 : TON;
+timer_2_1_TB1 : TON;
+timer_2_1_P2 : TON;
+timer_2_1_P3 : TON;
+AL2_BASE : BOOL;
+AL2_LID : BOOL;
+timer_2_1_PL9 : TON;
+
+END_VAR
+
+timer_2_1_TL1(IN:= P2L1, PT:= T#750ms);
+timer_2_1_TB1(IN:= P2B1, PT:= T#900ms);
+timer_2_1_P2(IN:= P22, PT:= T#1000ms);
+timer_2_1_P3(IN:= P23, PT:= T#1000ms);
+timer_2_1_PL9(IN:= P2L9, PT:= T#300ms);
+
+
+(*=====================================================================*)
+(*TRANSITIONS*)
+(*=====================================================================*)
+
+STABLE:=0;
+WHILE STABLE=0 DO
+   STABLE:=1;
+   (*TP0*)
+   IF (P2P0) AND ( (NOT MCL_CONTROL) ) AND (NOT P2P1) THEN
+       P2P0:=0;
+       P2P1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TP1*)
+   IF (P2P1) AND ( (S_AL2_P_B1) ) AND (NOT P2P2) THEN
+       P2P1:=0;
+       P2P2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TP2*)
+   IF (P2P2) AND ( (S_AL2_P_B2 AND NOT MCL_CONTROL) ) AND (NOT P2P3) THEN
+       P2P2:=0;
+       P2P3:=1;
+       STABLE:=0;
+   END_IF;
+   (*TP3*)
+   IF (P2P3) AND ( (S_AL2_MCL) ) AND (NOT P2P4 AND NOT P2P1) THEN
+       P2P3:=0;
+       P2P4:=1;
+       P2P1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TP4*)
+   IF (P2P4 AND MCL) AND ( (MCL_BUSY) ) AND (NOT P2P5) THEN
+       P2P4:=0;
+       MCL:=0;
+       P2P5:=1;
+       STABLE:=0;
+   END_IF;
+   (*TP6*)
+   IF (P2P5) AND ( (S_AL2_MCL2) ) AND (NOT P2P7 AND NOT MCL) THEN
+       P2P5:=0;
+       P2P7:=1;
+       MCL:=1;
+       STABLE:=0;
+   END_IF;
+   (*TP7*)
+   IF (P2P7) AND ( (S_AL2_P_B3) ) AND (NOT P20) THEN
+       P2P7:=0;
+       P20:=1;
+       STABLE:=0;
+   END_IF;
+   (*TPL2*)
+   IF (P2P2) AND ( (S_AL2_P_B2 AND MCL_CONTROL) ) AND (NOT P2PL3 AND NOT P2P1) THEN
+       P2P2:=0;
+       P2PL3:=1;
+       P2P1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TPL3*)
+   IF (P2PL3) AND ( (S_AL2_MCLR) ) AND (NOT P2PL4) THEN
+       P2PL3:=0;
+       P2PL4:=1;
+       STABLE:=0;
+   END_IF;
+   (*TPL4*)
+   IF (P2PL4 AND MCLR) AND ( (MCLR_BUSY) ) AND (NOT P2PL5) THEN
+       P2PL4:=0;
+       MCLR:=0;
+       P2PL5:=1;
+       STABLE:=0;
+   END_IF;
+   (*TPL6*)
+   IF (P2PL5) AND ( (S_AL2_MCLR2) ) AND (NOT P2PL7 AND NOT MCLR) THEN
+       P2PL5:=0;
+       P2PL7:=1;
+       MCLR:=1;
+       STABLE:=0;
+   END_IF;
+   (*TPL7*)
+   IF (P2PL7) AND ( (S_AL2_P_B3) ) AND (NOT P20) THEN
+       P2PL7:=0;
+       P20:=1;
+       STABLE:=0;
+   END_IF;
+   (*T0212*)
+   IF (P20 AND P21) AND ( (S_AL2) ) AND (NOT P22) THEN
+       P20:=0;
+       P21:=0;
+       P22:=1;
+       STABLE:=0;
+   END_IF;
+   (*T23*)
+   IF (P22) AND ( (timer_2_1_P2.Q) ) AND (NOT P23) THEN
+       P22:=0;
+       P23:=1;
+       STABLE:=0;
+   END_IF;
+   (*T34*)
+   IF (P23) AND ( (timer_2_1_P3.Q) ) AND (NOT P24) THEN
+       P23:=0;
+       P24:=1;
+       STABLE:=0;
+   END_IF;
+   (*T4B*)
+   IF (P24) AND ( ((CS_AL2_W < 200) OR (CS_AL2_W > 400)) ) AND (NOT P2B) THEN
+       P24:=0;
+       P2B:=1;
+       STABLE:=0;
+   END_IF;
+   (*T4B2*)
+   IF (P2B AND BIN21) AND ( (S_BIN2_1) ) AND (NOT BIN22 AND NOT P21) THEN
+       P2B:=0;
+       BIN21:=0;
+       BIN22:=1;
+       P21:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB21*)
+   IF (BIN22) AND ( (NOT S_BIN2_1) ) AND (NOT BIN21) THEN
+       BIN22:=0;
+       BIN21:=1;
+       STABLE:=0;
+   END_IF;
+   (*T45*)
+   IF (P24) AND ( ((CS_AL2_W > 200) AND (CS_AL2_W <= 300)) ) AND (NOT P25) THEN
+       P24:=0;
+       P25:=1;
+       STABLE:=0;
+   END_IF;
+   (*T46*)
+   IF (P24) AND ( ((CS_AL2_W > 300) AND (CS_AL2_W <= 400)) ) AND (NOT P26) THEN
+       P24:=0;
+       P26:=1;
+       STABLE:=0;
+   END_IF;
+   (*T57*)
+   IF (P25) AND ( (S_AL2_BL) ) AND (NOT P2_LID AND NOT P21) THEN
+       P25:=0;
+       P2_LID:=1;
+       P21:=1;
+       STABLE:=0;
+   END_IF;
+   (*T67*)
+   IF (P26) AND ( (S_AL2_BL) ) AND (NOT P2_BASE AND NOT P21) THEN
+       P26:=0;
+       P2_BASE:=1;
+       P21:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB0*)
+   IF (P2_BASE) AND ( (S_AL2_B) ) AND (NOT P2B1) THEN
+       P2_BASE:=0;
+       P2B1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB1*)
+   IF (P2B1 AND PUSH2_B) AND ( (timer_2_1_TB1.Q) ) AND (NOT P2B2) THEN
+       P2B1:=0;
+       PUSH2_B:=0;
+       P2B2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB23*)
+   IF (P2B2) AND ( (P_AL2_B_FT) ) AND (NOT P2B23) THEN
+       P2B2:=0;
+       P2B23:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB2*)
+   IF (P2B23) AND ( (P_AL2_B_FT) ) AND (NOT P2B3) THEN
+       P2B23:=0;
+       P2B3:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB3*)
+   IF (P2B3) AND ( (P_AL2_B_BK) ) AND (NOT P2B4 AND NOT PUSH2_B) THEN
+       P2B3:=0;
+       P2B4:=1;
+       PUSH2_B:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB4*)
+   IF (P2B4 AND P2BF1) AND ( (S_AL2_B1) ) AND (NOT P2B5) THEN
+       P2B4:=0;
+       P2BF1:=0;
+       P2B5:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB5*)
+   IF (P2B5 AND P2BF2) AND ( (S_AL2_B2) ) AND (NOT P2B6 AND NOT P2BF1) THEN
+       P2B5:=0;
+       P2BF2:=0;
+       P2B6:=1;
+       P2BF1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB6*)
+   IF (P2B6 AND P2BF3) AND ( (S_AL2_B3) ) AND (NOT P2B7 AND NOT P2BF2) THEN
+       P2B6:=0;
+       P2BF3:=0;
+       P2B7:=1;
+       P2BF2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB7*)
+   IF (P2B7 AND P2BF4) AND ( (S_AL2_LP) ) AND (NOT P2B8) THEN
+       P2B7:=0;
+       P2BF4:=0;
+       P2B8:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL0*)
+   IF (P2_LID) AND ( (S_AL2_L) ) AND (NOT P2L1) THEN
+       P2_LID:=0;
+       P2L1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL1*)
+   IF (P2L1 AND PUSH2_L) AND ( (timer_2_1_TL1.Q) ) AND (NOT P2L2) THEN
+       P2L1:=0;
+       PUSH2_L:=0;
+       P2L2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL23*)
+   IF (P2L2) AND ( (P_AL2_L_FT) ) AND (NOT P2L23) THEN
+       P2L2:=0;
+       P2L23:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL2*)
+   IF (P2L23) AND ( (P_AL2_L_FT) ) AND (NOT P2L3) THEN
+       P2L23:=0;
+       P2L3:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL3*)
+   IF (P2L3) AND ( (P_AL2_L_BK) ) AND (NOT P2L4 AND NOT PUSH2_L) THEN
+       P2L3:=0;
+       P2L4:=1;
+       PUSH2_L:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL4*)
+   IF (P2L4 AND P2LF1) AND ( (S_AL2_L1) ) AND (NOT P2L5) THEN
+       P2L4:=0;
+       P2LF1:=0;
+       P2L5:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL5*)
+   IF (P2L5 AND P2LF2) AND ( (S_AL2_L2) ) AND (NOT P2L6 AND NOT P2LF1) THEN
+       P2L5:=0;
+       P2LF2:=0;
+       P2L6:=1;
+       P2LF1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL6*)
+   IF (P2L6 AND P2LF3) AND ( (S_AL2_L3) ) AND (NOT P2L7 AND NOT P2LF2) THEN
+       P2L6:=0;
+       P2LF3:=0;
+       P2L7:=1;
+       P2LF2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL7*)
+   IF (P2L7 AND P2LF4) AND ( (S_AL2_RP) ) AND (NOT P2L8) THEN
+       P2L7:=0;
+       P2LF4:=0;
+       P2L8:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL8*)
+   IF (P2L8) AND ( (RP_AL2_CLAMPED) ) AND (NOT P2L9) THEN
+       P2L8:=0;
+       P2L9:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB8*)
+   IF (P2B8) AND ( (LP_AL2_CLAMPED) ) AND (NOT P2B9) THEN
+       P2B8:=0;
+       P2B9:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA0*)
+   IF (P2L9 AND P2A0) AND ( (timer_2_1_PL9.Q AND RP_AL2_CLAMPED AND NOT AL2_DETECTED) ) AND (NOT P2A1) THEN
+       P2L9:=0;
+       P2A0:=0;
+       P2A1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA1*)
+   IF (P2A1) AND ( (AL2_X_POS>798 AND AL2_X_POS<802) ) AND (NOT P2A2) THEN
+       P2A1:=0;
+       P2A2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA2*)
+   IF (P2A2) AND ( (AL2_Z_POS>798 AND AL2_Z_POS<802) ) AND (NOT P2A3) THEN
+       P2A2:=0;
+       P2A3:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA3*)
+   IF (P2A3) AND ( (NOT RP_AL2_CLAMPED) ) AND (NOT P2A4) THEN
+       P2A3:=0;
+       P2A4:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA4*)
+   IF (P2A4) AND ( (AL2_Z_POS>398 AND AL2_Z_POS<402) ) AND (NOT P2A5 AND NOT P2LF3 AND NOT P2LF4) THEN
+       P2A4:=0;
+       P2A5:=1;
+       P2LF3:=1;
+       P2LF4:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA5*)
+   IF (P2B9 AND P2A5) AND ( (AL2_DETECTED AND LP_AL2_CLAMPED AND AL2_X_POS>208 AND AL2_X_POS<212) ) AND (NOT P2A6) THEN
+       P2B9:=0;
+       P2A5:=0;
+       P2A6:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA6*)
+   IF (P2A6) AND ( (AL2_Z_POS>810 AND AL2_Z_POS<820) ) AND (NOT P2A7) THEN
+       P2A6:=0;
+       P2A7:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA7*)
+   IF (P2A7) AND ( (AL2_Z_POS>398 AND AL2_Z_POS<402) ) AND (NOT P2A8) THEN
+       P2A7:=0;
+       P2A8:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA8*)
+   IF (P2A8) AND ( (NOT LP_AL2_CLAMPED) ) AND (NOT P2A9) THEN
+       P2A8:=0;
+       P2A9:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA9*)
+   IF (P2A9) AND ( (NOT LP_AL2_LIMIT) ) AND (NOT P2A10) THEN
+       P2A9:=0;
+       P2A10:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA10*)
+   IF (P2A10) AND ( (LP_AL2_LIMIT) ) AND (NOT P2A11) THEN
+       P2A10:=0;
+       P2A11:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA11*)
+   IF (P2A11) AND ( (NOT LP_AL2_LIMIT) ) AND (NOT P2A12) THEN
+       P2A11:=0;
+       P2A12:=1;
+       STABLE:=0;
+   END_IF;
+   (*TA12*)
+   IF (P2A12) AND ( (LP_AL2_LIMIT) ) AND (NOT P2A13 AND NOT P2A0 AND NOT P2BF3 AND NOT P2BF4) THEN
+       P2A12:=0;
+       P2A13:=1;
+       P2A0:=1;
+       P2BF3:=1;
+       P2BF4:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS1*)
+   IF (P2A13) AND ( (S_AL2_ST1) ) AND (NOT P2S1) THEN
+       P2A13:=0;
+       P2S1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS2*)
+   IF (P2S0 AND P2SC AND P2S1) AND ( (S_AL2_ST2) ) AND (NOT P2S2) THEN
+       P2S0:=0;
+       P2SC:=0;
+       P2S1:=0;
+       P2S2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS3*)
+   IF (P2S2) AND ( (RP_AL2_ST_CLAMPED) ) AND (NOT P2S3) THEN
+       P2S2:=0;
+       P2S3:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS4*)
+   IF (P2S3) AND ( ((AL2_ST_Y_POS>540) AND (AL2_ST_Y_POS<580)) ) AND (NOT P2S4) THEN
+       P2S3:=0;
+       P2S4:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS5*)
+   IF (P2S4) AND ( ((AL2_ST_Z_POS>730) AND (AL2_ST_Z_POS<770)) ) AND (NOT P2SC AND NOT P2S5) THEN
+       P2S4:=0;
+       P2SC:=1;
+       P2S5:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS6*)
+   IF (P2S5) AND ( (AL2_ST_DETECTED) ) AND (NOT P2S6) THEN
+       P2S5:=0;
+       P2S6:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS7*)
+   IF (P2S6) AND ( ((AL2_ST_Z_POS>390) AND (AL2_ST_Z_POS<430)) ) AND (NOT P2S7) THEN
+       P2S6:=0;
+       P2S7:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS8*)
+   IF (P2S7) AND ( ((AL2_ST_X_POS>840) AND (AL2_ST_X_POS<880)) ) AND (NOT P2S8) THEN
+       P2S7:=0;
+       P2S8:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS9*)
+   IF (P2S8 AND P2SE0) AND ( ((AL2_ST_Z_POS>580) AND (AL2_ST_Z_POS<620)) ) AND (NOT P2S9) THEN
+       P2S8:=0;
+       P2SE0:=0;
+       P2S9:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS10*)
+   IF (P2S9) AND ( (NOT AL2_ST_DETECTED) ) AND (NOT P2S0 AND NOT P2S10 AND NOT P2SE0) THEN
+       P2S9:=0;
+       P2S0:=1;
+       P2S10:=1;
+       P2SE0:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS11*)
+   IF (P2S9) AND ( (NOT AL2_ST_DETECTED) ) AND (NOT P2S0 AND NOT P2S11 AND NOT P2SE0) THEN
+       P2S9:=0;
+       P2S0:=1;
+       P2S11:=1;
+       P2SE0:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS12*)
+   IF (P2S9) AND ( (NOT AL2_ST_DETECTED) ) AND (NOT P2S0 AND NOT P2S12 AND NOT P2SE0) THEN
+       P2S9:=0;
+       P2S0:=1;
+       P2S12:=1;
+       P2SE0:=1;
+       STABLE:=0;
+   END_IF;
+   (*TS13*)
+   IF (P2S10 AND P2S11 AND P2S12 AND P2SE0) AND ( (TRUE) ) AND (NOT P2SE1) THEN
+       P2S10:=0;
+       P2S11:=0;
+       P2S12:=0;
+       P2SE0:=0;
+       P2SE1:=1;
+       STABLE:=0;
+   END_IF;
+   (*TSE1*)
+   IF (P2SE1) AND ( (NOT S_AL2_ST3) ) AND (NOT P2SE2) THEN
+       P2SE1:=0;
+       P2SE2:=1;
+       STABLE:=0;
+   END_IF;
+   (*TSE2*)
+   IF (P2SE2) AND ( (S_AL2_ST3) ) AND (NOT P2SE0) THEN
+       P2SE2:=0;
+       P2SE0:=1;
+       STABLE:=0;
+   END_IF;
+END_WHILE;
+
+
+(*=====================================================================*)
+(*OUTPUTS*)
+(*=====================================================================*)
+
+(*AL2_BASE*)
+IF P26 THEN
+   AL2_BASE:=1;
+END_IF;
+(*AL2_EMIT*)
+IF P2SE1 THEN
+   AL2_EMIT:=1;
+END_IF;
+(*AL2_GRAB*)
+IF P2A3 OR P2A4 OR P2A5 OR P2A6 THEN
+   AL2_GRAB:=1;
+END_IF;
+(*AL2_LID*)
+IF P25 THEN
+   AL2_LID:=1;
+END_IF;
+(*AL2_ST_GRAB*)
+IF P2S5 OR P2S6 OR P2S7 OR P2S8 THEN
+   AL2_ST_GRAB:=1;
+END_IF;
+(*CS_AL2_PLUS*)
+IF P21 OR P22 OR P2B OR P25 OR P26 THEN
+   CS_AL2_PLUS:=1;
+END_IF;
+(*E_AL2_B1*)
+IF P2P0 OR P2P1 THEN
+   E_AL2_B1:=1;
+END_IF;
+(*LP_AL2_CLAMP*)
+IF P2A6 OR P2A7 OR P2B8 OR P2B9 THEN
+   LP_AL2_CLAMP:=1;
+END_IF;
+(*LP_AL2_RAISE*)
+IF P2A9 OR P2A10 THEN
+   LP_AL2_RAISE:=1;
+END_IF;
+(*MCL_CONTROL*)
+IF P2P3 THEN
+   MCL_CONTROL:=1;
+END_IF;
+(*PAS_AL2_PLUS*)
+IF P2PL3 OR P2PL4 THEN
+   PAS_AL2_PLUS:=1;
+END_IF;
+(*PAS_AL2_TURN*)
+IF P2PL3 OR P2PL4 THEN
+   PAS_AL2_TURN:=1;
+END_IF;
+(*PUWS_AL2_1_PLUS*)
+IF P2B OR P25 OR P26 THEN
+   PUWS_AL2_1_PLUS:=1;
+END_IF;
+(*PUWS_AL2_1_RT*)
+IF P25 OR P26 THEN
+   PUWS_AL2_1_RT:=1;
+END_IF;
+(*PUWS_AL2_B1_PLUS*)
+IF P2PAL2 OR P2P2 THEN
+   PUWS_AL2_B1_PLUS:=1;
+END_IF;
+(*P_AL2_B*)
+IF P2B2 OR P2B23 THEN
+   P_AL2_B:=1;
+END_IF;
+(*P_AL2_L*)
+IF P2L2 OR P2L23 THEN
+   P_AL2_L:=1;
+END_IF;
+(*RC_AL2_ST*)
+IF P2SE1 OR P2SE2 THEN
+   RC_AL2_ST:=1;
+END_IF;
+(*RP_AL2_CLAMP*)
+IF P2L8 OR P2L9 THEN
+   RP_AL2_CLAMP:=1;
+END_IF;
+(*RP_AL2_ST_CLAMP*)
+IF P2S2 OR P2S3 OR P2S4 THEN
+   RP_AL2_ST_CLAMP:=1;
+END_IF;
+(*SB_AL2*)
+IF P23 OR P24 OR P2B OR P25 OR P26 THEN
+   SB_AL2:=1;
+END_IF;
+(*SB_AL2_B1*)
+IF P2B5 THEN
+   SB_AL2_B1:=1;
+END_IF;
+(*SB_AL2_B2*)
+IF P2B6 THEN
+   SB_AL2_B2:=1;
+END_IF;
+(*SB_AL2_B3*)
+IF P2B7 THEN
+   SB_AL2_B3:=1;
+END_IF;
+(*SB_AL2_L1*)
+IF P2L5 THEN
+   SB_AL2_L1:=1;
+END_IF;
+(*SB_AL2_L2*)
+IF P2L6 THEN
+   SB_AL2_L2:=1;
+END_IF;
+(*SB_AL2_L3*)
+IF P2L7 THEN
+   SB_AL2_L3:=1;
+END_IF;
+(*AL2_BASE*)
+IF P21 OR P25 THEN
+   AL2_BASE:=0;
+END_IF;
+(*AL2_EMIT*)
+IF P2SE2 OR P2SE0 THEN
+   AL2_EMIT:=0;
+END_IF;
+(*AL2_GRAB*)
+IF P2A0 OR P2A1 OR P2A2 OR P2A7 OR P2A8 THEN
+   AL2_GRAB:=0;
+END_IF;
+(*AL2_LID*)
+IF P21 OR P26 THEN
+   AL2_LID:=0;
+END_IF;
+(*AL2_ST_GRAB*)
+IF P2S2 OR P2S3 OR P2S4 OR P2S9 THEN
+   AL2_ST_GRAB:=0;
+END_IF;
+(*CS_AL2_PLUS*)
+IF P23 OR P24 THEN
+   CS_AL2_PLUS:=0;
+END_IF;
+(*E_AL2_B1*)
+IF P2P2 OR P2P3 OR P2PL3 THEN
+   E_AL2_B1:=0;
+END_IF;
+(*LP_AL2_CLAMP*)
+IF P2A8 OR P2A9 OR P2A10 OR P2A11 OR P2A12 OR P2BF4 THEN
+   LP_AL2_CLAMP:=0;
+END_IF;
+(*LP_AL2_RAISE*)
+IF P2A0 OR P2A1 OR P2A2 OR P2A3 OR P2A4 OR P2A5 OR P2A6 OR P2A7 OR P2A8 OR P2A11 OR P2A12 THEN
+   LP_AL2_RAISE:=0;
+END_IF;
+(*MCL_CONTROL*)
+IF P2P0 OR P2PL3 THEN
+   MCL_CONTROL:=0;
+END_IF;
+(*PAS_AL2_PLUS*)
+IF P2P0 OR P2P3 OR P2P4 THEN
+   PAS_AL2_PLUS:=0;
+END_IF;
+(*PAS_AL2_TURN*)
+IF P2P0 OR P2P3 OR P2P4 THEN
+   PAS_AL2_TURN:=0;
+END_IF;
+(*PUWS_AL2_1_PLUS*)
+IF P21 OR P22 OR P23 OR P24 THEN
+   PUWS_AL2_1_PLUS:=0;
+END_IF;
+(*PUWS_AL2_1_RT*)
+IF P21 OR P22 OR P23 OR P24 OR P2B THEN
+   PUWS_AL2_1_RT:=0;
+END_IF;
+(*PUWS_AL2_B1_RIGHT*)
+IF P2PAL2 OR P2P2 THEN
+   PUWS_AL2_B1_RIGHT:=0;
+END_IF;
+(*P_AL2_B*)
+IF P2_BASE OR P2B1 OR P2B3 THEN
+   P_AL2_B:=0;
+END_IF;
+(*P_AL2_L*)
+IF P2_LID OR P2L1 OR P2L3 THEN
+   P_AL2_L:=0;
+END_IF;
+(*RC_AL2_ST*)
+IF P2SE0 THEN
+   RC_AL2_ST:=0;
+END_IF;
+(*RP_AL2_CLAMP*)
+IF P2A3 OR P2A4 OR P2LF4 THEN
+   RP_AL2_CLAMP:=0;
+END_IF;
+(*RP_AL2_ST_CLAMP*)
+IF P2SC THEN
+   RP_AL2_ST_CLAMP:=0;
+END_IF;
+(*SB_AL2*)
+IF P21 OR P22 THEN
+   SB_AL2:=0;
+END_IF;
+(*SB_AL2_B1*)
+IF P2BF1 THEN
+   SB_AL2_B1:=0;
+END_IF;
+(*SB_AL2_B2*)
+IF P2BF2 THEN
+   SB_AL2_B2:=0;
+END_IF;
+(*SB_AL2_B3*)
+IF P2BF3 THEN
+   SB_AL2_B3:=0;
+END_IF;
+(*SB_AL2_L1*)
+IF P2LF1 THEN
+   SB_AL2_L1:=0;
+END_IF;
+(*SB_AL2_L2*)
+IF P2LF2 THEN
+   SB_AL2_L2:=0;
+END_IF;
+(*SB_AL2_L3*)
+IF P2LF3 THEN
+   SB_AL2_L3:=0;
+END_IF;
+(*AL2_X_SET*)
+IF P2A0 THEN
+   AL2_X_SET:=210;
+END_IF;
+(*AL2_X_SET*)
+IF P2A1 THEN
+   AL2_X_SET:=800;
+END_IF;
+(*AL2_Z_SET*)
+IF P2A2 THEN
+   AL2_Z_SET:=800;
+END_IF;
+(*AL2_Z_SET*)
+IF P2A4 THEN
+   AL2_Z_SET:=400;
+END_IF;
+(*AL2_X_SET*)
+IF P2A5 THEN
+   AL2_X_SET:=210;
+END_IF;
+(*AL2_Z_SET*)
+IF P2A6 THEN
+   AL2_Z_SET:=818;
+END_IF;
+(*AL2_Z_SET*)
+IF P2A7 THEN
+   AL2_Z_SET:=400;
+END_IF;
+(*AL2_ST_X_SET*)
+IF P2S0 THEN
+   AL2_ST_X_SET:=0;
+END_IF;
+(*AL2_ST_Y_SET*)
+IF P2S3 THEN
+   AL2_ST_Y_SET:=560;
+END_IF;
+(*AL2_ST_Z_SET*)
+IF P2S4 THEN
+   AL2_ST_Z_SET:=750;
+END_IF;
+(*AL2_ST_Z_SET*)
+IF P2S6 THEN
+   AL2_ST_Z_SET:=410;
+END_IF;
+(*AL2_ST_X_SET*)
+IF P2S7 THEN
+   AL2_ST_X_SET:=860;
+END_IF;
+(*AL2_ST_Z_SET*)
+IF P2S8 THEN
+   AL2_ST_Z_SET:=600;
+END_IF;
+
+
+END_PROGRAM
+
+
+
+CONFIGURATION config0
+
+    RESOURCE res0 ON PLC
+        TASK task0(INTERVAL := T#20ms, PRIORITY := 0);
+        PROGRAM instance0 WITH task0 : program0;
+    END_RESOURCE
+
+END_CONFIGURATION
+
