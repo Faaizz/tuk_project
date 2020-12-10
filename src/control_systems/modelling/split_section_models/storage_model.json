@@ -1,0 +1,467 @@
+{
+    "places": {
+        "PG0": [
+            [
+                [],[]
+            ],
+            [],
+            "Box on way to storage from stacking"
+        ],
+        "PG": [
+            [
+                ["RC_AL1_G7"],["AL1_G_SC_LT", "AL1_G_SC_RT", "AL1_G_SC_LIFT"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Stacker crane free"
+        ],
+        "PG1": [
+            [
+                ["AL1_G_SC_LT"], ["RC_AL1_G7", "AL1_G_SC_RT", "RC_AL1_G7", "AL1_G_SC_LIFT"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Box reaches storage entry. Turn off the loading conveyor and fork left"
+        ],
+        "PG2": [
+            [
+                ["AL1_G_SC_LT", "AL1_G_SC_LIFT"], ["AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Lift box"
+        ],
+        "PG3": [
+            [
+                ["AL1_G_SC_LT", "AL1_G_SC_LIFT"], ["AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Box lifting"
+        ],
+        "PG4": [
+            [
+                ["AL1_G_SC_LIFT"], ["AL1_G_SC_LT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Box Lifted, retrieve fork"
+        ],
+        "PG5": [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Fork retrieved, lift down"
+        ],
+        "PG6": [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Lift going down"
+        ],
+        "PG7": [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS", "TG_POS:=TG_POS+1"],
+            "Lift down, set target position"
+        ],
+        "PG8":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane moving to target position along X"
+        ],
+        "PG9":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane moving to target position along X"
+        ],
+        "PG10":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane at target X position"
+        ],
+        "PG11":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane moving to target position along Z"
+        ],
+        "PG12":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane moving to target position along Z"
+        ],
+        "PG13":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane at target Z position"
+        ],
+        "PG14": [
+            [
+                ["AL1_G_SC_LIFT"], ["AL1_G_SC_LT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Crane at target position, lift box"
+        ],
+        "PG15": [
+            [
+                ["AL1_G_SC_LIFT"], ["AL1_G_SC_LT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Lifting box"
+        ],
+        "PG16": [
+            [
+                ["AL1_G_SC_LIFT", "AL1_G_SC_RT"], ["AL1_G_SC_LT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Box lifted, fork right"
+        ],
+        "PG17": [
+            [
+                ["AL1_G_SC_RT"], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Forked right, lift down"
+        ],
+        "PG18": [
+            [
+                ["AL1_G_SC_RT"], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Lift going down"
+        ],
+        "PG19": [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=TG_POS"],
+            "Lift down, retrieve fork"
+        ],
+        "PG20": [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Fork retrieved, set stacker target to rest position"
+        ],
+        "PG21":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Crane moving to target position along X"
+        ],
+        "PG22":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Crane moving to target position along X"
+        ],
+        "PG23":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Crane at target X position"
+        ],
+        "PG24":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Crane moving to target position along Z"
+        ],
+        "PG25":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Crane moving to target position along Z"
+        ],
+        "PG26":  [
+            [
+                [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
+            ],
+            ["AL1_G_SC_TG:=55"],
+            "Crane at target Z position"
+        ],
+        "initial": ["PG"]
+        
+    },
+
+
+    "outputs": {
+        "RC_AL1_G7": ["%QX100.0"],
+        "AL1_G_SC_LT": ["%QX100.1"],
+        "AL1_G_SC_LIFT": ["%QX100.2"],
+        "AL1_G_SC_RT": ["%QX100.3"],
+        "AL1_G_SC_TG": ["%QW100", "INT"]
+    },
+
+    "transitions": {
+        "TG1": [
+            ["PG", "PG0"],
+            [
+                [
+                    [], ["AL1_G_S1"]
+                ]
+            ],
+            ["PG1"]
+        ],
+        "TG2": [
+            ["PG1"],
+            [
+                [
+                    ["AL1_G_SC_LL"], []
+                ]
+            ],
+            ["PG2"]
+        ],
+        "TG3": [
+            ["PG2"],
+            [
+                [
+                    ["AL1_G_SC_MZ"], []
+                ]
+            ],
+            ["PG3"]
+        ],
+        "TG4": [
+            ["PG3"],
+            [
+                [
+                    [], ["AL1_G_SC_MZ"]
+                ]
+            ],
+            ["PG4"]
+        ],
+        "TG5": [
+            ["PG4"],
+            [
+                [
+                    ["AL1_G_ML"], []
+                ]
+            ],
+            ["PG5"]
+        ],
+        "TG6": [
+            ["PG5"],
+            [
+                [
+                    ["AL1_G_SC_MZ"], []
+                ]
+            ],
+            ["PG6"]
+        ],
+        "TG7": [
+            ["PG6"],
+            [
+                [
+                    [], ["AL1_G_SC_MZ"]
+                ]
+            ],
+            ["PG7"]
+        ],
+        "TG8": [
+            ["PG7"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PG8", "PG11"]
+        ],
+        "TG9": [
+            ["PG8"],
+            [
+                [
+                    ["AL1_G_SC_MX"], []
+                ]
+            ],
+            ["PG9"]
+        ],
+        "TG10": [
+            ["PG9"],
+            [
+                [
+                    [], ["AL1_G_SC_MX"]
+                ]
+            ],
+            ["PG10"]
+        ],
+        "TG12": [
+            ["PG11"],
+            [
+                [
+                    ["AL1_G_SC_MZ"], []
+                ]
+            ],
+            ["PG12"]
+        ],
+        "TG13": [
+            ["PG12"],
+            [
+                [
+                    [], ["AL1_G_SC_MZ"]
+                ]
+            ],
+            ["PG13"]
+        ],
+        "TG14": [
+            ["PG10", "PG13"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PG14"]
+        ],
+        "TG15": [
+            ["PG14"],
+            [
+                [
+                    ["AL1_G_SC_MZ"], []
+                ]
+            ],
+            ["PG15"]
+        ],
+        "TG16": [
+            ["PG15"],
+            [
+                [
+                    [], ["AL1_G_SC_MZ"]
+                ]
+            ],
+            ["PG16"]
+        ],
+        "TG17": [
+            ["PG16"],
+            [
+                [
+                    ["AL1_G_SC_RL"], []
+                ]
+            ],
+            ["PG17"]
+        ],
+        "TG18": [
+            ["PG17"],
+            [
+                [
+                    ["AL1_G_SC_MZ"], []
+                ]
+            ],
+            ["PG18"]
+        ],
+        "TG19": [
+            ["PG18"],
+            [
+                [
+                    [], ["AL1_G_SC_MZ"]
+                ]
+            ],
+            ["PG19"]
+        ],
+        "TG20": [
+            ["PG19"],
+            [
+                [
+                    ["AL1_G_ML"], []
+                ]
+            ],
+            ["PG20"]
+        ],
+        "TG21": [
+            ["PG20"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PG21", "PG24"]
+        ],
+        "TG22": [
+            ["PG21"],
+            [
+                [
+                    ["AL1_G_SC_MX"], []
+                ]
+            ],
+            ["PG22"]
+        ],
+        "TG23": [
+            ["PG22"],
+            [
+                [
+                    [], ["AL1_G_SC_MX"]
+                ]
+            ],
+            ["PG23"]
+        ],
+        "TG25": [
+            ["PG24"],
+            [
+                [
+                    ["AL1_G_SC_MZ"], []
+                ]
+            ],
+            ["PG25"]
+        ],
+        "TG26": [
+            ["PG25"],
+            [
+                [
+                    [], ["AL1_G_SC_MZ"]
+                ]
+            ],
+            ["PG26"]
+        ],
+        "TG27": [
+            ["PG23", "PG26"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PG"]
+        ]
+    },
+
+    "internals": {
+        "TG_POS": [
+            [
+                "10..15",
+                10,
+                "{11, 12, 13, 14, 15}"
+            ],
+            [
+                "INT",
+                "TG_POS:=10"
+            ]
+        ]
+    },
+
+    "inputs": {
+        "AL1_G_S1": ["boolean", "%IX100.0"],
+        "AL1_G_SC_LL": ["boolean", "%IX100.1"],
+        "AL1_G_SC_MZ": ["boolean", "%IX100.2"],
+        "AL1_G_ML": ["boolean", "%IX100.3"],
+        "AL1_G_SC_MX": ["boolean", "%IX100.4"],
+        "AL1_G_SC_RL": ["boolean", "%IX100.5"]
+
+    },
+
+    "specifications": {
+        "auto": true
+    }
+}

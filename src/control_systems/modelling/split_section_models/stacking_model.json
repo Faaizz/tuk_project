@@ -1,23 +1,305 @@
 {
+    "places": {
+        "PA13": [
+            [
+                [], []
+            ],
+            "Product leaves assembler"
+        ],
+        "PS0": [
+            [
+                [], []
+            ],
+            ["AL1_ST_X_SET:=0", "AL1_ST_Y_SET:=560", "AL1_ST_Z_SET:=410"],
+            "Stacker is free"
+        ],
+        "PSC": [
+            [
+                [], ["RP_AL1_ST_CLAMP"]
+            ],
+            "Clamp is free"
+        ],
+        "PS1": [
+            [
+                [], []
+            ],
+            "Product reaches stacker"
+        ],
+        "PS2": [
+            [
+                ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
+            ],
+            "Product gets withing graber range"
+        ],
+        "PS3": [
+            [
+                ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
+            ],
+            ["AL1_ST_Y_SET:=560"],
+            "Move grabber to product location"
+        ],
+        "PS4": [
+            [
+                ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
+            ],
+            ["AL1_ST_Z_SET:=750"],
+            "Move grabber down to pick up product"
+        ],
+        "PS5": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            "Grab product"
+        ],
+        "PS6": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            ["AL1_ST_Z_SET:=410"],
+            "Raise grabber up a little"
+        ],
+        "PS7": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            ["AL1_ST_X_SET:=860"],
+            "Move grabber to box location"
+        ],
+        "PS8": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            ["AL1_ST_Z_SET:=600"],
+            "Lower grabber to drop product into box"
+        ],
+        "PS9": [
+            [
+                [], ["AL1_ST_GRAB"]
+            ],
+            "Drop product"
+        ],
+        "PS10": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "PS11": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "PS12": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "PSE1": [
+            [
+                ["AL1_EMIT", "RC_AL1_ST"], []
+            ],
+            "Three products in box, roll box away and emit new box"
+        ],
+        "PSE2": [
+            [
+                ["RC_AL1_ST"], ["AL1_EMIT"]
+            ],
+            "Roll box off conveyor on to the next conveyor"
+        ],
+        "PSE0": [
+            [
+                [], ["AL1_EMIT", "RC_AL1_ST"]
+            ],
+            "New box arrived, stop conveyor"
+        ],
+        "initial": ["PA13", "PS0", "PSC", "PSE0"]
+    },
 
+    "outputs": {
+        "AL1_ST_X_SET": ["%QW100", "WORD"],
+        "AL1_ST_Y_SET":  ["%QW101", "WORD"],
+        "AL1_ST_Z_SET":  ["%QW102", "WORD"],
+        "RP_AL1_ST_CLAMP":  ["%QX100.0"],
+        "AL1_ST_GRAB": ["%QX100.1"],
+        "AL1_EMIT": ["%QX100.2"],
+        "RC_AL1_ST": ["%QX100.3"]
+    },
 
+    "transitions": {
+        "TS1": [
+            ["PA13"],
+            [
+                [
+                    ["S_AL1_ST1"], []
+                ]
+            ],
+            ["PS1"]
+        ],
+        "TS2": [
+            ["PS0", "PSC", "PS1"],
+            [
+                [
+                    ["S_AL1_ST2"], []
+                ]
+            ],
+            ["PS2"]
+        ],
+        "TS3": [
+            ["PS2"],
+            [
+                [
+                    ["RP_AL1_ST_CLAMPED"], []
+                ]
+            ],
+            ["PS3"]
+        ],
+        "TS4": [
+            ["PS3"],
+            [
+                [
+                    "(AL1_ST_Y_POS>540) & (AL1_ST_Y_POS<580)"
+                ]
+            ],
+            ["PS4"]
+        ],
+        "TS5": [
+            ["PS4"],
+            [
+                [
+                    "(AL1_ST_Z_POS>730) & (AL1_ST_Z_POS<770)"
+                ]
+            ],
+            ["PSC", "PS5"]
+        ],
+        "TS6": [
+            ["PS5"],
+            [
+                [
+                    ["AL1_ST_DETECTED"], []
+                ]
+            ],
+            ["PS6"]
+        ],
+        "TS7": [
+            ["PS6"],
+            [
+                [
+                    "(AL1_ST_Z_POS>390) & (AL1_ST_Z_POS<430)"
+                ]
+            ],
+            ["PS7"]
+        ],
+        "TS8": [
+            ["PS7"],
+            [
+                [
+                    "(AL1_ST_X_POS>840) & (AL1_ST_X_POS<880)"
+                ]
+            ],
+            ["PS8"]
+        ],
+        "TS9": [
+            ["PS8", "PSE0"],
+            [
+                [
+                    "(AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)"
+                ]
+            ],
+            ["PS9"]
+        ],
+        "TS10": [
+            ["PS9"],
+            [
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
+            ],
+            ["PS0", "PS10", "PSE0", "PA13"]
+        ],
+        "TS11": [
+            ["PS9"],
+            [
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
+            ],
+            ["PS0", "PS11", "PSE0", "PA13"]
+        ],
+        "TS12": [
+            ["PS9"],
+            [
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
+            ],
+            ["PS0", "PS12", "PSE0", "PA13"]
+        ],
+        "TS13": [
+            ["PS10", "PS11", "PS12", "PSE0"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PSE1"]
+        ],
+        "TSE1": [
+            ["PSE1"],
+            [
+                [
+                    [], ["S_AL1_ST3"]
+                ]
+            ],
+            ["PSE2"]
+        ],
+        "TSE2": [
+            ["PSE2"],
+            [
+                [
+                    ["S_AL1_ST3"], []
+                ]
+            ],
+            ["PSE0"]
+        ]
+    },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    "inputs": {
+        "S_AL1_ST1": ["boolean", "%IX100.0"],
+        "S_AL1_ST2": ["boolean", "%IX100.1"],
+        "S_AL1_ST3": ["boolean", "%IX100.2"],
+        "RP_AL1_ST_CLAMPED": ["boolean", "%IX100.3"],
+        "AL1_ST_DETECTED": ["boolean", "%IX100.4"],
+        "RESET": ["boolean", "%IX100.5"],
+        "AL1_ST_X_POS": [
+            [
+                "{0, 400, 860}",
+                0,
+                "{0, 400, 860}"
+            ],
+            "%IW100"
+        ],
+        "AL1_ST_Y_POS": [
+            [
+                "{0, 300, 560}",
+                0,
+                "{0, 300, 560}"
+            ],
+            "%IW101"
+        ],
+        "AL1_ST_Z_POS": [
+            [
+                "{0, 200, 410, 600, 750}",
+                0,
+                "{0, 200, 410, 600, 750}"
+            ],
+            "%IW102"
+        ],
+        "RUNNING": ["boolean", "%IX100.7"]
+    },
     
+    "specifications": {
+        "auto": true
+    }
 }

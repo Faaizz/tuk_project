@@ -1,0 +1,85 @@
+*** This is NuSMV 2.5.4 (compiled on Fri Oct 28 14:15:02 UTC 2011)
+*** Enabled addons are: compass 
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <nusmv-users@fbk.eu>
+
+*** Copyright (c) 2010, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://www.cs.chalmers.se/Cs/Research/FormalMethods/MiniSat
+*** Copyright (c) 2003-2005, Niklas Een, Niklas Sorensson 
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification AG (EF TG1)  is true
+-- specification AG (EF TG2)  is true
+-- specification AG (EF TG3)  is true
+-- specification AG (EF TG4)  is true
+-- specification AG (EF TG5)  is true
+-- specification AG (EF TG6)  is true
+-- specification AG (EF TG7)  is true
+-- specification AG (EF TG8)  is true
+-- specification AG (EF TG9)  is true
+-- specification AG (EF TG10)  is true
+-- specification AG (EF TG12)  is true
+-- specification AG (EF TG13)  is true
+-- specification AG (EF TG14)  is true
+-- specification AG (EF TG15)  is true
+-- specification AG (EF TG16)  is true
+-- specification AG (EF TG17)  is true
+-- specification AG (EF TG18)  is true
+-- specification AG (EF TG19)  is true
+-- specification AG (EF TG20)  is true
+-- specification AG (EF TG21)  is true
+-- specification AG (EF TG22)  is true
+-- specification AG (EF TG23)  is true
+-- specification AG (EF TG25)  is true
+-- specification AG (EF TG26)  is true
+-- specification AG (EF TG27)  is true
+-- specification AG (EF ((((((((((((((((((((((((TG1 | TG2) | TG3) | TG4) | TG5) | TG6) | TG7) | TG8) | TG9) | TG10) | TG12) | TG13) | TG14) | TG15) | TG16) | TG17) | TG18) | TG19) | TG20) | TG21) | TG22) | TG23) | TG25) | TG26) | TG27))  is true
+-- specification EF TG1  is true
+-- specification EF TG2  is true
+-- specification EF TG3  is true
+-- specification EF TG4  is true
+-- specification EF TG5  is true
+-- specification EF TG6  is true
+-- specification EF TG7  is true
+-- specification EF TG8  is true
+-- specification EF TG9  is true
+-- specification EF TG10  is true
+-- specification EF TG12  is true
+-- specification EF TG13  is true
+-- specification EF TG14  is true
+-- specification EF TG15  is true
+-- specification EF TG16  is true
+-- specification EF TG17  is true
+-- specification EF TG18  is true
+-- specification EF TG19  is true
+-- specification EF TG20  is true
+-- specification EF TG21  is true
+-- specification EF TG22  is true
+-- specification EF TG23  is true
+-- specification EF TG25  is true
+-- specification EF TG26  is true
+-- specification EF TG27  is true
+-- specification AG (EF stab)  is true
+-- specification AG (stab -> !(RC_AL1_G7_set & RC_AL1_G7_reset))  is true
+-- specification AG (stab -> !(AL1_G_SC_LT_set & AL1_G_SC_LT_reset))  is true
+-- specification AG (stab -> !(AL1_G_SC_LIFT_set & AL1_G_SC_LIFT_reset))  is true
+-- specification AG (stab -> !(AL1_G_SC_RT_set & AL1_G_SC_RT_reset))  is true
+-- specification AG (stab -> (RC_AL1_G7_set | RC_AL1_G7_reset))  is true
+-- specification AG (stab -> (AL1_G_SC_LT_set | AL1_G_SC_LT_reset))  is true
+-- specification AG (stab -> (AL1_G_SC_LIFT_set | AL1_G_SC_LIFT_reset))  is true
+-- specification AG (stab -> (AL1_G_SC_RT_set | AL1_G_SC_RT_reset))  is true

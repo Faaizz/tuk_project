@@ -1,0 +1,456 @@
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['AL1_G_S1', 'AL1_G_SC_LL', 'AL1_G_SC_MZ', 'AL1_G_ML', 'AL1_G_SC_MX', 'AL1_G_SC_RL']
+AL1_G_S1: boolean;
+AL1_G_SC_LL: boolean;
+AL1_G_SC_MZ: boolean;
+AL1_G_ML: boolean;
+AL1_G_SC_MX: boolean;
+AL1_G_SC_RL: boolean;
+ 
+-- PLACES
+-- ['PG', 'PG1', 'PG2', 'PG3', 'PG4', 'PG5', 'PG6', 'PG7', 'PG8', 'PG9', 'PG10', 'PG11', 'PG12', 'PG13', 'PG14', 'PG15', 'PG16', 'PG17', 'PG18', 'PG19', 'PG20', 'PG21', 'PG22', 'PG23', 'PG24', 'PG25', 'PG26', 'initial']
+PG: boolean;
+PG1: boolean;
+PG2: boolean;
+PG3: boolean;
+PG4: boolean;
+PG5: boolean;
+PG6: boolean;
+PG7: boolean;
+PG8: boolean;
+PG9: boolean;
+PG10: boolean;
+PG11: boolean;
+PG12: boolean;
+PG13: boolean;
+PG14: boolean;
+PG15: boolean;
+PG16: boolean;
+PG17: boolean;
+PG18: boolean;
+PG19: boolean;
+PG20: boolean;
+PG21: boolean;
+PG22: boolean;
+PG23: boolean;
+PG24: boolean;
+PG25: boolean;
+PG26: boolean;
+
+
+-- INTERNAL
+TG_POS: 10..15;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+TG1:= (PG) & ( (!AL1_G_S1) ) & (!PG1);
+TG2:= (PG1) & ( (AL1_G_SC_LL) ) & (!PG2);
+TG3:= (PG2) & ( (AL1_G_SC_MZ) ) & (!PG3);
+TG4:= (PG3) & ( (!AL1_G_SC_MZ) ) & (!PG4);
+TG5:= (PG4) & ( (AL1_G_ML) ) & (!PG5);
+TG6:= (PG5) & ( (AL1_G_SC_MZ) ) & (!PG6);
+TG7:= (PG6) & ( (!AL1_G_SC_MZ) ) & (!PG7);
+TG8:= (PG7) & ( (TRUE) ) & (!PG8 & !PG11);
+TG9:= (PG8) & ( (AL1_G_SC_MX) ) & (!PG9);
+TG10:= (PG9) & ( (!AL1_G_SC_MX) ) & (!PG10);
+TG12:= (PG11) & ( (AL1_G_SC_MZ) ) & (!PG12);
+TG13:= (PG12) & ( (!AL1_G_SC_MZ) ) & (!PG13);
+TG14:= (PG10 & PG13) & ( (TRUE) ) & (!PG14);
+TG15:= (PG14) & ( (AL1_G_SC_MZ) ) & (!PG15);
+TG16:= (PG15) & ( (!AL1_G_SC_MZ) ) & (!PG16);
+TG17:= (PG16) & ( (AL1_G_SC_RL) ) & (!PG17);
+TG18:= (PG17) & ( (AL1_G_SC_MZ) ) & (!PG18);
+TG19:= (PG18) & ( (!AL1_G_SC_MZ) ) & (!PG19);
+TG20:= (PG19) & ( (AL1_G_ML) ) & (!PG20);
+TG21:= (PG20) & ( (TRUE) ) & (!PG21 & !PG24);
+TG22:= (PG21) & ( (AL1_G_SC_MX) ) & (!PG22);
+TG23:= (PG22) & ( (!AL1_G_SC_MX) ) & (!PG23);
+TG25:= (PG24) & ( (AL1_G_SC_MZ) ) & (!PG25);
+TG26:= (PG25) & ( (!AL1_G_SC_MZ) ) & (!PG26);
+TG27:= (PG23 & PG26) & ( (TRUE) ) & (!PG);
+ 
+-- STABLE
+stab:= !(TG1 | TG2 | TG3 | TG4 | TG5 | TG6 | TG7 | TG8 | TG9 | TG10 | TG12 | TG13 | TG14 | TG15 | TG16 | TG17 | TG18 | TG19 | TG20 | TG21 | TG22 | TG23 | TG25 | TG26 | TG27);
+ 
+-- OUTPUTS
+-- SET
+AL1_G_SC_LIFT_set:= PG2 | PG3 | PG4 | PG14 | PG15 | PG16;
+AL1_G_SC_LT_set:= PG1 | PG2 | PG3;
+AL1_G_SC_RT_set:= PG16 | PG17 | PG18;
+RC_AL1_G7_set:= PG;
+-- RESET
+AL1_G_SC_LIFT_reset:= PG | PG1 | PG5 | PG6 | PG7 | PG8 | PG9 | PG10 | PG11 | PG12 | PG13 | PG17 | PG18 | PG19 | PG20 | PG21 | PG22 | PG23 | PG24 | PG25 | PG26;
+AL1_G_SC_LT_reset:= PG | PG4 | PG5 | PG6 | PG7 | PG8 | PG9 | PG10 | PG11 | PG12 | PG13 | PG14 | PG15 | PG16 | PG17 | PG18 | PG19 | PG20 | PG21 | PG22 | PG23 | PG24 | PG25 | PG26;
+AL1_G_SC_RT_reset:= PG | PG1 | PG2 | PG3 | PG4 | PG5 | PG6 | PG7 | PG8 | PG9 | PG10 | PG11 | PG12 | PG13 | PG14 | PG15 | PG19 | PG20 | PG21 | PG22 | PG23 | PG24 | PG25 | PG26;
+RC_AL1_G7_reset:= PG1 | PG2 | PG3 | PG4 | PG5 | PG6 | PG7 | PG8 | PG9 | PG10 | PG11 | PG12 | PG13 | PG14 | PG15 | PG16 | PG17 | PG18 | PG19 | PG20 | PG21 | PG22 | PG23 | PG24 | PG25 | PG26;
+-- OUTPUT
+AL1_G_SC_LIFT:= AL1_G_SC_LIFT_set & !AL1_G_SC_LIFT_reset;
+AL1_G_SC_LT:= AL1_G_SC_LT_set & !AL1_G_SC_LT_reset;
+AL1_G_SC_RT:= AL1_G_SC_RT_set & !AL1_G_SC_RT_reset;
+RC_AL1_G7:= RC_AL1_G7_set & !RC_AL1_G7_reset;
+-- Non-Boolean Outputs
+AL1_G_SC_TG:= case
+   PG26: 55;
+   TRUE: 0;
+esac;
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(AL1_G_S1):= {TRUE, FALSE};
+init(AL1_G_SC_LL):= {TRUE, FALSE};
+init(AL1_G_SC_MZ):= {TRUE, FALSE};
+init(AL1_G_ML):= {TRUE, FALSE};
+init(AL1_G_SC_MX):= {TRUE, FALSE};
+init(AL1_G_SC_RL):= {TRUE, FALSE};
+next(AL1_G_S1):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_G_S1;
+esac;
+next(AL1_G_SC_LL):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_G_SC_LL;
+esac;
+next(AL1_G_SC_MZ):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_G_SC_MZ;
+esac;
+next(AL1_G_ML):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_G_ML;
+esac;
+next(AL1_G_SC_MX):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_G_SC_MX;
+esac;
+next(AL1_G_SC_RL):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_G_SC_RL;
+esac;
+ 
+-- PLACES
+init(PG):= TRUE;
+init(PG1):= FALSE;
+init(PG2):= FALSE;
+init(PG3):= FALSE;
+init(PG4):= FALSE;
+init(PG5):= FALSE;
+init(PG6):= FALSE;
+init(PG7):= FALSE;
+init(PG8):= FALSE;
+init(PG9):= FALSE;
+init(PG10):= FALSE;
+init(PG11):= FALSE;
+init(PG12):= FALSE;
+init(PG13):= FALSE;
+init(PG14):= FALSE;
+init(PG15):= FALSE;
+init(PG16):= FALSE;
+init(PG17):= FALSE;
+init(PG18):= FALSE;
+init(PG19):= FALSE;
+init(PG20):= FALSE;
+init(PG21):= FALSE;
+init(PG22):= FALSE;
+init(PG23):= FALSE;
+init(PG24):= FALSE;
+init(PG25):= FALSE;
+init(PG26):= FALSE;
+next(PG):= case
+   TG1: FALSE;
+   TG27: TRUE;
+   TRUE: PG;
+esac;
+next(PG1):= case
+   TG1: TRUE;
+   TG2: FALSE;
+   TRUE: PG1;
+esac;
+next(PG2):= case
+   TG2: TRUE;
+   TG3: FALSE;
+   TRUE: PG2;
+esac;
+next(PG3):= case
+   TG3: TRUE;
+   TG4: FALSE;
+   TRUE: PG3;
+esac;
+next(PG4):= case
+   TG4: TRUE;
+   TG5: FALSE;
+   TRUE: PG4;
+esac;
+next(PG5):= case
+   TG5: TRUE;
+   TG6: FALSE;
+   TRUE: PG5;
+esac;
+next(PG6):= case
+   TG6: TRUE;
+   TG7: FALSE;
+   TRUE: PG6;
+esac;
+next(PG7):= case
+   TG7: TRUE;
+   TG8: FALSE;
+   TRUE: PG7;
+esac;
+next(PG8):= case
+   TG8: TRUE;
+   TG9: FALSE;
+   TRUE: PG8;
+esac;
+next(PG9):= case
+   TG9: TRUE;
+   TG10: FALSE;
+   TRUE: PG9;
+esac;
+next(PG10):= case
+   TG10: TRUE;
+   TG14: FALSE;
+   TRUE: PG10;
+esac;
+next(PG11):= case
+   TG8: TRUE;
+   TG12: FALSE;
+   TRUE: PG11;
+esac;
+next(PG12):= case
+   TG12: TRUE;
+   TG13: FALSE;
+   TRUE: PG12;
+esac;
+next(PG13):= case
+   TG13: TRUE;
+   TG14: FALSE;
+   TRUE: PG13;
+esac;
+next(PG14):= case
+   TG14: TRUE;
+   TG15: FALSE;
+   TRUE: PG14;
+esac;
+next(PG15):= case
+   TG15: TRUE;
+   TG16: FALSE;
+   TRUE: PG15;
+esac;
+next(PG16):= case
+   TG16: TRUE;
+   TG17: FALSE;
+   TRUE: PG16;
+esac;
+next(PG17):= case
+   TG17: TRUE;
+   TG18: FALSE;
+   TRUE: PG17;
+esac;
+next(PG18):= case
+   TG18: TRUE;
+   TG19: FALSE;
+   TRUE: PG18;
+esac;
+next(PG19):= case
+   TG19: TRUE;
+   TG20: FALSE;
+   TRUE: PG19;
+esac;
+next(PG20):= case
+   TG20: TRUE;
+   TG21: FALSE;
+   TRUE: PG20;
+esac;
+next(PG21):= case
+   TG21: TRUE;
+   TG22: FALSE;
+   TRUE: PG21;
+esac;
+next(PG22):= case
+   TG22: TRUE;
+   TG23: FALSE;
+   TRUE: PG22;
+esac;
+next(PG23):= case
+   TG23: TRUE;
+   TG27: FALSE;
+   TRUE: PG23;
+esac;
+next(PG24):= case
+   TG21: TRUE;
+   TG25: FALSE;
+   TRUE: PG24;
+esac;
+next(PG25):= case
+   TG25: TRUE;
+   TG26: FALSE;
+   TRUE: PG25;
+esac;
+next(PG26):= case
+   TG26: TRUE;
+   TG27: FALSE;
+   TRUE: PG26;
+esac;
+
+
+-- INTERNALS
+init(TG_POS):= 10;
+next(TG_POS):= case
+   stab: {11, 12, 13, 14, 15};
+   TRUE: TG_POS;
+esac;
+
+
+--=====================================================================
+--SPECIFICATIONS
+--=====================================================================
+
+--CHECK LIVENESS
+SPEC
+AG(EF(TG1));
+SPEC
+AG(EF(TG2));
+SPEC
+AG(EF(TG3));
+SPEC
+AG(EF(TG4));
+SPEC
+AG(EF(TG5));
+SPEC
+AG(EF(TG6));
+SPEC
+AG(EF(TG7));
+SPEC
+AG(EF(TG8));
+SPEC
+AG(EF(TG9));
+SPEC
+AG(EF(TG10));
+SPEC
+AG(EF(TG12));
+SPEC
+AG(EF(TG13));
+SPEC
+AG(EF(TG14));
+SPEC
+AG(EF(TG15));
+SPEC
+AG(EF(TG16));
+SPEC
+AG(EF(TG17));
+SPEC
+AG(EF(TG18));
+SPEC
+AG(EF(TG19));
+SPEC
+AG(EF(TG20));
+SPEC
+AG(EF(TG21));
+SPEC
+AG(EF(TG22));
+SPEC
+AG(EF(TG23));
+SPEC
+AG(EF(TG25));
+SPEC
+AG(EF(TG26));
+SPEC
+AG(EF(TG27));
+--CHECK DEADLOCKS
+SPEC
+AG(EF( TG1 | TG2 | TG3 | TG4 | TG5 | TG6 | TG7 | TG8 | TG9 | TG10 | TG12 | TG13 | TG14 | TG15 | TG16 | TG17 | TG18 | TG19 | TG20 | TG21 | TG22 | TG23 | TG25 | TG26 | TG27 ));
+--CHECK DEAD TRANSITIONS
+SPEC
+EF(TG1);
+SPEC
+EF(TG2);
+SPEC
+EF(TG3);
+SPEC
+EF(TG4);
+SPEC
+EF(TG5);
+SPEC
+EF(TG6);
+SPEC
+EF(TG7);
+SPEC
+EF(TG8);
+SPEC
+EF(TG9);
+SPEC
+EF(TG10);
+SPEC
+EF(TG12);
+SPEC
+EF(TG13);
+SPEC
+EF(TG14);
+SPEC
+EF(TG15);
+SPEC
+EF(TG16);
+SPEC
+EF(TG17);
+SPEC
+EF(TG18);
+SPEC
+EF(TG19);
+SPEC
+EF(TG20);
+SPEC
+EF(TG21);
+SPEC
+EF(TG22);
+SPEC
+EF(TG23);
+SPEC
+EF(TG25);
+SPEC
+EF(TG26);
+SPEC
+EF(TG27);
+--CHECK UNSTABLE CYCLES
+SPEC
+AG(EF(stab));
+--CHECK CONTRADICTORY OUTPUTS
+SPEC
+AG( stab -> ! (RC_AL1_G7_set & RC_AL1_G7_reset) );
+SPEC
+AG( stab -> ! (AL1_G_SC_LT_set & AL1_G_SC_LT_reset) );
+SPEC
+AG( stab -> ! (AL1_G_SC_LIFT_set & AL1_G_SC_LIFT_reset) );
+SPEC
+AG( stab -> ! (AL1_G_SC_RT_set & AL1_G_SC_RT_reset) );
+--CHECK EMPTY OUTPUTS
+SPEC
+AG( stab -> RC_AL1_G7_set | RC_AL1_G7_reset );
+SPEC
+AG( stab -> AL1_G_SC_LT_set | AL1_G_SC_LT_reset );
+SPEC
+AG( stab -> AL1_G_SC_LIFT_set | AL1_G_SC_LIFT_reset );
+SPEC
+AG( stab -> AL1_G_SC_RT_set | AL1_G_SC_RT_reset );
