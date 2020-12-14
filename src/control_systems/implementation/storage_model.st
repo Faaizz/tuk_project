@@ -14,7 +14,7 @@ VAR
 AL1_G_S1 AT %IX100.0 : BOOL;
 AL1_G_SC_LL AT %IX100.1 : BOOL;
 AL1_G_SC_MZ AT %IX100.2 : BOOL;
-AL1_G_SC_ML AT %IX100.3 : BOOL;
+AL1_G_ML AT %IX100.3 : BOOL;
 AL1_G_SC_MX AT %IX100.4 : BOOL;
 AL1_G_SC_RL AT %IX100.5 : BOOL;
 RC_AL1_G7 AT %QX100.0 : BOOL;
@@ -67,11 +67,10 @@ VAR
 (*INTERNAL VARIABLES*)
 
 TG_POS : INT;
-placeCtr : CTU;
 
 END_VAR
 
-placeCtr(CU:= PG, R:= 0, PV:= 54);
+TG_POS:=10;
 
 
 (*=====================================================================*)
@@ -82,7 +81,7 @@ STABLE:=0;
 WHILE STABLE=0 DO
    STABLE:=1;
    (*TG1*)
-   IF (PG) AND ( (AL1_G_S1) ) AND (NOT PG1) THEN
+   IF (PG) AND ( (NOT AL1_G_S1) ) AND (NOT PG1) THEN
        PG:=0;
        PG1:=1;
        STABLE:=0;

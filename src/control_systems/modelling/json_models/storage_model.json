@@ -1,5 +1,11 @@
 {
     "places": {
+        "PG0": [
+            [
+                [], []
+            ],
+            "Stackable box coming in from stacking stage"
+        ],
         "PG": [
             [
                 ["RC_AL1_G7"],["AL1_G_SC_LT", "AL1_G_SC_RT", "AL1_G_SC_LIFT"]
@@ -204,7 +210,7 @@
 
     "transitions": {
         "TG1": [
-            ["PG"],
+            ["PG", "PG0"],
             [
                 [
                     ["AL1_G_S1"], []
