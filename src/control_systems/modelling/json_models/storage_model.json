@@ -53,7 +53,7 @@
             [
                 [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
             ],
-            ["AL1_G_SC_TG:=TG_POS", "TG_POS:=TG_POS+1"],
+            ["AL1_G_SC_TG:=TG_POS", "TG_POS:=placeCtr.CV+10"],
             "Lift down, set target position"
         ],
         "PG8":  [
@@ -207,7 +207,7 @@
             ["PG"],
             [
                 [
-                    [], ["AL1_G_S1"]
+                    ["AL1_G_S1"], []
                 ]
             ],
             ["PG1"]
@@ -439,7 +439,14 @@
             ],
             [
                 "INT",
-                "TG_POS:=10"
+                ""
+            ]
+        ],
+        "placeCtr": [
+            [],
+            [
+                "CTU",
+                "placeCtr(CU:= PG, R:= 0, PV:= 54)"
             ]
         ]
     },
@@ -448,7 +455,7 @@
         "AL1_G_S1": ["boolean", "%IX100.0"],
         "AL1_G_SC_LL": ["boolean", "%IX100.1"],
         "AL1_G_SC_MZ": ["boolean", "%IX100.2"],
-        "AL1_G_ML": ["boolean", "%IX100.3"],
+        "AL1_G_SC_ML": ["boolean", "%IX100.3"],
         "AL1_G_SC_MX": ["boolean", "%IX100.4"],
         "AL1_G_SC_RL": ["boolean", "%IX100.5"]
 

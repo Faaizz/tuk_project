@@ -623,7 +623,7 @@
     "outputs": {
         "E_AL2_B1": ["%QX103.4"],
         "PUWS_AL2_B1_PLUS": ["%QX103.5"],
-        "PUWS_AL2_B1_RIGHT": ["%QX103.6"],
+        "PUWS_AL2_B1_LEFT": ["%QX103.6"],
         "PAS_AL2_PLUS": ["%QX103.7"],
         "PAS_AL2_TURN": ["%QX104.0"],
 

@@ -30,14 +30,21 @@ VAR
 
 (*PLACES*)
 
-PG : BOOL := 1;
-PG1 : BOOL := 0;
-PG2 : BOOL := 0;
-PG3 : BOOL := 0;
-PG4 : BOOL := 0;
-PG5 : BOOL := 0;
-PG6 : BOOL := 0;
-PG7 : BOOL := 0;
+PG AT %QX100.6 : BOOL := 1;
+PG1 AT %QX100.7 : BOOL := 0;
+PG2 AT %QX101.0 : BOOL := 0;
+PG3 AT %QX101.1 : BOOL := 0;
+PG4 AT %QX101.2 : BOOL := 0;
+PG5 AT %QX101.3 : BOOL := 0;
+PG6 AT %QX101.4 : BOOL := 0;
+PG7 AT %QX101.5 : BOOL := 0;
+
+END_VAR
+
+
+
+VAR
+
 PG8 : BOOL := 0;
 PG9 : BOOL := 0;
 PG10 : BOOL := 0;
@@ -61,17 +68,18 @@ STABLE : BOOL := 0;
 
 END_VAR
 
-
 VAR
-
-(*INTERNAL VARIABLES*)
-
-TG_POS : INT;
-
+   TG_POS : INT := 10;
 END_VAR
 
-TG_POS:=10;
+VAR
+   placeCtr : CTU;
+END_VAR
 
+
+placeCtr(CU:= PG, R:= 0, PV:= 54);
+
+TG_POS:=placeCtr.CV+10;
 
 (*=====================================================================*)
 (*TRANSITIONS*)
@@ -81,7 +89,7 @@ STABLE:=0;
 WHILE STABLE=0 DO
    STABLE:=1;
    (*TG1*)
-   IF (PG) AND ( (NOT AL1_G_S1) ) AND (NOT PG1) THEN
+   IF (PG) AND ( (AL1_G_S1) ) AND (NOT PG1) THEN
        PG:=0;
        PG1:=1;
        STABLE:=0;
@@ -304,6 +312,7 @@ END_IF;
 (*AL1_G_SC_TG*)
 IF PG7 THEN
    AL1_G_SC_TG:=TG_POS;
+   AL1_G_SC_TG:=AL1_G_SC_TG+1;
 END_IF;
 (*AL1_G_SC_TG*)
 IF PG8 THEN
@@ -393,6 +402,8 @@ CONFIGURATION config0
         TASK task0(INTERVAL := T#20ms, PRIORITY := 0);
         PROGRAM instance0 WITH task0 : program0;
     END_RESOURCE
+
+    
 
 END_CONFIGURATION
 
