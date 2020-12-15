@@ -239,8 +239,8 @@ timer_1_P3 : TON;
 AL1_BASE : BOOL;
 AL1_LID : BOOL;
 timer_1_PL9 : TON;
-timer_1_PL7.Q : TON;
-timer_1_PB7.Q : TON;
+timer_1_PL7 : TON;
+timer_1_PB7 : TON;
 TG_POS : INT;
 placeCtr : CTU;
 
@@ -538,7 +538,7 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TL78*)
-   IF (PL78) AND ( (timer_1_PL7.QP) ) AND (NOT PL8) THEN
+   IF (PL78) AND ( (timer_1_PL7.Q) ) AND (NOT PL8) THEN
        PL78:=0;
        PL8:=1;
        STABLE:=0;

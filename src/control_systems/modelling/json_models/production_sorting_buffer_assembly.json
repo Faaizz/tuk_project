@@ -528,6 +528,12 @@
             ],
             "Product reaches stacker"
         ],
+        "PS23": [
+            [
+                [], ["RP_AL1_ST_CLAMP", "AL1_ST_GRAB"]
+            ],
+            "Product gets withing graber range, wait a little before clamping"
+        ],
         "PS2": [
             [
                 ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
@@ -1277,7 +1283,7 @@
             ["PL78"],
             [
                 [
-                    ["timer_1_PL7.QP"], []
+                    ["timer_1_PL7.Q"], []
                 ]
             ],
             ["PL8"]
@@ -1438,6 +1444,15 @@
             [
                 [
                     ["S_AL1_ST2"], []
+                ]
+            ],
+            ["PS23"]
+        ],
+        "TS23": [
+            ["PS23"],
+            [
+                [
+                    ["timer_1_PS23.Q"], []
                 ]
             ],
             ["PS2"]
@@ -1883,7 +1898,7 @@
                 "timer_1_PL9(IN:= PL9, PT:= T#300ms)"
             ]
         ],
-        "timer_1_PL7.Q": [
+        "timer_1_PL7": [
             [
                 "MODULE",
                 {
@@ -1895,7 +1910,7 @@
                 "timer_1_PL7(IN:= PL7, PT:= T#300ms)"
             ]
         ],
-        "timer_1_PB7.Q": [
+        "timer_1_PB7": [
             [
                 "MODULE",
                 {
