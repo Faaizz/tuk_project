@@ -249,6 +249,7 @@ timer_1_P3(IN:= P3, PT:= T#1000ms);
 timer_1_PL9(IN:= PL9, PT:= T#300ms);
 placeCtr(CU:= PG, R:= 0, PV:= 54);
 
+TG_POS:=placeCtr.CV+10;
 
 (*=====================================================================*)
 (*TRANSITIONS*)
@@ -667,7 +668,7 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TS8*)
-   IF (PS7) AND ( ((AL1_ST_X_POS>840) AND (AL1_ST_X_POS<880)) ) AND (NOT PS8) THEN
+   IF (PS7) AND ( ((AL1_ST_X_POS>770) AND (AL1_ST_X_POS<810)) ) AND (NOT PS8) THEN
        PS7:=0;
        PS8:=1;
        STABLE:=0;
@@ -713,9 +714,10 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TSE1*)
-   IF (PSE1) AND ( (NOT S_AL1_ST3) ) AND (NOT PSE2) THEN
+   IF (PSE1) AND ( (NOT S_AL1_ST3) ) AND (NOT PSE2) AND (NOT PG0) THEN
        PSE1:=0;
        PSE2:=1;
+       PG0:=1;
        STABLE:=0;
    END_IF;
    (*TSE2*)
@@ -750,7 +752,7 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TG5*)
-   IF (PG4) AND ( (AL1_G_ML) ) AND (NOT PG5) THEN
+   IF (PG4) AND ( (AL1_G_SC_ML) ) AND (NOT PG5) THEN
        PG4:=0;
        PG5:=1;
        STABLE:=0;
@@ -836,7 +838,7 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TG20*)
-   IF (PG19) AND ( (AL1_G_ML) ) AND (NOT PG20) THEN
+   IF (PG19) AND ( (AL1_G_SC_ML) ) AND (NOT PG20) THEN
        PG19:=0;
        PG20:=1;
        STABLE:=0;
@@ -1180,7 +1182,7 @@ IF PS6 THEN
 END_IF;
 (*AL1_ST_X_SET*)
 IF PS7 THEN
-   AL1_ST_X_SET:=860;
+   AL1_ST_X_SET:=790;
 END_IF;
 (*AL1_ST_Z_SET*)
 IF PS8 THEN

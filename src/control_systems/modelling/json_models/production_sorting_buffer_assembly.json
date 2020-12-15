@@ -251,6 +251,13 @@
             ],
             "Stop blade base 3 up"
         ],
+        "PB78": [
+            [
+                ["SB_AL1_B3"],
+                []
+            ],
+            "Waiting for base to get within clamping range"
+        ],
 
 
         "P_LID": [
@@ -343,6 +350,13 @@
                 []
             ],
             "Stop blade lid 3 up"
+        ],
+        "PL78": [
+            [
+                ["SB_AL1_L3"],
+                []
+            ],
+            "Waiting for lid to get into clamping range"
         ],
         
 
@@ -551,7 +565,7 @@
             [
                 ["AL1_ST_GRAB"], []
             ],
-            ["AL1_ST_X_SET:=860"],
+            ["AL1_ST_X_SET:=790"],
             "Move grabber to box location"
         ],
         "PS8": [
@@ -664,7 +678,7 @@
             [
                 [], ["AL1_G_SC_LT", "AL1_G_SC_LIFT", "AL1_G_SC_RT", "RC_AL1_G7"]
             ],
-            ["AL1_G_SC_TG:=TG_POS", "TG_POS:=placeCtr.CV+10"],
+            ["AL1_G_SC_TG:=TG_POS"],
             "Lift down, set target position"
         ],
         "PG8":  [
@@ -1160,6 +1174,15 @@
                     ["S_AL1_LP"], []
                 ]
             ],
+            ["PB78"]
+        ],
+        "TB78": [
+            ["PB78"],
+            [
+                [
+                    ["timer_1_PB7.Q"], []
+                ]
+            ],
             ["PB8"]
         ],
 
@@ -1246,6 +1269,15 @@
             [
                 [
                     ["S_AL1_RP"], []
+                ]
+            ],
+            ["PL8"]
+        ],
+        "TL78": [
+            ["PL78"],
+            [
+                [
+                    ["timer_1_PL7.QP"], []
                 ]
             ],
             ["PL8"]
@@ -1459,7 +1491,7 @@
             ["PS7"],
             [
                 [
-                    "(AL1_ST_X_POS>840) & (AL1_ST_X_POS<880)"
+                    "(AL1_ST_X_POS>770) & (AL1_ST_X_POS<810)"
                 ]
             ],
             ["PS8"]
@@ -1516,7 +1548,7 @@
                     [], ["S_AL1_ST3"]
                 ]
             ],
-            ["PSE2"]
+            ["PSE2", "PG0"]
         ],
         "TSE2": [
             ["PSE2"],
@@ -1569,7 +1601,7 @@
             ["PG4"],
             [
                 [
-                    ["AL1_G_ML"], []
+                    ["AL1_G_SC_ML"], []
                 ]
             ],
             ["PG5"]
@@ -1695,7 +1727,7 @@
             ["PG19"],
             [
                 [
-                    ["AL1_G_ML"], []
+                    ["AL1_G_SC_ML"], []
                 ]
             ],
             ["PG20"]
@@ -1851,6 +1883,30 @@
                 "timer_1_PL9(IN:= PL9, PT:= T#300ms)"
             ]
         ],
+        "timer_1_PL7.Q": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PL7(IN:= PL7, PT:= T#300ms)"
+            ]
+        ],
+        "timer_1_PB7.Q": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PB7(IN:= PB7, PT:= T#300ms)"
+            ]
+        ],
 
 
         "TG_POS": [
@@ -1861,7 +1917,7 @@
             ],
             [
                 "INT",
-                ""
+                "TG_POS:=placeCtr.CV+10"
             ]
         ],
         "placeCtr": [

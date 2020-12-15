@@ -445,7 +445,7 @@
             ],
             [
                 "INT",
-                ""
+                "TG_POS:=placeCtr.CV+10"
             ]
         ],
         "placeCtr": [
