@@ -1922,6 +1922,18 @@
                 "timer_1_PB7(IN:= PB7, PT:= T#300ms)"
             ]
         ],
+        "timer_1_PS23": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PS23(IN:= PS23, PT:= T#300ms)"
+            ]
+        ],
 
 
         "TG_POS": [

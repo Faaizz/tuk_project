@@ -242,6 +242,7 @@ AL1_LID : BOOL;
 timer_1_PL9 : TON;
 timer_1_PL7 : TON;
 timer_1_PB7 : TON;
+timer_1_PS23 : TON;
 TG_POS : INT;
 placeCtr : CTU;
 
@@ -254,6 +255,7 @@ timer_1_P3(IN:= P3, PT:= T#1000ms);
 timer_1_PL9(IN:= PL9, PT:= T#300ms);
 timer_1_PL7(IN:= PL7, PT:= T#300ms);
 timer_1_PB7(IN:= PB7, PT:= T#300ms);
+timer_1_PS23(IN:= PS23, PT:= T#300ms);
 TG_POS:=placeCtr.CV+10;
 placeCtr(CU:= PG, R:= 0, PV:= 54);
 
