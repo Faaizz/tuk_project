@@ -142,6 +142,7 @@ PBF2 : BOOL := 1;
 PB6 : BOOL := 0;
 PBF3 : BOOL := 1;
 PB7 : BOOL := 0;
+PB78 : BOOL := 0;
 P_LID : BOOL := 0;
 PL1 : BOOL := 0;
 PUSH_L : BOOL := 1;
@@ -155,6 +156,7 @@ PLF2 : BOOL := 1;
 PL6 : BOOL := 0;
 PLF3 : BOOL := 1;
 PL7 : BOOL := 0;
+PL78 : BOOL := 0;
 PA0 : BOOL := 1;
 PA1 : BOOL := 0;
 PA2 : BOOL := 0;
@@ -237,6 +239,8 @@ timer_1_P3 : TON;
 AL1_BASE : BOOL;
 AL1_LID : BOOL;
 timer_1_PL9 : TON;
+timer_1_PL7.Q : TON;
+timer_1_PB7.Q : TON;
 TG_POS : INT;
 placeCtr : CTU;
 
@@ -247,9 +251,11 @@ timer_1_TB1(IN:= PB1, PT:= T#900ms);
 timer_1_P2(IN:= P2, PT:= T#1000ms);
 timer_1_P3(IN:= P3, PT:= T#1000ms);
 timer_1_PL9(IN:= PL9, PT:= T#300ms);
+timer_1_PL7(IN:= PL7, PT:= T#300ms);
+timer_1_PB7(IN:= PB7, PT:= T#300ms);
+TG_POS:=placeCtr.CV+10;
 placeCtr(CU:= PG, R:= 0, PV:= 54);
 
-TG_POS:=placeCtr.CV+10;
 
 (*=====================================================================*)
 (*TRANSITIONS*)
@@ -457,9 +463,15 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TB7*)
-   IF (PB7 AND PBF4) AND ( (S_AL1_LP) ) AND (NOT PB8) THEN
+   IF (PB7 AND PBF4) AND ( (S_AL1_LP) ) AND (NOT PB78) THEN
        PB7:=0;
        PBF4:=0;
+       PB78:=1;
+       STABLE:=0;
+   END_IF;
+   (*TB78*)
+   IF (PB78) AND ( (timer_1_PB7.Q) ) AND (NOT PB8) THEN
+       PB78:=0;
        PB8:=1;
        STABLE:=0;
    END_IF;
@@ -522,6 +534,12 @@ WHILE STABLE=0 DO
    IF (PL7 AND PLF4) AND ( (S_AL1_RP) ) AND (NOT PL8) THEN
        PL7:=0;
        PLF4:=0;
+       PL8:=1;
+       STABLE:=0;
+   END_IF;
+   (*TL78*)
+   IF (PL78) AND ( (timer_1_PL7.QP) ) AND (NOT PL8) THEN
+       PL78:=0;
        PL8:=1;
        STABLE:=0;
    END_IF;
@@ -714,7 +732,7 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TSE1*)
-   IF (PSE1) AND ( (NOT S_AL1_ST3) ) AND (NOT PSE2) AND (NOT PG0) THEN
+   IF (PSE1) AND ( (NOT S_AL1_ST3) ) AND (NOT PSE2 AND NOT PG0) THEN
        PSE1:=0;
        PSE2:=1;
        PG0:=1;
@@ -997,7 +1015,7 @@ IF PB6 THEN
    SB_AL1_B2:=1;
 END_IF;
 (*SB_AL1_B3*)
-IF PB7 THEN
+IF PB7 OR PB78 THEN
    SB_AL1_B3:=1;
 END_IF;
 (*SB_AL1_L1*)
@@ -1009,7 +1027,7 @@ IF PL6 THEN
    SB_AL1_L2:=1;
 END_IF;
 (*SB_AL1_L3*)
-IF PL7 THEN
+IF PL7 OR PL78 THEN
    SB_AL1_L3:=1;
 END_IF;
 (*AL1_BASE*)
