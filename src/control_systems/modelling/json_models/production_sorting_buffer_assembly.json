@@ -2032,9 +2032,9 @@
         ],
 
 
-        "S_AL1_ST1": ["boolean", "%IX104.0"],
-        "S_AL1_ST2": ["boolean", "%IX104.1"],
-        "S_AL1_ST3": ["boolean", "%IX104.2"],
+        "ST_AL1_ST1": ["boolean", "%IX104.0"],
+        "ST_AL1_ST2": ["boolean", "%IX104.1"],
+        "ST_AL1_ST3": ["boolean", "%IX104.2"],
         "RP_AL1_ST_CLAMPED": ["boolean", "%IX104.3"],
         "AL1_ST_DETECTED": ["boolean", "%IX104.4"],
         "AL1_ST_X_POS": [
