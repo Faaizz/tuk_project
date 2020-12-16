@@ -644,13 +644,13 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TS1*)
-   IF (PA13) AND ( (S_AL2_ST1) ) AND (NOT PS1) THEN
+   IF (PA13) AND ( (ST_AL2_ST1) ) AND (NOT PS1) THEN
        PA13:=0;
        PS1:=1;
        STABLE:=0;
    END_IF;
    (*TS2*)
-   IF (PS0 AND PSC AND PS1) AND ( (S_AL2_ST2) ) AND (NOT PS23) THEN
+   IF (PS0 AND PSC AND PS1) AND ( (ST_AL2_ST2) ) AND (NOT PS23) THEN
        PS0:=0;
        PSC:=0;
        PS1:=0;
@@ -741,14 +741,14 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TSE1*)
-   IF (PSE1) AND ( (NOT S_AL2_ST3) ) AND (NOT PSE2 AND NOT PG0) THEN
+   IF (PSE1) AND ( (NOT ST_AL2_ST3) ) AND (NOT PSE2 AND NOT PG0) THEN
        PSE1:=0;
        PSE2:=1;
        PG0:=1;
        STABLE:=0;
    END_IF;
    (*TSE2*)
-   IF (PSE2) AND ( (S_AL2_ST3) ) AND (NOT PSE0) THEN
+   IF (PSE2) AND ( (ST_AL2_ST3) ) AND (NOT PSE0) THEN
        PSE2:=0;
        PSE0:=1;
        STABLE:=0;

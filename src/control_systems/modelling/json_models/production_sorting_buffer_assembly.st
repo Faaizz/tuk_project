@@ -47,9 +47,9 @@ LP_AL1_LIMIT AT %IX102.4 : BOOL;
 AL1_X_POS AT %IW101 : WORD;
 AL1_Y_POS AT %IW102 : WORD;
 AL1_Z_POS AT %IW103 : WORD;
-S_AL1_ST1 AT %IX104.0 : BOOL;
-S_AL1_ST2 AT %IX104.1 : BOOL;
-S_AL1_ST3 AT %IX104.2 : BOOL;
+ST_AL1_ST1 AT %IX104.0 : BOOL;
+ST_AL1_ST2 AT %IX104.1 : BOOL;
+ST_AL1_ST3 AT %IX104.2 : BOOL;
 RP_AL1_ST_CLAMPED AT %IX104.3 : BOOL;
 AL1_ST_DETECTED AT %IX104.4 : BOOL;
 AL1_ST_X_POS AT %IW104 : WORD;
@@ -253,9 +253,9 @@ timer_1_TB1(IN:= PB1, PT:= T#900ms);
 timer_1_P2(IN:= P2, PT:= T#1000ms);
 timer_1_P3(IN:= P3, PT:= T#1000ms);
 timer_1_PL9(IN:= PL9, PT:= T#300ms);
-timer_1_PL7(IN:= PL7, PT:= T#300ms);
-timer_1_PB7(IN:= PB7, PT:= T#300ms);
-timer_1_PS23(IN:= PS23, PT:= T#300ms);
+timer_1_PL7(IN:= PL78, PT:= T#1500ms);
+timer_1_PB7(IN:= PB78, PT:= T#1500ms);
+timer_1_PS23(IN:= PS23, PT:= T#1500ms);
 TG_POS:=placeCtr.CV+10;
 placeCtr(CU:= PG, R:= 0, PV:= 54);
 
@@ -534,10 +534,10 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TL7*)
-   IF (PL7 AND PLF4) AND ( (S_AL1_RP) ) AND (NOT PL8) THEN
+   IF (PL7 AND PLF4) AND ( (S_AL1_RP) ) AND (NOT PL78) THEN
        PL7:=0;
        PLF4:=0;
-       PL8:=1;
+       PL78:=1;
        STABLE:=0;
    END_IF;
    (*TL78*)
@@ -644,13 +644,13 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TS1*)
-   IF (PA13) AND ( (S_AL1_ST1) ) AND (NOT PS1) THEN
+   IF (PA13) AND ( (ST_AL1_ST1) ) AND (NOT PS1) THEN
        PA13:=0;
        PS1:=1;
        STABLE:=0;
    END_IF;
    (*TS2*)
-   IF (PS0 AND PSC AND PS1) AND ( (S_AL1_ST2) ) AND (NOT PS23) THEN
+   IF (PS0 AND PSC AND PS1) AND ( (ST_AL1_ST2) ) AND (NOT PS23) THEN
        PS0:=0;
        PSC:=0;
        PS1:=0;
@@ -741,14 +741,14 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TSE1*)
-   IF (PSE1) AND ( (NOT S_AL1_ST3) ) AND (NOT PSE2 AND NOT PG0) THEN
+   IF (PSE1) AND ( (NOT ST_AL1_ST3) ) AND (NOT PSE2 AND NOT PG0) THEN
        PSE1:=0;
        PSE2:=1;
        PG0:=1;
        STABLE:=0;
    END_IF;
    (*TSE2*)
-   IF (PSE2) AND ( (S_AL1_ST3) ) AND (NOT PSE0) THEN
+   IF (PSE2) AND ( (ST_AL1_ST3) ) AND (NOT PSE0) THEN
        PSE2:=0;
        PSE0:=1;
        STABLE:=0;
