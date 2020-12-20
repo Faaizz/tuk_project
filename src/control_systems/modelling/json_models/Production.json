@@ -163,7 +163,7 @@
                     ["S_AL1_P_B3"], []
                 ]
             ],
-            ["P0"]
+            ["FALSE"]
         ],
         "TPL2": [
             ["PP2"],
@@ -208,7 +208,7 @@
                     ["S_AL1_P_B3"], []
                 ]
             ],
-            ["P0"]
+            ["FALSE"]
         ]
 
     },
@@ -263,6 +263,14 @@
         "S_AL1_P_B3": ["boolean", "%IX103.5"],
         "S_AL1_MCB2": ["boolean", "%IX103.6"],
         "S_AL1_MCBR2": ["boolean", "%IX103.7"]
+    },
+
+    "specifications": {
+        "auto": true,
+        "manual": [
+            "AG( (stab) -> EF(PPL7) )",
+            "AG( (stab) -> EF(PP7) )"
+        ]
     }
 
 }
