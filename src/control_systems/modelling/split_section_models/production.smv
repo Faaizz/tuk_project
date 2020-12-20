@@ -1,0 +1,298 @@
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['S_AL1_P_B1', 'S_AL1_P_B2', 'S_AL1_MCB', 'MCB_BUSY', 'S_AL1_MCBR', 'MCBR_BUSY', 'S_AL1_MCB2', 'S_AL1_MCBR2']
+S_AL1_P_B1: boolean;
+S_AL1_P_B2: boolean;
+S_AL1_MCB: boolean;
+MCB_BUSY: boolean;
+S_AL1_MCBR: boolean;
+MCBR_BUSY: boolean;
+S_AL1_MCB2: boolean;
+S_AL1_MCBR2: boolean;
+ 
+-- PLACES
+-- ['PPAL1', 'PP0', 'PP1', 'PP2', 'PP3', 'PP4', 'MCB', 'PP5', 'PP7', 'PPL3', 'PPL4', 'MCBR', 'PPL5', 'PPL7', 'initial']
+PPAL1: boolean;
+PP0: boolean;
+PP1: boolean;
+PP2: boolean;
+PP3: boolean;
+PP4: boolean;
+MCB: boolean;
+PP5: boolean;
+PP7: boolean;
+PPL3: boolean;
+PPL4: boolean;
+MCBR: boolean;
+PPL5: boolean;
+PPL7: boolean;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+TP0:= (PP0) & ( (!MCB_CONTROL) ) & (!PP1);
+TP1:= (PP1) & ( (S_AL1_P_B1) ) & (!PP2);
+TP2:= (PP2) & ( (S_AL1_P_B2 & !MCB_CONTROL) ) & (!PP3);
+TP3:= (PP3) & ( (S_AL1_MCB) ) & (!PP4 & !PP1);
+TP4:= (PP4 & MCB) & ( (MCB_BUSY) ) & (!PP5);
+TP6:= (PP5) & ( (S_AL1_MCB2) ) & (!PP7 & !MCB);
+TPL2:= (PP2) & ( (S_AL1_P_B2 & MCB_CONTROL) ) & (!PPL3 & !PP1);
+TPL3:= (PPL3) & ( (S_AL1_MCBR) ) & (!PPL4);
+TPL4:= (PPL4 & MCBR) & ( (MCBR_BUSY) ) & (!PPL5);
+TPL6:= (PPL5) & ( (S_AL1_MCBR2) ) & (!PPL7 & !MCBR);
+ 
+-- STABLE
+stab:= !(TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TPL2 | TPL3 | TPL4 | TPL6);
+ 
+-- OUTPUTS
+-- SET
+E_AL1_B1_set:= PP0 | PP1;
+MCB_CONTROL_set:= PP3;
+PAS_AL1_PLUS_set:= PPL3 | PPL4;
+PAS_AL1_TURN_set:= PPL3 | PPL4;
+PUWS_AL1_B1_PLUS_set:= PPAL1 | PP2;
+PUWS_AL1_B1_RIGHT_set:= FALSE;
+-- RESET
+E_AL1_B1_reset:= PP2 | PP3 | PPL3;
+MCB_CONTROL_reset:= PP0 | PPL3;
+PAS_AL1_PLUS_reset:= PP0 | PP3 | PP4;
+PAS_AL1_TURN_reset:= PP0 | PP3 | PP4;
+PUWS_AL1_B1_PLUS_reset:= FALSE;
+PUWS_AL1_B1_RIGHT_reset:= PPAL1 | PP2;
+-- OUTPUT
+E_AL1_B1:= E_AL1_B1_set & !E_AL1_B1_reset;
+MCB_CONTROL:= MCB_CONTROL_set & !MCB_CONTROL_reset;
+PAS_AL1_PLUS:= PAS_AL1_PLUS_set & !PAS_AL1_PLUS_reset;
+PAS_AL1_TURN:= PAS_AL1_TURN_set & !PAS_AL1_TURN_reset;
+PUWS_AL1_B1_PLUS:= PUWS_AL1_B1_PLUS_set & !PUWS_AL1_B1_PLUS_reset;
+PUWS_AL1_B1_RIGHT:= PUWS_AL1_B1_RIGHT_set & !PUWS_AL1_B1_RIGHT_reset;
+-- Non-Boolean Outputs
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(S_AL1_P_B1):= {TRUE, FALSE};
+init(S_AL1_P_B2):= {TRUE, FALSE};
+init(S_AL1_MCB):= {TRUE, FALSE};
+init(MCB_BUSY):= {TRUE, FALSE};
+init(S_AL1_MCBR):= {TRUE, FALSE};
+init(MCBR_BUSY):= {TRUE, FALSE};
+init(S_AL1_MCB2):= {TRUE, FALSE};
+init(S_AL1_MCBR2):= {TRUE, FALSE};
+next(S_AL1_P_B1):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_P_B1;
+esac;
+next(S_AL1_P_B2):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_P_B2;
+esac;
+next(S_AL1_MCB):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_MCB;
+esac;
+next(MCB_BUSY):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCB_BUSY;
+esac;
+next(S_AL1_MCBR):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_MCBR;
+esac;
+next(MCBR_BUSY):= case
+   stab: {TRUE, FALSE};
+   TRUE: MCBR_BUSY;
+esac;
+next(S_AL1_MCB2):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_MCB2;
+esac;
+next(S_AL1_MCBR2):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_MCBR2;
+esac;
+ 
+-- PLACES
+init(PPAL1):= TRUE;
+init(PP0):= TRUE;
+init(PP1):= FALSE;
+init(PP2):= FALSE;
+init(PP3):= FALSE;
+init(PP4):= FALSE;
+init(MCB):= TRUE;
+init(PP5):= FALSE;
+init(PP7):= FALSE;
+init(PPL3):= FALSE;
+init(PPL4):= FALSE;
+init(MCBR):= TRUE;
+init(PPL5):= FALSE;
+init(PPL7):= FALSE;
+next(PPAL1):= case
+   TRUE: PPAL1;
+esac;
+next(PP0):= case
+   TP0: FALSE;
+   TRUE: PP0;
+esac;
+next(PP1):= case
+   TP0: TRUE;
+   TP1: FALSE;
+   TP3: TRUE;
+   TPL2: TRUE;
+   TRUE: PP1;
+esac;
+next(PP2):= case
+   TP1: TRUE;
+   TP2: FALSE;
+   TPL2: FALSE;
+   TRUE: PP2;
+esac;
+next(PP3):= case
+   TP2: TRUE;
+   TP3: FALSE;
+   TRUE: PP3;
+esac;
+next(PP4):= case
+   TP3: TRUE;
+   TP4: FALSE;
+   TRUE: PP4;
+esac;
+next(MCB):= case
+   TP4: FALSE;
+   TP6: TRUE;
+   TRUE: MCB;
+esac;
+next(PP5):= case
+   TP4: TRUE;
+   TP6: FALSE;
+   TRUE: PP5;
+esac;
+next(PP7):= case
+   TP6: TRUE;
+   TRUE: PP7;
+esac;
+next(PPL3):= case
+   TPL2: TRUE;
+   TPL3: FALSE;
+   TRUE: PPL3;
+esac;
+next(PPL4):= case
+   TPL3: TRUE;
+   TPL4: FALSE;
+   TRUE: PPL4;
+esac;
+next(MCBR):= case
+   TPL4: FALSE;
+   TPL6: TRUE;
+   TRUE: MCBR;
+esac;
+next(PPL5):= case
+   TPL4: TRUE;
+   TPL6: FALSE;
+   TRUE: PPL5;
+esac;
+next(PPL7):= case
+   TPL6: TRUE;
+   TRUE: PPL7;
+esac;
+
+
+--=====================================================================
+--SPECIFICATIONS
+--=====================================================================
+
+--CHECK LIVENESS
+SPEC
+AG(EF(TP0));
+SPEC
+AG(EF(TP1));
+SPEC
+AG(EF(TP2));
+SPEC
+AG(EF(TP3));
+SPEC
+AG(EF(TP4));
+SPEC
+AG(EF(TP6));
+SPEC
+AG(EF(TPL2));
+SPEC
+AG(EF(TPL3));
+SPEC
+AG(EF(TPL4));
+SPEC
+AG(EF(TPL6));
+--CHECK DEADLOCKS
+SPEC
+AG(EF( TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TPL2 | TPL3 | TPL4 | TPL6 ));
+--CHECK DEAD TRANSITIONS
+SPEC
+EF(TP0);
+SPEC
+EF(TP1);
+SPEC
+EF(TP2);
+SPEC
+EF(TP3);
+SPEC
+EF(TP4);
+SPEC
+EF(TP6);
+SPEC
+EF(TPL2);
+SPEC
+EF(TPL3);
+SPEC
+EF(TPL4);
+SPEC
+EF(TPL6);
+--CHECK UNSTABLE CYCLES
+SPEC
+AG(EF(stab));
+--CHECK CONTRADICTORY OUTPUTS
+SPEC
+AG( stab -> ! (E_AL1_B1_set & E_AL1_B1_reset) );
+SPEC
+AG( stab -> ! (PUWS_AL1_B1_PLUS_set & PUWS_AL1_B1_PLUS_reset) );
+SPEC
+AG( stab -> ! (PUWS_AL1_B1_RIGHT_set & PUWS_AL1_B1_RIGHT_reset) );
+SPEC
+AG( stab -> ! (PAS_AL1_PLUS_set & PAS_AL1_PLUS_reset) );
+SPEC
+AG( stab -> ! (PAS_AL1_TURN_set & PAS_AL1_TURN_reset) );
+--CHECK EMPTY OUTPUTS
+SPEC
+AG( stab -> E_AL1_B1_set | E_AL1_B1_reset );
+SPEC
+AG( stab -> PUWS_AL1_B1_PLUS_set | PUWS_AL1_B1_PLUS_reset );
+SPEC
+AG( stab -> PUWS_AL1_B1_RIGHT_set | PUWS_AL1_B1_RIGHT_reset );
+SPEC
+AG( stab -> PAS_AL1_PLUS_set | PAS_AL1_PLUS_reset );
+SPEC
+AG( stab -> PAS_AL1_TURN_set | PAS_AL1_TURN_reset );
+SPEC
+AG( (!PP7 & stab) -> EF(PP7) );
+SPEC
+AG( (!PPL7 & stab) -> EF(PPL7) );

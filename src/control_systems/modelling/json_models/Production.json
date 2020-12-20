@@ -1,0 +1,268 @@
+{
+    "places": {
+        "PPAL1": [
+            [
+                ["PUWS_AL1_B1_PLUS"], ["PUWS_AL1_B1_RIGHT"]
+            ],
+            "MCB and MCBR fault free"
+        ],
+        "PP0": [
+            [
+                ["E_AL1_B1"], 
+                ["MCB_CONTROL", "PAS_AL1_PLUS", "PAS_AL1_TURN"]
+            ],
+            "Initial place"
+        ],
+        "PP1": [
+            [
+                ["E_AL1_B1"], []
+            ],
+            "Emit raw material"
+        ],
+        "PP2": [
+            [
+                ["PUWS_AL1_B1_PLUS"], 
+                ["E_AL1_B1", "PUWS_AL1_B1_RIGHT"]
+            ],
+            "Turn off emitter and do not divert"
+        ],
+        "PP3": [
+            [
+                ["MCB_CONTROL"], ["E_AL1_B1", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
+            ],
+            "Product goes towards MCB"
+        ],
+        "PP4":[
+            [
+                [], ["PAS_AL1_TURN", "PAS_AL1_PLUS"]
+            ],
+            "Raw material at MCB"
+        ],
+        "MCB": [
+            [
+                [], []
+            ],
+            "MCB Free"
+        ],
+        "PP5": [
+            [
+                [], []
+            ],
+            "MCB busy. Set MCBR as next raw material destination."
+        ],
+        "PP7": [
+            [
+                [], []
+            ],
+            "Base heading towards sorting stage"
+        ],
+        "PPL3": [
+            [
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1", "MCB_CONTROL"]
+            ],
+            "Raw material heads towards MCBR"
+        ],
+        "PPL4": [
+            [
+                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], []
+            ],
+            "Raw material at MCBR"
+        ],
+        "MCBR": [
+            [
+                [], []
+            ],
+            "MCBR free"
+        ],
+        "PPL5": [
+            [
+                [], []
+            ],
+            "MCBR busy. Set MCb as the next raw material destination."
+        ],
+        "PPL7": [
+            [
+                [], []
+            ],
+            "Lid heading to sorting stage."
+        ],
+
+
+        "initial": [
+            "PPAL1", "PP0", "MCB", "MCBR"
+        ]
+    },
+
+    "outputs": {
+        "E_AL1_B1": ["%QX102.0"],
+        "PUWS_AL1_B1_PLUS": ["%QX102.1"],
+        "PUWS_AL1_B1_RIGHT": ["%QX102.2"],
+        "PAS_AL1_PLUS": ["%QX102.3"],
+        "PAS_AL1_TURN": ["%QX102.4"]
+    },
+
+    "transitions": {
+        "TP0": [
+            ["PP0"],
+            [
+                [
+                    [], ["MCB_CONTROL"]
+                ]
+            ],
+            ["PP1"]
+        ],
+        "TP1": [
+            ["PP1"],
+            [
+                [
+                    ["S_AL1_P_B1"], []
+                ]
+            ],
+            ["PP2"]
+        ],
+        "TP2": [
+            ["PP2"],
+            [
+                [
+                    ["S_AL1_P_B2"], ["MCB_CONTROL"]
+                ]
+            ],
+            ["PP3"]
+        ],
+        "TP3": [
+            ["PP3"],
+            [
+                [
+                    ["S_AL1_MCB"], []
+                ]
+            ],
+            ["PP4", "PP1"]
+        ],
+        "TP4": [
+            ["PP4", "MCB"],
+            [
+                [
+                    ["MCB_BUSY"], []
+                ]
+            ],
+            ["PP5"]
+        ],
+        "TP6": [
+            ["PP5"],
+            [
+                [
+                    ["S_AL1_MCB2"], []
+                ]
+            ],
+            ["PP7", "MCB"]
+        ],
+        "TP7": [
+            ["PP7"],
+            [
+                [
+                    ["S_AL1_P_B3"], []
+                ]
+            ],
+            ["P0"]
+        ],
+        "TPL2": [
+            ["PP2"],
+            [
+                [
+                    ["S_AL1_P_B2", "MCB_CONTROL"], []
+                ]
+            ],
+            ["PPL3", "PP1"]
+        ],
+        "TPL3": [
+            ["PPL3"],
+            [
+                [
+                    ["S_AL1_MCBR"], []
+                ]
+            ],
+            ["PPL4"]
+        ],
+        "TPL4": [
+            ["PPL4", "MCBR"],
+            [
+                [
+                    ["MCBR_BUSY"], []
+                ]
+            ],
+            ["PPL5"]
+        ],
+        "TPL6": [
+            ["PPL5"],
+            [
+                [
+                    ["S_AL1_MCBR2"], []
+                ]
+            ],
+            ["PPL7", "MCBR"]
+        ],
+        "TPL7": [
+            ["PPL7"],
+            [
+                [
+                    ["S_AL1_P_B3"], []
+                ]
+            ],
+            ["P0"]
+        ]
+
+    },
+
+    "internals": {
+        "MCB_CONTROL": [
+            [
+                
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ],
+
+
+        "timer_1_TL1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_TL1(IN:= PL1, PT:= T#750ms)"
+            ]
+        ],
+        "timer_1_TB1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_TB1(IN:= PB1, PT:= T#900ms)"
+            ]
+        ]
+    },
+
+    "inputs": {
+        "S_AL1_P_B1": ["boolean", "%IX102.5"],
+        "S_AL1_P_B2": ["boolean", "%IX102.6"],
+        "S_AL1_MCB": ["boolean", "%IX102.7"],
+        "MCB_BUSY": ["boolean", "%IX103.0"],
+        "MCB_ERROR": ["boolean", "%IX103.1"],
+        "S_AL1_MCBR": ["boolean", "%IX103.2"],
+        "MCBR_BUSY": ["boolean", "%IX103.3"],
+        "MCBR_ERROR": ["boolean", "%IX103.4"],
+        "S_AL1_P_B3": ["boolean", "%IX103.5"],
+        "S_AL1_MCB2": ["boolean", "%IX103.6"],
+        "S_AL1_MCBR2": ["boolean", "%IX103.7"]
+    }
+
+}
