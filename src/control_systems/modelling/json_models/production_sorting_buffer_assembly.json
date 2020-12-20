@@ -509,6 +509,18 @@
         ],
 
 
+        "PSA0": [
+            [
+                [], ["PAS_AL1_ST_TURN"]
+            ],
+            "Pivot arm sorter inactive"
+        ],
+        "PSA1": [
+            [
+                ["PAS_AL1_ST_TURN"], []
+            ],
+            "Pivot arm sorter inactive"
+        ],
         "PS0": [
             [
                 [], []
@@ -551,7 +563,7 @@
             [
                 ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
             ],
-            ["AL1_ST_Z_SET:=750"],
+            ["AL1_ST_Z_SET:=800"],
             "Move grabber down to pick up product"
         ],
         "PS5": [
@@ -571,7 +583,7 @@
             [
                 ["AL1_ST_GRAB"], []
             ],
-            ["AL1_ST_X_SET:=790"],
+            ["AL1_ST_X_SET:=770"],
             "Move grabber to box location"
         ],
         "PS8": [
@@ -833,7 +845,7 @@
             
             "PA0",
 
-            "PS0", "PSC", "PSE0",
+            "PSA0", "PS0", "PSC", "PSE0",
             
             "PG"
         ]
@@ -874,6 +886,7 @@
         "AL1_Z_SET": ["%QW102", "WORD"],
 
 
+        "PAS_AL1_ST_TURN": ["%QX103.5"],
         "AL1_ST_X_SET": ["%QW103", "WORD"],
         "AL1_ST_Y_SET":  ["%QW104", "WORD"],
         "AL1_ST_Z_SET":  ["%QW105", "WORD"],
@@ -888,6 +901,7 @@
         "AL1_G_SC_LIFT": ["%QX103.3"],
         "AL1_G_SC_RT": ["%QX103.4"],
         "AL1_G_SC_TG": ["%QW106", "INT"]
+
     },
 
     "transitions": {
@@ -1429,7 +1443,24 @@
             ["PA13", "PA0", "PBF3", "PBF4"]
         ],
 
-
+        "TSA0": [
+            ["PA13", "PSA0"],
+            [
+                [
+                    ["ST_AL1_ST0"], []
+                ]
+            ],
+            ["PSA1"]
+        ],
+        "TSA1": [
+            ["PSA1"],
+            [
+                [
+                    ["timer_1_PSA1.Q"], []
+                ]
+            ],
+            ["PSA0"]
+        ],
         "TS1": [
             ["PA13"],
             [
@@ -1479,7 +1510,7 @@
             ["PS4"],
             [
                 [
-                    "(AL1_ST_Z_POS>730) & (AL1_ST_Z_POS<770)"
+                    "(AL1_ST_Z_POS>780) & (AL1_ST_Z_POS<820)"
                 ]
             ],
             ["PSC", "PS5"]
@@ -1506,7 +1537,7 @@
             ["PS7"],
             [
                 [
-                    "(AL1_ST_X_POS>770) & (AL1_ST_X_POS<810)"
+                    "(AL1_ST_X_POS>750) & (AL1_ST_X_POS<790)"
                 ]
             ],
             ["PS8"]
@@ -1936,6 +1967,20 @@
         ],
 
 
+        "timer_1_PSA1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PSA1(IN:= PSA1, PT:= T#3500ms)"
+            ]
+        ],
+
+
         "TG_POS": [
             [
                 "10..15",
@@ -2032,6 +2077,7 @@
         ],
 
 
+        "ST_AL1_ST0": ["boolean", "%IX105.3"],
         "ST_AL1_ST1": ["boolean", "%IX104.0"],
         "ST_AL1_ST2": ["boolean", "%IX104.1"],
         "ST_AL1_ST3": ["boolean", "%IX104.2"],
@@ -2069,7 +2115,6 @@
         "AL1_G_SC_ML": ["boolean", "%IX105.0"],
         "AL1_G_SC_MX": ["boolean", "%IX105.1"],
         "AL1_G_SC_RL": ["boolean", "%IX105.2"]
-
 
         
     }
