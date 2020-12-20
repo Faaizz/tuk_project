@@ -59,13 +59,9 @@ VAR
 (*INTERNAL VARIABLES*)
 
 MCB_CONTROL : BOOL;
-timer_1_TL1 : TON;
-timer_1_TB1 : TON;
 
 END_VAR
 
-timer_1_TL1(IN:= PL1, PT:= T#750ms);
-timer_1_TB1(IN:= PB1, PT:= T#900ms);
 
 
 (*=====================================================================*)
@@ -115,9 +111,8 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TP7*)
-   IF (PP7) AND ( (S_AL1_P_B3) ) AND (NOT FALSE) THEN
+   IF (PP7) AND ( (S_AL1_P_B3) ) THEN
        PP7:=0;
-       FALSE:=1;
        STABLE:=0;
    END_IF;
    (*TPL2*)
@@ -148,9 +143,8 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TPL7*)
-   IF (PPL7) AND ( (S_AL1_P_B3) ) AND (NOT FALSE) THEN
+   IF (PPL7) AND ( (S_AL1_P_B3) ) THEN
        PPL7:=0;
-       FALSE:=1;
        STABLE:=0;
    END_IF;
 END_WHILE;

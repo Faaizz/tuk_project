@@ -54,12 +54,12 @@ TP2:= (PP2) & ( (S_AL1_P_B2 & !MCB_CONTROL) ) & (!PP3);
 TP3:= (PP3) & ( (S_AL1_MCB) ) & (!PP4 & !PP1);
 TP4:= (PP4 & MCB) & ( (MCB_BUSY) ) & (!PP5);
 TP6:= (PP5) & ( (S_AL1_MCB2) ) & (!PP7 & !MCB);
-TP7:= (PP7) & ( (S_AL1_P_B3) ) & (!FALSE);
+TP7:= (PP7) & ( (S_AL1_P_B3) ) & ();
 TPL2:= (PP2) & ( (S_AL1_P_B2 & MCB_CONTROL) ) & (!PPL3 & !PP1);
 TPL3:= (PPL3) & ( (S_AL1_MCBR) ) & (!PPL4);
 TPL4:= (PPL4 & MCBR) & ( (MCBR_BUSY) ) & (!PPL5);
 TPL6:= (PPL5) & ( (S_AL1_MCBR2) ) & (!PPL7 & !MCBR);
-TPL7:= (PPL7) & ( (S_AL1_P_B3) ) & (!FALSE);
+TPL7:= (PPL7) & ( (S_AL1_P_B3) ) & ();
  
 -- STABLE
 stab:= !(TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TP7 | TPL2 | TPL3 | TPL4 | TPL6 | TPL7);

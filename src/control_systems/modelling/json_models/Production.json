@@ -163,7 +163,7 @@
                     ["S_AL1_P_B3"], []
                 ]
             ],
-            ["FALSE"]
+            []
         ],
         "TPL2": [
             ["PP2"],
@@ -208,7 +208,7 @@
                     ["S_AL1_P_B3"], []
                 ]
             ],
-            ["FALSE"]
+            []
         ]
 
     },
@@ -221,32 +221,6 @@
             [
                 "BOOL",
                 ""
-            ]
-        ],
-
-
-        "timer_1_TL1": [
-            [
-                "MODULE",
-                {
-                    "Q": "boolean"
-                }
-            ],
-            [
-                "TON",
-                "timer_1_TL1(IN:= PL1, PT:= T#750ms)"
-            ]
-        ],
-        "timer_1_TB1": [
-            [
-                "MODULE",
-                {
-                    "Q": "boolean"
-                }
-            ],
-            [
-                "TON",
-                "timer_1_TB1(IN:= PB1, PT:= T#900ms)"
             ]
         ]
     },
