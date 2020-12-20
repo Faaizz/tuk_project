@@ -27,14 +27,14 @@ S_AL1_L3: boolean;
 RP_AL1_CLAMPED: boolean;
 S_AL1_RP: boolean;
 S_AL1: boolean;
-CS_AL1_W: {0, 100, 300, 400, 500, 900};
+CS_AL1_W: {0, 100, 300, 500, 700, 900};
 S_BIN_1: boolean;
 S_AL1_BL: boolean;
 AL1_DETECTED: boolean;
 LP_AL1_LIMIT: boolean;
-AL1_X_POS: {0, 210, 700, 800, 900};
+AL1_X_POS: {0, 200, 700, 900};
 AL1_Y_POS: {0, 150, 300};
-AL1_Z_POS: {0, 100, 400, 800, 900};
+AL1_Z_POS: {0, 100, 400, 800};
 ST_AL1_ST0: boolean;
  
 -- PLACES
@@ -156,7 +156,7 @@ TA11:= (PA11) & ( (!LP_AL1_LIMIT) ) & (!PA12);
 TA12:= (PA12) & ( (LP_AL1_LIMIT) ) & (!PA13 & !PA0 & !PBF3 & !PBF4);
 TSA0:= (PA13 & PSA0) & ( (ST_AL1_ST0) ) & (!PSA1);
 TSA1:= (PSA1) & ( (timer_1_PSA1.Q) ) & (!PSA0);
-TS1:= (PA13) & ( (TRUE) ) & ();
+TS1:= (PA13) & ( (TRUE) );
  
 -- STABLE
 stab:= !(T0212 | T23 | T34 | T4B | T4B2 | TB21 | T45 | T46 | T57 | T67 | TB0 | TB1 | TB23 | TB2 | TB3 | TB4 | TB5 | TB6 | TB7 | TB78 | TL0 | TL1 | TL23 | TL2 | TL3 | TL4 | TL5 | TL6 | TL7 | TL78 | TL8 | TB8 | TA0 | TA1 | TA2 | TA3 | TA4 | TA5 | TA6 | TA7 | TA8 | TA9 | TA10 | TA11 | TA12 | TSA0 | TSA1 | TS1);
@@ -336,7 +336,7 @@ next(S_AL1):= case
    TRUE: S_AL1;
 esac;
 next(CS_AL1_W):= case
-   stab: {0, 100, 300, 400, 500, 900};
+   stab: {0, 100, 300, 500, 700, 900};
    TRUE: CS_AL1_W;
 esac;
 next(S_BIN_1):= case
@@ -356,7 +356,7 @@ next(LP_AL1_LIMIT):= case
    TRUE: LP_AL1_LIMIT;
 esac;
 next(AL1_X_POS):= case
-   stab: {0, 210, 700, 800, 900};
+   stab: {0, 200, 700, 900};
    TRUE: AL1_X_POS;
 esac;
 next(AL1_Y_POS):= case
@@ -364,7 +364,7 @@ next(AL1_Y_POS):= case
    TRUE: AL1_Y_POS;
 esac;
 next(AL1_Z_POS):= case
-   stab: {0, 100, 400, 800, 900};
+   stab: {0, 100, 400, 800};
    TRUE: AL1_Z_POS;
 esac;
 next(ST_AL1_ST0):= case
@@ -755,275 +755,3 @@ esac;
 --SPECIFICATIONS
 --=====================================================================
 
---CHECK LIVENESS
-SPEC
-AG(EF(T0212));
-SPEC
-AG(EF(T23));
-SPEC
-AG(EF(T34));
-SPEC
-AG(EF(T4B));
-SPEC
-AG(EF(T4B2));
-SPEC
-AG(EF(TB21));
-SPEC
-AG(EF(T45));
-SPEC
-AG(EF(T46));
-SPEC
-AG(EF(T57));
-SPEC
-AG(EF(T67));
-SPEC
-AG(EF(TB0));
-SPEC
-AG(EF(TB1));
-SPEC
-AG(EF(TB23));
-SPEC
-AG(EF(TB2));
-SPEC
-AG(EF(TB3));
-SPEC
-AG(EF(TB4));
-SPEC
-AG(EF(TB5));
-SPEC
-AG(EF(TB6));
-SPEC
-AG(EF(TB7));
-SPEC
-AG(EF(TB78));
-SPEC
-AG(EF(TL0));
-SPEC
-AG(EF(TL1));
-SPEC
-AG(EF(TL23));
-SPEC
-AG(EF(TL2));
-SPEC
-AG(EF(TL3));
-SPEC
-AG(EF(TL4));
-SPEC
-AG(EF(TL5));
-SPEC
-AG(EF(TL6));
-SPEC
-AG(EF(TL7));
-SPEC
-AG(EF(TL78));
-SPEC
-AG(EF(TL8));
-SPEC
-AG(EF(TB8));
-SPEC
-AG(EF(TA0));
-SPEC
-AG(EF(TA1));
-SPEC
-AG(EF(TA2));
-SPEC
-AG(EF(TA3));
-SPEC
-AG(EF(TA4));
-SPEC
-AG(EF(TA5));
-SPEC
-AG(EF(TA6));
-SPEC
-AG(EF(TA7));
-SPEC
-AG(EF(TA8));
-SPEC
-AG(EF(TA9));
-SPEC
-AG(EF(TA10));
-SPEC
-AG(EF(TA11));
-SPEC
-AG(EF(TA12));
-SPEC
-AG(EF(TSA0));
-SPEC
-AG(EF(TSA1));
-SPEC
-AG(EF(TS1));
---CHECK DEADLOCKS
-SPEC
-AG(EF( T0212 | T23 | T34 | T4B | T4B2 | TB21 | T45 | T46 | T57 | T67 | TB0 | TB1 | TB23 | TB2 | TB3 | TB4 | TB5 | TB6 | TB7 | TB78 | TL0 | TL1 | TL23 | TL2 | TL3 | TL4 | TL5 | TL6 | TL7 | TL78 | TL8 | TB8 | TA0 | TA1 | TA2 | TA3 | TA4 | TA5 | TA6 | TA7 | TA8 | TA9 | TA10 | TA11 | TA12 | TSA0 | TSA1 | TS1 ));
---CHECK DEAD TRANSITIONS
-SPEC
-EF(T0212);
-SPEC
-EF(T23);
-SPEC
-EF(T34);
-SPEC
-EF(T4B);
-SPEC
-EF(T4B2);
-SPEC
-EF(TB21);
-SPEC
-EF(T45);
-SPEC
-EF(T46);
-SPEC
-EF(T57);
-SPEC
-EF(T67);
-SPEC
-EF(TB0);
-SPEC
-EF(TB1);
-SPEC
-EF(TB23);
-SPEC
-EF(TB2);
-SPEC
-EF(TB3);
-SPEC
-EF(TB4);
-SPEC
-EF(TB5);
-SPEC
-EF(TB6);
-SPEC
-EF(TB7);
-SPEC
-EF(TB78);
-SPEC
-EF(TL0);
-SPEC
-EF(TL1);
-SPEC
-EF(TL23);
-SPEC
-EF(TL2);
-SPEC
-EF(TL3);
-SPEC
-EF(TL4);
-SPEC
-EF(TL5);
-SPEC
-EF(TL6);
-SPEC
-EF(TL7);
-SPEC
-EF(TL78);
-SPEC
-EF(TL8);
-SPEC
-EF(TB8);
-SPEC
-EF(TA0);
-SPEC
-EF(TA1);
-SPEC
-EF(TA2);
-SPEC
-EF(TA3);
-SPEC
-EF(TA4);
-SPEC
-EF(TA5);
-SPEC
-EF(TA6);
-SPEC
-EF(TA7);
-SPEC
-EF(TA8);
-SPEC
-EF(TA9);
-SPEC
-EF(TA10);
-SPEC
-EF(TA11);
-SPEC
-EF(TA12);
-SPEC
-EF(TSA0);
-SPEC
-EF(TSA1);
-SPEC
-EF(TS1);
---CHECK UNSTABLE CYCLES
-SPEC
-AG(EF(stab));
---CHECK CONTRADICTORY OUTPUTS
-SPEC
-AG( stab -> ! (SB_AL1_set & SB_AL1_reset) );
-SPEC
-AG( stab -> ! (PUWS_AL1_1_PLUS_set & PUWS_AL1_1_PLUS_reset) );
-SPEC
-AG( stab -> ! (PUWS_AL1_1_RT_set & PUWS_AL1_1_RT_reset) );
-SPEC
-AG( stab -> ! (CS_AL1_PLUS_set & CS_AL1_PLUS_reset) );
-SPEC
-AG( stab -> ! (P_AL1_B_set & P_AL1_B_reset) );
-SPEC
-AG( stab -> ! (SB_AL1_B1_set & SB_AL1_B1_reset) );
-SPEC
-AG( stab -> ! (SB_AL1_B2_set & SB_AL1_B2_reset) );
-SPEC
-AG( stab -> ! (SB_AL1_B3_set & SB_AL1_B3_reset) );
-SPEC
-AG( stab -> ! (LP_AL1_CLAMP_set & LP_AL1_CLAMP_reset) );
-SPEC
-AG( stab -> ! (P_AL1_L_set & P_AL1_L_reset) );
-SPEC
-AG( stab -> ! (SB_AL1_L1_set & SB_AL1_L1_reset) );
-SPEC
-AG( stab -> ! (SB_AL1_L2_set & SB_AL1_L2_reset) );
-SPEC
-AG( stab -> ! (SB_AL1_L3_set & SB_AL1_L3_reset) );
-SPEC
-AG( stab -> ! (RP_AL1_CLAMP_set & RP_AL1_CLAMP_reset) );
-SPEC
-AG( stab -> ! (AL1_GRAB_set & AL1_GRAB_reset) );
-SPEC
-AG( stab -> ! (LP_AL1_RAISE_set & LP_AL1_RAISE_reset) );
-SPEC
-AG( stab -> ! (PAS_AL1_ST_TURN_set & PAS_AL1_ST_TURN_reset) );
---CHECK EMPTY OUTPUTS
-SPEC
-AG( stab -> SB_AL1_set | SB_AL1_reset );
-SPEC
-AG( stab -> PUWS_AL1_1_PLUS_set | PUWS_AL1_1_PLUS_reset );
-SPEC
-AG( stab -> PUWS_AL1_1_RT_set | PUWS_AL1_1_RT_reset );
-SPEC
-AG( stab -> CS_AL1_PLUS_set | CS_AL1_PLUS_reset );
-SPEC
-AG( stab -> P_AL1_B_set | P_AL1_B_reset );
-SPEC
-AG( stab -> SB_AL1_B1_set | SB_AL1_B1_reset );
-SPEC
-AG( stab -> SB_AL1_B2_set | SB_AL1_B2_reset );
-SPEC
-AG( stab -> SB_AL1_B3_set | SB_AL1_B3_reset );
-SPEC
-AG( stab -> LP_AL1_CLAMP_set | LP_AL1_CLAMP_reset );
-SPEC
-AG( stab -> P_AL1_L_set | P_AL1_L_reset );
-SPEC
-AG( stab -> SB_AL1_L1_set | SB_AL1_L1_reset );
-SPEC
-AG( stab -> SB_AL1_L2_set | SB_AL1_L2_reset );
-SPEC
-AG( stab -> SB_AL1_L3_set | SB_AL1_L3_reset );
-SPEC
-AG( stab -> RP_AL1_CLAMP_set | RP_AL1_CLAMP_reset );
-SPEC
-AG( stab -> AL1_GRAB_set | AL1_GRAB_reset );
-SPEC
-AG( stab -> LP_AL1_RAISE_set | LP_AL1_RAISE_reset );
-SPEC
-AG( stab -> PAS_AL1_ST_TURN_set | PAS_AL1_ST_TURN_reset );
-SPEC
-AG( stab -> EF(PA13) );
