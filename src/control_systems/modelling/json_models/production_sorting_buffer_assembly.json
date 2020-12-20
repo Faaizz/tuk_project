@@ -1976,7 +1976,7 @@
             ],
             [
                 "TON",
-                "timer_1_PSA1(IN:= PSA1, PT:= T#3500ms)"
+                "timer_1_PSA1(IN:= PSA1, PT:= T#5000ms)"
             ]
         ],
 

@@ -509,11 +509,23 @@
         ],
 
 
+        "PSA0": [
+            [
+                [], ["PAS_AL2_ST_TURN"]
+            ],
+            "Pivot arm sorter inactive"
+        ],
+        "PSA1": [
+            [
+                ["PAS_AL2_ST_TURN"], []
+            ],
+            "Pivot arm sorter inactive"
+        ],
         "PS0": [
             [
                 [], []
             ],
-            ["AL2_ST_X_SET:=0", "AL2_ST_Y_SET:=560", "AL2_ST_Z_SET:=410"],
+            ["AL2_ST_X_SET:=0", "AL2_ST_Y_SET:=360", "AL2_ST_Z_SET:=410"],
             "Stacker is free"
         ],
         "PSC": [
@@ -544,14 +556,14 @@
             [
                 ["RP_AL2_ST_CLAMP"], ["AL2_ST_GRAB"]
             ],
-            ["AL2_ST_Y_SET:=560"],
+            ["AL2_ST_Y_SET:=360"],
             "Move grabber to product location"
         ],
         "PS4": [
             [
                 ["RP_AL2_ST_CLAMP"], ["AL2_ST_GRAB"]
             ],
-            ["AL2_ST_Z_SET:=750"],
+            ["AL2_ST_Z_SET:=800"],
             "Move grabber down to pick up product"
         ],
         "PS5": [
@@ -571,7 +583,7 @@
             [
                 ["AL2_ST_GRAB"], []
             ],
-            ["AL2_ST_X_SET:=790"],
+            ["AL2_ST_X_SET:=770"],
             "Move grabber to box location"
         ],
         "PS8": [
@@ -833,7 +845,7 @@
             
             "PA0",
 
-            "PS0", "PSC", "PSE0",
+            "PSA0", "PS0", "PSC", "PSE0",
             
             "PG"
         ]
@@ -874,6 +886,7 @@
         "AL2_Z_SET": ["%QW109", "WORD"],
 
 
+        "PAS_AL2_ST_TURN": ["%QX107.5"],
         "AL2_ST_X_SET": ["%QW110", "WORD"],
         "AL2_ST_Y_SET":  ["%QW111", "WORD"],
         "AL2_ST_Z_SET":  ["%QW112", "WORD"],
@@ -888,6 +901,7 @@
         "AL2_G_SC_LIFT": ["%QX107.3"],
         "AL2_G_SC_RT": ["%QX107.4"],
         "AL2_G_SC_TG": ["%QW113", "INT"]
+
     },
 
     "transitions": {
@@ -1277,7 +1291,7 @@
                     ["S_AL2_RP"], []
                 ]
             ],
-            ["PL8"]
+            ["PL78"]
         ],
         "TL78": [
             ["PL78"],
@@ -1429,7 +1443,24 @@
             ["PA13", "PA0", "PBF3", "PBF4"]
         ],
 
-
+        "TSA0": [
+            ["PA13", "PSA0"],
+            [
+                [
+                    ["ST_AL2_ST0"], []
+                ]
+            ],
+            ["PSA1"]
+        ],
+        "TSA1": [
+            ["PSA1"],
+            [
+                [
+                    ["timer_1_PSA1.Q"], []
+                ]
+            ],
+            ["PSA0"]
+        ],
         "TS1": [
             ["PA13"],
             [
@@ -1470,7 +1501,7 @@
             ["PS3"],
             [
                 [
-                    "(AL2_ST_Y_POS>540) & (AL2_ST_Y_POS<580)"
+                    "(AL2_ST_Y_POS>358) & (AL2_ST_Y_POS<362)"
                 ]
             ],
             ["PS4"]
@@ -1479,7 +1510,7 @@
             ["PS4"],
             [
                 [
-                    "(AL2_ST_Z_POS>730) & (AL2_ST_Z_POS<770)"
+                    "(AL2_ST_Z_POS>780) & (AL2_ST_Z_POS<820)"
                 ]
             ],
             ["PSC", "PS5"]
@@ -1506,7 +1537,7 @@
             ["PS7"],
             [
                 [
-                    "(AL2_ST_X_POS>770) & (AL2_ST_X_POS<810)"
+                    "(AL2_ST_X_POS>750) & (AL2_ST_X_POS<790)"
                 ]
             ],
             ["PS8"]
@@ -1907,7 +1938,7 @@
             ],
             [
                 "TON",
-                "timer_1_PL7(IN:= PL7, PT:= T#300ms)"
+                "timer_1_PL7(IN:= PL78, PT:= T#1500ms)"
             ]
         ],
         "timer_1_PB7": [
@@ -1919,7 +1950,7 @@
             ],
             [
                 "TON",
-                "timer_1_PB7(IN:= PB7, PT:= T#300ms)"
+                "timer_1_PB7(IN:= PB78, PT:= T#1500ms)"
             ]
         ],
         "timer_1_PS23": [
@@ -1931,7 +1962,21 @@
             ],
             [
                 "TON",
-                "timer_1_PS23(IN:= PS23, PT:= T#300ms)"
+                "timer_1_PS23(IN:= PS23, PT:= T#1500ms)"
+            ]
+        ],
+
+
+        "timer_1_PSA1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PSA1(IN:= PSA1, PT:= T#5000ms)"
             ]
         ],
 
@@ -2032,6 +2077,7 @@
         ],
 
 
+        "ST_AL2_ST0": ["boolean", "%IX111.3"],
         "ST_AL2_ST1": ["boolean", "%IX110.0"],
         "ST_AL2_ST2": ["boolean", "%IX110.1"],
         "ST_AL2_ST3": ["boolean", "%IX110.2"],
@@ -2069,7 +2115,6 @@
         "AL2_G_SC_ML": ["boolean", "%IX111.0"],
         "AL2_G_SC_MX": ["boolean", "%IX111.1"],
         "AL2_G_SC_RL": ["boolean", "%IX111.2"]
-
 
         
     }
