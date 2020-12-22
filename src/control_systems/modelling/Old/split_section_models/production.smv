@@ -9,16 +9,13 @@ VAR
 
 
 -- INPUTS
--- ['S_AL1_P_B1', 'S_AL1_P_B2', 'S_AL1_MCB', 'MCB_BUSY', 'MCB_ERROR', 'S_AL1_MCBR', 'MCBR_BUSY', 'MCBR_ERROR', 'S_AL1_P_B3', 'S_AL1_MCB2', 'S_AL1_MCBR2']
+-- ['S_AL1_P_B1', 'S_AL1_P_B2', 'S_AL1_MCB', 'MCB_BUSY', 'S_AL1_MCBR', 'MCBR_BUSY', 'S_AL1_MCB2', 'S_AL1_MCBR2']
 S_AL1_P_B1: boolean;
 S_AL1_P_B2: boolean;
 S_AL1_MCB: boolean;
 MCB_BUSY: boolean;
-MCB_ERROR: boolean;
 S_AL1_MCBR: boolean;
 MCBR_BUSY: boolean;
-MCBR_ERROR: boolean;
-S_AL1_P_B3: boolean;
 S_AL1_MCB2: boolean;
 S_AL1_MCBR2: boolean;
  
@@ -54,15 +51,13 @@ TP2:= (PP2) & ( (S_AL1_P_B2 & !MCB_CONTROL) ) & (!PP3);
 TP3:= (PP3) & ( (S_AL1_MCB) ) & (!PP4 & !PP1);
 TP4:= (PP4 & MCB) & ( (MCB_BUSY) ) & (!PP5);
 TP6:= (PP5) & ( (S_AL1_MCB2) ) & (!PP7 & !MCB);
-TP7:= (PP7) & ( (S_AL1_P_B3) ) & ();
 TPL2:= (PP2) & ( (S_AL1_P_B2 & MCB_CONTROL) ) & (!PPL3 & !PP1);
 TPL3:= (PPL3) & ( (S_AL1_MCBR) ) & (!PPL4);
 TPL4:= (PPL4 & MCBR) & ( (MCBR_BUSY) ) & (!PPL5);
 TPL6:= (PPL5) & ( (S_AL1_MCBR2) ) & (!PPL7 & !MCBR);
-TPL7:= (PPL7) & ( (S_AL1_P_B3) ) & ();
  
 -- STABLE
-stab:= !(TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TP7 | TPL2 | TPL3 | TPL4 | TPL6 | TPL7);
+stab:= !(TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TPL2 | TPL3 | TPL4 | TPL6);
  
 -- OUTPUTS
 -- SET
@@ -101,11 +96,8 @@ init(S_AL1_P_B1):= {TRUE, FALSE};
 init(S_AL1_P_B2):= {TRUE, FALSE};
 init(S_AL1_MCB):= {TRUE, FALSE};
 init(MCB_BUSY):= {TRUE, FALSE};
-init(MCB_ERROR):= {TRUE, FALSE};
 init(S_AL1_MCBR):= {TRUE, FALSE};
 init(MCBR_BUSY):= {TRUE, FALSE};
-init(MCBR_ERROR):= {TRUE, FALSE};
-init(S_AL1_P_B3):= {TRUE, FALSE};
 init(S_AL1_MCB2):= {TRUE, FALSE};
 init(S_AL1_MCBR2):= {TRUE, FALSE};
 next(S_AL1_P_B1):= case
@@ -124,10 +116,6 @@ next(MCB_BUSY):= case
    stab: {TRUE, FALSE};
    TRUE: MCB_BUSY;
 esac;
-next(MCB_ERROR):= case
-   stab: {TRUE, FALSE};
-   TRUE: MCB_ERROR;
-esac;
 next(S_AL1_MCBR):= case
    stab: {TRUE, FALSE};
    TRUE: S_AL1_MCBR;
@@ -135,14 +123,6 @@ esac;
 next(MCBR_BUSY):= case
    stab: {TRUE, FALSE};
    TRUE: MCBR_BUSY;
-esac;
-next(MCBR_ERROR):= case
-   stab: {TRUE, FALSE};
-   TRUE: MCBR_ERROR;
-esac;
-next(S_AL1_P_B3):= case
-   stab: {TRUE, FALSE};
-   TRUE: S_AL1_P_B3;
 esac;
 next(S_AL1_MCB2):= case
    stab: {TRUE, FALSE};
@@ -210,7 +190,6 @@ next(PP5):= case
 esac;
 next(PP7):= case
    TP6: TRUE;
-   TP7: FALSE;
    TRUE: PP7;
 esac;
 next(PPL3):= case
@@ -235,7 +214,6 @@ next(PPL5):= case
 esac;
 next(PPL7):= case
    TPL6: TRUE;
-   TPL7: FALSE;
    TRUE: PPL7;
 esac;
 
@@ -258,8 +236,6 @@ AG(EF(TP4));
 SPEC
 AG(EF(TP6));
 SPEC
-AG(EF(TP7));
-SPEC
 AG(EF(TPL2));
 SPEC
 AG(EF(TPL3));
@@ -267,11 +243,9 @@ SPEC
 AG(EF(TPL4));
 SPEC
 AG(EF(TPL6));
-SPEC
-AG(EF(TPL7));
 --CHECK DEADLOCKS
 SPEC
-AG(EF( TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TP7 | TPL2 | TPL3 | TPL4 | TPL6 | TPL7 ));
+AG(EF( TP0 | TP1 | TP2 | TP3 | TP4 | TP6 | TPL2 | TPL3 | TPL4 | TPL6 ));
 --CHECK DEAD TRANSITIONS
 SPEC
 EF(TP0);
@@ -286,8 +260,6 @@ EF(TP4);
 SPEC
 EF(TP6);
 SPEC
-EF(TP7);
-SPEC
 EF(TPL2);
 SPEC
 EF(TPL3);
@@ -295,8 +267,6 @@ SPEC
 EF(TPL4);
 SPEC
 EF(TPL6);
-SPEC
-EF(TPL7);
 --CHECK UNSTABLE CYCLES
 SPEC
 AG(EF(stab));
@@ -323,6 +293,6 @@ AG( stab -> PAS_AL1_PLUS_set | PAS_AL1_PLUS_reset );
 SPEC
 AG( stab -> PAS_AL1_TURN_set | PAS_AL1_TURN_reset );
 SPEC
-AG( (stab) -> EF(PPL7) );
+AG( (!PP7 & stab) -> EF(PP7) );
 SPEC
-AG( (stab) -> EF(PP7) );
+AG( (!PPL7 & stab) -> EF(PPL7) );
