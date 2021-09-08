@@ -1,0 +1,16 @@
+Name,Type,Data Type,Address
+ST_AL1_ST1,Input,Bool,Input 32
+ST_AL1_ST2,Input,Bool,Input 33
+ST_AL1_ST3,Input,Bool,Input 34
+RP_AL1_ST_CLAMPED,Input,Bool,Input 35
+AL1_ST_DETECTED,Input,Bool,Input 36
+RP_AL1_ST_CLAMP,Output,Bool,Coil 21
+AL1_ST_GRAB,Output,Bool,Coil 22
+AL1_EMIT,Output,Bool,Coil 23
+RC_AL1_ST,Output,Bool,Coil 24
+AL1_ST_X_POS,Input,Real,Input Reg 4
+AL1_ST_Y_POS,Input,Real,Input Reg 5
+AL1_ST_Z_POS,Input,Real,Input Reg 6
+AL1_ST_X_SET,Output,Real,Holding Reg 3
+AL1_ST_Y_SET,Output,Real,Holding Reg 4
+AL1_ST_Z_SET,Output,Real,Holding Reg 5
