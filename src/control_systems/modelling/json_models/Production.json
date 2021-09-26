@@ -38,7 +38,7 @@
             ],
             "Raw material at MCB"
         ],
-        "MCB": [
+        "PMCB": [
             [
                 [], []
             ],
@@ -68,7 +68,7 @@
             ],
             "Raw material at MCBR"
         ],
-        "MCBR": [
+        "PMCBR": [
             [
                 [], []
             ],
@@ -89,7 +89,7 @@
 
 
         "initial": [
-            "PPAL1", "PP0", "MCB", "MCBR"
+            "PPAL1", "PP0", "PMCB", "PMCBR"
         ]
     },
 
@@ -139,7 +139,7 @@
             ["PP4", "PP1"]
         ],
         "TP4": [
-            ["PP4", "MCB"],
+            ["PP4", "PMCB"],
             [
                 [
                     ["MCB_BUSY"], []
@@ -154,7 +154,7 @@
                     ["S_AL1_MCB2"], []
                 ]
             ],
-            ["PP7", "MCB"]
+            ["PP7", "PMCB"]
         ],
         "TP7": [
             ["PP7"],
@@ -184,7 +184,7 @@
             ["PPL4", "PP1"]
         ],
         "TPL4": [
-            ["PPL4", "MCBR"],
+            ["PPL4", "PMCBR"],
             [
                 [
                     ["MCBR_BUSY"], []
@@ -199,7 +199,7 @@
                     ["S_AL1_MCBR2"], []
                 ]
             ],
-            ["PPL7", "MCBR"]
+            ["PPL7", "PMCBR"]
         ],
         "TPL7": [
             ["PPL7"],
@@ -242,8 +242,9 @@
     "specifications": {
         "auto": true,
         "manual": [
-            "AG( (stab) -> EF(PPL7) )",
-            "AG( (stab) -> EF(PP7) )"
+            "AG(stab -> AF(PUWS_AL1_B1_PLUS & !PUWS_AL1_B1_RIGHT))",
+            "AG( (PP0 & stab) -> EF(PPL7) )",
+            "AG( (PP0 & stab) -> EF(PP7) )"
         ]
     }
 
