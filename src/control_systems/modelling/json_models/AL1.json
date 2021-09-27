@@ -15,14 +15,14 @@
         ],
         "PP1": [
             [
-                ["E_AL1_B1"], []
+                ["E_AL1_B1"], ["PAS_AL1_TURN", "PAS_AL1_PLUS"]
             ],
             "Emit raw material"
         ],
         "PP2": [
             [
                 ["PUWS_AL1_B1_PLUS"], 
-                ["E_AL1_B1", "PUWS_AL1_B1_RIGHT"]
+                ["E_AL1_B1", "PUWS_AL1_B1_RIGHT", "PAS_AL1_TURN", "PAS_AL1_PLUS"]
             ],
             "Turn off emitter and do not divert"
         ],
@@ -34,7 +34,7 @@
         ],
         "PP4":[
             [
-                [], ["PAS_AL1_TURN", "PAS_AL1_PLUS"]
+                [], []
             ],
             "Raw material at MCB"
         ],
@@ -64,7 +64,7 @@
         ],
         "PPL4": [
             [
-                ["PAS_AL1_TURN", "PAS_AL1_PLUS"], []
+                [], []
             ],
             "Raw material at MCBR"
         ],
@@ -966,7 +966,7 @@
                     ["S_AL1_P_B3"], []
                 ]
             ],
-            ["P0"]
+            ["FALSE"]
         ],
         "TPL2": [
             ["PP2"],
