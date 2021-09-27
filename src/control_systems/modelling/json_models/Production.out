@@ -1,0 +1,806 @@
+*** This is NuSMV 2.6.0 (compiled on Wed Oct 14 15:35:00 2015)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification AG (EF TP0)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+  -> State: 1.2 <-
+    PP0 = FALSE
+    PP1 = TRUE
+    MCB_CONTROL_reset = FALSE
+    stab = TRUE
+    TP0 = FALSE
+-- specification AG (EF TP1)  is true
+-- specification AG (EF TP2)  is true
+-- specification AG (EF TP3)  is true
+-- specification AG (EF TP4)  is true
+-- specification AG (EF TP6)  is true
+-- specification AG (EF TP7)  is true
+-- specification AG (EF TPL2)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification AG (EF TPL3)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 3.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification AG (EF TPL4)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification AG (EF TPL6)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 5.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification AG (EF TPL7)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 6.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification AG (EF (((((((((((TP0 | TP1) | TP2) | TP3) | TP4) | TP6) | TP7) | TPL2) | TPL3) | TPL4) | TPL6) | TPL7))  is true
+-- specification EF TP0  is true
+-- specification EF TP1  is true
+-- specification EF TP2  is true
+-- specification EF TP3  is true
+-- specification EF TP4  is true
+-- specification EF TP6  is true
+-- specification EF TP7  is true
+-- specification EF TPL2  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 7.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification EF TPL3  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 8.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification EF TPL4  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 9.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification EF TPL6  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 10.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification EF TPL7  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 11.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+-- specification AG (EF stab)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 12.1 <-
+    S_AL1_P_B1 = FALSE
+    S_AL1_P_B2 = FALSE
+    S_AL1_MCB = FALSE
+    MCB_BUSY = FALSE
+    MCB_ERROR = FALSE
+    S_AL1_MCBR = FALSE
+    MCBR_BUSY = FALSE
+    MCBR_ERROR = FALSE
+    S_AL1_P_B3 = FALSE
+    S_AL1_MCB2 = FALSE
+    S_AL1_MCBR2 = FALSE
+    PPAL1 = TRUE
+    PP0 = TRUE
+    PP1 = FALSE
+    PP2 = FALSE
+    PP3 = FALSE
+    PP4 = FALSE
+    PMCB = TRUE
+    PP5 = FALSE
+    PP7 = FALSE
+    PPL3 = FALSE
+    PPL4 = FALSE
+    PMCBR = TRUE
+    PPL5 = FALSE
+    PPL7 = FALSE
+    PUWS_AL1_B1_RIGHT = FALSE
+    PUWS_AL1_B1_PLUS = TRUE
+    PAS_AL1_TURN = FALSE
+    PAS_AL1_PLUS = FALSE
+    MCB_CONTROL = FALSE
+    E_AL1_B1 = TRUE
+    PUWS_AL1_B1_RIGHT_reset = TRUE
+    PUWS_AL1_B1_PLUS_reset = FALSE
+    PAS_AL1_TURN_reset = TRUE
+    PAS_AL1_PLUS_reset = TRUE
+    MCB_CONTROL_reset = TRUE
+    E_AL1_B1_reset = FALSE
+    PUWS_AL1_B1_RIGHT_set = FALSE
+    PUWS_AL1_B1_PLUS_set = TRUE
+    PAS_AL1_TURN_set = FALSE
+    PAS_AL1_PLUS_set = FALSE
+    MCB_CONTROL_set = FALSE
+    E_AL1_B1_set = TRUE
+    stab = FALSE
+    TPL7 = FALSE
+    TPL6 = FALSE
+    TPL4 = FALSE
+    TPL3 = FALSE
+    TPL2 = FALSE
+    TP7 = FALSE
+    TP6 = FALSE
+    TP4 = FALSE
+    TP3 = FALSE
+    TP2 = FALSE
+    TP1 = FALSE
+    TP0 = TRUE
+  -> State: 12.2 <-
+    PP0 = FALSE
+    PP1 = TRUE
+    MCB_CONTROL_reset = FALSE
+    stab = TRUE
+    TP0 = FALSE
+  -> State: 12.3 <-
+    S_AL1_P_B1 = TRUE
+    S_AL1_P_B2 = TRUE
+    S_AL1_MCB = TRUE
+    MCB_BUSY = TRUE
+    S_AL1_P_B3 = TRUE
+    S_AL1_MCB2 = TRUE
+    stab = FALSE
+    TP1 = TRUE
+-- specification AG (stab -> !(E_AL1_B1_set & E_AL1_B1_reset))  is true
+-- specification AG (stab -> !(PAS_AL1_PLUS_set & PAS_AL1_PLUS_reset))  is true
+-- specification AG (stab -> !(PAS_AL1_TURN_set & PAS_AL1_TURN_reset))  is true
+-- specification AG (stab -> (E_AL1_B1_set | E_AL1_B1_reset))  is true
+-- specification AG (stab -> (PAS_AL1_PLUS_set | PAS_AL1_PLUS_reset))  is true
+-- specification AG (stab -> (PAS_AL1_TURN_set | PAS_AL1_TURN_reset))  is true
+-- specification AG ((PP0 & stab) -> EF PPL7)  is true
+-- specification AG ((PP0 & stab) -> EF PP7)  is true
+-- specification AG (stab -> !(PUWS_AL1_B1_PLUS_set & PUWS_AL1_B1_PLUS_reset))  is true
+-- specification AG (stab -> !(PUWS_AL1_B1_RIGHT_set & PUWS_AL1_B1_RIGHT_reset))  is true
+-- specification AG (stab -> (PUWS_AL1_B1_PLUS_set | PUWS_AL1_B1_PLUS_reset))  is true
+-- specification AG (stab -> (PUWS_AL1_B1_RIGHT_set | PUWS_AL1_B1_RIGHT_reset))  is true
+-- specification AG (stab -> AF (PUWS_AL1_B1_PLUS & !PUWS_AL1_B1_RIGHT))  is true
