@@ -32,24 +32,6 @@
             ],
             "Product goes towards MCB"
         ],
-        "PP4":[
-            [
-                [], []
-            ],
-            "Raw material at MCB"
-        ],
-        "PMCB": [
-            [
-                [], []
-            ],
-            "MCB Free"
-        ],
-        "PP5": [
-            [
-                [], []
-            ],
-            "MCB busy. Set MCBR as next raw material destination."
-        ],
         "PP7": [
             [
                 [], []
@@ -61,24 +43,6 @@
                 ["PAS_AL1_TURN", "PAS_AL1_PLUS"], ["E_AL1_B1", "MCB_CONTROL"]
             ],
             "Raw material heads towards MCBR"
-        ],
-        "PPL4": [
-            [
-                [], []
-            ],
-            "Raw material at MCBR"
-        ],
-        "PMCBR": [
-            [
-                [], []
-            ],
-            "MCBR free"
-        ],
-        "PPL5": [
-            [
-                [], []
-            ],
-            "MCBR busy. Set MCb as the next raw material destination."
         ],
         "PPL7": [
             [
@@ -136,25 +100,7 @@
                     ["S_AL1_MCB"], []
                 ]
             ],
-            ["PP4", "PP1"]
-        ],
-        "TP4": [
-            ["PP4", "PMCB"],
-            [
-                [
-                    ["MCB_BUSY"], []
-                ]
-            ],
-            ["PP5"]
-        ],
-        "TP6": [
-            ["PP5"],
-            [
-                [
-                    ["S_AL1_MCB2"], []
-                ]
-            ],
-            ["PP7", "PMCB"]
+            ["PP7", "PP1"]
         ],
         "TP7": [
             ["PP7"],
@@ -181,25 +127,7 @@
                     ["S_AL1_MCBR"], []
                 ]
             ],
-            ["PPL4", "PP1"]
-        ],
-        "TPL4": [
-            ["PPL4", "PMCBR"],
-            [
-                [
-                    ["MCBR_BUSY"], []
-                ]
-            ],
-            ["PPL5"]
-        ],
-        "TPL6": [
-            ["PPL5"],
-            [
-                [
-                    ["S_AL1_MCBR2"], []
-                ]
-            ],
-            ["PPL7", "PMCBR"]
+            ["PPL7", "PP1"]
         ],
         "TPL7": [
             ["PPL7"],
@@ -229,14 +157,8 @@
         "S_AL1_P_B1": ["boolean", "%IX102.5"],
         "S_AL1_P_B2": ["boolean", "%IX102.6"],
         "S_AL1_MCB": ["boolean", "%IX102.7"],
-        "MCB_BUSY": ["boolean", "%IX103.0"],
-        "MCB_ERROR": ["boolean", "%IX103.1"],
         "S_AL1_MCBR": ["boolean", "%IX103.2"],
-        "MCBR_BUSY": ["boolean", "%IX103.3"],
-        "MCBR_ERROR": ["boolean", "%IX103.4"],
-        "S_AL1_P_B3": ["boolean", "%IX103.5"],
-        "S_AL1_MCB2": ["boolean", "%IX103.6"],
-        "S_AL1_MCBR2": ["boolean", "%IX103.7"]
+        "S_AL1_P_B3": ["boolean", "%IX103.5"]
     },
 
     "specifications": {

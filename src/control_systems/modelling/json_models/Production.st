@@ -14,14 +14,8 @@ VAR
 S_AL1_P_B1 AT %IX102.5 : BOOL;
 S_AL1_P_B2 AT %IX102.6 : BOOL;
 S_AL1_MCB AT %IX102.7 : BOOL;
-MCB_BUSY AT %IX103.0 : BOOL;
-MCB_ERROR AT %IX103.1 : BOOL;
 S_AL1_MCBR AT %IX103.2 : BOOL;
-MCBR_BUSY AT %IX103.3 : BOOL;
-MCBR_ERROR AT %IX103.4 : BOOL;
 S_AL1_P_B3 AT %IX103.5 : BOOL;
-S_AL1_MCB2 AT %IX103.6 : BOOL;
-S_AL1_MCBR2 AT %IX103.7 : BOOL;
 E_AL1_B1 AT %QX102.0 : BOOL;
 PUWS_AL1_B1_PLUS AT %QX102.1 : BOOL;
 PUWS_AL1_B1_RIGHT AT %QX102.2 : BOOL;
@@ -40,14 +34,8 @@ PP0 : BOOL := 1;
 PP1 : BOOL := 0;
 PP2 : BOOL := 0;
 PP3 : BOOL := 0;
-PP4 : BOOL := 0;
-PMCB : BOOL := 1;
-PP5 : BOOL := 0;
 PP7 : BOOL := 0;
 PPL3 : BOOL := 0;
-PPL4 : BOOL := 0;
-PMCBR : BOOL := 1;
-PPL5 : BOOL := 0;
 PPL7 : BOOL := 0;
 STABLE : BOOL := 0;
 
@@ -90,24 +78,10 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TP3*)
-   IF (PP3) AND ( (S_AL1_MCB) ) AND (NOT PP4 AND NOT PP1) THEN
+   IF (PP3) AND ( (S_AL1_MCB) ) AND (NOT PP7 AND NOT PP1) THEN
        PP3:=0;
-       PP4:=1;
-       PP1:=1;
-       STABLE:=0;
-   END_IF;
-   (*TP4*)
-   IF (PP4 AND PMCB) AND ( (MCB_BUSY) ) AND (NOT PP5) THEN
-       PP4:=0;
-       PMCB:=0;
-       PP5:=1;
-       STABLE:=0;
-   END_IF;
-   (*TP6*)
-   IF (PP5) AND ( (S_AL1_MCB2) ) AND (NOT PP7 AND NOT PMCB) THEN
-       PP5:=0;
        PP7:=1;
-       PMCB:=1;
+       PP1:=1;
        STABLE:=0;
    END_IF;
    (*TP7*)
@@ -123,24 +97,10 @@ WHILE STABLE=0 DO
        STABLE:=0;
    END_IF;
    (*TPL3*)
-   IF (PPL3) AND ( (S_AL1_MCBR) ) AND (NOT PPL4 AND NOT PP1) THEN
+   IF (PPL3) AND ( (S_AL1_MCBR) ) AND (NOT PPL7 AND NOT PP1) THEN
        PPL3:=0;
-       PPL4:=1;
-       PP1:=1;
-       STABLE:=0;
-   END_IF;
-   (*TPL4*)
-   IF (PPL4 AND PMCBR) AND ( (MCBR_BUSY) ) AND (NOT PPL5) THEN
-       PPL4:=0;
-       PMCBR:=0;
-       PPL5:=1;
-       STABLE:=0;
-   END_IF;
-   (*TPL6*)
-   IF (PPL5) AND ( (S_AL1_MCBR2) ) AND (NOT PPL7 AND NOT PMCBR) THEN
-       PPL5:=0;
        PPL7:=1;
-       PMCBR:=1;
+       PP1:=1;
        STABLE:=0;
    END_IF;
    (*TPL7*)
