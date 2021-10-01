@@ -15,14 +15,16 @@
         ],
         "PP1": [
             [
-                ["E_AL2_B1"], []
+                ["E_AL2_B1"], 
+                ["PAS_AL2_TURN", "PAS_AL2_PLUS"]
             ],
             "Emit raw material"
         ],
         "PP2": [
             [
                 ["PUWS_AL2_B1_PLUS"], 
-                ["E_AL2_B1", "PUWS_AL2_B1_LEFT"]
+                ["E_AL2_B1", "PUWS_AL2_B1_LEFT",
+                "PAS_AL2_TURN", "PAS_AL2_PLUS"]
             ],
             "Turn off emitter and do not divert"
         ],
@@ -34,15 +36,9 @@
         ],
         "PP4":[
             [
-                [], ["PAS_AL2_TURN", "PAS_AL2_PLUS"]
-            ],
-            "Raw material at MCL"
-        ],
-        "MCL": [
-            [
                 [], []
             ],
-            "MCL Free"
+            "Raw material at MCL"
         ],
         "PP5": [
             [
@@ -64,15 +60,9 @@
         ],
         "PPL4": [
             [
-                ["PAS_AL2_TURN", "PAS_AL2_PLUS"], []
-            ],
-            "Raw material at MCLR"
-        ],
-        "MCLR": [
-            [
                 [], []
             ],
-            "MCLR free"
+            "Raw material at MCLR"
         ],
         "PPL5": [
             [
@@ -835,7 +825,7 @@
 
 
         "initial": [
-            "PPAL2", "PP0", "MCL", "MCLR",
+            "PPAL2", "PP0",
 
             "P0", "P1", "BIN1", 
 
@@ -942,7 +932,7 @@
             ["PP4", "PP1"]
         ],
         "TP4": [
-            ["PP4", "MCL"],
+            ["PP4"],
             [
                 [
                     ["MCL_BUSY"], []
@@ -957,7 +947,7 @@
                     ["S_AL2_MCL2"], []
                 ]
             ],
-            ["PP7", "MCL"]
+            ["PP7"]
         ],
         "TP7": [
             ["PP7"],
@@ -975,7 +965,7 @@
                     ["S_AL2_P_B2", "MCL_CONTROL"], []
                 ]
             ],
-            ["PPL3", "PP1"]
+            ["PPL3"]
         ],
         "TPL3": [
             ["PPL3"],
@@ -984,10 +974,10 @@
                     ["S_AL2_MCLR"], []
                 ]
             ],
-            ["PPL4"]
+            ["PPL4", "PP1"]
         ],
         "TPL4": [
-            ["PPL4", "MCLR"],
+            ["PPL4"],
             [
                 [
                     ["MCLR_BUSY"], []
@@ -1002,7 +992,7 @@
                     ["S_AL2_MCLR2"], []
                 ]
             ],
-            ["PPL7", "MCLR"]
+            ["PPL7"]
         ],
         "TPL7": [
             ["PPL7"],

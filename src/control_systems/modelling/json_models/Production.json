@@ -38,12 +38,6 @@
             ],
             "Raw material at MCB"
         ],
-        "PMCB": [
-            [
-                [], []
-            ],
-            "MCB Free"
-        ],
         "PP5": [
             [
                 [], []
@@ -68,12 +62,6 @@
             ],
             "Raw material at MCBR"
         ],
-        "PMCBR": [
-            [
-                [], []
-            ],
-            "MCBR free"
-        ],
         "PPL5": [
             [
                 [], []
@@ -89,7 +77,7 @@
 
 
         "initial": [
-            "PPAL1", "PP0", "PMCB", "PMCBR"
+            "PPAL1", "PP0"
         ]
     },
 
@@ -139,7 +127,7 @@
             ["PP4", "PP1"]
         ],
         "TP4": [
-            ["PP4", "PMCB"],
+            ["PP4"],
             [
                 [
                     ["MCB_BUSY"], []
@@ -154,7 +142,7 @@
                     ["S_AL1_MCB2"], []
                 ]
             ],
-            ["PP7", "PMCB"]
+            ["PP7"]
         ],
         "TP7": [
             ["PP7"],
@@ -184,7 +172,7 @@
             ["PPL4", "PP1"]
         ],
         "TPL4": [
-            ["PPL4", "PMCBR"],
+            ["PPL4"],
             [
                 [
                     ["MCBR_BUSY"], []
@@ -199,7 +187,7 @@
                     ["S_AL1_MCBR2"], []
                 ]
             ],
-            ["PPL7", "PMCBR"]
+            ["PPL7"]
         ],
         "TPL7": [
             ["PPL7"],
