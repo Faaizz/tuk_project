@@ -1,0 +1,479 @@
+{
+    "places": {
+
+        "P0": [
+            [
+                [],
+                []
+            ],
+            "Item recieved from production line"
+        ],
+        "P1": [
+            [
+                ["CS_AL1_PLUS"],
+                ["SB_AL1", "AL1_LID", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"]
+            ],
+            "Conveyor scale free"
+        ],
+        "P2": [
+            [
+                ["CS_AL1_PLUS"],
+                ["SB_AL1", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"]
+            ],
+            "Item at conveyor scale"
+        ],
+        "P3": [
+            [
+                ["SB_AL1"],
+                ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"]
+            ],
+            "Weighting in progress"
+        ],
+        "P4": [
+            [
+                ["SB_AL1"],
+                ["CS_AL1_PLUS", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT"]
+            ],
+            "Evaluate weight"
+        ],
+        "PB": [
+            [
+                ["SB_AL1", "PUWS_AL1_1_PLUS", "CS_AL1_PLUS"],
+                ["PUWS_AL1_1_RT"]
+            ],
+            "Invalid item, pass to bin"
+        ],
+        "BIN1": [
+            [
+                [],
+                []
+            ],
+            "Bin standby"
+        ],
+        "BIN2": [
+            [
+                [],
+                []
+            ],
+            "Item on bin line"
+        ],
+        "P5": [
+            [
+                ["SB_AL1", "AL1_LID", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT", "CS_AL1_PLUS"],
+                ["AL1_BASE"]
+            ],
+            "Scale detects a lid"
+        ],
+        "P6": [
+            [
+                ["SB_AL1", "AL1_BASE", "PUWS_AL1_1_PLUS", "PUWS_AL1_1_RT", "CS_AL1_PLUS"],
+                ["AL1_LID"]
+            ],
+            "Scale detects a base"
+        ],
+
+
+        "P_BASE": [
+            [
+                [],
+                ["P_AL1_B"]
+            ],
+            "Incoming item is a base"
+        ],
+        "PB1": [
+            [
+                [],
+                ["P_AL1_B"]
+            ],
+            "Waiting for item to get within pusher range"
+        ],
+        "PUSH_B": [
+            [
+                [],
+                []
+            ],
+            "Base pusher free"
+        ],
+        "PB2": [
+            [
+                ["P_AL1_B"],
+                []
+            ],
+            "Push base"
+        ],
+        "PB23": [
+            [
+                ["P_AL1_B"],
+                []
+            ],
+            "Pushing base"
+        ],
+        "PB3": [
+            [
+                [],
+                ["P_AL1_B"]
+            ],
+            "Retracting base pusher"
+        ],
+        
+        "P_LID": [
+            [
+                [],
+                ["P_AL1_L"]
+            ],
+            "Incoming item is a lid"
+        ],
+        "PL1": [
+            [
+                [],
+                ["P_AL1_L"]
+            ],
+            "Waiting for item to get within pusher range"
+        ],
+        "PUSH_L": [
+            [
+                [],
+                []
+            ],
+            "Lid pusher free"
+        ],
+        "PL2": [
+            [
+                ["P_AL1_L"],
+                []
+            ],
+            "Push lid"
+        ],
+        "PL23": [
+            [
+                ["P_AL1_L"],
+                []
+            ],
+            "Pushing lid"
+        ],
+        "PL3": [
+            [
+                [],
+                ["P_AL1_L"]
+            ],
+            "Retracting lid pusher"
+        ],
+
+        "initial": ["P0", "P1", "BIN1", "PUSH_B", "PUSH_L"]
+    },
+
+    "outputs": {
+        "SB_AL1": ["%QX101.2"],
+        "PUWS_AL1_1_PLUS": ["%QX101.3"],
+        "PUWS_AL1_1_RT": ["%QX101.4"],
+        "CS_AL1_PLUS": ["%QX101.5"],
+        "P_AL1_B": ["%QX100.0"],
+        "P_AL1_L": ["%QX100.5"]
+    },
+
+    "transitions": {
+        "T0212": [
+            ["TRUE", "P1"],
+            [
+                [
+                    ["S_AL1"], []
+                ]
+            ],
+            ["P2"],
+            "Item arriving at conveyor scale"
+        ],
+        "T23": [
+            ["P2"],
+            [
+                [
+                    ["timer_1_P2.Q"], []
+                ]
+            ],
+            ["P3"],
+            "Item fully on scale"
+        ],
+        "T34": [
+            ["P3"],
+            [
+                [
+                    ["timer_1_P3.Q"], []
+                ]
+            ],
+            ["P4"],
+            "Stop conveyor belt to allow accurate weight measurement"
+        ],
+        "T4B": [
+            ["P4"],
+            [
+                ["(CS_AL1_W < 200) | (CS_AL1_W > 400)"]
+            ],
+            ["PB"],
+            "Invalid item (weights less than 4kg or more than 8kg)"
+        ],
+        "T4B2": [
+            ["PB", "BIN1"],
+            [
+                [
+                    ["S_BIN_1"], []
+                ]
+            ],
+            ["BIN2", "P1"],
+            "Item arriving at bin line"
+        ],
+        "TB21": [
+            ["BIN2"],
+            [
+                [
+                    [], ["S_BIN_1"]
+                ]
+            ],
+            ["BIN1"],
+            "Item being transported to bin"
+        ],
+        "T45": [
+            ["P4"],
+            [
+                ["(CS_AL1_W > 200) & (CS_AL1_W <= 300)"]
+            ],
+            ["P5"],
+            "Item is lid"
+        ],
+        "T46": [
+            ["P4"],
+            [
+                ["(CS_AL1_W > 300) & (CS_AL1_W <= 400)"]
+            ],
+            ["P6"],
+            "Item is base"
+        ],
+        "T57": [
+            ["P5"],
+            [
+                [
+                    ["S_AL1_BL"], []
+                ]
+            ],
+            ["P_LID", "P1"],
+            "Item arriving at buffer"
+        ],
+        "T67": [
+            ["P6"],
+            [
+                [
+                    ["S_AL1_BL"], []
+                ]
+            ],
+            ["P_BASE", "P1"],
+            "Item arriving at buffer"
+        ],
+        
+
+        "TB0": [
+            ["P_BASE"],
+            [
+                [
+                    ["S_AL1_B"], []
+                ]
+            ],
+            ["PB1"],
+            "Incoming item detected"
+        ],
+        "TB1": [
+            ["PB1", "PUSH_B"],
+            [
+                [
+                    ["timer_1_TB1.Q"], []
+                ]
+            ],
+            ["PB2"],
+            "Pusher waiting time reached"
+        ],
+        "TB23": [
+            ["PB2"],
+            [
+                [
+                    ["P_AL1_B_FT"], []
+                ]
+            ],
+            ["PB23"],
+            "Base pusher extending"
+        ],
+        "TB2": [
+            ["PB23"],
+            [
+                [
+                    ["P_AL1_B_FT"], []
+                ]
+            ],
+            ["PB3"],
+            "Base pusher fully extended"
+        ],
+        "TB3": [
+            ["PB3"],
+            [
+                [
+                    ["P_AL1_B_BK"], []
+                ]
+            ],
+            ["FALSE", "PUSH_B"],
+            "Base pusher fully retracted"
+        ],
+
+
+        "TL0": [
+            ["P_LID"],
+            [
+                [
+                    ["S_AL1_L"], []
+                ]
+            ],
+            ["PL1"],
+            "Incoming item detected"
+        ],
+        "TL1": [
+            ["PL1", "PUSH_L"],
+            [
+                [
+                    ["timer_1_TL1.Q"], []
+                ]
+            ],
+            ["PL2"],
+            "Pusher waiting time reached"
+        ],
+        "TL23": [
+            ["PL2"],
+            [
+                [
+                    ["P_AL1_L_FT"], []
+                ]
+            ],
+            ["PL23"],
+            "Lid pusher extending"
+        ],
+        "TL2": [
+            ["PL23"],
+            [
+                [
+                    ["P_AL1_L_FT"], []
+                ]
+            ],
+            ["PL3"],
+            "Lid pusher fully extended"
+        ],
+        "TL3": [
+            ["PL3"],
+            [
+                [
+                    ["P_AL1_L_BK"], []
+                ]
+            ],
+            ["FALSE", "PUSH_L"],
+            "Lid pusher fully retracted"
+        ]
+    },
+
+    "internals": {
+        "timer_1_TL1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_TL1(IN:= PL1, PT:= T#750ms)"
+            ]
+        ],
+        "timer_1_TB1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_TB1(IN:= PB1, PT:= T#900ms)"
+            ]
+        ],
+        "timer_1_P2": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_P2(IN:= P2, PT:= T#1000ms)"
+            ]
+        ],
+        "timer_1_P3": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_P3(IN:= P3, PT:= T#1000ms)"
+            ]
+        ],
+        "AL1_BASE":[
+            [
+                "boolean",
+                "{TRUE, FALSE}",
+                "{TRUE, FALSE}"
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ],
+        "AL1_LID": [
+            [
+                "boolean",
+                "{TRUE, FALSE}",
+                "{TRUE, FALSE}"
+            ],
+            [
+                "BOOL",
+                ""
+            ]
+        ]
+    },
+
+    "inputs" : {
+        "S_AL1": ["boolean", "%IX102.0"],
+        "CS_AL1_W": [
+            [
+                "{0, 100, 300, 500, 700, 900}",
+                0,
+                "{0, 100, 300, 500, 700, 900}"
+            ],
+            "%IW100"
+        ],
+        "S_AL1_BL": ["boolean", "%IX102.2"],
+        "S_BIN_1": ["boolean", "%IX102.1"],
+        "P_AL1_L_FT": ["boolean", "%IX101.1"],
+        "P_AL1_L_BK": ["boolean", "%IX101.2"],
+        "S_AL1_L": ["boolean", "%IX101.0"],
+        "P_AL1_B_FT": ["boolean", "%IX100.1"],
+        "P_AL1_B_BK": ["boolean", "%IX100.2"],
+        "S_AL1_B": ["boolean", "%IX100.0"]
+    },
+
+    "specifications": {
+        "auto": true,
+        "manual": [
+            "AG(stab) -> EF(P2)",
+            "AG(stab & P2 & (CS_AL1_W > 100)) -> AX(SB_AL1)",
+            "AG(stab & (CS_AL1_W <= 400) & (CS_AL1_W > 800)) -> AX(!PUWS_AL1_1_RT)",
+            "AG(stab & (CS_AL1_W > 400) & (CS_AL1_W <= 800)) -> AX(PUWS_AL1_1_RT)",
+            "AG(stab & P4 & (CS_AL1_W > 200) & (CS_AL1_W <= 300)) -> A[(AL1_LID & !AL1_BASE) U P4]",
+            "AG(stab & P4 & (CS_AL1_W > 300) & (CS_AL1_W <= 400)) -> A[(AL1_BASE & !AL1_LID) U P4]"
+        ]
+    }
+}
