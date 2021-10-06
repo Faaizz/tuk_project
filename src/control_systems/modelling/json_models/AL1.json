@@ -190,6 +190,51 @@
             ],
             "Retracting base pusher"
         ],
+
+        "P_LID": [
+            [
+                [],
+                ["P_AL1_L"]
+            ],
+            "Incoming item is a lid"
+        ],
+        "PL1": [
+            [
+                [],
+                ["P_AL1_L"]
+            ],
+            "Waiting for item to get within pusher range"
+        ],
+        "PUSH_L": [
+            [
+                [],
+                []
+            ],
+            "Lid pusher free"
+        ],
+        "PL2": [
+            [
+                ["P_AL1_L"],
+                []
+            ],
+            "Push lid"
+        ],
+        "PL23": [
+            [
+                ["P_AL1_L"],
+                []
+            ],
+            "Pushing lid"
+        ],
+        "PL3": [
+            [
+                [],
+                ["P_AL1_L"]
+            ],
+            "Retracting lid pusher"
+        ],
+
+        
         "PB4": [
             [
                 [],
@@ -247,49 +292,6 @@
             "Waiting for base to get within clamping range"
         ],
 
-
-        "P_LID": [
-            [
-                [],
-                ["P_AL1_L"]
-            ],
-            "Incoming item is a lid"
-        ],
-        "PL1": [
-            [
-                [],
-                ["P_AL1_L"]
-            ],
-            "Waiting for item to get within pusher range"
-        ],
-        "PUSH_L": [
-            [
-                [],
-                []
-            ],
-            "Lid pusher free"
-        ],
-        "PL2": [
-            [
-                ["P_AL1_L"],
-                []
-            ],
-            "Push lid"
-        ],
-        "PL23": [
-            [
-                ["P_AL1_L"],
-                []
-            ],
-            "Pushing lid"
-        ],
-        "PL3": [
-            [
-                [],
-                ["P_AL1_L"]
-            ],
-            "Retracting lid pusher"
-        ],
         "PL4": [
             [
                 [],
