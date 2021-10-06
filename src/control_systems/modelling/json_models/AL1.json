@@ -853,16 +853,16 @@
         "PUWS_AL1_1_PLUS": ["%QX101.3"],
         "PUWS_AL1_1_RT": ["%QX101.4"],
         "CS_AL1_PLUS": ["%QX101.5"],
-
-
         "P_AL1_B": ["%QX100.0"],
+        "P_AL1_L": ["%QX100.5"],
+
+
         "SB_AL1_B1": ["%QX100.1"],
         "SB_AL1_B2": ["%QX100.2"],
         "SB_AL1_B3": ["%QX100.3"],
         "LP_AL1_CLAMP": ["%QX100.4"],
 
 
-        "P_AL1_L": ["%QX100.5"],
         "SB_AL1_L1": ["%QX100.6"],
         "SB_AL1_L2": ["%QX100.7"],
         "SB_AL1_L3": ["%QX101.0"],
@@ -1909,6 +1909,8 @@
                 ""
             ]
         ],
+
+
         "timer_1_PL9": [
             [
                 "MODULE",
@@ -2007,27 +2009,6 @@
         "S_AL1_MCB2": ["boolean", "%IX103.6"],
         "S_AL1_MCBR2": ["boolean", "%IX103.7"],
 
-
-        "S_AL1_B": ["boolean", "%IX100.0"],
-        "P_AL1_B_FT": ["boolean", "%IX100.1"],
-        "P_AL1_B_BK": ["boolean", "%IX100.2"],
-        "S_AL1_B1": ["boolean", "%IX100.3"],
-        "S_AL1_B2": ["boolean", "%IX100.4"],
-        "S_AL1_B3": ["boolean", "%IX100.5"],
-        "LP_AL1_CLAMPED": ["boolean", "%IX100.6"],
-        "S_AL1_LP": ["boolean", "%IX100.7"],
-
-
-        "S_AL1_L": ["boolean", "%IX101.0"],
-        "P_AL1_L_FT": ["boolean", "%IX101.1"],
-        "P_AL1_L_BK": ["boolean", "%IX101.2"],
-        "S_AL1_L1": ["boolean", "%IX101.3"],
-        "S_AL1_L2": ["boolean", "%IX101.4"],
-        "S_AL1_L3": ["boolean", "%IX101.5"],
-        "RP_AL1_CLAMPED": ["boolean", "%IX101.6"],
-        "S_AL1_RP": ["boolean", "%IX101.7"],
-
-
         "S_AL1": ["boolean", "%IX102.0"],
         "CS_AL1_W": [
             [
@@ -2037,8 +2018,28 @@
             ],
             "%IW100"
         ],
-        "S_BIN_1": ["boolean", "%IX102.1"],
         "S_AL1_BL": ["boolean", "%IX102.2"],
+        "S_BIN_1": ["boolean", "%IX102.1"],
+        "P_AL1_L_FT": ["boolean", "%IX101.1"],
+        "P_AL1_L_BK": ["boolean", "%IX101.2"],
+        "S_AL1_L": ["boolean", "%IX101.0"],
+        "P_AL1_B_FT": ["boolean", "%IX100.1"],
+        "P_AL1_B_BK": ["boolean", "%IX100.2"],
+        "S_AL1_B": ["boolean", "%IX100.0"],
+
+
+        "S_AL1_B1": ["boolean", "%IX100.3"],
+        "S_AL1_B2": ["boolean", "%IX100.4"],
+        "S_AL1_B3": ["boolean", "%IX100.5"],
+        "LP_AL1_CLAMPED": ["boolean", "%IX100.6"],
+        "S_AL1_LP": ["boolean", "%IX100.7"],
+
+
+        "S_AL1_L1": ["boolean", "%IX101.3"],
+        "S_AL1_L2": ["boolean", "%IX101.4"],
+        "S_AL1_L3": ["boolean", "%IX101.5"],
+        "RP_AL1_CLAMPED": ["boolean", "%IX101.6"],
+        "S_AL1_RP": ["boolean", "%IX101.7"],
 
 
         "AL1_DETECTED": ["boolean", "%IX102.3"],
