@@ -1,0 +1,383 @@
+{
+    "places": {
+        "PB4": [
+            [
+                [],
+                []
+            ],
+            "Item on base line"
+        ],
+        "PBF1": [
+            [
+                [],
+                ["SB_AL1_B1"]
+            ],
+            "Base buffer 1 free"
+        ],
+        "PB5": [
+            [
+                ["SB_AL1_B1"],
+                []
+            ],
+            "Stop blade base 1 up"
+        ],
+        "PBF2": [
+            [
+                [],
+                ["SB_AL1_B2"]
+            ],
+            "Base buffer 2 free"
+        ],
+        "PB6": [
+            [
+                ["SB_AL1_B2"],
+                []
+            ],
+            "Stop blade base 2 up"
+        ],
+        "PBF3": [
+            [
+                [],
+                ["SB_AL1_B3"]
+            ],
+            "Base buffer 3 free"
+        ],
+        "PB7": [
+            [
+                ["SB_AL1_B3"],
+                []
+            ],
+            "Stop blade base 3 up"
+        ],
+        "PB78": [
+            [
+                ["SB_AL1_B3"],
+                []
+            ],
+            "Waiting for base to get within clamping range"
+        ],
+        "PBF4": [
+            [
+                [],
+                ["LP_AL1_CLAMP"]
+            ],
+            "Base clamp free"
+        ],
+        "PB8": [
+            [
+                ["LP_AL1_CLAMP"],
+                []
+            ],
+            "Base clamping in progress"
+        ],
+        "PB9": [
+            [
+                ["LP_AL1_CLAMP"],
+                []
+            ],
+            "Base clamped"
+        ],
+
+        "PL4": [
+            [
+                [],
+                []
+            ],
+            "Item on lid line"
+        ],
+        "PLF1": [
+            [
+                [],
+                ["SB_AL1_L1"]
+            ],
+            "Lid buffer 1 free"
+        ],
+        "PL5": [
+            [
+                ["SB_AL1_L1"],
+                []
+            ],
+            "Stop blade lid 1 up"
+        ],
+        "PLF2": [
+            [
+                [],
+                ["SB_AL1_L2"]
+            ],
+            "Lid buffer 2 free"
+        ],
+        "PL6": [
+            [
+                ["SB_AL1_L2"],
+                []
+            ],
+            "Stop blade lid 2 up"
+        ],
+        "PLF3": [
+            [
+                [],
+            [   "SB_AL1_L3"]
+            ],
+            "Lid buffer 3 free"
+        ],
+        "PL7": [
+            [
+                ["SB_AL1_L3"],
+                []
+            ],
+            "Stop blade lid 3 up"
+        ],
+        "PL78": [
+            [
+                ["SB_AL1_L3"],
+                []
+            ],
+            "Waiting for lid to get into clamping range"
+        ],
+        "PLF4": [
+            [
+                [],
+                ["RP_AL1_CLAMP"]
+            ],
+            "Lid clamp free"
+        ],
+        "PL8": [
+            [
+                ["RP_AL1_CLAMP"],
+                []
+            ],
+            "Lid clamping in progress"
+        ],
+        "PL9": [
+            [
+                ["RP_AL1_CLAMP"],
+                []
+            ],
+            "Lid clamped"
+        ],
+
+        "initial": [
+            "PBF1", "PBF2", "PBF3", "PBF4",
+
+            "PLF1", "PLF2", "PLF3", "PLF4"
+        ]
+    },
+
+    "outputs": {
+        "SB_AL1_L1": ["%QX100.6"],
+        "SB_AL1_L2": ["%QX100.7"],
+        "SB_AL1_L3": ["%QX101.0"],
+        "RP_AL1_CLAMP": ["%QX101.1"],
+        "SB_AL1_B1": ["%QX100.1"],
+        "SB_AL1_B2": ["%QX100.2"],
+        "SB_AL1_B3": ["%QX100.3"],
+        "LP_AL1_CLAMP": ["%QX100.4"]
+    },
+
+    "transitions": {
+        "TB4": [
+            ["TRUE", "PBF1"],
+            [
+                [
+                    ["S_AL1_B1"], []
+                ]
+            ],
+            ["PB5"]
+        ],
+        "TB5": [
+            ["PB5", "PBF2"],
+            [
+                [
+                    ["S_AL1_B2"], []
+                ]
+            ],
+            ["PB6", "PBF1"]
+        ],
+        "TB6": [
+            ["PB6", "PBF3"],
+            [
+                [
+                    ["S_AL1_B3"], []
+                ]
+            ],
+            ["PB7", "PBF2"]
+        ],
+        "TB7": [
+            ["PB7", "PBF4"],
+            [
+                [
+                    ["S_AL1_LP"], []
+                ]
+            ],
+            ["PB78"]
+        ],
+        "TB78": [
+            ["PB78"],
+            [
+                [
+                    ["timer_1_PB7.Q"], []
+                ]
+            ],
+            ["PB8"]
+        ],
+        "TL4": [
+            ["TRUE", "PLF1"],
+            [
+                [
+                    ["S_AL1_L1"], []
+                ]
+            ],
+            ["PL5"]
+        ],
+        "TL5": [
+            ["PL5", "PLF2"],
+            [
+                [
+                    ["S_AL1_L2"], []
+                ]
+            ],
+            ["PL6", "PLF1"]
+        ],
+        "TL6": [
+            ["PL6", "PLF3"],
+            [
+                [
+                    ["S_AL1_L3"], []
+                ]
+            ],
+            ["PL7", "PLF2"]
+        ],
+        "TL7": [
+            ["PL7", "PLF4"],
+            [
+                [
+                    ["S_AL1_RP"], []
+                ]
+            ],
+            ["PL78"]
+        ],
+        "TL78": [
+            ["PL78"],
+            [
+                [
+                    ["timer_1_PL7.Q"], []
+                ]
+            ],
+            ["PL8"]
+        ],
+        "TL8": [
+            ["PL8"],
+            [
+                [
+                    ["RP_AL1_CLAMPED"], []
+                ]
+            ],
+            ["PL9"]
+        ],
+        "TB8": [
+            ["PB8"],
+            [
+                [
+                    ["LP_AL1_CLAMPED"], []
+                ]
+            ],
+            ["PB9"]
+        ],
+
+        "TA0": [
+            ["PL9", "TRUE"],
+            [
+                [
+                    ["TRUE"], ["FALSE"]
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "TA4": [
+            ["TRUE"],
+            [
+                [
+                    "TRUE"
+                ]
+            ],
+            ["FALSE", "PLF3", "PLF4"]
+        ],
+        "TA5": [
+            ["PB9", "TRUE"],
+            [
+                [
+                    "TRUE"
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "TA12": [
+            ["TRUE"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["FALSE", "FALSE", "PBF3", "PBF4"]
+        ]
+    },
+
+    "internals": {
+        "timer_1_PL7": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PL7(IN:= PL78, PT:= T#1500ms)"
+            ]
+        ],
+        "timer_1_PB7": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PB7(IN:= PB78, PT:= T#1500ms)"
+            ]
+        ]
+    },
+
+    "inputs": {
+        "S_AL1_L1": ["boolean", "%IX101.3"],
+        "S_AL1_L2": ["boolean", "%IX101.4"],
+        "S_AL1_L3": ["boolean", "%IX101.5"],
+        "RP_AL1_CLAMPED": ["boolean", "%IX101.6"],
+        "S_AL1_RP": ["boolean", "%IX101.7"],
+        "S_AL1_B1": ["boolean", "%IX100.3"],
+        "S_AL1_B2": ["boolean", "%IX100.4"],
+        "S_AL1_B3": ["boolean", "%IX100.5"],
+        "LP_AL1_CLAMPED": ["boolean", "%IX100.6"],
+        "S_AL1_LP": ["boolean", "%IX100.7"]
+    },
+
+    "specifications": {
+        "auto": true,
+        "manual": [
+            "AG(stab & S_AL1_L1 & S_AL1_L2)-> A[SB_AL1_L1 U !S_AL1_L2]",
+            "AG(stab & S_AL1_L1 & !S_AL1_L2)-> AX(!SB_AL1_L1)",
+            "AG(stab & S_AL1_L2 & S_AL1_L3)-> A[SB_AL1_L2 U !S_AL1_L3]",
+            "AG(stab & S_AL1_L2 & !S_AL1_L3)-> AX(!SB_AL1_L2)",
+            "AG(stab & S_AL1_L3 & RP_AL1_CLAMPED)-> A[SB_AL1_L3 U !RP_AL1_CLAMPED]",
+            "AG(stab & S_AL1_L3 & !RP_AL1_CLAMPED)-> AX(!SB_AL1_L3)",
+
+            "AG(stab & S_AL1_B1 & S_AL1_B2)-> A[SB_AL1_B1 U !S_AL1_B2]",
+            "AG(stab & S_AL1_B1 & !S_AL1_B2)-> AX(!SB_AL1_B1)",
+            "AG(stab & S_AL1_B2 & S_AL1_B3)-> A[SB_AL1_B2 U !S_AL1_B3]",
+            "AG(stab & S_AL1_B2 & !S_AL1_B3)-> AX(!SB_AL1_B2)",
+            "AG(stab & S_AL1_B3 & LP_AL1_CLAMPED)-> A[SB_AL1_B3 U !LP_AL1_CLAMPED]",
+            "AG(stab & S_AL1_B3 & !LP_AL1_CLAMPED)-> AX(!SB_AL1_B3)"
+        ]
+    }
+}

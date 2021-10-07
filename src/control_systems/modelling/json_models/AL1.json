@@ -291,6 +291,27 @@
             ],
             "Waiting for base to get within clamping range"
         ],
+        "PBF4": [
+            [
+                [],
+                ["LP_AL1_CLAMP"]
+            ],
+            "Base clamp free"
+        ],
+        "PB8": [
+            [
+                ["LP_AL1_CLAMP"],
+                []
+            ],
+            "Base clamping in progress"
+        ],
+        "PB9": [
+            [
+                ["LP_AL1_CLAMP"],
+                []
+            ],
+            "Base clamped"
+        ],
 
         "PL4": [
             [
@@ -347,6 +368,27 @@
                 []
             ],
             "Waiting for lid to get into clamping range"
+        ],
+        "PLF4": [
+            [
+                [],
+                ["RP_AL1_CLAMP"]
+            ],
+            "Lid clamp free"
+        ],
+        "PL8": [
+            [
+                ["RP_AL1_CLAMP"],
+                []
+            ],
+            "Lid clamping in progress"
+        ],
+        "PL9": [
+            [
+                ["RP_AL1_CLAMP"],
+                []
+            ],
+            "Lid clamped"
         ],
         
 
@@ -454,48 +496,6 @@
                 []
             ],
             "Assembled product out"
-        ],
-        "PBF4": [
-            [
-                [],
-                ["LP_AL1_CLAMP"]
-            ],
-            "Base clamp free"
-        ],
-        "PB8": [
-            [
-                ["LP_AL1_CLAMP"],
-                []
-            ],
-            "Base clamping in progress"
-        ],
-        "PB9": [
-            [
-                ["LP_AL1_CLAMP"],
-                []
-            ],
-            "Base clamped"
-        ],
-        "PLF4": [
-            [
-                [],
-                ["RP_AL1_CLAMP"]
-            ],
-            "Lid clamp free"
-        ],
-        "PL8": [
-            [
-                ["RP_AL1_CLAMP"],
-                []
-            ],
-            "Lid clamping in progress"
-        ],
-        "PL9": [
-            [
-                ["RP_AL1_CLAMP"],
-                []
-            ],
-            "Lid clamped"
         ],
 
 
@@ -857,16 +857,14 @@
         "P_AL1_L": ["%QX100.5"],
 
 
-        "SB_AL1_B1": ["%QX100.1"],
-        "SB_AL1_B2": ["%QX100.2"],
-        "SB_AL1_B3": ["%QX100.3"],
-        "LP_AL1_CLAMP": ["%QX100.4"],
-
-
         "SB_AL1_L1": ["%QX100.6"],
         "SB_AL1_L2": ["%QX100.7"],
         "SB_AL1_L3": ["%QX101.0"],
         "RP_AL1_CLAMP": ["%QX101.1"],
+        "SB_AL1_B1": ["%QX100.1"],
+        "SB_AL1_B2": ["%QX100.2"],
+        "SB_AL1_B3": ["%QX100.3"],
+        "LP_AL1_CLAMP": ["%QX100.4"],
 
 
         "AL1_GRAB": ["%QX101.6"],
@@ -1294,9 +1292,6 @@
             ],
             ["PL8"]
         ],
-
-
-
         "TL8": [
             ["PL8"],
             [
@@ -1315,6 +1310,8 @@
             ],
             ["PB9"]
         ],
+
+
         "TA0": [
             ["PL9", "PA0"],
             [
@@ -2028,18 +2025,16 @@
         "S_AL1_B": ["boolean", "%IX100.0"],
 
 
-        "S_AL1_B1": ["boolean", "%IX100.3"],
-        "S_AL1_B2": ["boolean", "%IX100.4"],
-        "S_AL1_B3": ["boolean", "%IX100.5"],
-        "LP_AL1_CLAMPED": ["boolean", "%IX100.6"],
-        "S_AL1_LP": ["boolean", "%IX100.7"],
-
-
         "S_AL1_L1": ["boolean", "%IX101.3"],
         "S_AL1_L2": ["boolean", "%IX101.4"],
         "S_AL1_L3": ["boolean", "%IX101.5"],
         "RP_AL1_CLAMPED": ["boolean", "%IX101.6"],
         "S_AL1_RP": ["boolean", "%IX101.7"],
+        "S_AL1_B1": ["boolean", "%IX100.3"],
+        "S_AL1_B2": ["boolean", "%IX100.4"],
+        "S_AL1_B3": ["boolean", "%IX100.5"],
+        "LP_AL1_CLAMPED": ["boolean", "%IX100.6"],
+        "S_AL1_LP": ["boolean", "%IX100.7"],
 
 
         "AL1_DETECTED": ["boolean", "%IX102.3"],
