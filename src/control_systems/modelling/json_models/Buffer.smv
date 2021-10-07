@@ -1,0 +1,452 @@
+MODULE timer_1_PL7_mod
+VAR
+Q: boolean;
+ASSIGN
+init(Q):= {TRUE, FALSE};
+next(Q):= {TRUE, FALSE};
+MODULE timer_1_PB7_mod
+VAR
+Q: boolean;
+ASSIGN
+init(Q):= {TRUE, FALSE};
+next(Q):= {TRUE, FALSE};
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['S_AL1_L1', 'S_AL1_L2', 'S_AL1_L3', 'RP_AL1_CLAMPED', 'S_AL1_RP', 'S_AL1_B1', 'S_AL1_B2', 'S_AL1_B3', 'LP_AL1_CLAMPED', 'S_AL1_LP']
+S_AL1_L1: boolean;
+S_AL1_L2: boolean;
+S_AL1_L3: boolean;
+RP_AL1_CLAMPED: boolean;
+S_AL1_RP: boolean;
+S_AL1_B1: boolean;
+S_AL1_B2: boolean;
+S_AL1_B3: boolean;
+LP_AL1_CLAMPED: boolean;
+S_AL1_LP: boolean;
+ 
+-- PLACES
+-- ['PB4', 'PBF1', 'PB5', 'PBF2', 'PB6', 'PBF3', 'PB7', 'PB78', 'PBF4', 'PB8', 'PB9', 'PL4', 'PLF1', 'PL5', 'PLF2', 'PL6', 'PLF3', 'PL7', 'PL78', 'PLF4', 'PL8', 'PL9', 'initial']
+PB4: boolean;
+PBF1: boolean;
+PB5: boolean;
+PBF2: boolean;
+PB6: boolean;
+PBF3: boolean;
+PB7: boolean;
+PB78: boolean;
+PBF4: boolean;
+PB8: boolean;
+PB9: boolean;
+PL4: boolean;
+PLF1: boolean;
+PL5: boolean;
+PLF2: boolean;
+PL6: boolean;
+PLF3: boolean;
+PL7: boolean;
+PL78: boolean;
+PLF4: boolean;
+PL8: boolean;
+PL9: boolean;
+
+
+-- INTERNAL
+timer_1_PL7: timer_1_PL7_mod;
+timer_1_PB7: timer_1_PB7_mod;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+TB4:= (TRUE & PBF1) & ( (S_AL1_B1) ) & (!PB5);
+TB5:= (PB5 & PBF2) & ( (S_AL1_B2) ) & (!PB6 & !PBF1);
+TB6:= (PB6 & PBF3) & ( (S_AL1_B3) ) & (!PB7 & !PBF2);
+TB7:= (PB7 & PBF4) & ( (S_AL1_LP) ) & (!PB78);
+TB78:= (PB78) & ( (timer_1_PB7.Q) ) & (!PB8);
+TL4:= (TRUE & PLF1) & ( (S_AL1_L1) ) & (!PL5);
+TL5:= (PL5 & PLF2) & ( (S_AL1_L2) ) & (!PL6 & !PLF1);
+TL6:= (PL6 & PLF3) & ( (S_AL1_L3) ) & (!PL7 & !PLF2);
+TL7:= (PL7 & PLF4) & ( (S_AL1_RP) ) & (!PL78);
+TL78:= (PL78) & ( (timer_1_PL7.Q) ) & (!PL8);
+TL8:= (PL8) & ( (RP_AL1_CLAMPED) ) & (!PL9);
+TB8:= (PB8) & ( (LP_AL1_CLAMPED) ) & (!PB9);
+TA0:= (PL9 & TRUE) & ( (TRUE & !FALSE) ) & (!FALSE);
+TA4:= (TRUE) & ( (TRUE) ) & (!FALSE & !PLF3 & !PLF4);
+TA5:= (PB9 & TRUE) & ( (TRUE) ) & (!FALSE);
+TA12:= (TRUE) & ( (TRUE) ) & (!FALSE & !FALSE & !PBF3 & !PBF4);
+ 
+-- STABLE
+stab:= !(TB4 | TB5 | TB6 | TB7 | TB78 | TL4 | TL5 | TL6 | TL7 | TL78 | TL8 | TB8 | TA0 | TA4 | TA5 | TA12);
+ 
+-- OUTPUTS
+-- SET
+LP_AL1_CLAMP_set:= PB8 | PB9;
+RP_AL1_CLAMP_set:= PL8 | PL9;
+SB_AL1_B1_set:= PB5;
+SB_AL1_B2_set:= PB6;
+SB_AL1_B3_set:= PB7 | PB78;
+SB_AL1_L1_set:= PL5;
+SB_AL1_L2_set:= PL6;
+SB_AL1_L3_set:= PL7 | PL78;
+-- RESET
+LP_AL1_CLAMP_reset:= PBF4;
+RP_AL1_CLAMP_reset:= PLF4;
+SB_AL1_B1_reset:= PBF1;
+SB_AL1_B2_reset:= PBF2;
+SB_AL1_B3_reset:= PBF3;
+SB_AL1_L1_reset:= PLF1;
+SB_AL1_L2_reset:= PLF2;
+SB_AL1_L3_reset:= PLF3;
+-- OUTPUT
+LP_AL1_CLAMP:= LP_AL1_CLAMP_set & !LP_AL1_CLAMP_reset;
+RP_AL1_CLAMP:= RP_AL1_CLAMP_set & !RP_AL1_CLAMP_reset;
+SB_AL1_B1:= SB_AL1_B1_set & !SB_AL1_B1_reset;
+SB_AL1_B2:= SB_AL1_B2_set & !SB_AL1_B2_reset;
+SB_AL1_B3:= SB_AL1_B3_set & !SB_AL1_B3_reset;
+SB_AL1_L1:= SB_AL1_L1_set & !SB_AL1_L1_reset;
+SB_AL1_L2:= SB_AL1_L2_set & !SB_AL1_L2_reset;
+SB_AL1_L3:= SB_AL1_L3_set & !SB_AL1_L3_reset;
+-- Non-Boolean Outputs
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(S_AL1_L1):= {TRUE, FALSE};
+init(S_AL1_L2):= {TRUE, FALSE};
+init(S_AL1_L3):= {TRUE, FALSE};
+init(RP_AL1_CLAMPED):= {TRUE, FALSE};
+init(S_AL1_RP):= {TRUE, FALSE};
+init(S_AL1_B1):= {TRUE, FALSE};
+init(S_AL1_B2):= {TRUE, FALSE};
+init(S_AL1_B3):= {TRUE, FALSE};
+init(LP_AL1_CLAMPED):= {TRUE, FALSE};
+init(S_AL1_LP):= {TRUE, FALSE};
+next(S_AL1_L1):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_L1;
+esac;
+next(S_AL1_L2):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_L2;
+esac;
+next(S_AL1_L3):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_L3;
+esac;
+next(RP_AL1_CLAMPED):= case
+   stab: {TRUE, FALSE};
+   TRUE: RP_AL1_CLAMPED;
+esac;
+next(S_AL1_RP):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_RP;
+esac;
+next(S_AL1_B1):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_B1;
+esac;
+next(S_AL1_B2):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_B2;
+esac;
+next(S_AL1_B3):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_B3;
+esac;
+next(LP_AL1_CLAMPED):= case
+   stab: {TRUE, FALSE};
+   TRUE: LP_AL1_CLAMPED;
+esac;
+next(S_AL1_LP):= case
+   stab: {TRUE, FALSE};
+   TRUE: S_AL1_LP;
+esac;
+ 
+-- PLACES
+init(PB4):= FALSE;
+init(PBF1):= TRUE;
+init(PB5):= FALSE;
+init(PBF2):= TRUE;
+init(PB6):= FALSE;
+init(PBF3):= TRUE;
+init(PB7):= FALSE;
+init(PB78):= FALSE;
+init(PBF4):= TRUE;
+init(PB8):= FALSE;
+init(PB9):= FALSE;
+init(PL4):= FALSE;
+init(PLF1):= TRUE;
+init(PL5):= FALSE;
+init(PLF2):= TRUE;
+init(PL6):= FALSE;
+init(PLF3):= TRUE;
+init(PL7):= FALSE;
+init(PL78):= FALSE;
+init(PLF4):= TRUE;
+init(PL8):= FALSE;
+init(PL9):= FALSE;
+next(PB4):= case
+   TRUE: PB4;
+esac;
+next(PBF1):= case
+   TB4: FALSE;
+   TB5: TRUE;
+   TRUE: PBF1;
+esac;
+next(PB5):= case
+   TB4: TRUE;
+   TB5: FALSE;
+   TRUE: PB5;
+esac;
+next(PBF2):= case
+   TB5: FALSE;
+   TB6: TRUE;
+   TRUE: PBF2;
+esac;
+next(PB6):= case
+   TB5: TRUE;
+   TB6: FALSE;
+   TRUE: PB6;
+esac;
+next(PBF3):= case
+   TB6: FALSE;
+   TA12: TRUE;
+   TRUE: PBF3;
+esac;
+next(PB7):= case
+   TB6: TRUE;
+   TB7: FALSE;
+   TRUE: PB7;
+esac;
+next(PB78):= case
+   TB7: TRUE;
+   TB78: FALSE;
+   TRUE: PB78;
+esac;
+next(PBF4):= case
+   TB7: FALSE;
+   TA12: TRUE;
+   TRUE: PBF4;
+esac;
+next(PB8):= case
+   TB78: TRUE;
+   TB8: FALSE;
+   TRUE: PB8;
+esac;
+next(PB9):= case
+   TB8: TRUE;
+   TA5: FALSE;
+   TRUE: PB9;
+esac;
+next(PL4):= case
+   TRUE: PL4;
+esac;
+next(PLF1):= case
+   TL4: FALSE;
+   TL5: TRUE;
+   TRUE: PLF1;
+esac;
+next(PL5):= case
+   TL4: TRUE;
+   TL5: FALSE;
+   TRUE: PL5;
+esac;
+next(PLF2):= case
+   TL5: FALSE;
+   TL6: TRUE;
+   TRUE: PLF2;
+esac;
+next(PL6):= case
+   TL5: TRUE;
+   TL6: FALSE;
+   TRUE: PL6;
+esac;
+next(PLF3):= case
+   TL6: FALSE;
+   TA4: TRUE;
+   TRUE: PLF3;
+esac;
+next(PL7):= case
+   TL6: TRUE;
+   TL7: FALSE;
+   TRUE: PL7;
+esac;
+next(PL78):= case
+   TL7: TRUE;
+   TL78: FALSE;
+   TRUE: PL78;
+esac;
+next(PLF4):= case
+   TL7: FALSE;
+   TA4: TRUE;
+   TRUE: PLF4;
+esac;
+next(PL8):= case
+   TL78: TRUE;
+   TL8: FALSE;
+   TRUE: PL8;
+esac;
+next(PL9):= case
+   TL8: TRUE;
+   TA0: FALSE;
+   TRUE: PL9;
+esac;
+
+
+-- INTERNALS
+
+
+--=====================================================================
+--SPECIFICATIONS
+--=====================================================================
+
+--CHECK LIVENESS
+SPEC
+AG(EF(TB4));
+SPEC
+AG(EF(TB5));
+SPEC
+AG(EF(TB6));
+SPEC
+AG(EF(TB7));
+SPEC
+AG(EF(TB78));
+SPEC
+AG(EF(TL4));
+SPEC
+AG(EF(TL5));
+SPEC
+AG(EF(TL6));
+SPEC
+AG(EF(TL7));
+SPEC
+AG(EF(TL78));
+SPEC
+AG(EF(TL8));
+SPEC
+AG(EF(TB8));
+SPEC
+AG(EF(TA0));
+SPEC
+AG(EF(TA4));
+SPEC
+AG(EF(TA5));
+SPEC
+AG(EF(TA12));
+--CHECK DEADLOCKS
+SPEC
+AG(EF( TB4 | TB5 | TB6 | TB7 | TB78 | TL4 | TL5 | TL6 | TL7 | TL78 | TL8 | TB8 | TA0 | TA4 | TA5 | TA12 ));
+--CHECK DEAD TRANSITIONS
+SPEC
+EF(TB4);
+SPEC
+EF(TB5);
+SPEC
+EF(TB6);
+SPEC
+EF(TB7);
+SPEC
+EF(TB78);
+SPEC
+EF(TL4);
+SPEC
+EF(TL5);
+SPEC
+EF(TL6);
+SPEC
+EF(TL7);
+SPEC
+EF(TL78);
+SPEC
+EF(TL8);
+SPEC
+EF(TB8);
+SPEC
+EF(TA0);
+SPEC
+EF(TA4);
+SPEC
+EF(TA5);
+SPEC
+EF(TA12);
+--CHECK UNSTABLE CYCLES
+SPEC
+AG(EF(stab));
+--CHECK CONTRADICTORY OUTPUTS
+SPEC
+AG( stab -> ! (SB_AL1_L1_set & SB_AL1_L1_reset) );
+SPEC
+AG( stab -> ! (SB_AL1_L2_set & SB_AL1_L2_reset) );
+SPEC
+AG( stab -> ! (SB_AL1_L3_set & SB_AL1_L3_reset) );
+SPEC
+AG( stab -> ! (RP_AL1_CLAMP_set & RP_AL1_CLAMP_reset) );
+SPEC
+AG( stab -> ! (SB_AL1_B1_set & SB_AL1_B1_reset) );
+SPEC
+AG( stab -> ! (SB_AL1_B2_set & SB_AL1_B2_reset) );
+SPEC
+AG( stab -> ! (SB_AL1_B3_set & SB_AL1_B3_reset) );
+SPEC
+AG( stab -> ! (LP_AL1_CLAMP_set & LP_AL1_CLAMP_reset) );
+--CHECK EMPTY OUTPUTS
+SPEC
+AG( stab -> SB_AL1_L1_set | SB_AL1_L1_reset );
+SPEC
+AG( stab -> SB_AL1_L2_set | SB_AL1_L2_reset );
+SPEC
+AG( stab -> SB_AL1_L3_set | SB_AL1_L3_reset );
+SPEC
+AG( stab -> RP_AL1_CLAMP_set | RP_AL1_CLAMP_reset );
+SPEC
+AG( stab -> SB_AL1_B1_set | SB_AL1_B1_reset );
+SPEC
+AG( stab -> SB_AL1_B2_set | SB_AL1_B2_reset );
+SPEC
+AG( stab -> SB_AL1_B3_set | SB_AL1_B3_reset );
+SPEC
+AG( stab -> LP_AL1_CLAMP_set | LP_AL1_CLAMP_reset );
+SPEC
+AG(stab & S_AL1_L1 & S_AL1_L2)-> A[SB_AL1_L1 U !S_AL1_L2];
+SPEC
+AG(stab & S_AL1_L1 & !S_AL1_L2)-> AX(!SB_AL1_L1);
+SPEC
+AG(stab & S_AL1_L2 & S_AL1_L3)-> A[SB_AL1_L2 U !S_AL1_L3];
+SPEC
+AG(stab & S_AL1_L2 & !S_AL1_L3)-> AX(!SB_AL1_L2);
+SPEC
+AG(stab & S_AL1_L3 & RP_AL1_CLAMPED)-> A[SB_AL1_L3 U !RP_AL1_CLAMPED];
+SPEC
+AG(stab & S_AL1_L3 & !RP_AL1_CLAMPED)-> AX(!SB_AL1_L3);
+SPEC
+AG(stab & S_AL1_B1 & S_AL1_B2)-> A[SB_AL1_B1 U !S_AL1_B2];
+SPEC
+AG(stab & S_AL1_B1 & !S_AL1_B2)-> AX(!SB_AL1_B1);
+SPEC
+AG(stab & S_AL1_B2 & S_AL1_B3)-> A[SB_AL1_B2 U !S_AL1_B3];
+SPEC
+AG(stab & S_AL1_B2 & !S_AL1_B3)-> AX(!SB_AL1_B2);
+SPEC
+AG(stab & S_AL1_B3 & LP_AL1_CLAMPED)-> A[SB_AL1_B3 U !LP_AL1_CLAMPED];
+SPEC
+AG(stab & S_AL1_B3 & !LP_AL1_CLAMPED)-> AX(!SB_AL1_B3);

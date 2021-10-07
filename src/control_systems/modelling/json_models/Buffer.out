@@ -1,0 +1,900 @@
+*** This is NuSMV 2.6.0 (compiled on Wed Oct 14 15:35:00 2015)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification AG (EF TB4)  is true
+-- specification AG (EF TB5)  is true
+-- specification AG (EF TB6)  is true
+-- specification AG (EF TB7)  is true
+-- specification AG (EF TB78)  is true
+-- specification AG (EF TL4)  is true
+-- specification AG (EF TL5)  is true
+-- specification AG (EF TL6)  is true
+-- specification AG (EF TL7)  is true
+-- specification AG (EF TL78)  is true
+-- specification AG (EF TL8)  is true
+-- specification AG (EF TB8)  is true
+-- specification AG (EF TA0)  is true
+-- specification AG (EF TA4)  is true
+-- specification AG (EF TA5)  is true
+-- specification AG (EF TA12)  is true
+-- specification AG (EF (((((((((((((((TB4 | TB5) | TB6) | TB7) | TB78) | TL4) | TL5) | TL6) | TL7) | TL78) | TL8) | TB8) | TA0) | TA4) | TA5) | TA12))  is true
+-- specification EF TB4  is true
+-- specification EF TB5  is true
+-- specification EF TB6  is true
+-- specification EF TB7  is true
+-- specification EF TB78  is true
+-- specification EF TL4  is true
+-- specification EF TL5  is true
+-- specification EF TL6  is true
+-- specification EF TL7  is true
+-- specification EF TL78  is true
+-- specification EF TL8  is true
+-- specification EF TB8  is true
+-- specification EF TA0  is true
+-- specification EF TA4  is true
+-- specification EF TA5  is true
+-- specification EF TA12  is true
+-- specification AG (EF stab)  is true
+-- specification AG (stab -> !(SB_AL1_L1_set & SB_AL1_L1_reset))  is true
+-- specification AG (stab -> !(SB_AL1_L2_set & SB_AL1_L2_reset))  is true
+-- specification AG (stab -> !(SB_AL1_L3_set & SB_AL1_L3_reset))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    S_AL1_L1 = FALSE
+    S_AL1_L2 = FALSE
+    S_AL1_L3 = FALSE
+    RP_AL1_CLAMPED = FALSE
+    S_AL1_RP = FALSE
+    S_AL1_B1 = FALSE
+    S_AL1_B2 = FALSE
+    S_AL1_B3 = FALSE
+    LP_AL1_CLAMPED = FALSE
+    S_AL1_LP = FALSE
+    PB4 = FALSE
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = TRUE
+    PB7 = FALSE
+    PB78 = FALSE
+    PBF4 = TRUE
+    PB8 = FALSE
+    PB9 = FALSE
+    PL4 = FALSE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = TRUE
+    PL7 = FALSE
+    PL78 = FALSE
+    PLF4 = TRUE
+    PL8 = FALSE
+    PL9 = FALSE
+    timer_1_PL7.Q = FALSE
+    timer_1_PB7.Q = FALSE
+    SB_AL1_L3 = FALSE
+    SB_AL1_L2 = FALSE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B3 = FALSE
+    SB_AL1_B2 = FALSE
+    SB_AL1_B1 = FALSE
+    RP_AL1_CLAMP = FALSE
+    LP_AL1_CLAMP = FALSE
+    SB_AL1_L3_reset = TRUE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B3_reset = TRUE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_B1_reset = TRUE
+    RP_AL1_CLAMP_reset = TRUE
+    LP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L3_set = FALSE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B3_set = FALSE
+    SB_AL1_B2_set = FALSE
+    SB_AL1_B1_set = FALSE
+    RP_AL1_CLAMP_set = FALSE
+    LP_AL1_CLAMP_set = FALSE
+    stab = TRUE
+    TA12 = FALSE
+    TA5 = FALSE
+    TA4 = FALSE
+    TA0 = FALSE
+    TB8 = FALSE
+    TL8 = FALSE
+    TL78 = FALSE
+    TL7 = FALSE
+    TL6 = FALSE
+    TL5 = FALSE
+    TL4 = FALSE
+    TB78 = FALSE
+    TB7 = FALSE
+    TB6 = FALSE
+    TB5 = FALSE
+    TB4 = FALSE
+  -> State: 1.2 <-
+    S_AL1_L1 = TRUE
+    S_AL1_B1 = TRUE
+    stab = FALSE
+    TL4 = TRUE
+    TB4 = TRUE
+  -> State: 1.3 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B1_reset = FALSE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B1_set = TRUE
+    stab = TRUE
+    TL4 = FALSE
+    TB4 = FALSE
+  -> State: 1.4 <-
+    S_AL1_L1 = FALSE
+    S_AL1_L2 = TRUE
+    S_AL1_L3 = TRUE
+    S_AL1_RP = TRUE
+    S_AL1_B2 = TRUE
+    S_AL1_B3 = TRUE
+    stab = FALSE
+    TL5 = TRUE
+    TB5 = TRUE
+  -> State: 1.5 <-
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = FALSE
+    PB6 = TRUE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = FALSE
+    PL6 = TRUE
+    SB_AL1_L2 = TRUE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B2 = TRUE
+    SB_AL1_B1 = FALSE
+    SB_AL1_L2_reset = FALSE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B2_reset = FALSE
+    SB_AL1_B1_reset = TRUE
+    SB_AL1_L2_set = TRUE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B2_set = TRUE
+    SB_AL1_B1_set = FALSE
+    TL6 = TRUE
+    TL5 = FALSE
+    TB6 = TRUE
+    TB5 = FALSE
+    TB4 = TRUE
+  -> State: 1.6 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = FALSE
+    PB7 = TRUE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = FALSE
+    PL7 = TRUE
+    SB_AL1_L3 = TRUE
+    SB_AL1_L2 = FALSE
+    SB_AL1_B3 = TRUE
+    SB_AL1_B2 = FALSE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L3_reset = FALSE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_B3_reset = FALSE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_B1_reset = FALSE
+    SB_AL1_L3_set = TRUE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_B3_set = TRUE
+    SB_AL1_B2_set = FALSE
+    SB_AL1_B1_set = TRUE
+    TL7 = TRUE
+    TL6 = FALSE
+    TB6 = FALSE
+    TB5 = TRUE
+    TB4 = FALSE
+  -> State: 1.7 <-
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = FALSE
+    PB6 = TRUE
+    PL7 = FALSE
+    PL78 = TRUE
+    PLF4 = FALSE
+    SB_AL1_B2 = TRUE
+    SB_AL1_B1 = FALSE
+    SB_AL1_B2_reset = FALSE
+    SB_AL1_B1_reset = TRUE
+    RP_AL1_CLAMP_reset = FALSE
+    SB_AL1_B2_set = TRUE
+    SB_AL1_B1_set = FALSE
+    TA4 = TRUE
+    TL7 = FALSE
+    TB5 = FALSE
+    TB4 = TRUE
+  -> State: 1.8 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PLF3 = TRUE
+    PLF4 = TRUE
+    SB_AL1_L3 = FALSE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L3_reset = TRUE
+    SB_AL1_B1_reset = FALSE
+    RP_AL1_CLAMP_reset = TRUE
+    SB_AL1_B1_set = TRUE
+    stab = TRUE
+    TA4 = FALSE
+    TB4 = FALSE
+-- specification AG (stab -> !(RP_AL1_CLAMP_set & RP_AL1_CLAMP_reset))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    S_AL1_L1 = FALSE
+    S_AL1_L2 = FALSE
+    S_AL1_L3 = FALSE
+    RP_AL1_CLAMPED = FALSE
+    S_AL1_RP = FALSE
+    S_AL1_B1 = FALSE
+    S_AL1_B2 = FALSE
+    S_AL1_B3 = FALSE
+    LP_AL1_CLAMPED = FALSE
+    S_AL1_LP = FALSE
+    PB4 = FALSE
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = TRUE
+    PB7 = FALSE
+    PB78 = FALSE
+    PBF4 = TRUE
+    PB8 = FALSE
+    PB9 = FALSE
+    PL4 = FALSE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = TRUE
+    PL7 = FALSE
+    PL78 = FALSE
+    PLF4 = TRUE
+    PL8 = FALSE
+    PL9 = FALSE
+    timer_1_PL7.Q = FALSE
+    timer_1_PB7.Q = FALSE
+    SB_AL1_L3 = FALSE
+    SB_AL1_L2 = FALSE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B3 = FALSE
+    SB_AL1_B2 = FALSE
+    SB_AL1_B1 = FALSE
+    RP_AL1_CLAMP = FALSE
+    LP_AL1_CLAMP = FALSE
+    SB_AL1_L3_reset = TRUE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B3_reset = TRUE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_B1_reset = TRUE
+    RP_AL1_CLAMP_reset = TRUE
+    LP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L3_set = FALSE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B3_set = FALSE
+    SB_AL1_B2_set = FALSE
+    SB_AL1_B1_set = FALSE
+    RP_AL1_CLAMP_set = FALSE
+    LP_AL1_CLAMP_set = FALSE
+    stab = TRUE
+    TA12 = FALSE
+    TA5 = FALSE
+    TA4 = FALSE
+    TA0 = FALSE
+    TB8 = FALSE
+    TL8 = FALSE
+    TL78 = FALSE
+    TL7 = FALSE
+    TL6 = FALSE
+    TL5 = FALSE
+    TL4 = FALSE
+    TB78 = FALSE
+    TB7 = FALSE
+    TB6 = FALSE
+    TB5 = FALSE
+    TB4 = FALSE
+  -> State: 2.2 <-
+    S_AL1_L1 = TRUE
+    S_AL1_B1 = TRUE
+    stab = FALSE
+    TL4 = TRUE
+    TB4 = TRUE
+  -> State: 2.3 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B1_reset = FALSE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B1_set = TRUE
+    stab = TRUE
+    TL4 = FALSE
+    TB4 = FALSE
+  -> State: 2.4 <-
+    S_AL1_L1 = FALSE
+    S_AL1_L2 = TRUE
+    S_AL1_L3 = TRUE
+    S_AL1_RP = TRUE
+    S_AL1_B2 = TRUE
+    S_AL1_B3 = TRUE
+    stab = FALSE
+    TL5 = TRUE
+    TB5 = TRUE
+  -> State: 2.5 <-
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = FALSE
+    PB6 = TRUE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = FALSE
+    PL6 = TRUE
+    SB_AL1_L2 = TRUE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B2 = TRUE
+    SB_AL1_B1 = FALSE
+    SB_AL1_L2_reset = FALSE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B2_reset = FALSE
+    SB_AL1_B1_reset = TRUE
+    SB_AL1_L2_set = TRUE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B2_set = TRUE
+    SB_AL1_B1_set = FALSE
+    TL6 = TRUE
+    TL5 = FALSE
+    TB6 = TRUE
+    TB5 = FALSE
+    TB4 = TRUE
+  -> State: 2.6 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = FALSE
+    PB7 = TRUE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = FALSE
+    PL7 = TRUE
+    SB_AL1_L3 = TRUE
+    SB_AL1_L2 = FALSE
+    SB_AL1_B3 = TRUE
+    SB_AL1_B2 = FALSE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L3_reset = FALSE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_B3_reset = FALSE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_B1_reset = FALSE
+    SB_AL1_L3_set = TRUE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_B3_set = TRUE
+    SB_AL1_B2_set = FALSE
+    SB_AL1_B1_set = TRUE
+    TL7 = TRUE
+    TL6 = FALSE
+    TB6 = FALSE
+    TB5 = TRUE
+    TB4 = FALSE
+  -> State: 2.7 <-
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = FALSE
+    PB6 = TRUE
+    PL7 = FALSE
+    PL78 = TRUE
+    PLF4 = FALSE
+    timer_1_PL7.Q = TRUE
+    SB_AL1_B2 = TRUE
+    SB_AL1_B1 = FALSE
+    SB_AL1_B2_reset = FALSE
+    SB_AL1_B1_reset = TRUE
+    RP_AL1_CLAMP_reset = FALSE
+    SB_AL1_B2_set = TRUE
+    SB_AL1_B1_set = FALSE
+    TA4 = TRUE
+    TL78 = TRUE
+    TL7 = FALSE
+    TB5 = FALSE
+    TB4 = TRUE
+  -> State: 2.8 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PLF3 = TRUE
+    PL78 = FALSE
+    PLF4 = TRUE
+    PL8 = TRUE
+    timer_1_PL7.Q = FALSE
+    SB_AL1_L3 = FALSE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L3_reset = TRUE
+    SB_AL1_B1_reset = FALSE
+    RP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L3_set = FALSE
+    SB_AL1_B1_set = TRUE
+    RP_AL1_CLAMP_set = TRUE
+    stab = TRUE
+    TA4 = FALSE
+    TL78 = FALSE
+    TB4 = FALSE
+-- specification AG (stab -> !(SB_AL1_B1_set & SB_AL1_B1_reset))  is true
+-- specification AG (stab -> !(SB_AL1_B2_set & SB_AL1_B2_reset))  is true
+-- specification AG (stab -> !(SB_AL1_B3_set & SB_AL1_B3_reset))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 3.1 <-
+    S_AL1_L1 = FALSE
+    S_AL1_L2 = FALSE
+    S_AL1_L3 = FALSE
+    RP_AL1_CLAMPED = FALSE
+    S_AL1_RP = FALSE
+    S_AL1_B1 = FALSE
+    S_AL1_B2 = FALSE
+    S_AL1_B3 = FALSE
+    LP_AL1_CLAMPED = FALSE
+    S_AL1_LP = FALSE
+    PB4 = FALSE
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = TRUE
+    PB7 = FALSE
+    PB78 = FALSE
+    PBF4 = TRUE
+    PB8 = FALSE
+    PB9 = FALSE
+    PL4 = FALSE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = TRUE
+    PL7 = FALSE
+    PL78 = FALSE
+    PLF4 = TRUE
+    PL8 = FALSE
+    PL9 = FALSE
+    timer_1_PL7.Q = FALSE
+    timer_1_PB7.Q = FALSE
+    SB_AL1_L3 = FALSE
+    SB_AL1_L2 = FALSE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B3 = FALSE
+    SB_AL1_B2 = FALSE
+    SB_AL1_B1 = FALSE
+    RP_AL1_CLAMP = FALSE
+    LP_AL1_CLAMP = FALSE
+    SB_AL1_L3_reset = TRUE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B3_reset = TRUE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_B1_reset = TRUE
+    RP_AL1_CLAMP_reset = TRUE
+    LP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L3_set = FALSE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B3_set = FALSE
+    SB_AL1_B2_set = FALSE
+    SB_AL1_B1_set = FALSE
+    RP_AL1_CLAMP_set = FALSE
+    LP_AL1_CLAMP_set = FALSE
+    stab = TRUE
+    TA12 = FALSE
+    TA5 = FALSE
+    TA4 = FALSE
+    TA0 = FALSE
+    TB8 = FALSE
+    TL8 = FALSE
+    TL78 = FALSE
+    TL7 = FALSE
+    TL6 = FALSE
+    TL5 = FALSE
+    TL4 = FALSE
+    TB78 = FALSE
+    TB7 = FALSE
+    TB6 = FALSE
+    TB5 = FALSE
+    TB4 = FALSE
+  -> State: 3.2 <-
+    S_AL1_L1 = TRUE
+    S_AL1_B1 = TRUE
+    stab = FALSE
+    TL4 = TRUE
+    TB4 = TRUE
+  -> State: 3.3 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B1_reset = FALSE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B1_set = TRUE
+    stab = TRUE
+    TL4 = FALSE
+    TB4 = FALSE
+  -> State: 3.4 <-
+    S_AL1_L2 = TRUE
+    S_AL1_L3 = TRUE
+    S_AL1_B1 = FALSE
+    S_AL1_B2 = TRUE
+    S_AL1_B3 = TRUE
+    S_AL1_LP = TRUE
+    stab = FALSE
+    TL5 = TRUE
+    TB5 = TRUE
+  -> State: 3.5 <-
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = FALSE
+    PB6 = TRUE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = FALSE
+    PL6 = TRUE
+    SB_AL1_L2 = TRUE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B2 = TRUE
+    SB_AL1_B1 = FALSE
+    SB_AL1_L2_reset = FALSE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B2_reset = FALSE
+    SB_AL1_B1_reset = TRUE
+    SB_AL1_L2_set = TRUE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B2_set = TRUE
+    SB_AL1_B1_set = FALSE
+    TL6 = TRUE
+    TL5 = FALSE
+    TL4 = TRUE
+    TB6 = TRUE
+    TB5 = FALSE
+  -> State: 3.6 <-
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = FALSE
+    PB7 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = FALSE
+    PL7 = TRUE
+    SB_AL1_L3 = TRUE
+    SB_AL1_L2 = FALSE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B3 = TRUE
+    SB_AL1_B2 = FALSE
+    SB_AL1_L3_reset = FALSE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B3_reset = FALSE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_L3_set = TRUE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B3_set = TRUE
+    SB_AL1_B2_set = FALSE
+    TL6 = FALSE
+    TL5 = TRUE
+    TL4 = FALSE
+    TB7 = TRUE
+    TB6 = FALSE
+  -> State: 3.7 <-
+    PB7 = FALSE
+    PB78 = TRUE
+    PBF4 = FALSE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = FALSE
+    PL6 = TRUE
+    SB_AL1_L2 = TRUE
+    SB_AL1_L1 = FALSE
+    SB_AL1_L2_reset = FALSE
+    SB_AL1_L1_reset = TRUE
+    LP_AL1_CLAMP_reset = FALSE
+    SB_AL1_L2_set = TRUE
+    SB_AL1_L1_set = FALSE
+    TA12 = TRUE
+    TL5 = FALSE
+    TL4 = TRUE
+    TB7 = FALSE
+  -> State: 3.8 <-
+    PBF3 = TRUE
+    PBF4 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B3 = FALSE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B3_reset = TRUE
+    LP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L1_set = TRUE
+    stab = TRUE
+    TA12 = FALSE
+    TL4 = FALSE
+-- specification AG (stab -> !(LP_AL1_CLAMP_set & LP_AL1_CLAMP_reset))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    S_AL1_L1 = FALSE
+    S_AL1_L2 = FALSE
+    S_AL1_L3 = FALSE
+    RP_AL1_CLAMPED = FALSE
+    S_AL1_RP = FALSE
+    S_AL1_B1 = FALSE
+    S_AL1_B2 = FALSE
+    S_AL1_B3 = FALSE
+    LP_AL1_CLAMPED = FALSE
+    S_AL1_LP = FALSE
+    PB4 = FALSE
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = TRUE
+    PB7 = FALSE
+    PB78 = FALSE
+    PBF4 = TRUE
+    PB8 = FALSE
+    PB9 = FALSE
+    PL4 = FALSE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = TRUE
+    PL7 = FALSE
+    PL78 = FALSE
+    PLF4 = TRUE
+    PL8 = FALSE
+    PL9 = FALSE
+    timer_1_PL7.Q = FALSE
+    timer_1_PB7.Q = FALSE
+    SB_AL1_L3 = FALSE
+    SB_AL1_L2 = FALSE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B3 = FALSE
+    SB_AL1_B2 = FALSE
+    SB_AL1_B1 = FALSE
+    RP_AL1_CLAMP = FALSE
+    LP_AL1_CLAMP = FALSE
+    SB_AL1_L3_reset = TRUE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B3_reset = TRUE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_B1_reset = TRUE
+    RP_AL1_CLAMP_reset = TRUE
+    LP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L3_set = FALSE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B3_set = FALSE
+    SB_AL1_B2_set = FALSE
+    SB_AL1_B1_set = FALSE
+    RP_AL1_CLAMP_set = FALSE
+    LP_AL1_CLAMP_set = FALSE
+    stab = TRUE
+    TA12 = FALSE
+    TA5 = FALSE
+    TA4 = FALSE
+    TA0 = FALSE
+    TB8 = FALSE
+    TL8 = FALSE
+    TL78 = FALSE
+    TL7 = FALSE
+    TL6 = FALSE
+    TL5 = FALSE
+    TL4 = FALSE
+    TB78 = FALSE
+    TB7 = FALSE
+    TB6 = FALSE
+    TB5 = FALSE
+    TB4 = FALSE
+  -> State: 4.2 <-
+    S_AL1_L1 = TRUE
+    S_AL1_B1 = TRUE
+    stab = FALSE
+    TL4 = TRUE
+    TB4 = TRUE
+  -> State: 4.3 <-
+    PBF1 = FALSE
+    PB5 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B1 = TRUE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B1_reset = FALSE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B1_set = TRUE
+    stab = TRUE
+    TL4 = FALSE
+    TB4 = FALSE
+  -> State: 4.4 <-
+    S_AL1_L2 = TRUE
+    S_AL1_L3 = TRUE
+    S_AL1_B1 = FALSE
+    S_AL1_B2 = TRUE
+    S_AL1_B3 = TRUE
+    S_AL1_LP = TRUE
+    stab = FALSE
+    TL5 = TRUE
+    TB5 = TRUE
+  -> State: 4.5 <-
+    PBF1 = TRUE
+    PB5 = FALSE
+    PBF2 = FALSE
+    PB6 = TRUE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = FALSE
+    PL6 = TRUE
+    SB_AL1_L2 = TRUE
+    SB_AL1_L1 = FALSE
+    SB_AL1_B2 = TRUE
+    SB_AL1_B1 = FALSE
+    SB_AL1_L2_reset = FALSE
+    SB_AL1_L1_reset = TRUE
+    SB_AL1_B2_reset = FALSE
+    SB_AL1_B1_reset = TRUE
+    SB_AL1_L2_set = TRUE
+    SB_AL1_L1_set = FALSE
+    SB_AL1_B2_set = TRUE
+    SB_AL1_B1_set = FALSE
+    TL6 = TRUE
+    TL5 = FALSE
+    TL4 = TRUE
+    TB6 = TRUE
+    TB5 = FALSE
+  -> State: 4.6 <-
+    PBF2 = TRUE
+    PB6 = FALSE
+    PBF3 = FALSE
+    PB7 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    PLF2 = TRUE
+    PL6 = FALSE
+    PLF3 = FALSE
+    PL7 = TRUE
+    SB_AL1_L3 = TRUE
+    SB_AL1_L2 = FALSE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B3 = TRUE
+    SB_AL1_B2 = FALSE
+    SB_AL1_L3_reset = FALSE
+    SB_AL1_L2_reset = TRUE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B3_reset = FALSE
+    SB_AL1_B2_reset = TRUE
+    SB_AL1_L3_set = TRUE
+    SB_AL1_L2_set = FALSE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B3_set = TRUE
+    SB_AL1_B2_set = FALSE
+    TL6 = FALSE
+    TL5 = TRUE
+    TL4 = FALSE
+    TB7 = TRUE
+    TB6 = FALSE
+  -> State: 4.7 <-
+    PB7 = FALSE
+    PB78 = TRUE
+    PBF4 = FALSE
+    PLF1 = TRUE
+    PL5 = FALSE
+    PLF2 = FALSE
+    PL6 = TRUE
+    timer_1_PB7.Q = TRUE
+    SB_AL1_L2 = TRUE
+    SB_AL1_L1 = FALSE
+    SB_AL1_L2_reset = FALSE
+    SB_AL1_L1_reset = TRUE
+    LP_AL1_CLAMP_reset = FALSE
+    SB_AL1_L2_set = TRUE
+    SB_AL1_L1_set = FALSE
+    TA12 = TRUE
+    TL5 = FALSE
+    TL4 = TRUE
+    TB78 = TRUE
+    TB7 = FALSE
+  -> State: 4.8 <-
+    PBF3 = TRUE
+    PB78 = FALSE
+    PBF4 = TRUE
+    PB8 = TRUE
+    PLF1 = FALSE
+    PL5 = TRUE
+    timer_1_PB7.Q = FALSE
+    SB_AL1_L1 = TRUE
+    SB_AL1_B3 = FALSE
+    SB_AL1_L1_reset = FALSE
+    SB_AL1_B3_reset = TRUE
+    LP_AL1_CLAMP_reset = TRUE
+    SB_AL1_L1_set = TRUE
+    SB_AL1_B3_set = FALSE
+    LP_AL1_CLAMP_set = TRUE
+    stab = TRUE
+    TA12 = FALSE
+    TL4 = FALSE
+    TB78 = FALSE
+-- specification AG (stab -> (SB_AL1_L1_set | SB_AL1_L1_reset))  is true
+-- specification AG (stab -> (SB_AL1_L2_set | SB_AL1_L2_reset))  is true
+-- specification AG (stab -> (SB_AL1_L3_set | SB_AL1_L3_reset))  is true
+-- specification AG (stab -> (RP_AL1_CLAMP_set | RP_AL1_CLAMP_reset))  is true
+-- specification AG (stab -> (SB_AL1_B1_set | SB_AL1_B1_reset))  is true
+-- specification AG (stab -> (SB_AL1_B2_set | SB_AL1_B2_reset))  is true
+-- specification AG (stab -> (SB_AL1_B3_set | SB_AL1_B3_reset))  is true
+-- specification AG (stab -> (LP_AL1_CLAMP_set | LP_AL1_CLAMP_reset))  is true
+-- specification (AG ((stab & S_AL1_L1) & S_AL1_L2) -> A [ SB_AL1_L1 U !S_AL1_L2 ] )  is true
+-- specification (AG ((stab & S_AL1_L1) & !S_AL1_L2) -> AX !SB_AL1_L1)  is true
+-- specification (AG ((stab & S_AL1_L2) & S_AL1_L3) -> A [ SB_AL1_L2 U !S_AL1_L3 ] )  is true
+-- specification (AG ((stab & S_AL1_L2) & !S_AL1_L3) -> AX !SB_AL1_L2)  is true
+-- specification (AG ((stab & S_AL1_L3) & RP_AL1_CLAMPED) -> A [ SB_AL1_L3 U !RP_AL1_CLAMPED ] )  is true
+-- specification (AG ((stab & S_AL1_L3) & !RP_AL1_CLAMPED) -> AX !SB_AL1_L3)  is true
+-- specification (AG ((stab & S_AL1_B1) & S_AL1_B2) -> A [ SB_AL1_B1 U !S_AL1_B2 ] )  is true
+-- specification (AG ((stab & S_AL1_B1) & !S_AL1_B2) -> AX !SB_AL1_B1)  is true
+-- specification (AG ((stab & S_AL1_B2) & S_AL1_B3) -> A [ SB_AL1_B2 U !S_AL1_B3 ] )  is true
+-- specification (AG ((stab & S_AL1_B2) & !S_AL1_B3) -> AX !SB_AL1_B2)  is true
+-- specification (AG ((stab & S_AL1_B3) & LP_AL1_CLAMPED) -> A [ SB_AL1_B3 U !LP_AL1_CLAMPED ] )  is true
+-- specification (AG ((stab & S_AL1_B3) & !LP_AL1_CLAMPED) -> AX !SB_AL1_B3)  is true
