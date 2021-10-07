@@ -867,14 +867,14 @@
         "LP_AL1_CLAMP": ["%QX100.4"],
 
 
-        "AL1_GRAB": ["%QX101.6"],
-        "LP_AL1_RAISE": ["%QX101.7"],
         "AL1_X_SET": ["%QW100", "WORD"],
         "AL1_Y_SET": ["%QW101", "WORD"],
         "AL1_Z_SET": ["%QW102", "WORD"],
-
-
+        "AL1_GRAB": ["%QX101.6"],
+        "LP_AL1_RAISE": ["%QX101.7"],
         "PAS_AL1_ST_TURN": ["%QX103.5"],
+
+
         "AL1_ST_X_SET": ["%QW103", "WORD"],
         "AL1_ST_Y_SET":  ["%QW104", "WORD"],
         "AL1_ST_Z_SET":  ["%QW105", "WORD"],
@@ -1908,18 +1908,6 @@
         ],
 
 
-        "timer_1_PL9": [
-            [
-                "MODULE",
-                {
-                    "Q": "boolean"
-                }
-            ],
-            [
-                "TON",
-                "timer_1_PL9(IN:= PL9, PT:= T#300ms)"
-            ]
-        ],
         "timer_1_PL7": [
             [
                 "MODULE",
@@ -1957,7 +1945,18 @@
             ]
         ],
 
-
+        "timer_1_PL9": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PL9(IN:= PL9, PT:= T#300ms)"
+            ]
+        ],
         "timer_1_PSA1": [
             [
                 "MODULE",
@@ -2063,9 +2062,9 @@
             ],
             "%IW103"
         ],
-
-
         "ST_AL1_ST0": ["boolean", "%IX105.3"],
+
+
         "ST_AL1_ST1": ["boolean", "%IX104.0"],
         "ST_AL1_ST2": ["boolean", "%IX104.1"],
         "ST_AL1_ST3": ["boolean", "%IX104.2"],

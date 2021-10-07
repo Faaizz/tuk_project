@@ -1,0 +1,416 @@
+{
+    "places": {
+        "PB9": [
+            [
+                ["LP_AL1_CLAMP"],
+                []
+            ],
+            "Base clamped"
+        ],
+        "PBF3": [
+            [
+                [],
+                ["SB_AL1_B3"]
+            ],
+            "Base buffer 3 free"
+        ],
+        "PBF4": [
+            [
+                [],
+                ["LP_AL1_CLAMP"]
+            ],
+            "Base clamp free"
+        ],
+        "PL9": [
+            [
+                ["RP_AL1_CLAMP"],
+                []
+            ],
+            "Lid clamped"
+        ],
+        "PLF3": [
+            [
+                [],
+            [   "SB_AL1_L3"]
+            ],
+            "Lid buffer 3 free"
+        ],
+        "PLF4": [
+            [
+                [],
+                ["RP_AL1_CLAMP"]
+            ],
+            "Lid clamp free"
+        ],
+
+        "PA0": [
+            [
+                [],
+                ["LP_AL1_RAISE", "AL1_GRAB"]
+            ],
+            ["AL1_X_SET:=210", "AL1_Y_SET:=150", "AL1_Z_SET:=400"],
+            "Assembler free"
+        ],
+        "PA1": [
+            [
+                [],
+                ["AL1_GRAB", "LP_AL1_RAISE"]
+            ],
+            ["AL1_X_SET:=800", "AL1_Y_SET:=150"],
+            "Request grabber movement to lid position"
+        ],
+        "PA2": [
+            [
+                [],
+                ["AL1_GRAB", "LP_AL1_RAISE"]
+            ],
+            ["AL1_Z_SET:=800"],
+            "Grabber at lid position. Lower grabber to pick lid"
+        ],
+        "PA3": [
+            [
+                ["AL1_GRAB"],
+                ["RP_AL1_CLAMP", "LP_AL1_RAISE"]
+            ],
+            "Pick up lid and release lid clamp"
+        ],
+        "PA4": [
+            [
+                ["AL1_GRAB"],
+                ["RP_AL1_CLAMP", "LP_AL1_RAISE"]
+            ],
+            ["AL1_Z_SET:=400"],
+            "Raise grabber up a little"
+        ],
+        "PA5": [
+            [
+                ["AL1_GRAB"],
+                ["LP_AL1_RAISE"]
+            ],
+            ["AL1_X_SET:=210", "AL1_Y_SET:=150"],
+            "Move grabber to base position for fitting"
+        ],
+        "PA6": [
+            [
+                ["AL1_GRAB", "LP_AL1_CLAMP"],
+                ["LP_AL1_RAISE"]
+            ],
+            ["AL1_Z_SET:=818"],
+            "Fit lid on base"
+        ],
+        "PA7": [
+            [
+                ["LP_AL1_CLAMP"],
+                ["AL1_GRAB", "LP_AL1_RAISE"]
+            ],
+            ["AL1_Z_SET:=400"],
+            "Release lid and raise grabber back up"
+        ],
+        "PA8": [
+            [
+                [],
+                ["AL1_GRAB", "LP_AL1_CLAMP", "LP_AL1_RAISE"]
+            ],
+            "Release base clamp"
+        ],
+        "PA9": [
+            [
+                ["LP_AL1_RAISE"],
+                ["LP_AL1_CLAMP"]
+            ],
+            "Raise base clamp so that assembled product can pass"
+        ],
+        "PA10": [
+            [
+                ["LP_AL1_RAISE"],
+                ["LP_AL1_CLAMP"]
+            ],
+            "Base clamp going up"
+        ],
+        "PA11": [
+            [
+                [],
+                ["LP_AL1_CLAMP", "LP_AL1_RAISE"]
+            ],
+            "Put clamp back down"
+        ],
+        "PA12": [
+            [
+                [],
+                ["LP_AL1_CLAMP","LP_AL1_RAISE"]
+            ],
+            "Base clamp going back down"
+        ],
+        "PA13": [
+            [
+                [],
+                []
+            ],
+            "Assembled product out"
+        ],
+
+
+        "PSA0": [
+            [
+                [], ["PAS_AL1_ST_TURN"]
+            ],
+            "Pivot arm sorter inactive"
+        ],
+        "PSA1": [
+            [
+                ["PAS_AL1_ST_TURN"], []
+            ],
+            "Pivot arm sorter inactive"
+        ],
+        "PS1": [
+            [
+                [], []
+            ],
+            "Product reaches stacker"
+        ],
+
+        "initial": [
+            "PA0", "PSA0",
+            "PL9", "PB9"
+        ]
+    },
+
+    "outputs": {
+        "RP_AL1_CLAMP": ["%QX101.1"],
+        "LP_AL1_CLAMP": ["%QX100.4"],
+        "AL1_X_SET": ["%QW100", "WORD"],
+        "AL1_Y_SET": ["%QW101", "WORD"],
+        "AL1_Z_SET": ["%QW102", "WORD"],
+        "AL1_GRAB": ["%QX101.6"],
+        "LP_AL1_RAISE": ["%QX101.7"],
+        "PAS_AL1_ST_TURN": ["%QX103.5"],
+
+        "SB_AL1_B3": ["%QX100.3"],
+        "SB_AL1_L3": ["%QX101.0"]
+    },
+
+    "transitions": {
+        "TA0": [
+            ["PL9", "PA0"],
+            [
+                [
+                    ["timer_1_PL9.Q", "RP_AL1_CLAMPED"], ["AL1_DETECTED"]
+                ]
+            ],
+            ["PA1"]
+        ],
+        "TA1": [
+            ["PA1"],
+            [
+                [
+                    "AL1_X_POS>798 & AL1_X_POS<802"
+                ]
+            ],
+            ["PA2"],
+            "Grabber arrives at lid position"
+        ],
+        "TA2": [
+            ["PA2"],
+            [
+                [
+                    "AL1_Z_POS>798 & AL1_Z_POS<802"
+                ]
+            ],
+            ["PA3"],
+            ""
+        ],
+        "TA3": [
+            ["PA3"],
+            [
+                [
+                    [], ["RP_AL1_CLAMPED"]
+                ]
+            ],
+            ["PA4"]
+        ],
+        "TA4": [
+            ["PA4"],
+            [
+                [
+                    "AL1_Z_POS>398 & AL1_Z_POS<402"
+                ]
+            ],
+            ["PA5", "PLF3", "PLF4"]
+        ],
+        "TA5": [
+            ["PB9", "PA5"],
+            [
+                [
+                    "AL1_DETECTED & LP_AL1_CLAMPED & AL1_X_POS>208 & AL1_X_POS<212"
+                ]
+            ],
+            ["PA6"]
+        ],
+       "TA6": [
+           ["PA6"],
+           [
+               [
+                   "AL1_Z_POS>810 & AL1_Z_POS<820"
+               ]
+           ],
+           ["PA7"]
+       ],
+       "TA7": [
+           ["PA7"],
+           [
+               [
+                   "AL1_Z_POS>398 & AL1_Z_POS<402"
+               ]
+           ],
+           ["PA8"]
+       ], 
+       "TA8": [
+           ["PA8"],
+           [
+               [
+                   [], ["LP_AL1_CLAMPED"]
+               ]
+           ],
+           ["PA9"]
+       ],
+       "TA9": [
+           ["PA9"],
+           [
+               [
+                   [], ["LP_AL1_LIMIT"]
+               ]
+           ],
+           ["PA10"]
+       ],
+       "TA10": [
+           ["PA10"],
+           [
+               [
+                   ["LP_AL1_LIMIT"], []
+               ]
+           ],
+           ["PA11"]
+       ],
+       "TA11": [
+            ["PA11"],
+            [
+                [
+                    [], ["LP_AL1_LIMIT"]
+                ]
+            ],
+            ["PA12"]
+        ],
+        "TA12": [
+            ["PA12"],
+            [
+                [
+                    ["LP_AL1_LIMIT"], []
+                ]
+            ],
+            ["PA13", "PA0", "PBF3", "PBF4"]
+        ],
+
+        "TSA0": [
+            ["PA13", "PSA0"],
+            [
+                [
+                    ["ST_AL1_ST0"], []
+                ]
+            ],
+            ["PSA1"]
+        ],
+        "TSA1": [
+            ["PSA1"],
+            [
+                [
+                    ["timer_1_PSA1.Q"], []
+                ]
+            ],
+            ["PSA0"]
+        ],
+        "TS1": [
+            ["PA13"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PS1"]
+        ],
+        "CLEAR": [
+            ["PBF3", "PBF4", "PLF3", "PLF4", "PS1"],
+            [
+                ["TRUE"],["FALSE"]
+            ],
+            ["PB9", "PL9"]
+        ]
+    },
+
+    "internals": {
+        "timer_1_PL9": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PL9(IN:= PL9, PT:= T#300ms)"
+            ]
+        ],
+        "timer_1_PSA1": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PSA1(IN:= PSA1, PT:= T#5000ms)"
+            ]
+        ]
+    },
+
+    "inputs": {
+        "RP_AL1_CLAMPED": ["boolean", "%IX101.6"],
+        "LP_AL1_CLAMPED": ["boolean", "%IX100.6"],
+        "AL1_DETECTED": ["boolean", "%IX102.3"],
+        "LP_AL1_LIMIT": ["boolean", "%IX102.4"],
+        "AL1_X_POS":  [
+            [
+                "{0, 200, 700, 900}",
+                0,
+                "{0, 200, 700, 900}"
+            ],
+            "%IW101"
+        ],
+        "AL1_Y_POS":  [
+            [
+                "{0, 150, 300}",
+                0,
+                "{0, 150, 300}"
+            ],
+            "%IW102"
+        ],
+        "AL1_Z_POS":  [
+            [
+                "{0, 100, 400, 800}",
+                0,
+                "{0, 100, 400, 800}"
+            ],
+            "%IW103"
+        ],
+        "ST_AL1_ST0": ["boolean", "%IX105.3"]
+    },
+
+    "specifications": {
+        "auto": true,
+        "manual": [
+            "AG(stab & RP_AL1_CLAMPED & !AL1_DETECTED) -> AX(AL1_X_SET=800 & AL1_Y_SET=0)",
+            "AG(stab & AL1_DETECTED & AL1_X_POS=210 & AL1_Y_POS=0 & LP_AL1_CLAMPED) -> AX(AL1_Z_SET=818)",
+            "AG(stab & ST_AL1_ST0) -> AX(PAS_AL1_ST_TURN)"
+        ]
+    }
+}
