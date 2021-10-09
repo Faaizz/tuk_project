@@ -880,8 +880,8 @@
         "AL1_ST_Z_SET":  ["%QW105", "WORD"],
         "RP_AL1_ST_CLAMP":  ["%QX102.5"],
         "AL1_ST_GRAB": ["%QX102.6"],
-        "AL1_EMIT": ["%QX102.7"],
         "RC_AL1_ST": ["%QX103.0"],
+        "AL1_EMIT": ["%QX102.7"],
 
 
         "RC_AL1_G7": ["%QX103.1"],
@@ -1450,6 +1450,8 @@
             ],
             ["PSA0"]
         ],
+        
+        
         "TS1": [
             ["PA13"],
             [
@@ -1932,6 +1934,7 @@
                 "timer_1_PB7(IN:= PB78, PT:= T#1500ms)"
             ]
         ],
+        
         "timer_1_PS23": [
             [
                 "MODULE",

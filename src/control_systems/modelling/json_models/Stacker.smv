@@ -1,0 +1,422 @@
+MODULE timer_1_PS23_mod
+VAR
+Q: boolean;
+ASSIGN
+init(Q):= {TRUE, FALSE};
+next(Q):= {TRUE, FALSE};
+
+MODULE main
+
+--=====================================================================
+--DECLARATION
+--=====================================================================
+
+VAR
+
+
+-- INPUTS
+-- ['ST_AL1_ST1', 'ST_AL1_ST2', 'ST_AL1_ST3', 'RP_AL1_ST_CLAMPED', 'AL1_ST_DETECTED', 'AL1_ST_X_POS', 'AL1_ST_Y_POS', 'AL1_ST_Z_POS']
+ST_AL1_ST1: boolean;
+ST_AL1_ST2: boolean;
+ST_AL1_ST3: boolean;
+RP_AL1_ST_CLAMPED: boolean;
+AL1_ST_DETECTED: boolean;
+AL1_ST_X_POS: {0, 400, 860};
+AL1_ST_Y_POS: {0, 300, 560};
+AL1_ST_Z_POS: {0, 200, 410, 600, 750};
+ 
+-- PLACES
+-- ['PA13', 'PSA0', 'PSA1', 'PS0', 'PSC', 'PS1', 'PS23', 'PS2', 'PS3', 'PS4', 'PS5', 'PS6', 'PS7', 'PS8', 'PS9', 'PS10', 'PS11', 'PS12', 'PSE1', 'PSE2', 'PSE0', 'PG0', 'initial']
+PA13: boolean;
+PSA0: boolean;
+PSA1: boolean;
+PS0: boolean;
+PSC: boolean;
+PS1: boolean;
+PS23: boolean;
+PS2: boolean;
+PS3: boolean;
+PS4: boolean;
+PS5: boolean;
+PS6: boolean;
+PS7: boolean;
+PS8: boolean;
+PS9: boolean;
+PS10: boolean;
+PS11: boolean;
+PS12: boolean;
+PSE1: boolean;
+PSE2: boolean;
+PSE0: boolean;
+PG0: boolean;
+
+
+-- INTERNAL
+timer_1_PS23: timer_1_PS23_mod;
+
+
+--=====================================================================
+--DEFINITION
+--=====================================================================
+
+DEFINE
+
+
+-- TRANSITIONS
+TS1:= (PA13) & ( (ST_AL1_ST1) ) & (!PS1);
+TS2:= (PS0 & PSC & PS1) & ( (ST_AL1_ST2) ) & (!PS23);
+TS23:= (PS23) & ( (timer_1_PS23.Q) ) & (!PS2);
+TS3:= (PS2) & ( (RP_AL1_ST_CLAMPED) ) & (!PS3);
+TS4:= (PS3) & ( ((AL1_ST_Y_POS>540) & (AL1_ST_Y_POS<580)) ) & (!PS4);
+TS5:= (PS4) & ( ((AL1_ST_Z_POS>780) & (AL1_ST_Z_POS<820)) ) & (!PSC & !PS5);
+TS6:= (PS5) & ( (AL1_ST_DETECTED) ) & (!PS6);
+TS7:= (PS6) & ( ((AL1_ST_Z_POS>390) & (AL1_ST_Z_POS<430)) ) & (!PS7);
+TS8:= (PS7) & ( ((AL1_ST_X_POS>750) & (AL1_ST_X_POS<790)) ) & (!PS8);
+TS9:= (PS8 & PSE0) & ( ((AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)) ) & (!PS9);
+TS10:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS10 & !PSE0);
+TS11:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS11 & !PSE0);
+TS12:= (PS9) & ( (!AL1_ST_DETECTED) ) & (!PS0 & !PS12 & !PSE0);
+TS13:= (PS10 & PS11 & PS12 & PSE0) & ( (TRUE) ) & (!PSE1);
+TSE1:= (PSE1) & ( (!ST_AL1_ST3) ) & (!PSE2 & !PG0);
+TSE2:= (PSE2) & ( (ST_AL1_ST3) ) & (!PSE0);
+GENERIC_POST:= (PG0) & ( (TRUE & !FALSE) ) & (!FALSE);
+GENERIC_PRE:= (TRUE) & ( (TRUE & !FALSE) ) & (!PA13);
+ 
+-- STABLE
+stab:= !(TS1 | TS2 | TS23 | TS3 | TS4 | TS5 | TS6 | TS7 | TS8 | TS9 | TS10 | TS11 | TS12 | TS13 | TSE1 | TSE2 | GENERIC_POST | GENERIC_PRE);
+ 
+-- OUTPUTS
+-- SET
+AL1_EMIT_set:= PSE1;
+AL1_ST_GRAB_set:= PS5 | PS6 | PS7 | PS8;
+PAS_AL1_ST_TURN_set:= PSA1;
+RC_AL1_ST_set:= PSE1 | PSE2;
+RP_AL1_ST_CLAMP_set:= PS2 | PS3 | PS4;
+-- RESET
+AL1_EMIT_reset:= PSE2 | PSE0;
+AL1_ST_GRAB_reset:= PS23 | PS2 | PS3 | PS4 | PS9;
+PAS_AL1_ST_TURN_reset:= PSA0;
+RC_AL1_ST_reset:= PSE0;
+RP_AL1_ST_CLAMP_reset:= PSC | PS23;
+-- OUTPUT
+AL1_EMIT:= AL1_EMIT_set & !AL1_EMIT_reset;
+AL1_ST_GRAB:= AL1_ST_GRAB_set & !AL1_ST_GRAB_reset;
+PAS_AL1_ST_TURN:= PAS_AL1_ST_TURN_set & !PAS_AL1_ST_TURN_reset;
+RC_AL1_ST:= RC_AL1_ST_set & !RC_AL1_ST_reset;
+RP_AL1_ST_CLAMP:= RP_AL1_ST_CLAMP_set & !RP_AL1_ST_CLAMP_reset;
+-- Non-Boolean Outputs
+AL1_ST_X_SET:= case
+   PS7: 770;
+   TRUE: 0;
+esac;
+AL1_ST_Y_SET:= case
+   PS3: 560;
+   TRUE: 0;
+esac;
+AL1_ST_Z_SET:= case
+   PS8: 600;
+   TRUE: 0;
+esac;
+
+
+--=====================================================================
+--ASSIGNMENT
+--=====================================================================
+
+ASSIGN
+
+
+-- INPUTS
+init(ST_AL1_ST1):= {TRUE, FALSE};
+init(ST_AL1_ST2):= {TRUE, FALSE};
+init(ST_AL1_ST3):= {TRUE, FALSE};
+init(RP_AL1_ST_CLAMPED):= {TRUE, FALSE};
+init(AL1_ST_DETECTED):= {TRUE, FALSE};
+init(AL1_ST_X_POS):= 0;
+init(AL1_ST_Y_POS):= 0;
+init(AL1_ST_Z_POS):= 0;
+next(ST_AL1_ST1):= case
+   stab: {TRUE, FALSE};
+   TRUE: ST_AL1_ST1;
+esac;
+next(ST_AL1_ST2):= case
+   stab: {TRUE, FALSE};
+   TRUE: ST_AL1_ST2;
+esac;
+next(ST_AL1_ST3):= case
+   stab: {TRUE, FALSE};
+   TRUE: ST_AL1_ST3;
+esac;
+next(RP_AL1_ST_CLAMPED):= case
+   stab: {TRUE, FALSE};
+   TRUE: RP_AL1_ST_CLAMPED;
+esac;
+next(AL1_ST_DETECTED):= case
+   stab: {TRUE, FALSE};
+   TRUE: AL1_ST_DETECTED;
+esac;
+next(AL1_ST_X_POS):= case
+   stab: {0, 400, 860};
+   TRUE: AL1_ST_X_POS;
+esac;
+next(AL1_ST_Y_POS):= case
+   stab: {0, 300, 560};
+   TRUE: AL1_ST_Y_POS;
+esac;
+next(AL1_ST_Z_POS):= case
+   stab: {0, 200, 410, 600, 750};
+   TRUE: AL1_ST_Z_POS;
+esac;
+ 
+-- PLACES
+init(PA13):= TRUE;
+init(PSA0):= FALSE;
+init(PSA1):= FALSE;
+init(PS0):= TRUE;
+init(PSC):= TRUE;
+init(PS1):= FALSE;
+init(PS23):= FALSE;
+init(PS2):= FALSE;
+init(PS3):= FALSE;
+init(PS4):= FALSE;
+init(PS5):= FALSE;
+init(PS6):= FALSE;
+init(PS7):= FALSE;
+init(PS8):= FALSE;
+init(PS9):= FALSE;
+init(PS10):= FALSE;
+init(PS11):= FALSE;
+init(PS12):= FALSE;
+init(PSE1):= FALSE;
+init(PSE2):= FALSE;
+init(PSE0):= TRUE;
+init(PG0):= FALSE;
+next(PA13):= case
+   TS1: FALSE;
+   GENERIC_PRE: TRUE;
+   TRUE: PA13;
+esac;
+next(PSA0):= case
+   TRUE: PSA0;
+esac;
+next(PSA1):= case
+   TRUE: PSA1;
+esac;
+next(PS0):= case
+   TS2: FALSE;
+   TS10: TRUE;
+   TS11: TRUE;
+   TS12: TRUE;
+   TRUE: PS0;
+esac;
+next(PSC):= case
+   TS2: FALSE;
+   TS5: TRUE;
+   TRUE: PSC;
+esac;
+next(PS1):= case
+   TS1: TRUE;
+   TS2: FALSE;
+   TRUE: PS1;
+esac;
+next(PS23):= case
+   TS2: TRUE;
+   TS23: FALSE;
+   TRUE: PS23;
+esac;
+next(PS2):= case
+   TS23: TRUE;
+   TS3: FALSE;
+   TRUE: PS2;
+esac;
+next(PS3):= case
+   TS3: TRUE;
+   TS4: FALSE;
+   TRUE: PS3;
+esac;
+next(PS4):= case
+   TS4: TRUE;
+   TS5: FALSE;
+   TRUE: PS4;
+esac;
+next(PS5):= case
+   TS5: TRUE;
+   TS6: FALSE;
+   TRUE: PS5;
+esac;
+next(PS6):= case
+   TS6: TRUE;
+   TS7: FALSE;
+   TRUE: PS6;
+esac;
+next(PS7):= case
+   TS7: TRUE;
+   TS8: FALSE;
+   TRUE: PS7;
+esac;
+next(PS8):= case
+   TS8: TRUE;
+   TS9: FALSE;
+   TRUE: PS8;
+esac;
+next(PS9):= case
+   TS9: TRUE;
+   TS10: FALSE;
+   TS11: FALSE;
+   TS12: FALSE;
+   TRUE: PS9;
+esac;
+next(PS10):= case
+   TS10: TRUE;
+   TS13: FALSE;
+   TRUE: PS10;
+esac;
+next(PS11):= case
+   TS11: TRUE;
+   TS13: FALSE;
+   TRUE: PS11;
+esac;
+next(PS12):= case
+   TS12: TRUE;
+   TS13: FALSE;
+   TRUE: PS12;
+esac;
+next(PSE1):= case
+   TS13: TRUE;
+   TSE1: FALSE;
+   TRUE: PSE1;
+esac;
+next(PSE2):= case
+   TSE1: TRUE;
+   TSE2: FALSE;
+   TRUE: PSE2;
+esac;
+next(PSE0):= case
+   TS9: FALSE;
+   TS10: TRUE;
+   TS11: TRUE;
+   TS12: TRUE;
+   TS13: FALSE;
+   TSE2: TRUE;
+   TRUE: PSE0;
+esac;
+next(PG0):= case
+   TSE1: TRUE;
+   GENERIC_POST: FALSE;
+   TRUE: PG0;
+esac;
+
+
+-- INTERNALS
+
+
+--=====================================================================
+--SPECIFICATIONS
+--=====================================================================
+
+--CHECK LIVENESS
+SPEC
+AG(EF(TS1));
+SPEC
+AG(EF(TS2));
+SPEC
+AG(EF(TS23));
+SPEC
+AG(EF(TS3));
+SPEC
+AG(EF(TS4));
+SPEC
+AG(EF(TS5));
+SPEC
+AG(EF(TS6));
+SPEC
+AG(EF(TS7));
+SPEC
+AG(EF(TS8));
+SPEC
+AG(EF(TS9));
+SPEC
+AG(EF(TS10));
+SPEC
+AG(EF(TS11));
+SPEC
+AG(EF(TS12));
+SPEC
+AG(EF(TS13));
+SPEC
+AG(EF(TSE1));
+SPEC
+AG(EF(TSE2));
+SPEC
+AG(EF(GENERIC_POST));
+SPEC
+AG(EF(GENERIC_PRE));
+--CHECK DEADLOCKS
+SPEC
+AG(EF( TS1 | TS2 | TS23 | TS3 | TS4 | TS5 | TS6 | TS7 | TS8 | TS9 | TS10 | TS11 | TS12 | TS13 | TSE1 | TSE2 | GENERIC_POST | GENERIC_PRE ));
+--CHECK DEAD TRANSITIONS
+SPEC
+EF(TS1);
+SPEC
+EF(TS2);
+SPEC
+EF(TS23);
+SPEC
+EF(TS3);
+SPEC
+EF(TS4);
+SPEC
+EF(TS5);
+SPEC
+EF(TS6);
+SPEC
+EF(TS7);
+SPEC
+EF(TS8);
+SPEC
+EF(TS9);
+SPEC
+EF(TS10);
+SPEC
+EF(TS11);
+SPEC
+EF(TS12);
+SPEC
+EF(TS13);
+SPEC
+EF(TSE1);
+SPEC
+EF(TSE2);
+SPEC
+EF(GENERIC_POST);
+SPEC
+EF(GENERIC_PRE);
+--CHECK UNSTABLE CYCLES
+SPEC
+AG(EF(stab));
+--CHECK CONTRADICTORY OUTPUTS
+SPEC
+AG( stab -> ! (RP_AL1_ST_CLAMP_set & RP_AL1_ST_CLAMP_reset) );
+SPEC
+AG( stab -> ! (AL1_ST_GRAB_set & AL1_ST_GRAB_reset) );
+SPEC
+AG( stab -> ! (RC_AL1_ST_set & RC_AL1_ST_reset) );
+SPEC
+AG( stab -> ! (AL1_EMIT_set & AL1_EMIT_reset) );
+--CHECK EMPTY OUTPUTS
+SPEC
+AG( stab -> RP_AL1_ST_CLAMP_set | RP_AL1_ST_CLAMP_reset );
+SPEC
+AG( stab -> AL1_ST_GRAB_set | AL1_ST_GRAB_reset );
+SPEC
+AG( stab -> RC_AL1_ST_set | RC_AL1_ST_reset );
+SPEC
+AG( stab -> AL1_EMIT_set | AL1_EMIT_reset );
+SPEC
+AG(stab & PS23 & timer_1_PS23.Q) -> AX(RP_AL1_ST_CLAMP);
+SPEC
+AG(stab & PS4 & AL1_ST_Y_POS>540 & AL1_ST_Y_POS<580 & AL1_ST_Z_POS>780 & AL1_ST_Z_POS<820) -> AX(AL1_ST_GRAB);
+SPEC
+AG(stab & PS8 & AL1_ST_X_POS>750 & AL1_ST_X_POS<790 & AL1_ST_Z_POS>580 & AL1_ST_Z_POS<620) -> AX(!AL1_ST_GRAB);
+SPEC
+AG(stab & PS10 & PS11 & PS12) -> AX(PSE1);

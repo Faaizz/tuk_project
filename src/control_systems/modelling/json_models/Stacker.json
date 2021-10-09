@@ -1,0 +1,386 @@
+{
+    "places": {
+        "PA13": [
+            [
+                [],
+                []
+            ],
+            "Assembled product out"
+        ],
+
+
+        "PSA0": [
+            [
+                [], ["PAS_AL1_ST_TURN"]
+            ],
+            "Pivot arm sorter inactive"
+        ],
+        "PSA1": [
+            [
+                ["PAS_AL1_ST_TURN"], []
+            ],
+            "Pivot arm sorter inactive"
+        ],
+        "PS0": [
+            [
+                [], []
+            ],
+            ["AL1_ST_X_SET:=0", "AL1_ST_Y_SET:=560", "AL1_ST_Z_SET:=410"],
+            "Stacker is free"
+        ],
+        "PSC": [
+            [
+                [], ["RP_AL1_ST_CLAMP"]
+            ],
+            "Clamp is free"
+        ],
+        "PS1": [
+            [
+                [], []
+            ],
+            "Product reaches stacker"
+        ],
+        "PS23": [
+            [
+                [], ["RP_AL1_ST_CLAMP", "AL1_ST_GRAB"]
+            ],
+            "Product gets withing graber range, wait a little before clamping"
+        ],
+        "PS2": [
+            [
+                ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
+            ],
+            "Product gets withing graber range"
+        ],
+        "PS3": [
+            [
+                ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
+            ],
+            ["AL1_ST_Y_SET:=560"],
+            "Move grabber to product location"
+        ],
+        "PS4": [
+            [
+                ["RP_AL1_ST_CLAMP"], ["AL1_ST_GRAB"]
+            ],
+            ["AL1_ST_Z_SET:=800"],
+            "Move grabber down to pick up product"
+        ],
+        "PS5": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            "Grab product"
+        ],
+        "PS6": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            ["AL1_ST_Z_SET:=410"],
+            "Raise grabber up a little"
+        ],
+        "PS7": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            ["AL1_ST_X_SET:=770"],
+            "Move grabber to box location"
+        ],
+        "PS8": [
+            [
+                ["AL1_ST_GRAB"], []
+            ],
+            ["AL1_ST_Z_SET:=600"],
+            "Lower grabber to drop product into box"
+        ],
+        "PS9": [
+            [
+                [], ["AL1_ST_GRAB"]
+            ],
+            "Drop product"
+        ],
+        "PS10": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "PS11": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "PS12": [
+            [
+                [], []
+            ],
+            "Product is in the box"
+        ],
+        "PSE1": [
+            [
+                ["AL1_EMIT", "RC_AL1_ST"], []
+            ],
+            "Three products in box, roll box away and emit new box"
+        ],
+        "PSE2": [
+            [
+                ["RC_AL1_ST"], ["AL1_EMIT"]
+            ],
+            "Roll box off conveyor on to the next conveyor"
+        ],
+        "PSE0": [
+            [
+                [], ["AL1_EMIT", "RC_AL1_ST"]
+            ],
+            "New box arrived, stop conveyor"
+        ],
+
+
+        "PG0": [
+            [
+                [], []
+            ],
+            "Stackable box coming in from stacking stage"
+        ],
+
+        "initial": [
+            "PA13", "PS0", "PSC", "PSE0",
+            
+            "PG"
+        ]
+    },
+
+    "outputs": {
+        "AL1_ST_X_SET": ["%QW103", "WORD"],
+        "AL1_ST_Y_SET":  ["%QW104", "WORD"],
+        "AL1_ST_Z_SET":  ["%QW105", "WORD"],
+        "RP_AL1_ST_CLAMP":  ["%QX102.5"],
+        "AL1_ST_GRAB": ["%QX102.6"],
+        "RC_AL1_ST": ["%QX103.0"],
+        "AL1_EMIT": ["%QX102.7"]
+    },
+
+    "transitions": {
+        "TS1": [
+            ["PA13"],
+            [
+                [
+                    ["ST_AL1_ST1"], []
+                ]
+            ],
+            ["PS1"]
+        ],
+        "TS2": [
+            ["PS0", "PSC", "PS1"],
+            [
+                [
+                    ["ST_AL1_ST2"], []
+                ]
+            ],
+            ["PS23"]
+        ],
+        "TS23": [
+            ["PS23"],
+            [
+                [
+                    ["timer_1_PS23.Q"], []
+                ]
+            ],
+            ["PS2"]
+        ],
+        "TS3": [
+            ["PS2"],
+            [
+                [
+                    ["RP_AL1_ST_CLAMPED"], []
+                ]
+            ],
+            ["PS3"]
+        ],
+        "TS4": [
+            ["PS3"],
+            [
+                [
+                    "(AL1_ST_Y_POS>540) & (AL1_ST_Y_POS<580)"
+                ]
+            ],
+            ["PS4"]
+        ],
+        "TS5": [
+            ["PS4"],
+            [
+                [
+                    "(AL1_ST_Z_POS>780) & (AL1_ST_Z_POS<820)"
+                ]
+            ],
+            ["PSC", "PS5"]
+        ],
+        "TS6": [
+            ["PS5"],
+            [
+                [
+                    ["AL1_ST_DETECTED"], []
+                ]
+            ],
+            ["PS6"]
+        ],
+        "TS7": [
+            ["PS6"],
+            [
+                [
+                    "(AL1_ST_Z_POS>390) & (AL1_ST_Z_POS<430)"
+                ]
+            ],
+            ["PS7"]
+        ],
+        "TS8": [
+            ["PS7"],
+            [
+                [
+                    "(AL1_ST_X_POS>750) & (AL1_ST_X_POS<790)"
+                ]
+            ],
+            ["PS8"]
+        ],
+        "TS9": [
+            ["PS8", "PSE0"],
+            [
+                [
+                    "(AL1_ST_Z_POS>580) & (AL1_ST_Z_POS<620)"
+                ]
+            ],
+            ["PS9"]
+        ],
+        "TS10": [
+            ["PS9"],
+            [
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
+            ],
+            ["PS0", "PS10", "PSE0"]
+        ],
+        "TS11": [
+            ["PS9"],
+            [
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
+            ],
+            ["PS0", "PS11", "PSE0"]
+        ],
+        "TS12": [
+            ["PS9"],
+            [
+                [
+                    [], ["AL1_ST_DETECTED"]
+                ]
+            ],
+            ["PS0", "PS12", "PSE0"]
+        ],
+        "TS13": [
+            ["PS10", "PS11", "PS12", "PSE0"],
+            [
+                [
+                    ["TRUE"], []
+                ]
+            ],
+            ["PSE1"]
+        ],
+        "TSE1": [
+            ["PSE1"],
+            [
+                [
+                    [], ["ST_AL1_ST3"]
+                ]
+            ],
+            ["PSE2", "PG0"]
+        ],
+        "TSE2": [
+            ["PSE2"],
+            [
+                [
+                    ["ST_AL1_ST3"], []
+                ]
+            ],
+            ["PSE0"]
+        ],
+
+        "GENERIC_POST": [
+            ["PG0"],
+            [
+                [
+                    ["TRUE"], ["FALSE"]
+                ]
+            ],
+            ["FALSE"]
+        ],
+        "GENERIC_PRE": [
+            ["TRUE"],
+            [
+                [
+                    ["TRUE"], ["FALSE"]
+                ]
+            ],
+            ["PA13"]
+        ]
+    },
+
+    "internals": {
+        "timer_1_PS23": [
+            [
+                "MODULE",
+                {
+                    "Q": "boolean"
+                }
+            ],
+            [
+                "TON",
+                "timer_1_PS23(IN:= PS23, PT:= T#1500ms)"
+            ]
+        ]
+    },
+
+    "inputs": {
+        "ST_AL1_ST1": ["boolean", "%IX104.0"],
+        "ST_AL1_ST2": ["boolean", "%IX104.1"],
+        "ST_AL1_ST3": ["boolean", "%IX104.2"],
+        "RP_AL1_ST_CLAMPED": ["boolean", "%IX104.3"],
+        "AL1_ST_DETECTED": ["boolean", "%IX104.4"],
+        "AL1_ST_X_POS": [
+            [
+                "{0, 400, 860}",
+                0,
+                "{0, 400, 860}"
+            ],
+            "%IW104"
+        ],
+        "AL1_ST_Y_POS": [
+            [
+                "{0, 300, 560}",
+                0,
+                "{0, 300, 560}"
+            ],
+            "%IW105"
+        ],
+        "AL1_ST_Z_POS": [
+            [
+                "{0, 200, 410, 600, 750}",
+                0,
+                "{0, 200, 410, 600, 750}"
+            ],
+            "%IW106"
+        ]
+    },
+
+    "specifications": {
+        "auto": true,
+        "manual": [
+            "AG(stab & PS23 & timer_1_PS23.Q) -> AX(RP_AL1_ST_CLAMP)",
+            "AG(stab & PS4 & AL1_ST_Y_POS>540 & AL1_ST_Y_POS<580 & AL1_ST_Z_POS>780 & AL1_ST_Z_POS<820) -> AX(AL1_ST_GRAB)",
+            "AG(stab & PS8 & AL1_ST_X_POS>750 & AL1_ST_X_POS<790 & AL1_ST_Z_POS>580 & AL1_ST_Z_POS<620) -> AX(!AL1_ST_GRAB)",
+            "AG(stab & PS10 & PS11 & PS12) -> AX(PSE1)"
+        ]
+    }
+}
