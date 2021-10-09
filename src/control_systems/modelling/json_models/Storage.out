@@ -1,0 +1,341 @@
+*** This is NuSMV 2.6.0 (compiled on Wed Oct 14 15:35:00 2015)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+WARNING *** This version of NuSMV is linked to the zchaff SAT         ***
+WARNING *** solver (see http://www.princeton.edu/~chaff/zchaff.html). ***
+WARNING *** Zchaff is used in Bounded Model Checking when the         ***
+WARNING *** system variable "sat_solver" is set to "zchaff".          ***
+WARNING *** Notice that zchaff is for non-commercial purposes only.   ***
+WARNING *** NO COMMERCIAL USE OF ZCHAFF IS ALLOWED WITHOUT WRITTEN    ***
+WARNING *** PERMISSION FROM PRINCETON UNIVERSITY.                     ***
+WARNING *** Please contact Sharad Malik (malik@ee.princeton.edu)      ***
+WARNING *** for details.                                              ***
+
+-- specification AG (EF TG1)  is true
+-- specification AG (EF TG2)  is true
+-- specification AG (EF TG3)  is true
+-- specification AG (EF TG4)  is true
+-- specification AG (EF TG5)  is true
+-- specification AG (EF TG6)  is true
+-- specification AG (EF TG7)  is true
+-- specification AG (EF TG8)  is true
+-- specification AG (EF TG9)  is true
+-- specification AG (EF TG10)  is true
+-- specification AG (EF TG12)  is true
+-- specification AG (EF TG13)  is true
+-- specification AG (EF TG14)  is true
+-- specification AG (EF TG15)  is true
+-- specification AG (EF TG16)  is true
+-- specification AG (EF TG17)  is true
+-- specification AG (EF TG18)  is true
+-- specification AG (EF TG19)  is true
+-- specification AG (EF TG20)  is true
+-- specification AG (EF TG21)  is true
+-- specification AG (EF TG22)  is true
+-- specification AG (EF TG23)  is true
+-- specification AG (EF TG25)  is true
+-- specification AG (EF TG26)  is true
+-- specification AG (EF TG27)  is true
+-- specification AG (EF GENERIC_PRE)  is true
+-- specification AG (EF (((((((((((((((((((((((((TG1 | TG2) | TG3) | TG4) | TG5) | TG6) | TG7) | TG8) | TG9) | TG10) | TG12) | TG13) | TG14) | TG15) | TG16) | TG17) | TG18) | TG19) | TG20) | TG21) | TG22) | TG23) | TG25) | TG26) | TG27) | GENERIC_PRE))  is true
+-- specification EF TG1  is true
+-- specification EF TG2  is true
+-- specification EF TG3  is true
+-- specification EF TG4  is true
+-- specification EF TG5  is true
+-- specification EF TG6  is true
+-- specification EF TG7  is true
+-- specification EF TG8  is true
+-- specification EF TG9  is true
+-- specification EF TG10  is true
+-- specification EF TG12  is true
+-- specification EF TG13  is true
+-- specification EF TG14  is true
+-- specification EF TG15  is true
+-- specification EF TG16  is true
+-- specification EF TG17  is true
+-- specification EF TG18  is true
+-- specification EF TG19  is true
+-- specification EF TG20  is true
+-- specification EF TG21  is true
+-- specification EF TG22  is true
+-- specification EF TG23  is true
+-- specification EF TG25  is true
+-- specification EF TG26  is true
+-- specification EF TG27  is true
+-- specification EF GENERIC_PRE  is true
+-- specification AG (EF stab)  is true
+-- specification AG (stab -> !(RC_AL1_G7_set & RC_AL1_G7_reset))  is true
+-- specification AG (stab -> !(AL1_G_SC_LT_set & AL1_G_SC_LT_reset))  is true
+-- specification AG (stab -> !(AL1_G_SC_LIFT_set & AL1_G_SC_LIFT_reset))  is true
+-- specification AG (stab -> !(AL1_G_SC_RT_set & AL1_G_SC_RT_reset))  is true
+-- specification AG (stab -> (RC_AL1_G7_set | RC_AL1_G7_reset))  is true
+-- specification AG (stab -> (AL1_G_SC_LT_set | AL1_G_SC_LT_reset))  is true
+-- specification AG (stab -> (AL1_G_SC_LIFT_set | AL1_G_SC_LIFT_reset))  is true
+-- specification AG (stab -> (AL1_G_SC_RT_set | AL1_G_SC_RT_reset))  is true
+-- specification AG ((stab & AL1_G_S1) -> AX !RC_AL1_G7)  is true
+-- specification AG ((stab & PG19) -> AX AL1_G_SC_TG = 55)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    AL1_G_S1 = FALSE
+    AL1_G_SC_LL = FALSE
+    AL1_G_SC_MZ = FALSE
+    AL1_G_SC_ML = FALSE
+    AL1_G_SC_MX = FALSE
+    AL1_G_SC_RL = FALSE
+    PG0 = TRUE
+    PG = TRUE
+    PG1 = FALSE
+    PG2 = FALSE
+    PG3 = FALSE
+    PG4 = FALSE
+    PG5 = FALSE
+    PG6 = FALSE
+    PG7 = FALSE
+    PG8 = FALSE
+    PG9 = FALSE
+    PG10 = FALSE
+    PG11 = FALSE
+    PG12 = FALSE
+    PG13 = FALSE
+    PG14 = FALSE
+    PG15 = FALSE
+    PG16 = FALSE
+    PG17 = FALSE
+    PG18 = FALSE
+    PG19 = FALSE
+    PG20 = FALSE
+    PG21 = FALSE
+    PG22 = FALSE
+    PG23 = FALSE
+    PG24 = FALSE
+    PG25 = FALSE
+    PG26 = FALSE
+    AL1_G_SC_TG = 0
+    RC_AL1_G7 = TRUE
+    AL1_G_SC_RT = FALSE
+    AL1_G_SC_LT = FALSE
+    AL1_G_SC_LIFT = FALSE
+    RC_AL1_G7_reset = FALSE
+    AL1_G_SC_RT_reset = TRUE
+    AL1_G_SC_LT_reset = TRUE
+    AL1_G_SC_LIFT_reset = TRUE
+    RC_AL1_G7_set = TRUE
+    AL1_G_SC_RT_set = FALSE
+    AL1_G_SC_LT_set = FALSE
+    AL1_G_SC_LIFT_set = FALSE
+    stab = TRUE
+    GENERIC_PRE = FALSE
+    TG27 = FALSE
+    TG26 = FALSE
+    TG25 = FALSE
+    TG23 = FALSE
+    TG22 = FALSE
+    TG21 = FALSE
+    TG20 = FALSE
+    TG19 = FALSE
+    TG18 = FALSE
+    TG17 = FALSE
+    TG16 = FALSE
+    TG15 = FALSE
+    TG14 = FALSE
+    TG13 = FALSE
+    TG12 = FALSE
+    TG10 = FALSE
+    TG9 = FALSE
+    TG8 = FALSE
+    TG7 = FALSE
+    TG6 = FALSE
+    TG5 = FALSE
+    TG4 = FALSE
+    TG3 = FALSE
+    TG2 = FALSE
+    TG1 = FALSE
+  -> State: 1.2 <-
+    AL1_G_S1 = TRUE
+    AL1_G_SC_LL = TRUE
+    AL1_G_SC_MZ = TRUE
+    stab = FALSE
+    TG1 = TRUE
+  -> State: 1.3 <-
+    PG0 = FALSE
+    PG = FALSE
+    PG1 = TRUE
+    RC_AL1_G7 = FALSE
+    AL1_G_SC_LT = TRUE
+    RC_AL1_G7_reset = TRUE
+    AL1_G_SC_LT_reset = FALSE
+    RC_AL1_G7_set = FALSE
+    AL1_G_SC_LT_set = TRUE
+    GENERIC_PRE = TRUE
+    TG2 = TRUE
+    TG1 = FALSE
+  -> State: 1.4 <-
+    PG0 = TRUE
+    PG1 = FALSE
+    PG2 = TRUE
+    AL1_G_SC_LIFT = TRUE
+    AL1_G_SC_LIFT_reset = FALSE
+    AL1_G_SC_LIFT_set = TRUE
+    GENERIC_PRE = FALSE
+    TG3 = TRUE
+    TG2 = FALSE
+  -> State: 1.5 <-
+    PG2 = FALSE
+    PG3 = TRUE
+    stab = TRUE
+    TG3 = FALSE
+  -> State: 1.6 <-
+    AL1_G_S1 = FALSE
+    AL1_G_SC_LL = FALSE
+    AL1_G_SC_MZ = FALSE
+    AL1_G_SC_ML = TRUE
+    stab = FALSE
+    TG4 = TRUE
+  -> State: 1.7 <-
+    PG3 = FALSE
+    PG4 = TRUE
+    AL1_G_SC_LT = FALSE
+    AL1_G_SC_LT_reset = TRUE
+    AL1_G_SC_LT_set = FALSE
+    TG5 = TRUE
+    TG4 = FALSE
+  -> State: 1.8 <-
+    PG4 = FALSE
+    PG5 = TRUE
+    AL1_G_SC_LIFT = FALSE
+    AL1_G_SC_LIFT_reset = TRUE
+    AL1_G_SC_LIFT_set = FALSE
+    stab = TRUE
+    TG5 = FALSE
+  -> State: 1.9 <-
+    AL1_G_SC_MZ = TRUE
+    AL1_G_SC_ML = FALSE
+    stab = FALSE
+    TG6 = TRUE
+  -> State: 1.10 <-
+    PG5 = FALSE
+    PG6 = TRUE
+    stab = TRUE
+    TG6 = FALSE
+  -> State: 1.11 <-
+    AL1_G_SC_MZ = FALSE
+    stab = FALSE
+    TG7 = TRUE
+  -> State: 1.12 <-
+    PG6 = FALSE
+    PG7 = TRUE
+    TG8 = TRUE
+    TG7 = FALSE
+  -> State: 1.13 <-
+    PG7 = FALSE
+    PG8 = TRUE
+    PG11 = TRUE
+    stab = TRUE
+    TG8 = FALSE
+  -> State: 1.14 <-
+    AL1_G_SC_MZ = TRUE
+    AL1_G_SC_MX = TRUE
+    stab = FALSE
+    TG12 = TRUE
+    TG9 = TRUE
+  -> State: 1.15 <-
+    PG8 = FALSE
+    PG9 = TRUE
+    PG11 = FALSE
+    PG12 = TRUE
+    stab = TRUE
+    TG12 = FALSE
+    TG9 = FALSE
+  -> State: 1.16 <-
+    AL1_G_SC_MZ = FALSE
+    AL1_G_SC_MX = FALSE
+    stab = FALSE
+    TG13 = TRUE
+    TG10 = TRUE
+  -> State: 1.17 <-
+    PG9 = FALSE
+    PG10 = TRUE
+    PG12 = FALSE
+    PG13 = TRUE
+    TG14 = TRUE
+    TG13 = FALSE
+    TG10 = FALSE
+  -> State: 1.18 <-
+    PG10 = FALSE
+    PG13 = FALSE
+    PG14 = TRUE
+    AL1_G_SC_LIFT = TRUE
+    AL1_G_SC_LIFT_reset = FALSE
+    AL1_G_SC_LIFT_set = TRUE
+    stab = TRUE
+    TG14 = FALSE
+  -> State: 1.19 <-
+    AL1_G_SC_MZ = TRUE
+    stab = FALSE
+    TG15 = TRUE
+  -> State: 1.20 <-
+    PG14 = FALSE
+    PG15 = TRUE
+    stab = TRUE
+    TG15 = FALSE
+  -> State: 1.21 <-
+    AL1_G_SC_MZ = FALSE
+    AL1_G_SC_RL = TRUE
+    stab = FALSE
+    TG16 = TRUE
+  -> State: 1.22 <-
+    PG15 = FALSE
+    PG16 = TRUE
+    AL1_G_SC_RT = TRUE
+    AL1_G_SC_RT_reset = FALSE
+    AL1_G_SC_RT_set = TRUE
+    TG17 = TRUE
+    TG16 = FALSE
+  -> State: 1.23 <-
+    PG16 = FALSE
+    PG17 = TRUE
+    AL1_G_SC_LIFT = FALSE
+    AL1_G_SC_LIFT_reset = TRUE
+    AL1_G_SC_LIFT_set = FALSE
+    stab = TRUE
+    TG17 = FALSE
+  -> State: 1.24 <-
+    AL1_G_SC_MZ = TRUE
+    AL1_G_SC_RL = FALSE
+    stab = FALSE
+    TG18 = TRUE
+  -> State: 1.25 <-
+    PG17 = FALSE
+    PG18 = TRUE
+    stab = TRUE
+    TG18 = FALSE
+  -> State: 1.26 <-
+    AL1_G_SC_MZ = FALSE
+    stab = FALSE
+    TG19 = TRUE
+  -- Loop starts here
+  -> State: 1.27 <-
+    PG18 = FALSE
+    PG19 = TRUE
+    AL1_G_SC_RT = FALSE
+    AL1_G_SC_RT_reset = TRUE
+    AL1_G_SC_RT_set = FALSE
+    stab = TRUE
+    TG19 = FALSE
+  -> State: 1.28 <-
