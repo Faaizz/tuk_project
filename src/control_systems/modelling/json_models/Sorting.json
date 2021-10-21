@@ -470,8 +470,8 @@
         "manual": [
             "AG(stab) -> EF(P2)",
             "AG(stab & P2 & (CS_AL1_W > 100)) -> AX(SB_AL1)",
-            "AG(stab & (CS_AL1_W <= 400) & (CS_AL1_W > 800)) -> AX(!PUWS_AL1_1_RT)",
-            "AG(stab & (CS_AL1_W > 400) & (CS_AL1_W <= 800)) -> AX(PUWS_AL1_1_RT)",
+            "AG(stab & (CS_AL1_W <= 200) & (CS_AL1_W > 400)) -> AX(!PUWS_AL1_1_RT)",
+            "AG(stab & (CS_AL1_W > 200) & (CS_AL1_W <= 400)) -> AX(PUWS_AL1_1_RT)",
             "AG(stab & P4 & (CS_AL1_W > 200) & (CS_AL1_W <= 300)) -> A[(AL1_LID & !AL1_BASE) U P4]",
             "AG(stab & P4 & (CS_AL1_W > 300) & (CS_AL1_W <= 400)) -> A[(AL1_BASE & !AL1_LID) U P4]"
         ]
