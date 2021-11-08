@@ -21,9 +21,9 @@ ST_AL1_ST2: boolean;
 ST_AL1_ST3: boolean;
 RP_AL1_ST_CLAMPED: boolean;
 AL1_ST_DETECTED: boolean;
-AL1_ST_X_POS: {0, 400, 860};
+AL1_ST_X_POS: {0, 400, 770};
 AL1_ST_Y_POS: {0, 300, 560};
-AL1_ST_Z_POS: {0, 200, 410, 600, 750};
+AL1_ST_Z_POS: {0, 200, 410, 600, 750, 800};
  
 -- PLACES
 -- ['PA13', 'PSA0', 'PSA1', 'PS0', 'PSC', 'PS1', 'PS23', 'PS2', 'PS3', 'PS4', 'PS5', 'PS6', 'PS7', 'PS8', 'PS9', 'PS10', 'PS11', 'PS12', 'PSE1', 'PSE2', 'PSE0', 'PG0', 'initial']
@@ -106,14 +106,19 @@ RC_AL1_ST:= RC_AL1_ST_set & !RC_AL1_ST_reset;
 RP_AL1_ST_CLAMP:= RP_AL1_ST_CLAMP_set & !RP_AL1_ST_CLAMP_reset;
 -- Non-Boolean Outputs
 AL1_ST_X_SET:= case
+   PS0: 0;
    PS7: 770;
    TRUE: 0;
 esac;
 AL1_ST_Y_SET:= case
+   PS0: 560;
    PS3: 560;
    TRUE: 0;
 esac;
 AL1_ST_Z_SET:= case
+   PS0: 410;
+   PS4: 800;
+   PS6: 410;
    PS8: 600;
    TRUE: 0;
 esac;
@@ -156,7 +161,7 @@ next(AL1_ST_DETECTED):= case
    TRUE: AL1_ST_DETECTED;
 esac;
 next(AL1_ST_X_POS):= case
-   stab: {0, 400, 860};
+   stab: {0, 400, 770};
    TRUE: AL1_ST_X_POS;
 esac;
 next(AL1_ST_Y_POS):= case
@@ -164,7 +169,7 @@ next(AL1_ST_Y_POS):= case
    TRUE: AL1_ST_Y_POS;
 esac;
 next(AL1_ST_Z_POS):= case
-   stab: {0, 200, 410, 600, 750};
+   stab: {0, 200, 410, 600, 750, 800};
    TRUE: AL1_ST_Z_POS;
 esac;
  

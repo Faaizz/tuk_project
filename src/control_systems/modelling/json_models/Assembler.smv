@@ -26,9 +26,9 @@ RP_AL1_CLAMPED: boolean;
 LP_AL1_CLAMPED: boolean;
 AL1_DETECTED: boolean;
 LP_AL1_LIMIT: boolean;
-AL1_X_POS: {0, 200, 700, 900};
+AL1_X_POS: {0, 200, 210, 800};
 AL1_Y_POS: {0, 150, 300};
-AL1_Z_POS: {0, 100, 400, 800};
+AL1_Z_POS: {0, 100, 400, 800, 818};
 ST_AL1_ST0: boolean;
  
 -- PLACES
@@ -119,10 +119,22 @@ SB_AL1_B3:= SB_AL1_B3_set & !SB_AL1_B3_reset;
 SB_AL1_L3:= SB_AL1_L3_set & !SB_AL1_L3_reset;
 -- Non-Boolean Outputs
 AL1_X_SET:= case
+   PA0: 210;
+   PA1: 800;
    PA5: 210;
    TRUE: 0;
 esac;
+AL1_Y_SET:= case
+   PA0: 150;
+   PA1: 150;
+   PA5: 150;
+   TRUE: 0;
+esac;
 AL1_Z_SET:= case
+   PA0: 400;
+   PA2: 800;
+   PA4: 400;
+   PA6: 818;
    PA7: 400;
    TRUE: 0;
 esac;
@@ -161,7 +173,7 @@ next(LP_AL1_LIMIT):= case
    TRUE: LP_AL1_LIMIT;
 esac;
 next(AL1_X_POS):= case
-   stab: {0, 200, 700, 900};
+   stab: {0, 200, 210, 800};
    TRUE: AL1_X_POS;
 esac;
 next(AL1_Y_POS):= case
@@ -169,7 +181,7 @@ next(AL1_Y_POS):= case
    TRUE: AL1_Y_POS;
 esac;
 next(AL1_Z_POS):= case
-   stab: {0, 100, 400, 800};
+   stab: {0, 100, 400, 800, 818};
    TRUE: AL1_Z_POS;
 esac;
 next(ST_AL1_ST0):= case
